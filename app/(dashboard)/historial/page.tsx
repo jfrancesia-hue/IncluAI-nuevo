@@ -7,6 +7,7 @@ import { Button } from '@/components/ui/button';
 import { Alert } from '@/components/ui/alert';
 import { cn } from '@/lib/utils';
 import type { ModuloIncluIA } from '@/lib/types';
+import { Input } from '@/components/ui/input';
 
 export const metadata = { title: 'Historial · IncluIA' };
 
@@ -21,7 +22,7 @@ type Row = {
   feedback_estrellas: number | null;
 };
 
-type SP = Promise<{ modulo?: string; discapacidad?: string }>;
+type SP = Promise<{ modulo?: string; discapacidad?: string; q?: string }>;
 
 const MODULO_META: Record<ModuloIncluIA | 'todos', { icon: string; label: string }> = {
   todos: { icon: '📋', label: 'Todas' },
@@ -51,6 +52,12 @@ export default async function HistorialPage({ searchParams }: { searchParams: SP
 
   if (filtroModulo) query = query.eq('modulo', filtroModulo);
   if (sp.discapacidad) query = query.contains('discapacidades', [sp.discapacidad]);
+  if (sp.q && sp.q.trim()) {
+    const term = sp.q.trim().replace(/%/g, '');
+    query = query.or(
+      `contenido.ilike.%${term}%,materia.ilike.%${term}%,respuesta_ia.ilike.%${term}%`
+    );
+  }
 
   const { data: consultas } = await query.returns<Row[]>();
 
@@ -73,6 +80,18 @@ export default async function HistorialPage({ searchParams }: { searchParams: SP
           </Link>
         </Alert>
       )}
+
+      <form method="get" className="flex flex-col gap-3 sm:flex-row">
+        <Input
+          name="q"
+          defaultValue={sp.q ?? ''}
+          placeholder="🔎 Buscar en tus guías…"
+          className="flex-1"
+        />
+        {filtroModulo && <input type="hidden" name="modulo" value={filtroModulo} />}
+        {sp.discapacidad && <input type="hidden" name="discapacidad" value={sp.discapacidad} />}
+        <Button type="submit" variant="outline">Buscar</Button>
+      </form>
 
       <div className="flex flex-wrap gap-2">
         <Tab href="/historial" active={!filtroModulo} label="Todas" icon="📋" />

@@ -2,6 +2,8 @@ import Link from 'next/link';
 import { notFound } from 'next/navigation';
 import { createClient } from '@/lib/supabase/server';
 import { GuideView } from '@/components/dashboard/guide-view';
+import { GuideActions } from '@/components/dashboard/guide-actions';
+import { RefinarBotones } from '@/components/dashboard/refinar-botones';
 import { FeedbackStars } from '@/components/dashboard/feedback-stars';
 import { Button } from '@/components/ui/button';
 import { DISCAPACIDADES } from '@/data/discapacidades';
@@ -86,7 +88,16 @@ export default async function ResultadoPage({
         <p className="text-muted">Esta consulta aún no tiene respuesta generada.</p>
       )}
 
-      <div className="flex flex-col gap-3 sm:flex-row sm:justify-end">
+      {data.respuesta_ia && (
+        <GuideActions
+          markdown={data.respuesta_ia}
+          titulo={data.materia ?? meta.label}
+        />
+      )}
+
+      {data.respuesta_ia && <RefinarBotones consultaId={data.id} />}
+
+      <div className="flex flex-col gap-3 sm:flex-row sm:justify-end" data-no-print>
         <Button asChild variant="outline">
           <Link href="/historial">Volver al historial</Link>
         </Button>

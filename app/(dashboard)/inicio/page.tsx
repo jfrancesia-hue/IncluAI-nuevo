@@ -6,6 +6,8 @@ import { DISCAPACIDADES } from '@/data/discapacidades';
 import { Card, CardContent } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { ModuleSelector } from '@/components/dashboard/module-selector';
+import { Onboarding } from '@/components/dashboard/onboarding';
+import { getTipDelDia } from '@/data/tips';
 
 export const metadata = { title: 'Inicio · IncluIA' };
 
@@ -42,6 +44,7 @@ export default async function InicioPage() {
 
   return (
     <div className="flex flex-col gap-8">
+      <Onboarding />
       <section>
         <h1 className="text-3xl text-primary sm:text-4xl">
           ¡Hola, {perfil.nombre}!
@@ -100,13 +103,17 @@ export default async function InicioPage() {
         )}
       </section>
 
-      <aside className="rounded-[14px] border border-border bg-primary-bg p-5 text-sm text-primary">
-        <p>
-          💡 <strong>Tip del día.</strong> El DUA no es solo para alumnos con
-          discapacidad — beneficia a TODOS los estudiantes del aula.{' '}
-          <span className="text-muted">— CAST, 2018</span>
-        </p>
-      </aside>
+      {(() => {
+        const tip = getTipDelDia();
+        return (
+          <aside className="rounded-[14px] border border-border bg-primary-bg p-5 text-sm text-primary">
+            <p>
+              💡 <strong>Tip del día.</strong> {tip.texto}{' '}
+              <span className="text-muted">— {tip.fuente}</span>
+            </p>
+          </aside>
+        );
+      })()}
     </div>
   );
 }

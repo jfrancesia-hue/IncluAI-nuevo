@@ -45,10 +45,18 @@ export function streamGuiaYResponder(input: InsertConsultaInput): Response {
       let textoCompleto = '';
 
       try {
+        // Prompt caching: el system prompt (grande, estable) se cachea por 5
+        // minutos en los servers de Anthropic. 90% más barato en hits.
         const claudeStream = anthropic.messages.stream({
           model: CLAUDE_MODEL,
           max_tokens: 4000,
-          system: input.systemPrompt,
+          system: [
+            {
+              type: 'text',
+              text: input.systemPrompt,
+              cache_control: { type: 'ephemeral' },
+            },
+          ],
           messages: [{ role: 'user', content: input.userPrompt }],
         });
 

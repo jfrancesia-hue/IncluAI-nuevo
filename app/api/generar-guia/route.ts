@@ -4,6 +4,7 @@ import { formularioConsultaSchema } from '@/lib/validators';
 import { checkPlanLimits } from '@/lib/plan';
 import { createClient } from '@/lib/supabase/server';
 import { streamGuiaYResponder } from '@/lib/generar-guia-stream';
+import { checkRateLimit } from '@/lib/rate-limit';
 
 export const runtime = 'nodejs';
 export const maxDuration = 60;
@@ -16,6 +17,14 @@ export async function POST(request: NextRequest) {
 
   if (!user) {
     return NextResponse.json({ error: 'No autorizado' }, { status: 401 });
+  }
+
+  const rl = await checkRateLimit(`user:${user.id}`);
+  if (!rl.success) {
+    return NextResponse.json(
+      { error: 'Demasiadas guías en poco tiempo. Esperá un minuto.' },
+      { status: 429, headers: { 'Retry-After': '60' } }
+    );
   }
 
   const plan = await checkPlanLimits();

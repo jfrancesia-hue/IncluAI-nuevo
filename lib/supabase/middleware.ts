@@ -9,6 +9,9 @@ const PROTECTED_PREFIXES = [
   '/perfil',
   '/planes',
   '/exito-pago',
+  '/recursos',
+  '/familias',
+  '/profesionales',
 ];
 const AUTH_ROUTES = ['/login', '/registro'];
 

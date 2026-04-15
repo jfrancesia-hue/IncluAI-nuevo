@@ -14,6 +14,7 @@ import { Alert } from '@/components/ui/alert';
 import { Card, CardContent } from '@/components/ui/card';
 import { GuideView } from './guide-view';
 import { consumirSSE } from './sse';
+import { PLANTILLAS_DOCENTE } from '@/data/plantillas-docente';
 import { cn } from '@/lib/utils';
 
 type Step = 1 | 2 | 3 | 'generando';
@@ -165,6 +166,32 @@ export function ConsultaWizard() {
       {error && <Alert variant="error">{error}</Alert>}
 
       {step === 1 && (
+        <>
+          <Card>
+            <CardContent className="flex flex-col gap-3 p-5">
+              <p className="text-sm font-semibold text-primary">Plantillas rápidas</p>
+              <p className="text-xs text-muted">
+                Arrancá con un ejemplo y editá lo que necesites.
+              </p>
+              <div className="flex flex-wrap gap-2">
+                {PLANTILLAS_DOCENTE.map((p) => (
+                  <button
+                    key={p.id}
+                    type="button"
+                    onClick={() =>
+                      setForm((prev) => ({ ...prev, ...p.form } as typeof prev))
+                    }
+                    className="inline-flex items-center gap-2 rounded-[10px] border border-border bg-card px-3 py-2 text-xs font-medium text-primary transition-colors hover:border-accent hover:bg-primary-bg"
+                    title={p.descripcion}
+                  >
+                    <span aria-hidden>{p.icon}</span>
+                    <span>{p.titulo}</span>
+                  </button>
+                ))}
+              </div>
+            </CardContent>
+          </Card>
+
         <Card>
           <CardContent className="flex flex-col gap-4 p-6">
             <header className="flex flex-col gap-1">
@@ -258,6 +285,7 @@ export function ConsultaWizard() {
             </Field>
           </CardContent>
         </Card>
+        </>
       )}
 
       {step === 2 && (

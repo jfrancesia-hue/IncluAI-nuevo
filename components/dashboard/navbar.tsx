@@ -1,6 +1,7 @@
 import Link from 'next/link';
 import { signOutAction } from '@/app/(dashboard)/actions';
 import type { Perfil } from '@/lib/types';
+import { ThemeToggle } from '@/components/theme-toggle';
 
 const TIPO_META: Record<'docente' | 'familia' | 'profesional', { icon: string; label: string }> = {
   docente: { icon: '📚', label: 'Docente' },
@@ -22,8 +23,8 @@ export function Navbar({ perfil }: { perfil: Perfil }) {
 
         <nav className="hidden items-center gap-6 text-sm text-muted md:flex">
           <Link href="/inicio" className="hover:text-primary">Inicio</Link>
-          <Link href="/nueva-consulta" className="hover:text-primary">Nueva guía</Link>
           <Link href="/historial" className="hover:text-primary">Historial</Link>
+          <Link href="/recursos" className="hover:text-primary">Recursos</Link>
           <Link href="/planes" className="hover:text-primary">Planes</Link>
         </nav>
 
@@ -55,6 +56,7 @@ export function Navbar({ perfil }: { perfil: Perfil }) {
               {perfil.nombre}
             </span>
           </Link>
+          <ThemeToggle />
           <form action={signOutAction}>
             <button
               type="submit"
