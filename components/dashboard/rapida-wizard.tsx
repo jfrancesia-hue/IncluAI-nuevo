@@ -96,16 +96,16 @@ export function RapidaWizard() {
             onChange={(e) => setPregunta(e.target.value)}
             rows={4}
             placeholder="Ej: Odontólogo, paciente TEA 6 años, primera consulta, padre refiere que no tolera jeringas. ¿Cómo empiezo?"
-            className="min-h-[120px] w-full rounded-[10px] border border-border bg-card p-3 text-sm"
-            maxLength={1500}
+            className="min-h-[140px] w-full rounded-[10px] border border-border bg-card p-3 text-base"
+            maxLength={500}
             autoFocus
           />
-          <p className="text-xs text-muted">
-            {pregunta.length} / 1500 — cuanto más específico, mejor.
+          <p className="text-right text-xs text-muted">
+            {pregunta.length} / 500
           </p>
         </CardContent>
       </Card>
-      <Button onClick={submit} size="lg" className="self-start">
+      <Button onClick={submit} size="lg" variant="cta" className="w-full">
         ⚡ Responder ahora
       </Button>
     </div>

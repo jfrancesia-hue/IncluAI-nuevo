@@ -9,17 +9,17 @@ const SLIDES = [
   {
     icon: '👋',
     title: 'Bienvenido/a a IncluIA',
-    body: 'Una plataforma para docentes, familias y profesionales de salud que trabajan con personas con discapacidad en Argentina.',
+    body: 'Tu nueva herramienta educativa para potenciar la inclusión en el aula. Descubrí cómo IncluIA puede ayudarte a crear experiencias de aprendizaje adaptativas y significativas para todos tus estudiantes. ¡Comencemos!',
   },
   {
     icon: '🧩',
     title: 'Elegí tu rol',
-    body: 'Hay 3 módulos. Podés cambiar cuando quieras desde el inicio. Las guías se ajustan al idioma y realidad de cada uno.',
+    body: 'Seleccioná tu perfil para personalizar tu experiencia. Nuestros módulos están diseñados para apoyar a Docentes, Familias y Profesionales en la creación de entornos educativos inclusivos, ofreciendo recursos y herramientas adaptadas a cada necesidad.',
   },
   {
     icon: '⚡',
     title: 'Arrancá con plantillas',
-    body: 'Si es tu primera vez, probá una plantilla pre-cargada. 2 guías gratuitas por mes para explorar.',
+    body: '¡Comenzá de inmediato! Utilizá plantillas precargadas y accedé a 2 guías gratuitas cada mes para optimizar tus clases inclusivas con IA generativa.',
   },
 ];
 
@@ -35,6 +35,16 @@ export function Onboarding() {
     }
   }, []);
 
+  useEffect(() => {
+    if (!visible) return;
+    function onKey(e: KeyboardEvent) {
+      if (e.key === 'Escape') cerrar();
+    }
+    window.addEventListener('keydown', onKey);
+    return () => window.removeEventListener('keydown', onKey);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [visible]);
+
   if (!visible) return null;
 
   function cerrar() {
@@ -46,51 +56,76 @@ export function Onboarding() {
 
   const slide = SLIDES[step];
   const last = step === SLIDES.length - 1;
+  const first = step === 0;
 
   return (
     <div
-      className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 p-4"
+      className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 p-4 animate-in fade-in"
       role="dialog"
       aria-modal="true"
       aria-labelledby="ob-title"
     >
-      <div className="w-full max-w-md rounded-[14px] bg-card p-6 shadow-xl">
-        <div className="mb-4 flex items-center justify-between">
+      <div className="relative w-full max-w-sm rounded-[20px] bg-card p-6 shadow-xl">
+        <div className="mb-3 flex items-center justify-between">
           <span className="text-xs text-muted">
             Paso {step + 1} de {SLIDES.length}
           </span>
-          <button
-            type="button"
-            onClick={cerrar}
-            className="text-xs text-muted hover:text-primary"
-            aria-label="Saltar onboarding"
-          >
-            Saltar
-          </button>
-        </div>
-        <div className="flex flex-col gap-3 text-center">
-          <span aria-hidden className="text-5xl">{slide.icon}</span>
-          <h2 id="ob-title" className="font-serif text-2xl text-primary">
-            {slide.title}
-          </h2>
-          <p className="text-sm text-muted">{slide.body}</p>
+          {first ? (
+            <button
+              type="button"
+              onClick={cerrar}
+              className="text-xs font-medium text-muted hover:text-primary"
+              aria-label="Saltar onboarding"
+            >
+              Saltar
+            </button>
+          ) : (
+            <button
+              type="button"
+              onClick={cerrar}
+              className="flex h-7 w-7 items-center justify-center rounded-full text-muted hover:bg-primary-bg hover:text-primary"
+              aria-label="Cerrar"
+            >
+              ✕
+            </button>
+          )}
         </div>
 
-        <div className="mt-5 flex items-center justify-between gap-3">
+        <div className="flex flex-col items-center gap-3 text-center py-4">
+          <span aria-hidden className="text-6xl">
+            {slide.icon}
+          </span>
+          <h2 id="ob-title" className="font-serif text-2xl font-bold text-primary">
+            {slide.title}
+          </h2>
+          <p className="text-sm leading-relaxed text-muted px-2">{slide.body}</p>
+        </div>
+
+        <div className="mt-4 flex items-center justify-between gap-3">
           <div className="flex gap-1.5">
             {SLIDES.map((_, i) => (
               <span
                 key={i}
-                className={`h-1.5 w-6 rounded-full ${i <= step ? 'bg-accent' : 'bg-border'}`}
+                aria-hidden
+                className={`h-2 w-2 rounded-full ${
+                  i === step ? 'bg-accent' : 'bg-border'
+                }`}
               />
             ))}
           </div>
-          <Button
-            onClick={() => (last ? cerrar() : setStep(step + 1))}
-            size="sm"
-          >
-            {last ? '¡Empezar!' : 'Siguiente →'}
-          </Button>
+          <div className="flex gap-2">
+            {!first && (
+              <Button variant="ghost" size="sm" onClick={() => setStep(step - 1)}>
+                Atrás
+              </Button>
+            )}
+            <Button
+              size="sm"
+              onClick={() => (last ? cerrar() : setStep(step + 1))}
+            >
+              {last ? '¡Empezar!' : 'Siguiente'}
+            </Button>
+          </div>
         </div>
       </div>
     </div>

@@ -352,13 +352,26 @@ function Field({ label, children }: { label: string; children: React.ReactNode }
 function Progress({ step }: { step: Step }) {
   const n = typeof step === 'number' ? step : 3;
   return (
-    <div className="flex items-center gap-2">
-      {[1, 2, 3].map((i) => (
-        <div
-          key={i}
-          className={cn('h-1.5 flex-1 rounded-full transition-colors', i <= n ? 'bg-accent' : 'bg-border')}
-        />
-      ))}
+    <div className="flex flex-col gap-2">
+      <div className="flex items-center justify-between text-xs text-muted">
+        <span>Paso {n} de 3</span>
+        <span>
+          {n === 1 && 'Sobre tu hijo/a'}
+          {n === 2 && '¿En qué necesitás ayuda?'}
+          {n === 3 && 'Contexto familiar'}
+        </span>
+      </div>
+      <div className="flex items-center gap-2">
+        {[1, 2, 3].map((i) => (
+          <div
+            key={i}
+            className={cn(
+              'h-1.5 flex-1 rounded-full transition-colors',
+              i <= n ? 'bg-accent' : 'bg-border'
+            )}
+          />
+        ))}
+      </div>
     </div>
   );
 }

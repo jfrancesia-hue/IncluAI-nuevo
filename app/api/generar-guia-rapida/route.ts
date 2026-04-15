@@ -10,7 +10,7 @@ export const runtime = 'nodejs';
 export const maxDuration = 60;
 
 const rapidaSchema = z.object({
-  pregunta: z.string().trim().min(10).max(1500),
+  pregunta: z.string().trim().min(10).max(500),
 });
 
 export async function POST(request: NextRequest) {

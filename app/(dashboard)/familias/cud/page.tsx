@@ -35,7 +35,7 @@ export default function CUDPage() {
               <CardContent className="flex gap-4 p-5">
                 <div
                   aria-hidden
-                  className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-primary font-serif text-lg font-bold text-white"
+                  className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-accent font-serif text-lg font-bold text-white shadow-sm"
                 >
                   {paso.numero}
                 </div>

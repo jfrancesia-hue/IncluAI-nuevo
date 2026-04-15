@@ -5,6 +5,7 @@ import type { TipoUsuario } from '@/lib/types';
 type ModuleCardProps = {
   href: string;
   icon: string;
+  illustration: string;
   title: string;
   desc: string;
   highlight?: boolean;
@@ -16,32 +17,35 @@ export function ModuleSelector({ tipoUsuario }: { tipoUsuario: TipoUsuario }) {
       key: 'docente',
       href: '/nueva-consulta',
       icon: '📚',
-      title: 'Soy Docente',
-      desc: 'Guías para planificar clases inclusivas.',
+      illustration: '👨‍🏫',
+      title: 'Módulo Docente',
+      desc: 'Accedé a recursos y guías para el aula.',
       highlight: tipoUsuario === 'docente',
     },
     {
       key: 'familia',
       href: '/familias/nueva-consulta',
       icon: '🏠',
-      title: 'Soy Familia',
-      desc: 'Guías para acompañar a tu hijo/a en casa.',
+      illustration: '👨‍👩‍👧',
+      title: 'Módulo Familia',
+      desc: 'Herramientas y consejos para el hogar.',
       highlight: tipoUsuario === 'familia',
     },
     {
       key: 'profesional',
       href: '/profesionales/nueva-consulta',
       icon: '⚕️',
-      title: 'Soy Profesional',
-      desc: 'Guías clínicas para atender pacientes con discapacidad.',
+      illustration: '🩺',
+      title: 'Módulo Profesional',
+      desc: 'Recursos especializados y consulta.',
       highlight: tipoUsuario === 'profesional',
     },
   ];
 
   return (
     <section aria-labelledby="selector-title" className="flex flex-col gap-3">
-      <h2 id="selector-title" className="font-serif text-lg text-primary">
-        ¿Qué tipo de guía necesitás hoy?
+      <h2 id="selector-title" className="font-serif text-lg font-bold text-primary">
+        Módulo selector
       </h2>
       <div className="grid grid-cols-1 gap-3 sm:grid-cols-3">
         {cards.map((c) => (
@@ -49,20 +53,25 @@ export function ModuleSelector({ tipoUsuario }: { tipoUsuario: TipoUsuario }) {
             key={c.key}
             href={c.href}
             className={cn(
-              'group flex flex-col gap-1 rounded-[14px] border bg-card p-5 transition-colors',
+              'group flex flex-col items-start gap-2 rounded-[16px] border-2 p-5 transition-all',
               c.highlight
-                ? 'border-accent bg-accent-light'
-                : 'border-border hover:border-accent'
+                ? 'border-accent bg-accent-light shadow-[0_4px_16px_rgba(22,163,74,0.15)]'
+                : 'border-border bg-card hover:border-accent hover:shadow-[0_2px_12px_rgba(0,0,0,0.06)]'
             )}
           >
-            <span className="text-3xl" aria-hidden>
-              {c.icon}
-            </span>
-            <p className="mt-1 font-serif text-lg font-bold text-primary">{c.title}</p>
-            <p className="text-xs text-muted">{c.desc}</p>
+            <div className="flex items-center gap-2">
+              <span className="text-3xl" aria-hidden>
+                {c.illustration}
+              </span>
+              <span className="text-xl" aria-hidden>
+                {c.icon}
+              </span>
+            </div>
+            <p className="font-serif text-lg font-bold text-primary">{c.title}</p>
+            <p className="text-xs text-muted leading-relaxed">{c.desc}</p>
             <span
               className={cn(
-                'mt-2 text-sm font-medium',
+                'mt-auto pt-2 text-sm font-semibold',
                 c.highlight ? 'text-accent' : 'text-primary group-hover:text-accent'
               )}
             >

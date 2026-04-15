@@ -21,15 +21,17 @@ export default async function RapidaPage() {
   }
 
   return (
-    <div className="flex flex-col gap-6">
-      <header>
-        <span className="inline-flex items-center gap-2 rounded-full bg-cta/10 px-3 py-1 text-xs font-medium text-cta">
+    <div className="mx-auto flex w-full max-w-2xl flex-col gap-6">
+      <header className="flex flex-col items-start gap-3">
+        <span className="inline-flex items-center gap-2 rounded-full bg-primary-bg px-3 py-1.5 text-xs font-semibold text-primary">
           ⚡ Consulta rápida
         </span>
-        <h1 className="mt-2 text-3xl text-primary">Respuesta en 10 segundos</h1>
+        <h1 className="text-3xl font-bold text-primary sm:text-4xl">
+          Respuesta en 10 segundos
+        </h1>
         <p className="text-sm text-muted">
-          Para cuando tenés al paciente en la silla y necesitás orientación AHORA.
-          Escribí tu situación en una oración.
+          Para cuando tenés al paciente en la silla y necesitás orientación
+          AHORA. Escribí tu situación en una oración.
         </p>
       </header>
       <RapidaWizard />

@@ -32,11 +32,13 @@ export default async function RecursosPage({ searchParams }: { searchParams: SP 
 
   return (
     <div className="flex flex-col gap-6">
-      <header>
-        <h1 className="text-3xl text-primary">Biblioteca de recursos</h1>
-        <p className="text-muted">
-          Recursos oficiales y comunitarios de Argentina — portales, normativa, trámites y
-          herramientas curadas por tipo de discapacidad y público.
+      <header className="text-center">
+        <h1 className="font-serif text-3xl font-bold text-primary sm:text-4xl">
+          Biblioteca de recursos
+        </h1>
+        <p className="mx-auto mt-2 max-w-2xl text-sm text-muted">
+          Recursos oficiales y comunitarios de Argentina — portales, normativa,
+          trámites y herramientas curadas por tipo de discapacidad y público.
         </p>
       </header>
 
