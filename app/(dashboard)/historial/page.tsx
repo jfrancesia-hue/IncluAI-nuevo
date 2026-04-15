@@ -2,46 +2,54 @@ import Link from 'next/link';
 import { getPerfil } from '@/lib/auth';
 import { createClient } from '@/lib/supabase/server';
 import { DISCAPACIDADES } from '@/data/discapacidades';
-import { NIVELES } from '@/data/niveles';
 import { Card, CardContent } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
-import { Select } from '@/components/ui/select';
 import { Alert } from '@/components/ui/alert';
+import { cn } from '@/lib/utils';
+import type { ModuloIncluIA } from '@/lib/types';
 
 export const metadata = { title: 'Historial · IncluIA' };
 
 type Row = {
   id: string;
-  nivel: string;
-  materia: string;
+  modulo: ModuloIncluIA;
+  nivel: string | null;
+  materia: string | null;
   contenido: string;
   discapacidades: string[];
   created_at: string;
   feedback_estrellas: number | null;
 };
 
-type SP = Promise<{ nivel?: string; discapacidad?: string; materia?: string }>;
+type SP = Promise<{ modulo?: string; discapacidad?: string }>;
 
-export default async function HistorialPage({
-  searchParams,
-}: {
-  searchParams: SP;
-}) {
+const MODULO_META: Record<ModuloIncluIA | 'todos', { icon: string; label: string }> = {
+  todos: { icon: '📋', label: 'Todas' },
+  docentes: { icon: '📚', label: 'Docente' },
+  familias: { icon: '🏠', label: 'Familia' },
+  profesionales: { icon: '⚕️', label: 'Profesional' },
+};
+
+export default async function HistorialPage({ searchParams }: { searchParams: SP }) {
   const [perfil, sp] = await Promise.all([getPerfil(), searchParams]);
   if (!perfil) return null;
 
   const esPro = perfil.plan === 'pro' || perfil.plan === 'institucional';
+  const filtroModulo = (['docentes', 'familias', 'profesionales'] as const).includes(
+    sp.modulo as ModuloIncluIA
+  )
+    ? (sp.modulo as ModuloIncluIA)
+    : null;
 
   const supabase = await createClient();
   let query = supabase
     .from('consultas')
-    .select('id, nivel, materia, contenido, discapacidades, created_at, feedback_estrellas')
+    .select('id, modulo, nivel, materia, contenido, discapacidades, created_at, feedback_estrellas')
     .eq('user_id', perfil.id)
     .order('created_at', { ascending: false })
     .limit(50);
 
-  if (sp.nivel) query = query.eq('nivel', sp.nivel);
-  if (sp.materia) query = query.ilike('materia', sp.materia);
+  if (filtroModulo) query = query.eq('modulo', filtroModulo);
   if (sp.discapacidad) query = query.contains('discapacidades', [sp.discapacidad]);
 
   const { data: consultas } = await query.returns<Row[]>();
@@ -51,11 +59,8 @@ export default async function HistorialPage({
       <header className="flex items-center justify-between">
         <div>
           <h1 className="text-3xl text-primary">Historial</h1>
-          <p className="text-sm text-muted">Todas tus guías generadas.</p>
+          <p className="text-sm text-muted">Todas tus guías generadas en los 3 módulos.</p>
         </div>
-        <Button asChild>
-          <Link href="/nueva-consulta">+ Nueva guía</Link>
-        </Button>
       </header>
 
       {!esPro && (
@@ -69,52 +74,22 @@ export default async function HistorialPage({
         </Alert>
       )}
 
-      <form
-        method="get"
-        className="flex flex-col gap-3 rounded-[14px] border border-border bg-card p-4 sm:flex-row sm:items-end"
-      >
-        <div className="flex-1">
-          <label className="text-xs text-muted" htmlFor="f-nivel">Nivel</label>
-          <Select id="f-nivel" name="nivel" defaultValue={sp.nivel ?? ''}>
-            <option value="">Todos</option>
-            {NIVELES.map((n) => (
-              <option key={n.id} value={n.id}>
-                {n.label}
-              </option>
-            ))}
-          </Select>
-        </div>
-        <div className="flex-1">
-          <label className="text-xs text-muted" htmlFor="f-disc">Discapacidad</label>
-          <Select id="f-disc" name="discapacidad" defaultValue={sp.discapacidad ?? ''}>
-            <option value="">Todas</option>
-            {DISCAPACIDADES.map((d) => (
-              <option key={d.id} value={d.id}>
-                {d.icon} {d.label}
-              </option>
-            ))}
-          </Select>
-        </div>
-        <div className="flex gap-2">
-          <Button type="submit" size="sm">Filtrar</Button>
-          <Button asChild variant="outline" size="sm">
-            <Link href="/historial">Limpiar</Link>
-          </Button>
-        </div>
-      </form>
+      <div className="flex flex-wrap gap-2">
+        <Tab href="/historial" active={!filtroModulo} label="Todas" icon="📋" />
+        <Tab href="/historial?modulo=docentes" active={filtroModulo === 'docentes'} label="Docente" icon="📚" />
+        <Tab href="/historial?modulo=familias" active={filtroModulo === 'familias'} label="Familia" icon="🏠" />
+        <Tab href="/historial?modulo=profesionales" active={filtroModulo === 'profesionales'} label="Profesional" icon="⚕️" />
+      </div>
 
       {!consultas || consultas.length === 0 ? (
         <Card>
           <CardContent className="flex min-h-[160px] flex-col items-center justify-center gap-2 p-10 text-center text-muted">
             <span aria-hidden className="text-3xl">📚</span>
             <p className="text-sm">
-              {sp.nivel || sp.discapacidad
+              {filtroModulo || sp.discapacidad
                 ? 'No hay guías con esos filtros.'
                 : 'Todavía no generaste ninguna guía.'}
             </p>
-            <Button asChild variant="outline" size="sm" className="mt-2">
-              <Link href="/nueva-consulta">Crear una guía</Link>
-            </Button>
           </CardContent>
         </Card>
       ) : (
@@ -130,6 +105,23 @@ export default async function HistorialPage({
   );
 }
 
+function Tab({ href, active, label, icon }: { href: string; active: boolean; label: string; icon: string }) {
+  return (
+    <Link
+      href={href}
+      className={cn(
+        'inline-flex items-center gap-1.5 rounded-full border px-3 py-1.5 text-sm transition-colors',
+        active
+          ? 'border-accent bg-accent-light text-accent'
+          : 'border-border bg-card text-primary hover:bg-primary-bg'
+      )}
+    >
+      <span aria-hidden>{icon}</span>
+      <span>{label}</span>
+    </Link>
+  );
+}
+
 function ConsultaItem({ row, locked }: { row: Row; locked: boolean }) {
   const tags = row.discapacidades
     .map((id) => DISCAPACIDADES.find((d) => d.id === id))
@@ -141,32 +133,38 @@ function ConsultaItem({ row, locked }: { row: Row; locked: boolean }) {
     year: 'numeric',
   });
 
+  const moduloLabel = MODULO_META[row.modulo]?.label ?? row.modulo;
+  const moduloIcon = MODULO_META[row.modulo]?.icon ?? '📋';
+  const titulo = row.materia ?? row.contenido.slice(0, 60);
+
   const inner = (
     <Card className="transition-colors hover:border-accent">
       <CardContent className="flex flex-col gap-2 p-5">
         <div className="flex items-center justify-between gap-3">
-          <p className="font-serif text-lg font-bold text-primary">{row.materia}</p>
+          <p className="font-serif text-lg font-bold text-primary">
+            <span aria-hidden className="mr-1">{moduloIcon}</span>
+            {titulo}
+          </p>
           <span className="text-xs text-muted">{fecha}</span>
         </div>
         <p className="line-clamp-2 text-sm text-foreground">{row.contenido}</p>
-        {tags.length > 0 && (
-          <div className="flex flex-wrap gap-1">
-            {tags.map((t) => (
-              <span
-                key={t.id}
-                className="rounded-full bg-accent-light px-2 py-0.5 text-[11px] font-medium text-accent"
-              >
-                {t.icon} {t.label}
-              </span>
-            ))}
-          </div>
-        )}
+        <div className="flex flex-wrap gap-1">
+          <span className="rounded-full bg-primary-bg px-2 py-0.5 text-[11px] font-medium text-primary">
+            {moduloLabel}
+          </span>
+          {tags.map((t) => (
+            <span
+              key={t.id}
+              className="rounded-full bg-accent-light px-2 py-0.5 text-[11px] font-medium text-accent"
+            >
+              {t.icon} {t.label}
+            </span>
+          ))}
+        </div>
         {row.feedback_estrellas && (
           <p className="text-xs text-cta">
             {'★'.repeat(row.feedback_estrellas)}
-            <span className="text-muted">
-              {'★'.repeat(5 - row.feedback_estrellas)}
-            </span>
+            <span className="text-muted">{'★'.repeat(5 - row.feedback_estrellas)}</span>
           </p>
         )}
       </CardContent>

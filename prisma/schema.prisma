@@ -16,6 +16,18 @@ enum Rol {
   admin
 }
 
+enum TipoUsuario {
+  docente
+  familia
+  profesional
+}
+
+enum Modulo {
+  docentes
+  familias
+  profesionales
+}
+
 enum Plan {
   free
   pro
@@ -39,6 +51,8 @@ model Perfil {
   localidad        String?
   provincia        String   @default("No especificada")
   rol              Rol      @default(docente)
+  tipoUsuario      TipoUsuario @default(docente) @map("tipo_usuario")
+  especialidad     String?
   plan             Plan     @default(free)
   planActivoHasta  DateTime? @map("plan_activo_hasta") @db.Timestamptz
   consultasMes     Int      @default(0) @map("consultas_mes")
@@ -57,14 +71,16 @@ model Perfil {
 model Consulta {
   id                 String   @id @default(uuid()) @db.Uuid
   userId             String   @map("user_id") @db.Uuid
-  nivel              String
+  modulo             Modulo   @default(docentes)
+  datosModulo        Json?    @map("datos_modulo")
+  nivel              String?
   subnivel           String?
   anioGrado          String?  @map("anio_grado")
-  materia            String
+  materia            String?
   contenido          String
   discapacidades     String[]
   cantidadAlumnos    Int      @default(1) @map("cantidad_alumnos")
-  situacionApoyo     String   @map("situacion_apoyo")
+  situacionApoyo     String?  @map("situacion_apoyo")
   contextoAula       String?  @map("contexto_aula")
   objetivoClase      String?  @map("objetivo_clase")
   respuestaIa        String?  @map("respuesta_ia")
@@ -78,6 +94,7 @@ model Consulta {
   @@index([userId])
   @@index([createdAt(sort: Desc)])
   @@index([nivel])
+  @@index([modulo])
   @@map("consultas")
 }
 

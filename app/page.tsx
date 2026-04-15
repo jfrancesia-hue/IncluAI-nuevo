@@ -20,10 +20,67 @@ export default async function LandingPage() {
     <div className="flex min-h-screen flex-1 flex-col">
       <Hero />
       <HowItWorks />
+      <TresModulos />
       <DisabilitiesGrid />
       <Pricing />
       <Footer />
     </div>
+  );
+}
+
+function TresModulos() {
+  const cards = [
+    {
+      icon: '📚',
+      title: 'Para docentes',
+      desc: 'Planificá clases inclusivas con adecuación curricular, estrategias DUA y materiales listos para el aula.',
+      cta: 'Empezar como docente',
+    },
+    {
+      icon: '🏠',
+      title: 'Para familias',
+      desc: 'Acompañá a tu hijo/a en casa con guías sobre rutinas, comunicación, conductas, sueño, alimentación y más.',
+      cta: 'Empezar como familia',
+    },
+    {
+      icon: '⚕️',
+      title: 'Para profesionales',
+      desc: 'Guías clínicas adaptadas para psicólogos, fonoaudiólogos, odontólogos, pediatras y todo el equipo de salud.',
+      cta: 'Empezar como profesional',
+    },
+  ];
+  return (
+    <section className="bg-background px-4 py-20 sm:px-8">
+      <div className="mx-auto max-w-5xl">
+        <h2 className="text-center font-serif text-3xl font-bold text-primary sm:text-4xl">
+          3 módulos, una plataforma
+        </h2>
+        <p className="mx-auto mt-3 max-w-2xl text-center text-muted">
+          Un solo ecosistema de inclusión pensado para los tres actores que
+          acompañan a una persona con discapacidad.
+        </p>
+        <div className="mt-12 grid grid-cols-1 gap-5 md:grid-cols-3">
+          {cards.map((c) => (
+            <div
+              key={c.title}
+              className="flex flex-col gap-3 rounded-[14px] border border-border bg-card p-6"
+            >
+              <span className="text-4xl" aria-hidden>
+                {c.icon}
+              </span>
+              <h3 className="font-serif text-xl font-bold text-primary">{c.title}</h3>
+              <p className="text-sm text-muted">{c.desc}</p>
+              <Link
+                href="/registro"
+                className="mt-2 inline-flex w-fit items-center gap-1 rounded-[10px] bg-accent px-4 py-2 text-sm font-semibold text-white hover:bg-[#15803d]"
+              >
+                {c.cta} →
+              </Link>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
   );
 }
 

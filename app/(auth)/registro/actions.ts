@@ -5,11 +5,15 @@ import { createClient } from '@/lib/supabase/server';
 import { PROVINCIAS_AR } from '@/data/provincias';
 import { enviarBienvenida } from '@/lib/email';
 
+const tipoUsuarioSchema = z.enum(['docente', 'familia', 'profesional']);
+
 const registroSchema = z.object({
   nombre: z.string().trim().min(1, 'Ingresá tu nombre').max(80),
   apellido: z.string().trim().min(1, 'Ingresá tu apellido').max(80),
   email: z.string().trim().email('Email inválido'),
   password: z.string().min(8, 'La contraseña debe tener al menos 8 caracteres'),
+  tipo_usuario: tipoUsuarioSchema.default('docente'),
+  especialidad: z.string().trim().max(60).optional().or(z.literal('')),
   institucion: z.string().trim().max(160).optional().or(z.literal('')),
   localidad: z.string().trim().max(120).optional().or(z.literal('')),
   provincia: z
@@ -51,6 +55,8 @@ export async function registrarUsuario(formData: FormData): Promise<RegistroResu
       data: {
         nombre: data.nombre,
         apellido: data.apellido,
+        tipo_usuario: data.tipo_usuario,
+        especialidad: data.especialidad || null,
         institucion: data.institucion || null,
         localidad: data.localidad || null,
         provincia: data.provincia || null,
@@ -62,10 +68,19 @@ export async function registrarUsuario(formData: FormData): Promise<RegistroResu
     return { ok: false, error: mapAuthError(error.message) };
   }
 
-  if (authData.user && (data.institucion || data.localidad || data.provincia)) {
+  if (
+    authData.user &&
+    (data.institucion ||
+      data.localidad ||
+      data.provincia ||
+      data.tipo_usuario !== 'docente' ||
+      data.especialidad)
+  ) {
     await supabase
       .from('perfiles')
       .update({
+        tipo_usuario: data.tipo_usuario,
+        especialidad: data.especialidad || null,
         institucion: data.institucion || null,
         localidad: data.localidad || null,
         provincia: data.provincia || 'No especificada',

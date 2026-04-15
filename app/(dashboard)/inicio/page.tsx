@@ -5,15 +5,23 @@ import { createClient } from '@/lib/supabase/server';
 import { DISCAPACIDADES } from '@/data/discapacidades';
 import { Card, CardContent } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
+import { ModuleSelector } from '@/components/dashboard/module-selector';
 
 export const metadata = { title: 'Inicio · IncluIA' };
 
 type RecentRow = {
   id: string;
-  materia: string;
+  modulo: 'docentes' | 'familias' | 'profesionales';
+  materia: string | null;
   contenido: string;
   discapacidades: string[];
   created_at: string;
+};
+
+const MODULO_ICON: Record<RecentRow['modulo'], string> = {
+  docentes: '📚',
+  familias: '🏠',
+  profesionales: '⚕️',
 };
 
 export default async function InicioPage() {
@@ -26,7 +34,7 @@ export default async function InicioPage() {
   const supabase = await createClient();
   const { data: recientes } = await supabase
     .from('consultas')
-    .select('id, materia, contenido, discapacidades, created_at')
+    .select('id, modulo, materia, contenido, discapacidades, created_at')
     .eq('user_id', perfil.id)
     .order('created_at', { ascending: false })
     .limit(3)
@@ -41,19 +49,7 @@ export default async function InicioPage() {
         <p className="mt-1 text-muted">¿Qué vas a enseñar hoy?</p>
       </section>
 
-      <Card className="bg-gradient-to-br from-accent to-[#15803d] text-white">
-        <CardContent className="flex flex-col gap-4 p-8 sm:flex-row sm:items-center sm:justify-between">
-          <div>
-            <h2 className="font-serif text-2xl font-bold">Nueva consulta</h2>
-            <p className="mt-1 text-sm text-white/85">
-              Generá una guía inclusiva para tu próxima clase.
-            </p>
-          </div>
-          <Button asChild variant="secondary" size="lg">
-            <Link href="/nueva-consulta">Comenzar →</Link>
-          </Button>
-        </CardContent>
-      </Card>
+      <ModuleSelector tipoUsuario={perfil.tipo_usuario} />
 
       <section className="grid grid-cols-1 gap-4 sm:grid-cols-3">
         <Stat label="Guías restantes" value={`${restantes} / ${limite}`} />
@@ -144,7 +140,12 @@ function RecentCard({ row }: { row: RecentRow }) {
       <Card className="transition-colors hover:border-accent">
         <CardContent className="flex flex-col gap-1 p-4">
           <div className="flex items-center justify-between">
-            <p className="text-sm font-semibold text-primary">{row.materia}</p>
+            <p className="text-sm font-semibold text-primary">
+              <span aria-hidden className="mr-1">
+                {MODULO_ICON[row.modulo]}
+              </span>
+              {row.materia ?? row.modulo}
+            </p>
             <span className="text-xs text-muted">
               {new Date(row.created_at).toLocaleDateString('es-AR')}
             </span>

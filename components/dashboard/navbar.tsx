@@ -2,9 +2,16 @@ import Link from 'next/link';
 import { signOutAction } from '@/app/(dashboard)/actions';
 import type { Perfil } from '@/lib/types';
 
+const TIPO_META: Record<'docente' | 'familia' | 'profesional', { icon: string; label: string }> = {
+  docente: { icon: '📚', label: 'Docente' },
+  familia: { icon: '🏠', label: 'Familia' },
+  profesional: { icon: '⚕️', label: 'Profesional' },
+};
+
 export function Navbar({ perfil }: { perfil: Perfil }) {
   const iniciales = `${perfil.nombre[0] ?? ''}${perfil.apellido[0] ?? ''}`.toUpperCase();
   const esPro = perfil.plan === 'pro' || perfil.plan === 'institucional';
+  const tipo = TIPO_META[perfil.tipo_usuario] ?? TIPO_META.docente;
 
   return (
     <header className="sticky top-0 z-30 border-b border-border bg-card/90 backdrop-blur">
@@ -21,6 +28,9 @@ export function Navbar({ perfil }: { perfil: Perfil }) {
         </nav>
 
         <div className="flex items-center gap-3">
+          <span className="hidden rounded-full bg-primary-bg px-2.5 py-0.5 text-xs font-medium text-primary sm:inline-flex">
+            {tipo.icon} {tipo.label}
+          </span>
           <span
             className={
               'hidden rounded-full px-2.5 py-0.5 text-xs font-medium sm:inline-flex ' +

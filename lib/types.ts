@@ -78,6 +78,8 @@ export type Perfil = {
   localidad?: string
   provincia?: string
   rol: RolUsuario
+  tipo_usuario: 'docente' | 'familia' | 'profesional'
+  especialidad?: string
   plan: PlanUsuario
   plan_activo_hasta?: string // ISO date
   consultas_mes: number
@@ -159,4 +161,134 @@ export type GenerarGuiaResponse = {
 export type FeedbackRequest = {
   consulta_id: string
   estrellas: number // 1-5
+}
+
+// ============================================
+// Expansión: módulo selector (docentes / familias / profesionales)
+// ============================================
+
+export type ModuloIncluIA = 'docentes' | 'familias' | 'profesionales'
+
+export type TipoUsuario = 'docente' | 'familia' | 'profesional'
+
+// ============================================
+// Módulo Familias
+// ============================================
+
+export type RangoEdad =
+  | '0-2'
+  | '3-5'
+  | '6-8'
+  | '9-12'
+  | '13-15'
+  | '16-18'
+  | '18+'
+
+export type AreaAyudaFamilia =
+  | 'rutinas'
+  | 'comunicacion'
+  | 'conducta'
+  | 'autonomia'
+  | 'socializacion'
+  | 'estimulacion'
+  | 'escolaridad'
+  | 'emociones'
+  | 'sueno'
+  | 'alimentacion'
+  | 'transiciones'
+  | 'hermanos'
+  | 'tramites'
+
+export type SituacionFamiliar =
+  | 'ambos_padres'
+  | 'monoparental'
+  | 'familia_ampliada'
+  | 'otro'
+
+export type FormularioFamilia = {
+  nombre_hijo?: string
+  edad_rango: RangoEdad
+  discapacidades: string[]
+  discapacidad_otra?: string
+  diagnostico_detalle?: string
+
+  areas_ayuda: AreaAyudaFamilia[]
+  situacion_especifica: string
+
+  situacion_familiar: SituacionFamiliar
+  tiene_terapias: boolean
+  terapias_detalle?: string
+  contexto_adicional?: string
+}
+
+// ============================================
+// Módulo Profesionales
+// ============================================
+
+export type EspecialidadProfesional =
+  | 'psicologo'
+  | 'fonoaudiologo'
+  | 'terapeuta_ocupacional'
+  | 'kinesiologo'
+  | 'medico_pediatra'
+  | 'medico_familia'
+  | 'medico_neurologo'
+  | 'medico_psiquiatra'
+  | 'odontologo'
+  | 'nutricionista'
+  | 'trabajador_social'
+  | 'psicopedagogo'
+  | 'musicoterapeuta'
+  | 'acompanante_terapeutico'
+  | 'otro'
+
+export type ContextoAtencion =
+  | 'primera_consulta'
+  | 'seguimiento'
+  | 'evaluacion'
+  | 'intervencion'
+  | 'interconsulta'
+  | 'domiciliaria'
+
+export type ObjetivoConsultaProfesional =
+  | 'comunicacion'
+  | 'adaptacion_espacio'
+  | 'manejo_conducta'
+  | 'evaluacion_adaptada'
+  | 'plan_tratamiento'
+  | 'orientacion_familia'
+  | 'coordinacion_equipo'
+  | 'material_adaptado'
+
+export type FormularioProfesional = {
+  especialidad: EspecialidadProfesional
+  especialidad_otra?: string
+  contexto_atencion: ContextoAtencion
+  lugar_atencion: string
+
+  edad_paciente: RangoEdad
+  discapacidades: string[]
+  discapacidad_otra?: string
+  diagnostico_detalle?: string
+  comunicacion_paciente: string
+
+  objetivos: ObjetivoConsultaProfesional[]
+  situacion_especifica: string
+  contexto_adicional?: string
+}
+
+// ============================================
+// Consulta unificada — vista genérica que cruza los 3 módulos
+// ============================================
+
+export type ConsultaUnificada = {
+  id: string
+  user_id: string
+  modulo: ModuloIncluIA
+  datos_modulo: Record<string, unknown>
+  discapacidades: string[]
+  respuesta_ia: string
+  tokens_usados?: number
+  feedback_estrellas?: number
+  created_at: string
 }

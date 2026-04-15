@@ -9,13 +9,24 @@ import { Label } from '@/components/ui/label';
 import { Select } from '@/components/ui/select';
 import { Alert } from '@/components/ui/alert';
 import { PROVINCIAS_AR } from '@/data/provincias';
+import { ESPECIALIDADES } from '@/data/especialidades';
 import { registrarUsuario } from './actions';
+import { cn } from '@/lib/utils';
+
+type Tipo = 'docente' | 'familia' | 'profesional';
+
+const TIPOS: { id: Tipo; icon: string; label: string; desc: string }[] = [
+  { id: 'docente', icon: '📚', label: 'Soy docente', desc: 'Planificar clases inclusivas' },
+  { id: 'familia', icon: '🏠', label: 'Soy familia', desc: 'Acompañar a mi hijo/a en casa' },
+  { id: 'profesional', icon: '⚕️', label: 'Soy profesional', desc: 'Atención clínica adaptada' },
+];
 
 export function RegistroForm() {
   const router = useRouter();
   const [error, setError] = useState<string | null>(null);
   const [fieldErrors, setFieldErrors] = useState<Record<string, string>>({});
   const [isPending, startTransition] = useTransition();
+  const [tipo, setTipo] = useState<Tipo>('docente');
 
   return (
     <form
@@ -40,6 +51,32 @@ export function RegistroForm() {
     >
       {error && <Alert variant="error">{error}</Alert>}
 
+      <input type="hidden" name="tipo_usuario" value={tipo} />
+
+      <fieldset className="flex flex-col gap-2">
+        <Label>¿Cómo vas a usar IncluIA?</Label>
+        <div className="grid grid-cols-1 gap-2 sm:grid-cols-3">
+          {TIPOS.map((t) => (
+            <button
+              key={t.id}
+              type="button"
+              onClick={() => setTipo(t.id)}
+              aria-pressed={tipo === t.id}
+              className={cn(
+                'flex flex-col items-start gap-0.5 rounded-[12px] border px-3 py-3 text-left text-sm transition',
+                tipo === t.id
+                  ? 'border-accent bg-accent-light text-accent'
+                  : 'border-border bg-card text-primary hover:bg-primary-bg'
+              )}
+            >
+              <span className="text-xl" aria-hidden>{t.icon}</span>
+              <span className="font-semibold">{t.label}</span>
+              <span className="text-xs text-muted">{t.desc}</span>
+            </button>
+          ))}
+        </div>
+      </fieldset>
+
       <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
         <Field label="Nombre" error={fieldErrors.nombre}>
           <Input name="nombre" required autoComplete="given-name" />
@@ -53,23 +90,28 @@ export function RegistroForm() {
         <Input name="email" type="email" required autoComplete="email" />
       </Field>
 
-      <Field
-        label="Contraseña"
-        error={fieldErrors.password}
-        hint="Mínimo 8 caracteres"
-      >
-        <Input
-          name="password"
-          type="password"
-          required
-          minLength={8}
-          autoComplete="new-password"
-        />
+      <Field label="Contraseña" error={fieldErrors.password} hint="Mínimo 8 caracteres">
+        <Input name="password" type="password" required minLength={8} autoComplete="new-password" />
       </Field>
 
-      <Field label="Institución educativa (opcional)" error={fieldErrors.institucion}>
-        <Input name="institucion" placeholder="Ej: Escuela N° 15 'Mariano Moreno'" />
-      </Field>
+      {tipo === 'docente' && (
+        <Field label="Institución educativa (opcional)" error={fieldErrors.institucion}>
+          <Input name="institucion" placeholder="Ej: Escuela N° 15 'Mariano Moreno'" />
+        </Field>
+      )}
+
+      {tipo === 'profesional' && (
+        <Field label="Especialidad" error={fieldErrors.especialidad}>
+          <Select name="especialidad" defaultValue="">
+            <option value="">Seleccionar…</option>
+            {ESPECIALIDADES.map((e) => (
+              <option key={e.id} value={e.id}>
+                {e.icon} {e.label}
+              </option>
+            ))}
+          </Select>
+        </Field>
+      )}
 
       <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
         <Field label="Localidad (opcional)" error={fieldErrors.localidad}>

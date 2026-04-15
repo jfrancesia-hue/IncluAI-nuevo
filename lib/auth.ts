@@ -13,6 +13,8 @@ type PerfilRow = {
   localidad: string | null;
   provincia: string | null;
   rol: 'docente' | 'admin';
+  tipo_usuario: 'docente' | 'familia' | 'profesional' | null;
+  especialidad: string | null;
   plan: 'free' | 'pro' | 'institucional';
   plan_activo_hasta: string | null;
   consultas_mes: number;
@@ -35,7 +37,7 @@ export const getPerfil = cache(async (): Promise<Perfil | null> => {
   const { data, error } = await supabase
     .from('perfiles')
     .select(
-      'id, nombre, apellido, email, nivel_educativo, institucion, localidad, provincia, rol, plan, plan_activo_hasta, consultas_mes, created_at'
+      'id, nombre, apellido, email, nivel_educativo, institucion, localidad, provincia, rol, tipo_usuario, especialidad, plan, plan_activo_hasta, consultas_mes, created_at'
     )
     .eq('id', user.id)
     .single<PerfilRow>();
@@ -52,6 +54,8 @@ export const getPerfil = cache(async (): Promise<Perfil | null> => {
     localidad: data.localidad ?? undefined,
     provincia: data.provincia ?? undefined,
     rol: data.rol,
+    tipo_usuario: data.tipo_usuario ?? 'docente',
+    especialidad: data.especialidad ?? undefined,
     plan: data.plan,
     plan_activo_hasta: data.plan_activo_hasta ?? undefined,
     consultas_mes: data.consultas_mes,
