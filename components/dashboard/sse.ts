@@ -18,8 +18,9 @@ export async function consumirSSE(
   const reader = response.body.getReader();
   const decoder = new TextDecoder();
   let buffer = '';
+  let stopped = false;
 
-  while (true) {
+  while (!stopped) {
     const { done, value } = await reader.read();
     if (done) break;
     buffer += decoder.decode(value, { stream: true });
@@ -31,12 +32,20 @@ export async function consumirSSE(
       if (parsed.event === 'delta' && typeof parsed.data.text === 'string') {
         handlers.onDelta(parsed.data.text);
       } else if (parsed.event === 'done') {
-        const id = typeof parsed.data.consulta_id === 'string' ? parsed.data.consulta_id : '';
-        const tokens = typeof parsed.data.tokens === 'number' ? parsed.data.tokens : undefined;
+        const id =
+          typeof parsed.data.consulta_id === 'string' ? parsed.data.consulta_id : '';
+        const tokens =
+          typeof parsed.data.tokens === 'number' ? parsed.data.tokens : undefined;
         if (id) handlers.onDone(id, tokens);
       } else if (parsed.event === 'error') {
-        const msg = typeof parsed.data.message === 'string' ? parsed.data.message : 'Error en streaming';
+        const msg =
+          typeof parsed.data.message === 'string'
+            ? parsed.data.message
+            : 'Error en streaming';
         handlers.onError(msg);
+        stopped = true;
+        await reader.cancel().catch(() => undefined);
+        break;
       }
     }
   }

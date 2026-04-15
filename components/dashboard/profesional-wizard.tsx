@@ -97,6 +97,7 @@ export function ProfesionalWizard({
     setConsultaId(null);
 
     let acumulado = '';
+    let streamError: string | null = null;
     try {
       const res = await fetch('/api/generar-guia-profesional', {
         method: 'POST',
@@ -114,9 +115,10 @@ export function ProfesionalWizard({
         },
         onDone: (id) => setConsultaId(id),
         onError: (msg) => {
-          throw new Error(msg);
+          streamError = msg;
         },
       });
+      if (streamError) setError(streamError);
     } catch (e) {
       setError(e instanceof Error ? e.message : 'Error inesperado');
       setStep(3);

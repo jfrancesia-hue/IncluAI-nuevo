@@ -1,6 +1,7 @@
 'use server';
 
 import { z } from 'zod';
+import { after } from 'next/server';
 import { createClient } from '@/lib/supabase/server';
 import { PROVINCIAS_AR } from '@/data/provincias';
 import { enviarBienvenida } from '@/lib/email';
@@ -90,9 +91,15 @@ export async function registrarUsuario(formData: FormData): Promise<RegistroResu
 
   const requiresEmailConfirm = !authData.session;
 
-  // Email de bienvenida (independiente del email de confirmación de Supabase).
-  // Falla silenciosamente si Resend no está configurado.
-  enviarBienvenida({ to: data.email, nombre: data.nombre }).catch(() => null);
+  // Email de bienvenida fuera del ciclo de respuesta: después de que el
+  // server action responde, `after()` ejecuta la tarea sin bloquear al usuario.
+  after(async () => {
+    try {
+      await enviarBienvenida({ to: data.email, nombre: data.nombre });
+    } catch (err) {
+      console.error('[registro] email bienvenida falló', err);
+    }
+  });
 
   return { ok: true, requiresEmailConfirm };
 }

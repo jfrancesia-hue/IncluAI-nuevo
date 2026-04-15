@@ -1,4 +1,5 @@
 import 'server-only';
+import { cache } from 'react';
 import { createClient } from '@/lib/supabase/server';
 import { LIMITES_PLAN, type PlanUsuario } from '@/lib/types';
 
@@ -17,7 +18,9 @@ function mesActualISO(): string {
   return `${d.getUTCFullYear()}-${String(d.getUTCMonth() + 1).padStart(2, '0')}`;
 }
 
-export async function checkPlanLimits(): Promise<PlanCheck> {
+// Deduplicado por request: dos llamadas dentro del mismo árbol RSC se
+// resuelven con una sola query a Supabase.
+export const checkPlanLimits = cache(async (): Promise<PlanCheck> => {
   const supabase = await createClient();
   const {
     data: { user },
@@ -84,7 +87,7 @@ export async function checkPlanLimits(): Promise<PlanCheck> {
     planVencido,
     razon: permitido ? undefined : 'limite_alcanzado',
   };
-}
+});
 
 export async function incrementarConsultas(userId: string): Promise<number> {
   const supabase = await createClient();

@@ -13,6 +13,7 @@ import { Select } from '@/components/ui/select';
 import { Alert } from '@/components/ui/alert';
 import { Card, CardContent } from '@/components/ui/card';
 import { GuideView } from './guide-view';
+import { consumirSSE } from './sse';
 import { cn } from '@/lib/utils';
 
 type Step = 1 | 2 | 3 | 'generando';
@@ -96,6 +97,8 @@ export function ConsultaWizard() {
     setStreamText('');
     setConsultaId(null);
 
+    let acumulado = '';
+    let streamError: string | null = null;
     try {
       const res = await fetch('/api/generar-guia', {
         method: 'POST',
@@ -103,40 +106,22 @@ export function ConsultaWizard() {
         body: JSON.stringify(form),
       });
 
-      if (!res.ok || !res.body) {
+      if (!res.ok) {
         const data = await res.json().catch(() => ({}));
         throw new Error(data.error ?? 'Error generando la guía');
       }
 
-      const reader = res.body.getReader();
-      const decoder = new TextDecoder();
-      let buffer = '';
-      let acumulado = '';
-
-      while (true) {
-        const { done, value } = await reader.read();
-        if (done) break;
-        buffer += decoder.decode(value, { stream: true });
-
-        const events = buffer.split('\n\n');
-        buffer = events.pop() ?? '';
-
-        for (const raw of events) {
-          const event = parseSSEEvent(raw);
-          if (!event) continue;
-          if (event.event === 'delta' && typeof event.data.text === 'string') {
-            acumulado += event.data.text;
-            setStreamText(acumulado);
-          } else if (event.event === 'done') {
-            if (typeof event.data.consulta_id === 'string') {
-              setConsultaId(event.data.consulta_id);
-            }
-          } else if (event.event === 'error') {
-            const msg = typeof event.data.message === 'string' ? event.data.message : 'Error en streaming';
-            throw new Error(msg);
-          }
-        }
-      }
+      await consumirSSE(res, {
+        onDelta: (t) => {
+          acumulado += t;
+          setStreamText(acumulado);
+        },
+        onDone: (id) => setConsultaId(id),
+        onError: (msg) => {
+          streamError = msg;
+        },
+      });
+      if (streamError) setError(streamError);
     } catch (e) {
       setError(e instanceof Error ? e.message : 'Error inesperado');
       setStep(3);
@@ -487,18 +472,3 @@ function labelNivel(form: FormularioConsulta) {
   return sub ? `${nivel.label} · ${sub.label}` : nivel.label;
 }
 
-function parseSSEEvent(raw: string): { event: string; data: Record<string, unknown> } | null {
-  const lines = raw.split('\n').filter(Boolean);
-  let event = 'message';
-  let dataLine = '';
-  for (const line of lines) {
-    if (line.startsWith('event:')) event = line.slice(6).trim();
-    else if (line.startsWith('data:')) dataLine = line.slice(5).trim();
-  }
-  if (!dataLine) return null;
-  try {
-    return { event, data: JSON.parse(dataLine) as Record<string, unknown> };
-  } catch {
-    return null;
-  }
-}

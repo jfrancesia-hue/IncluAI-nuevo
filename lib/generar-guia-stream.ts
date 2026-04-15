@@ -1,17 +1,19 @@
 import 'server-only';
-import type { SupabaseClient } from '@supabase/supabase-js';
+import type { createClient } from '@/lib/supabase/server';
 import { anthropic, CLAUDE_MODEL } from '@/lib/anthropic';
 import type { ModuloIncluIA } from '@/lib/types';
 
+type ServerSupabase = Awaited<ReturnType<typeof createClient>>;
+
 type InsertConsultaInput = {
-  supabase: SupabaseClient;
+  supabase: ServerSupabase;
   userId: string;
   modulo: ModuloIncluIA;
   systemPrompt: string;
   userPrompt: string;
   discapacidades: string[];
   datosModulo: Record<string, unknown>;
-  // Sólo para docentes (el módulo original); el resto usa datos_modulo.
+  // Columnas específicas del módulo docente (legacy).
   legacy?: {
     nivel?: string | null;
     subnivel?: string | null;
@@ -23,11 +25,12 @@ type InsertConsultaInput = {
     contexto_aula?: string | null;
     objetivo_clase?: string | null;
   };
-  // Resumen de la consulta para fallback de `contenido` cuando no es docente.
+  // Resumen que va a `consultas.contenido` cuando no hay legacy.
   contenidoResumen: string;
 };
 
-// Envía el stream de Claude como SSE y persiste la consulta al cerrar.
+// Envía el stream de Claude como SSE, persiste la consulta al cerrar
+// e incrementa el contador mensual del usuario.
 export function streamGuiaYResponder(input: InsertConsultaInput): Response {
   const encoder = new TextEncoder();
 
@@ -66,6 +69,7 @@ export function streamGuiaYResponder(input: InsertConsultaInput): Response {
           contenido: input.contenidoResumen,
           respuesta_ia: textoCompleto,
           tokens_usados: tokens,
+          cantidad_alumnos: 1,
         };
 
         if (input.legacy) {
@@ -80,10 +84,6 @@ export function streamGuiaYResponder(input: InsertConsultaInput): Response {
             contexto_aula: input.legacy.contexto_aula ?? null,
             objetivo_clase: input.legacy.objetivo_clase ?? null,
           });
-        } else {
-          // Los módulos nuevos no llenan estas columnas; pero `situacion_apoyo`
-          // tenía NOT NULL; la migración la relaja. Seteamos defaults por si no.
-          insertRow.cantidad_alumnos = 1;
         }
 
         const { data: saved, error: saveError } = await input.supabase
@@ -91,6 +91,8 @@ export function streamGuiaYResponder(input: InsertConsultaInput): Response {
           .insert(insertRow)
           .select('id')
           .single<{ id: string }>();
+        // TS: insertRow es Record<string, unknown> pero supabase-js infiere
+        // columnas tipadas; la inferencia vuelve a any en tiempo de ejecución.
 
         if (saveError || !saved) {
           send('error', {
@@ -98,9 +100,12 @@ export function streamGuiaYResponder(input: InsertConsultaInput): Response {
             detail: saveError?.message,
           });
         } else {
-          await input.supabase.rpc('incrementar_consultas', {
+          const rpcResult = await input.supabase.rpc('incrementar_consultas', {
             p_user_id: input.userId,
           });
+          if (rpcResult.error) {
+            console.error('[incrementar_consultas]', rpcResult.error.message);
+          }
           send('done', { consulta_id: saved.id, tokens });
         }
       } catch (err) {
