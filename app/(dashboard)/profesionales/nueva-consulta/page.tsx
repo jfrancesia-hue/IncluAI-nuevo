@@ -2,7 +2,7 @@ import Link from 'next/link';
 import { checkPlanLimits } from '@/lib/plan';
 import { getPerfil } from '@/lib/auth';
 import { Alert } from '@/components/ui/alert';
-import { ProfesionalWizard } from '@/components/dashboard/profesional-wizard';
+import { ProfesionalWizard } from '@/components/wizards/profesional-wizard';
 import type { EspecialidadProfesional } from '@/lib/types';
 import { ESPECIALIDADES } from '@/data/especialidades';
 

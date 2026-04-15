@@ -1,9 +1,7 @@
 import { NextResponse, type NextRequest } from 'next/server';
 import { z } from 'zod';
 import { anthropic, CLAUDE_MODEL } from '@/lib/anthropic';
-import { createClient } from '@/lib/supabase/server';
-import { checkPlanLimits } from '@/lib/plan';
-import { checkRateLimit } from '@/lib/rate-limit';
+import { guardApi } from '@/lib/api-guard';
 
 export const runtime = 'nodejs';
 export const maxDuration = 60;
@@ -21,16 +19,9 @@ const INSTRUCCIONES_MAP: Record<z.infer<typeof schema>['instruccion'], string> =
 };
 
 export async function POST(request: NextRequest) {
-  const supabase = await createClient();
-  const { data: { user } } = await supabase.auth.getUser();
-  if (!user) return NextResponse.json({ error: 'No autorizado' }, { status: 401 });
-
-  const rl = await checkRateLimit(`user:${user.id}`);
-  if (!rl.success) return NextResponse.json({ error: 'Demasiadas solicitudes.' }, { status: 429 });
-
-  const plan = await checkPlanLimits();
-  if (!plan.permitido)
-    return NextResponse.json({ error: 'Sin cupo este mes', plan }, { status: 402 });
+  const guard = await guardApi();
+  if (!guard.ok) return guard.response;
+  const { user, supabase } = guard;
 
   const payload = await request.json().catch(() => null);
   const parsed = schema.safeParse(payload);

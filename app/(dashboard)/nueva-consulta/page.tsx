@@ -1,4 +1,4 @@
-import { ConsultaWizard } from '@/components/dashboard/consulta-wizard';
+import { ConsultaWizard } from '@/components/wizards/docente-wizard';
 import { checkPlanLimits } from '@/lib/plan';
 import { Alert } from '@/components/ui/alert';
 import Link from 'next/link';

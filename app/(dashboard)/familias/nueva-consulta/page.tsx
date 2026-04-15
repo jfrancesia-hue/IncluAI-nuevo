@@ -1,7 +1,7 @@
 import Link from 'next/link';
 import { checkPlanLimits } from '@/lib/plan';
 import { Alert } from '@/components/ui/alert';
-import { FamiliaWizard } from '@/components/dashboard/familia-wizard';
+import { FamiliaWizard } from '@/components/wizards/familia-wizard';
 
 export const metadata = { title: 'Nueva guía (Familia) · IncluIA' };
 

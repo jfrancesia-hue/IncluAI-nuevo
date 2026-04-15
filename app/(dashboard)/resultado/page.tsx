@@ -1,10 +1,10 @@
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
 import { createClient } from '@/lib/supabase/server';
-import { GuideView } from '@/components/dashboard/guide-view';
-import { GuideActions } from '@/components/dashboard/guide-actions';
-import { RefinarBotones } from '@/components/dashboard/refinar-botones';
-import { FeedbackStars } from '@/components/dashboard/feedback-stars';
+import { GuideView } from '@/components/guide/guide-view';
+import { GuideActions } from '@/components/guide/guide-actions';
+import { RefinarBotones } from '@/components/guide/refinar-botones';
+import { FeedbackStars } from '@/components/guide/feedback-stars';
 import { Button } from '@/components/ui/button';
 import { DISCAPACIDADES } from '@/data/discapacidades';
 import { getEspecialidadById } from '@/data/especialidades';

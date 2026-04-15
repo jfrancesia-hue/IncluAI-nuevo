@@ -5,8 +5,8 @@ import { createClient } from '@/lib/supabase/server';
 import { DISCAPACIDADES } from '@/data/discapacidades';
 import { Card, CardContent } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
-import { ModuleSelector } from '@/components/dashboard/module-selector';
-import { Onboarding } from '@/components/dashboard/onboarding';
+import { ModuleSelector } from '@/components/module/module-selector';
+import { Onboarding } from '@/components/module/onboarding';
 import { getTipDelDia } from '@/data/tips';
 
 export const metadata = { title: 'Inicio · IncluIA' };

@@ -3,7 +3,7 @@ import { getPerfil } from '@/lib/auth';
 import { LIMITES_PLAN } from '@/lib/types';
 import { Card, CardContent } from '@/components/ui/card';
 import { Alert } from '@/components/ui/alert';
-import { UpgradeButton } from '@/components/dashboard/upgrade-button';
+import { UpgradeButton } from '@/components/module/upgrade-button';
 import { cn } from '@/lib/utils';
 
 export const metadata = { title: 'Planes · IncluIA' };

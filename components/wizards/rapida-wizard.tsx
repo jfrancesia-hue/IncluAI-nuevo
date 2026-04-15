@@ -5,7 +5,7 @@ import { useRouter } from 'next/navigation';
 import { Button } from '@/components/ui/button';
 import { Alert } from '@/components/ui/alert';
 import { Card, CardContent } from '@/components/ui/card';
-import { GuideView } from './guide-view';
+import { GuideView } from '../guide/guide-view';
 import { consumirSSE } from './sse';
 
 export function RapidaWizard() {

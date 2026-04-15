@@ -1,44 +1,16 @@
-import { NextResponse, type NextRequest } from 'next/server';
+import type { NextRequest } from 'next/server';
+import { NextResponse } from 'next/server';
 import { SYSTEM_PROMPT, buildPrompt } from '@/lib/prompts';
 import { formularioConsultaSchema } from '@/lib/validators';
-import { checkPlanLimits } from '@/lib/plan';
-import { createClient } from '@/lib/supabase/server';
 import { streamGuiaYResponder } from '@/lib/generar-guia-stream';
-import { checkRateLimit } from '@/lib/rate-limit';
+import { guardApi } from '@/lib/api-guard';
 
 export const runtime = 'nodejs';
 export const maxDuration = 60;
 
 export async function POST(request: NextRequest) {
-  const supabase = await createClient();
-  const {
-    data: { user },
-  } = await supabase.auth.getUser();
-
-  if (!user) {
-    return NextResponse.json({ error: 'No autorizado' }, { status: 401 });
-  }
-
-  const rl = await checkRateLimit(`user:${user.id}`);
-  if (!rl.success) {
-    return NextResponse.json(
-      { error: 'Demasiadas guías en poco tiempo. Esperá un minuto.' },
-      { status: 429, headers: { 'Retry-After': '60' } }
-    );
-  }
-
-  const plan = await checkPlanLimits();
-  if (!plan.permitido) {
-    return NextResponse.json(
-      {
-        error: plan.planVencido
-          ? 'Tu plan Pro venció. Renovalo para seguir generando guías.'
-          : 'Alcanzaste tu límite mensual de guías.',
-        plan,
-      },
-      { status: 402 }
-    );
-  }
+  const guard = await guardApi();
+  if (!guard.ok) return guard.response;
 
   const payload = await request.json().catch(() => null);
   const parsed = formularioConsultaSchema.safeParse(payload);
@@ -58,8 +30,8 @@ export async function POST(request: NextRequest) {
   const form = parsed.data;
 
   return streamGuiaYResponder({
-    supabase,
-    userId: user.id,
+    supabase: guard.supabase,
+    userId: guard.user.id,
     modulo: 'docentes',
     systemPrompt: SYSTEM_PROMPT,
     userPrompt: buildPrompt(form),

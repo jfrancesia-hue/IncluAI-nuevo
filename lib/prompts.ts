@@ -148,14 +148,6 @@ IMPORTANTE: No respondas con teoría. Cada punto debe tener un EJEMPLO CONCRETO 
   return prompt
 }
 
-/**
- * Estimación de tokens para control de costos.
- * Aproximación: 1 token ≈ 4 caracteres en español
- */
-export function estimarTokens(texto: string): number {
-  return Math.ceil(texto.length / 4)
-}
-
 // ============================================
 // SYSTEM PROMPT — FAMILIAS
 // ============================================

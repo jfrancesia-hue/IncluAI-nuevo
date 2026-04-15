@@ -1,4 +1,4 @@
-import { RapidaWizard } from '@/components/dashboard/rapida-wizard';
+import { RapidaWizard } from '@/components/wizards/rapida-wizard';
 import { checkPlanLimits } from '@/lib/plan';
 import Link from 'next/link';
 import { Alert } from '@/components/ui/alert';

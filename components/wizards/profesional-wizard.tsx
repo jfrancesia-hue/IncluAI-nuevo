@@ -3,13 +3,14 @@
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { DISCAPACIDADES } from '@/data/discapacidades';
-import { AREAS_FAMILIA } from '@/data/areas-familia';
+import { ESPECIALIDADES } from '@/data/especialidades';
+import { OBJETIVOS_PROFESIONAL, CONTEXTOS_ATENCION } from '@/data/objetivos-profesional';
 import { RANGOS_EDAD } from '@/data/rangos-edad';
 import type {
-  FormularioFamilia,
-  SituacionFamiliar,
+  FormularioProfesional,
+  EspecialidadProfesional,
+  ContextoAtencion,
   RangoEdad,
-  AreaAyudaFamilia,
 } from '@/lib/types';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
@@ -17,61 +18,78 @@ import { Label } from '@/components/ui/label';
 import { Select } from '@/components/ui/select';
 import { Alert } from '@/components/ui/alert';
 import { Card, CardContent } from '@/components/ui/card';
-import { GuideView } from './guide-view';
+import { GuideView } from '../guide/guide-view';
 import { consumirSSE } from './sse';
 import { cn } from '@/lib/utils';
 
 type Step = 1 | 2 | 3 | 'generando';
 
-const initial: FormularioFamilia = {
-  nombre_hijo: '',
-  edad_rango: '3-5',
+const initial: FormularioProfesional = {
+  especialidad: 'psicologo',
+  especialidad_otra: '',
+  contexto_atencion: 'primera_consulta',
+  lugar_atencion: '',
+  edad_paciente: '6-8',
   discapacidades: [],
   discapacidad_otra: '',
   diagnostico_detalle: '',
-  areas_ayuda: [],
+  comunicacion_paciente: 'Verbal',
+  objetivos: [],
   situacion_especifica: '',
-  situacion_familiar: 'ambos_padres',
-  tiene_terapias: false,
-  terapias_detalle: '',
   contexto_adicional: '',
 };
 
-export function FamiliaWizard() {
+export function ProfesionalWizard({
+  especialidadDefault,
+}: {
+  especialidadDefault?: EspecialidadProfesional;
+}) {
   const router = useRouter();
   const [step, setStep] = useState<Step>(1);
-  const [form, setForm] = useState<FormularioFamilia>(initial);
+  const [form, setForm] = useState<FormularioProfesional>({
+    ...initial,
+    especialidad: especialidadDefault ?? initial.especialidad,
+  });
   const [error, setError] = useState<string | null>(null);
   const [streamText, setStreamText] = useState('');
   const [consultaId, setConsultaId] = useState<string | null>(null);
 
-  function update<K extends keyof FormularioFamilia>(key: K, value: FormularioFamilia[K]) {
+  function update<K extends keyof FormularioProfesional>(
+    key: K,
+    value: FormularioProfesional[K]
+  ) {
     setForm((f) => ({ ...f, [key]: value }));
   }
 
-  function toggleArr<T extends string>(key: 'discapacidades' | 'areas_ayuda', id: T) {
+  function toggleArr(
+    key: 'discapacidades' | 'objetivos',
+    id: string
+  ) {
     setForm((f) => {
       const arr = f[key] as string[];
       const next = arr.includes(id) ? arr.filter((x) => x !== id) : [...arr, id];
-      return { ...f, [key]: next } as FormularioFamilia;
+      return { ...f, [key]: next } as FormularioProfesional;
     });
   }
 
   function validar(n: Step): string | null {
     if (n === 1) {
-      if (form.discapacidades.length === 0) return 'Elegí al menos una discapacidad';
+      if (!form.lugar_atencion.trim()) return 'Indicá el lugar de atención';
     }
     if (n === 2) {
-      if (form.areas_ayuda.length === 0) return 'Elegí al menos un área';
-      if (form.situacion_especifica.trim().length < 10)
-        return 'Contanos un poco más de la situación (mín. 10 caracteres)';
+      if (form.discapacidades.length === 0) return 'Elegí al menos una discapacidad';
+      if (!form.comunicacion_paciente.trim()) return 'Describí el nivel de comunicación del paciente';
+    }
+    if (n === 3) {
+      if (form.objetivos.length === 0) return 'Elegí al menos un objetivo';
+      if (form.situacion_especifica.trim().length < 10) return 'Contanos un poco más';
     }
     return null;
   }
 
   async function submit() {
     setError(null);
-    const err = validar(1) || validar(2);
+    const err = validar(1) || validar(2) || validar(3);
     if (err) return setError(err);
 
     setStep('generando');
@@ -81,7 +99,7 @@ export function FamiliaWizard() {
     let acumulado = '';
     let streamError: string | null = null;
     try {
-      const res = await fetch('/api/generar-guia-familia', {
+      const res = await fetch('/api/generar-guia-profesional', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(form),
@@ -111,7 +129,7 @@ export function FamiliaWizard() {
     return (
       <div className="flex flex-col gap-6">
         <h1 className="text-2xl text-primary sm:text-3xl">
-          {streamText ? 'Tu guía para la familia' : 'Generando tu guía…'}
+          {streamText ? 'Guía clínica adaptada' : 'Generando tu guía…'}
         </h1>
         {error && <Alert variant="error">{error}</Alert>}
         {streamText ? (
@@ -147,31 +165,80 @@ export function FamiliaWizard() {
         <Card>
           <CardContent className="flex flex-col gap-4 p-6">
             <header>
-              <h2 className="font-serif text-2xl text-primary">Sobre tu hijo/a</h2>
-              <p className="text-sm text-muted">Contanos brevemente a quién apuntamos la guía.</p>
+              <h2 className="font-serif text-2xl text-primary">Tu práctica profesional</h2>
+              <p className="text-sm text-muted">
+                Contanos desde dónde vas a atender.
+              </p>
             </header>
 
             <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
-              <Field label="Nombre (opcional)">
-                <Input
-                  value={form.nombre_hijo ?? ''}
-                  onChange={(e) => update('nombre_hijo', e.target.value)}
-                  placeholder="Ej: Juan, Pilar…"
-                />
-              </Field>
-              <Field label="Edad">
+              <Field label="Especialidad">
                 <Select
-                  value={form.edad_rango}
-                  onChange={(e) => update('edad_rango', e.target.value as RangoEdad)}
+                  value={form.especialidad}
+                  onChange={(e) => update('especialidad', e.target.value as EspecialidadProfesional)}
                 >
-                  {RANGOS_EDAD.map((r) => (
-                    <option key={r.id} value={r.id}>
-                      {r.label} — {r.descripcion}
+                  {ESPECIALIDADES.map((e) => (
+                    <option key={e.id} value={e.id}>
+                      {e.icon} {e.label}
+                    </option>
+                  ))}
+                </Select>
+              </Field>
+              <Field label="Contexto de atención">
+                <Select
+                  value={form.contexto_atencion}
+                  onChange={(e) => update('contexto_atencion', e.target.value as ContextoAtencion)}
+                >
+                  {CONTEXTOS_ATENCION.map((c) => (
+                    <option key={c.id} value={c.id}>
+                      {c.label}
                     </option>
                   ))}
                 </Select>
               </Field>
             </div>
+
+            {form.especialidad === 'otro' && (
+              <Field label="¿Cuál especialidad?">
+                <Input
+                  value={form.especialidad_otra ?? ''}
+                  onChange={(e) => update('especialidad_otra', e.target.value)}
+                  placeholder="Especificá tu especialidad"
+                />
+              </Field>
+            )}
+
+            <Field label="Lugar de atención">
+              <Input
+                value={form.lugar_atencion}
+                onChange={(e) => update('lugar_atencion', e.target.value)}
+                placeholder='Ej: Consultorio privado / Hospital público / Domicilio'
+              />
+            </Field>
+          </CardContent>
+        </Card>
+      )}
+
+      {step === 2 && (
+        <Card>
+          <CardContent className="flex flex-col gap-4 p-6">
+            <header>
+              <h2 className="font-serif text-2xl text-primary">Sobre el paciente</h2>
+              <p className="text-sm text-muted">Quién es y cómo se comunica.</p>
+            </header>
+
+            <Field label="Edad">
+              <Select
+                value={form.edad_paciente}
+                onChange={(e) => update('edad_paciente', e.target.value as RangoEdad)}
+              >
+                {RANGOS_EDAD.map((r) => (
+                  <option key={r.id} value={r.id}>
+                    {r.label}
+                  </option>
+                ))}
+              </Select>
+            </Field>
 
             <Field label="Discapacidad/es">
               <div className="grid grid-cols-2 gap-2 sm:grid-cols-3 md:grid-cols-4">
@@ -204,53 +271,14 @@ export function FamiliaWizard() {
               <Input
                 value={form.diagnostico_detalle ?? ''}
                 onChange={(e) => update('diagnostico_detalle', e.target.value)}
-                placeholder='Ej: "TEA nivel 1 con apoyo" / "Síndrome de Down"'
               />
             </Field>
-          </CardContent>
-        </Card>
-      )}
 
-      {step === 2 && (
-        <Card>
-          <CardContent className="flex flex-col gap-4 p-6">
-            <header>
-              <h2 className="font-serif text-2xl text-primary">¿En qué necesitás ayuda?</h2>
-              <p className="text-sm text-muted">Elegí una o más áreas y contanos la situación.</p>
-            </header>
-
-            <div className="grid grid-cols-2 gap-2 sm:grid-cols-3">
-              {AREAS_FAMILIA.map((a) => {
-                const selected = form.areas_ayuda.includes(a.id);
-                return (
-                  <button
-                    key={a.id}
-                    type="button"
-                    onClick={() => toggleArr<AreaAyudaFamilia>('areas_ayuda', a.id)}
-                    className={cn(
-                      'flex flex-col items-center gap-1 rounded-[12px] border px-3 py-3 text-center text-xs font-medium transition',
-                      selected
-                        ? 'border-accent bg-accent-light text-accent'
-                        : 'border-border bg-card text-primary hover:bg-primary-bg'
-                    )}
-                    aria-pressed={selected}
-                  >
-                    <span className="text-xl" aria-hidden>
-                      {a.icon}
-                    </span>
-                    <span>{a.label}</span>
-                  </button>
-                );
-              })}
-            </div>
-
-            <Field label="Situación específica">
-              <textarea
-                value={form.situacion_especifica}
-                onChange={(e) => update('situacion_especifica', e.target.value)}
-                rows={4}
-                placeholder="Ej: No duerme antes de las 12, hace berrinches muy intensos cuando le cambiamos la rutina, tengo miedo de salir con él/ella al parque…"
-                className="min-h-[108px] w-full rounded-[10px] border border-border bg-card p-3 text-sm"
+            <Field label="Nivel de comunicación del paciente">
+              <Input
+                value={form.comunicacion_paciente}
+                onChange={(e) => update('comunicacion_paciente', e.target.value)}
+                placeholder='Ej: "Verbal" / "Verbal limitado" / "Usa CAA" / "No verbal"'
               />
             </Field>
           </CardContent>
@@ -261,49 +289,53 @@ export function FamiliaWizard() {
         <Card>
           <CardContent className="flex flex-col gap-4 p-6">
             <header>
-              <h2 className="font-serif text-2xl text-primary">Contexto familiar</h2>
-              <p className="text-sm text-muted">Opcional pero ayuda a personalizar la guía.</p>
+              <h2 className="font-serif text-2xl text-primary">¿Qué necesitás?</h2>
+              <p className="text-sm text-muted">Elegí los objetivos y describí la situación.</p>
             </header>
 
-            <Field label="Situación familiar">
-              <Select
-                value={form.situacion_familiar}
-                onChange={(e) => update('situacion_familiar', e.target.value as SituacionFamiliar)}
-              >
-                <option value="ambos_padres">Ambos padres presentes</option>
-                <option value="monoparental">Familia monoparental</option>
-                <option value="familia_ampliada">Familia ampliada (abuelos/tíos)</option>
-                <option value="otro">Otra situación</option>
-              </Select>
-            </Field>
+            <div className="grid grid-cols-1 gap-2 sm:grid-cols-2">
+              {OBJETIVOS_PROFESIONAL.map((o) => {
+                const selected = form.objetivos.includes(o.id);
+                return (
+                  <button
+                    key={o.id}
+                    type="button"
+                    onClick={() => toggleArr('objetivos', o.id)}
+                    className={cn(
+                      'flex items-start gap-2 rounded-[12px] border px-3 py-3 text-left text-sm transition',
+                      selected
+                        ? 'border-accent bg-accent-light text-accent'
+                        : 'border-border bg-card text-primary hover:bg-primary-bg'
+                    )}
+                    aria-pressed={selected}
+                  >
+                    <span className="text-lg" aria-hidden>
+                      {o.icon}
+                    </span>
+                    <span className="flex flex-col">
+                      <span className="font-medium">{o.label}</span>
+                      <span className="text-xs text-muted">{o.descripcion}</span>
+                    </span>
+                  </button>
+                );
+              })}
+            </div>
 
-            <Field label="¿Hace terapias actualmente?">
-              <label className="flex items-center gap-2 text-sm">
-                <input
-                  type="checkbox"
-                  checked={form.tiene_terapias}
-                  onChange={(e) => update('tiene_terapias', e.target.checked)}
-                />
-                Sí
-              </label>
+            <Field label="Situación específica">
+              <textarea
+                value={form.situacion_especifica}
+                onChange={(e) => update('situacion_especifica', e.target.value)}
+                rows={4}
+                placeholder="Ej: Primera consulta odontológica con nene de 6 años con TEA, antecedentes de desregulación en intentos previos…"
+                className="min-h-[108px] w-full rounded-[10px] border border-border bg-card p-3 text-sm"
+              />
             </Field>
-
-            {form.tiene_terapias && (
-              <Field label="Detalle de terapias">
-                <Input
-                  value={form.terapias_detalle ?? ''}
-                  onChange={(e) => update('terapias_detalle', e.target.value)}
-                  placeholder="Ej: Fono 2 veces/semana, TO 1 vez"
-                />
-              </Field>
-            )}
 
             <Field label="Contexto adicional (opcional)">
               <textarea
                 value={form.contexto_adicional ?? ''}
                 onChange={(e) => update('contexto_adicional', e.target.value)}
                 rows={3}
-                placeholder="Cualquier info extra que nos ayude a personalizar la guía"
                 className="min-h-[80px] w-full rounded-[10px] border border-border bg-card p-3 text-sm"
               />
             </Field>
@@ -332,7 +364,7 @@ export function FamiliaWizard() {
           </Button>
         ) : (
           <Button onClick={submit} size="lg">
-            🏠 Generar guía para la familia
+            ⚕️ Generar guía clínica
           </Button>
         )}
       </div>
@@ -351,15 +383,12 @@ function Field({ label, children }: { label: string; children: React.ReactNode }
 
 function Progress({ step }: { step: Step }) {
   const n = typeof step === 'number' ? step : 3;
+  const labels = ['Tu práctica profesional', 'Sobre el paciente', '¿Qué necesitás?'];
   return (
     <div className="flex flex-col gap-2">
       <div className="flex items-center justify-between text-xs text-muted">
         <span>Paso {n} de 3</span>
-        <span>
-          {n === 1 && 'Sobre tu hijo/a'}
-          {n === 2 && '¿En qué necesitás ayuda?'}
-          {n === 3 && 'Contexto familiar'}
-        </span>
+        <span>{labels[n - 1]}</span>
       </div>
       <div className="flex items-center gap-2">
         {[1, 2, 3].map((i) => (

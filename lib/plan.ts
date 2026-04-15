@@ -88,14 +88,3 @@ export const checkPlanLimits = cache(async (): Promise<PlanCheck> => {
     razon: permitido ? undefined : 'limite_alcanzado',
   };
 });
-
-export async function incrementarConsultas(userId: string): Promise<number> {
-  const supabase = await createClient();
-  const { data, error } = await supabase.rpc('incrementar_consultas', {
-    p_user_id: userId,
-  });
-  if (error || typeof data !== 'number') {
-    throw new Error(`No se pudo incrementar consultas: ${error?.message ?? 'respuesta inválida'}`);
-  }
-  return data;
-}

@@ -12,7 +12,7 @@ import { Label } from '@/components/ui/label';
 import { Select } from '@/components/ui/select';
 import { Alert } from '@/components/ui/alert';
 import { Card, CardContent } from '@/components/ui/card';
-import { GuideView } from './guide-view';
+import { GuideView } from '../guide/guide-view';
 import { consumirSSE } from './sse';
 import { PLANTILLAS_DOCENTE } from '@/data/plantillas-docente';
 import { cn } from '@/lib/utils';

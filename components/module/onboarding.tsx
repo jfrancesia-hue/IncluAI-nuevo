@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useSyncExternalStore } from 'react';
 import { Button } from '@/components/ui/button';
 
 const KEY = 'inclua-onboarding-seen-v1';
@@ -23,26 +23,45 @@ const SLIDES = [
   },
 ];
 
-export function Onboarding() {
-  const [visible, setVisible] = useState(false);
-  const [step, setStep] = useState(0);
+function subscribeOnboarding(cb: () => void): () => void {
+  // Nadie dispara este store externamente; se resuelve en el primer paint.
+  const t = setTimeout(cb, 0);
+  return () => clearTimeout(t);
+}
+function getInitialVisibility(): boolean {
+  try {
+    return !localStorage.getItem(KEY);
+  } catch {
+    return false;
+  }
+}
+function getServerVisibility(): boolean {
+  return false;
+}
 
-  useEffect(() => {
-    try {
-      if (!localStorage.getItem(KEY)) setVisible(true);
-    } catch {
-      // SSR / storage bloqueado
-    }
-  }, []);
+export function Onboarding() {
+  // useSyncExternalStore evita el patrón setState-dentro-de-useEffect
+  // que el linter de React marca (cascading renders).
+  const shouldShow = useSyncExternalStore(
+    subscribeOnboarding,
+    getInitialVisibility,
+    getServerVisibility
+  );
+  const [dismissed, setDismissed] = useState(false);
+  const [step, setStep] = useState(0);
+  const visible = shouldShow && !dismissed;
 
   useEffect(() => {
     if (!visible) return;
     function onKey(e: KeyboardEvent) {
-      if (e.key === 'Escape') cerrar();
+      if (e.key !== 'Escape') return;
+      try {
+        localStorage.setItem(KEY, String(Date.now()));
+      } catch {}
+      setDismissed(true);
     }
     window.addEventListener('keydown', onKey);
     return () => window.removeEventListener('keydown', onKey);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [visible]);
 
   if (!visible) return null;
@@ -51,7 +70,7 @@ export function Onboarding() {
     try {
       localStorage.setItem(KEY, String(Date.now()));
     } catch {}
-    setVisible(false);
+    setDismissed(true);
   }
 
   const slide = SLIDES[step];

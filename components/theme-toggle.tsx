@@ -1,12 +1,24 @@
 'use client';
 
 import { useTheme } from 'next-themes';
-import { useEffect, useState } from 'react';
+import { useSyncExternalStore } from 'react';
+
+// useSyncExternalStore evita el setState-in-effect del patrón clásico
+// `useEffect(() => setMounted(true))` para manejar hydration.
+function subscribe() {
+  return () => {};
+}
+function getSnapshot() {
+  return true;
+}
+function getServerSnapshot() {
+  return false;
+}
 
 export function ThemeToggle() {
   const { theme, setTheme } = useTheme();
-  const [mounted, setMounted] = useState(false);
-  useEffect(() => setMounted(true), []);
+  const mounted = useSyncExternalStore(subscribe, getSnapshot, getServerSnapshot);
+
   if (!mounted) return <div aria-hidden className="h-7 w-7" />;
   const dark = theme === 'dark';
   return (

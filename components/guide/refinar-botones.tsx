@@ -3,7 +3,7 @@
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { Button } from '@/components/ui/button';
-import { consumirSSE } from './sse';
+import { consumirSSE } from '../wizards/sse';
 
 type Instruccion = 'mas_corto' | 'mas_simple' | 'mas_ejemplos' | 'mas_tecnico';
 
