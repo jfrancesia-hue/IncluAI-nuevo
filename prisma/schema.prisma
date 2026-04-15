@@ -1,0 +1,116 @@
+// IncluIA — Prisma 7 schema
+// Schema derivado de supabase/schema.sql. Supabase sigue siendo la fuente
+// para auth/RLS/triggers (que Prisma no maneja); Prisma se usa como cliente
+// tipado para CRUD sobre las tablas de la app.
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+enum Rol {
+  docente
+  admin
+}
+
+enum Plan {
+  free
+  pro
+  institucional
+}
+
+enum EstadoPago {
+  pendiente
+  aprobado
+  rechazado
+  devuelto
+}
+
+model Perfil {
+  id               String   @id @db.Uuid
+  nombre           String
+  apellido         String
+  email            String   @unique
+  nivelEducativo   String?  @map("nivel_educativo")
+  institucion      String?
+  localidad        String?
+  provincia        String   @default("No especificada")
+  rol              Rol      @default(docente)
+  plan             Plan     @default(free)
+  planActivoHasta  DateTime? @map("plan_activo_hasta") @db.Timestamptz
+  consultasMes     Int      @default(0) @map("consultas_mes")
+  mesActual        String   @map("mes_actual")
+  createdAt        DateTime @default(now()) @map("created_at") @db.Timestamptz
+  updatedAt        DateTime @default(now()) @map("updated_at") @db.Timestamptz
+
+  consultas        Consulta[]
+  guiasGuardadas   GuiaGuardada[]
+  pagos            Pago[]
+
+  @@index([email])
+  @@map("perfiles")
+}
+
+model Consulta {
+  id                 String   @id @default(uuid()) @db.Uuid
+  userId             String   @map("user_id") @db.Uuid
+  nivel              String
+  subnivel           String?
+  anioGrado          String?  @map("anio_grado")
+  materia            String
+  contenido          String
+  discapacidades     String[]
+  cantidadAlumnos    Int      @default(1) @map("cantidad_alumnos")
+  situacionApoyo     String   @map("situacion_apoyo")
+  contextoAula       String?  @map("contexto_aula")
+  objetivoClase      String?  @map("objetivo_clase")
+  respuestaIa        String?  @map("respuesta_ia")
+  tokensUsados       Int?     @map("tokens_usados")
+  feedbackEstrellas  Int?     @map("feedback_estrellas")
+  createdAt          DateTime @default(now()) @map("created_at") @db.Timestamptz
+
+  perfil             Perfil   @relation(fields: [userId], references: [id], onDelete: Cascade)
+  guiasGuardadas     GuiaGuardada[]
+
+  @@index([userId])
+  @@index([createdAt(sort: Desc)])
+  @@index([nivel])
+  @@map("consultas")
+}
+
+model GuiaGuardada {
+  id          String   @id @default(uuid()) @db.Uuid
+  consultaId  String   @map("consulta_id") @db.Uuid
+  userId      String   @map("user_id") @db.Uuid
+  titulo      String
+  esFavorita  Boolean  @default(false) @map("es_favorita")
+  createdAt   DateTime @default(now()) @map("created_at") @db.Timestamptz
+
+  consulta    Consulta @relation(fields: [consultaId], references: [id], onDelete: Cascade)
+  perfil      Perfil   @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([userId])
+  @@map("guias_guardadas")
+}
+
+model Pago {
+  id                    String     @id @default(uuid()) @db.Uuid
+  userId                String     @map("user_id") @db.Uuid
+  montoArs              Decimal    @map("monto_ars") @db.Decimal(10, 2)
+  plan                  Plan
+  estado                EstadoPago @default(pendiente)
+  mercadopagoPaymentId  String?    @map("mercadopago_payment_id")
+  mercadopagoStatus     String?    @map("mercadopago_status")
+  periodoInicio         DateTime?  @map("periodo_inicio") @db.Timestamptz
+  periodoFin            DateTime?  @map("periodo_fin") @db.Timestamptz
+  createdAt             DateTime   @default(now()) @map("created_at") @db.Timestamptz
+
+  perfil                Perfil     @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([userId])
+  @@index([mercadopagoPaymentId])
+  @@map("pagos")
+}

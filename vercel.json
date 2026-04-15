@@ -1,0 +1,11 @@
+{
+  "$schema": "https://openapi.vercel.sh/vercel.json",
+  "functions": {
+    "app/api/generar-guia/route.ts": {
+      "maxDuration": 60
+    },
+    "app/api/mercadopago/webhook/route.ts": {
+      "maxDuration": 30
+    }
+  }
+}
