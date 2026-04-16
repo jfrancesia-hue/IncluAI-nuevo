@@ -1,7 +1,9 @@
 import Link from 'next/link';
+import Image from 'next/image';
 import { RECURSOS_AR, filtrarRecursos, type Recurso, type PublicoRecurso } from '@/data/recursos-ar';
 import { Card, CardContent } from '@/components/ui/card';
 import { cn } from '@/lib/utils';
+import { PHOTOS } from '@/lib/photos';
 
 export const metadata = { title: 'Biblioteca · IncluIA' };
 
@@ -32,14 +34,26 @@ export default async function RecursosPage({ searchParams }: { searchParams: SP 
 
   return (
     <div className="flex flex-col gap-6">
-      <header className="text-center">
-        <h1 className="font-serif text-3xl font-bold text-primary sm:text-4xl">
-          Biblioteca de recursos
-        </h1>
-        <p className="mx-auto mt-2 max-w-2xl text-sm text-muted">
-          Recursos oficiales y comunitarios de Argentina — portales, normativa,
-          trámites y herramientas curadas por tipo de discapacidad y público.
-        </p>
+      <header className="relative overflow-hidden rounded-[20px] bg-white shadow-[0_2px_12px_rgba(15,34,64,0.05)]">
+        <div className="relative h-32 w-full overflow-hidden sm:h-40">
+          <Image
+            src={PHOTOS.recursosHeader}
+            alt="Docente y niños aprendiendo juntos"
+            width={1200}
+            height={400}
+            className="h-full w-full object-cover"
+          />
+          <div aria-hidden className="absolute inset-0 bg-gradient-to-t from-white/80 via-white/30 to-transparent" />
+        </div>
+        <div className="px-6 pb-5 pt-3 text-center">
+          <h1 className="font-serif text-3xl font-bold text-primary sm:text-4xl">
+            Biblioteca de recursos
+          </h1>
+          <p className="mx-auto mt-2 max-w-2xl text-sm text-muted">
+            Recursos oficiales y comunitarios de Argentina — portales, normativa,
+            trámites y herramientas curadas por tipo de discapacidad y público.
+          </p>
+        </div>
       </header>
 
       <section className="flex flex-col gap-2">

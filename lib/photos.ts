@@ -64,4 +64,19 @@ export const PHOTOS = {
   wizardProfesional1: px('8460035', 900), // consultorio pediátrico (tu práctica)
   wizardProfesional2: px('7653108', 900), // profesional con niño (sobre el paciente)
   wizardProfesional3: px('5336930', 900), // sesión de consejería (qué necesitás)
+
+  // Dashboard inicio — CTA y decoración
+  dashboardCta: px('8363102', 800),   // niños jugando con docente en aula
+  dashboardEmpty: px('8613321', 600), // niños en actividad grupal
+
+  // Módulo selector — fotos circulares por módulo
+  moduloDocente: px('8422248', 400),     // docente sentada con niños en el piso
+  moduloFamilia: px('8524996', 400),     // familia leyendo juntos en la cama
+  moduloProfesional: px('8926900', 400), // profesional ayudando a estudiante
+
+  // Historial — header
+  historialHeader: px('8926887', 1200), // estudiantes leyendo en biblioteca
+
+  // Recursos — header
+  recursosHeader: px('7869083', 1200), // docente y niños aprendiendo electrónica
 } as const;

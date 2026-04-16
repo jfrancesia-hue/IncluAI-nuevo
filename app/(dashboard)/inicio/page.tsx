@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import Image from 'next/image';
 import { getPerfil } from '@/lib/auth';
 import { LIMITES_PLAN } from '@/lib/types';
 import { createClient } from '@/lib/supabase/server';
@@ -6,6 +7,7 @@ import { DISCAPACIDADES } from '@/data/discapacidades';
 import { ModuleSelector } from '@/components/module/module-selector';
 import { Onboarding } from '@/components/module/onboarding';
 import { getTipDelDia } from '@/data/tips';
+import { PHOTOS } from '@/lib/photos';
 
 export const metadata = { title: 'Inicio · IncluIA' };
 
@@ -68,9 +70,15 @@ export default async function InicioPage() {
       <article className="relative overflow-hidden rounded-[20px] bg-gradient-to-br from-[#15803d] to-[#0d9448] p-6 text-white shadow-[0_8px_24px_rgba(22,163,74,0.25)] sm:p-8">
         <div
           aria-hidden
-          className="absolute -right-8 -top-8 flex h-56 w-56 items-center justify-center rounded-full bg-white/10 text-8xl"
+          className="absolute -right-4 -top-4 h-56 w-56 overflow-hidden rounded-full opacity-30 sm:opacity-40"
         >
-          ✨
+          <Image
+            src={PHOTOS.dashboardCta}
+            alt=""
+            width={400}
+            height={400}
+            className="h-full w-full object-cover"
+          />
         </div>
         <div className="relative flex flex-col gap-4 sm:max-w-xl">
           <p className="text-sm font-semibold uppercase tracking-wider text-white/80">
@@ -180,7 +188,15 @@ export default async function InicioPage() {
           </div>
         ) : (
           <div className="flex min-h-[180px] flex-col items-center justify-center gap-3 rounded-[20px] border-2 border-dashed border-[#e2e8f0] bg-white p-8 text-center">
-            <span aria-hidden className="text-4xl">📖</span>
+            <div className="h-20 w-20 overflow-hidden rounded-full shadow-md">
+              <Image
+                src={PHOTOS.dashboardEmpty}
+                alt="Niños participando en actividad grupal"
+                width={200}
+                height={200}
+                className="h-full w-full object-cover"
+              />
+            </div>
             <p className="font-serif text-base font-bold text-[#1e3a5f]">
               Todavía no generaste ninguna guía
             </p>

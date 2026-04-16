@@ -1,9 +1,11 @@
 import Link from 'next/link';
+import Image from 'next/image';
 import { getPerfil } from '@/lib/auth';
 import { createClient } from '@/lib/supabase/server';
 import { DISCAPACIDADES } from '@/data/discapacidades';
 import { cn } from '@/lib/utils';
 import type { ModuloIncluIA } from '@/lib/types';
+import { PHOTOS } from '@/lib/photos';
 
 export const metadata = { title: 'Tu biblioteca · IncluIA' };
 
@@ -71,13 +73,25 @@ export default async function HistorialPage({ searchParams }: { searchParams: SP
 
   return (
     <div className="flex flex-col gap-6">
-      <header>
-        <h1 className="font-serif text-3xl font-bold text-[#1e3a5f] sm:text-4xl">
-          Tu biblioteca de guías
-        </h1>
-        <p className="mt-1 text-sm text-[#5c6b7f]">
-          Todas las guías que generaste en los 3 módulos.
-        </p>
+      <header className="relative overflow-hidden rounded-[20px] bg-white shadow-[0_2px_12px_rgba(15,34,64,0.05)]">
+        <div className="relative h-32 w-full overflow-hidden sm:h-40">
+          <Image
+            src={PHOTOS.historialHeader}
+            alt="Estudiantes leyendo en biblioteca"
+            width={1200}
+            height={400}
+            className="h-full w-full object-cover"
+          />
+          <div aria-hidden className="absolute inset-0 bg-gradient-to-t from-white/80 via-white/30 to-transparent" />
+        </div>
+        <div className="px-6 pb-5 pt-3">
+          <h1 className="font-serif text-3xl font-bold text-[#1e3a5f] sm:text-4xl">
+            Tu biblioteca de guías
+          </h1>
+          <p className="mt-1 text-sm text-[#5c6b7f]">
+            Todas las guías que generaste en los 3 módulos.
+          </p>
+        </div>
       </header>
 
       {!esPro && (
