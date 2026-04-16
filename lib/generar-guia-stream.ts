@@ -1,13 +1,14 @@
 import 'server-only';
 import type { createClient } from '@/lib/supabase/server';
 import { anthropic, CLAUDE_MODEL } from '@/lib/anthropic';
-import type { ModuloIncluIA } from '@/lib/types';
+import { LIMITES_PLAN, type ModuloIncluIA, type PlanUsuario } from '@/lib/types';
 
 type ServerSupabase = Awaited<ReturnType<typeof createClient>>;
 
 type InsertConsultaInput = {
   supabase: ServerSupabase;
   userId: string;
+  plan: PlanUsuario;
   modulo: ModuloIncluIA;
   systemPrompt: string;
   userPrompt: string;
@@ -43,8 +44,29 @@ export function streamGuiaYResponder(input: InsertConsultaInput): Response {
       };
 
       let textoCompleto = '';
+      let reservado = false;
 
       try {
+        // Reserva atómica de cupo ANTES de gastar tokens (evita race conditions
+        // con requests concurrentes). Si falla, cortamos sin llamar a Claude.
+        const limite = LIMITES_PLAN[input.plan].guias_por_mes;
+        const reserva = await input.supabase.rpc('reservar_consulta', {
+          p_user_id: input.userId,
+          p_limite: limite,
+        });
+        if (reserva.error) {
+          send('error', {
+            message:
+              reserva.error.code === 'P0001'
+                ? 'Alcanzaste el límite de guías de este mes.'
+                : 'No se pudo reservar cupo de consulta.',
+            detail: reserva.error.message,
+          });
+          controller.close();
+          return;
+        }
+        reservado = true;
+
         // Prompt caching: el system prompt (grande, estable) se cachea por 5
         // minutos en los servers de Anthropic. 90% más barato en hits.
         const claudeStream = anthropic.messages.stream({
@@ -108,19 +130,26 @@ export function streamGuiaYResponder(input: InsertConsultaInput): Response {
             detail: saveError?.message,
           });
         } else {
-          const rpcResult = await input.supabase.rpc('incrementar_consultas', {
-            p_user_id: input.userId,
-          });
-          if (rpcResult.error) {
-            console.error('[incrementar_consultas]', rpcResult.error.message);
-          }
           send('done', { consulta_id: saved.id, tokens });
+          reservado = false; // ya se consumió el cupo legítimamente
         }
       } catch (err) {
         send('error', {
           message: err instanceof Error ? err.message : 'Error desconocido',
         });
       } finally {
+        // Compensación: si reservamos cupo pero el stream falló antes de guardar,
+        // devolvemos el cupo al usuario (no le cobramos una guía no entregada).
+        if (reservado) {
+          try {
+            const dec = await input.supabase.rpc('decrementar_consultas', {
+              p_user_id: input.userId,
+            });
+            if (dec.error) console.error('[decrementar_consultas]', dec.error.message);
+          } catch (err) {
+            console.error('[decrementar_consultas]', err);
+          }
+        }
         controller.close();
       }
     },

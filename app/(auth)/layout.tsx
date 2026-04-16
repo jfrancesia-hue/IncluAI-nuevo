@@ -2,16 +2,24 @@ import Link from 'next/link';
 
 export default function AuthLayout({ children }: { children: React.ReactNode }) {
   return (
-    <div className="flex min-h-screen flex-1 flex-col items-center justify-center bg-background px-4 py-10">
+    <div className="relative flex min-h-screen flex-1 flex-col items-center justify-center bg-[#fbf7f0] px-4 py-10">
+      <div
+        aria-hidden
+        className="pointer-events-none absolute inset-0 opacity-60"
+        style={{
+          backgroundImage:
+            'radial-gradient(circle at 15% 20%, rgba(22,163,74,0.1), transparent 45%), radial-gradient(circle at 85% 80%, rgba(30,58,95,0.08), transparent 45%)',
+        }}
+      />
       <Link
         href="/"
-        className="mb-8 text-2xl font-bold font-serif text-primary"
+        className="relative mb-6 inline-flex items-center gap-2 font-serif text-2xl font-bold text-[#1e3a5f]"
       >
-        🧩 IncluIA
+        <span aria-hidden>🧩</span> IncluIA
       </Link>
-      <div className="w-full max-w-md">{children}</div>
-      <p className="mt-8 text-xs text-muted">
-        IncluIA — Hecho en Argentina 🇦🇷
+      <div className="relative w-full max-w-[480px]">{children}</div>
+      <p className="relative mt-8 text-xs text-[#5c6b7f]">
+        IncluIA — Hecho con ❤️ en Argentina 🇦🇷
       </p>
     </div>
   );

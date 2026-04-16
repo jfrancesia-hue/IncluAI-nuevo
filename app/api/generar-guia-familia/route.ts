@@ -32,6 +32,7 @@ export async function POST(request: NextRequest) {
   return streamGuiaYResponder({
     supabase: guard.supabase,
     userId: guard.user.id,
+    plan: guard.plan.plan,
     modulo: 'familias',
     systemPrompt: SYSTEM_PROMPT_FAMILIAS,
     userPrompt: buildPromptFamilias(form),

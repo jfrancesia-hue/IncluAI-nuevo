@@ -5,17 +5,40 @@ import { useRouter } from 'next/navigation';
 import { NIVELES, getNivelById, getAniosDisponibles } from '@/data/niveles';
 import { getMateriasPorNivel } from '@/data/materias';
 import { DISCAPACIDADES } from '@/data/discapacidades';
-import type { FormularioConsulta, SituacionApoyo } from '@/lib/types';
+import type { FormularioConsulta } from '@/lib/types';
+import type { SituacionApoyo } from '@/lib/types';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Select } from '@/components/ui/select';
 import { Alert } from '@/components/ui/alert';
+import Image from 'next/image';
 import { Card, CardContent } from '@/components/ui/card';
 import { GuideView } from '../guide/guide-view';
 import { consumirSSE } from './sse';
 import { PLANTILLAS_DOCENTE } from '@/data/plantillas-docente';
 import { cn } from '@/lib/utils';
+import { PHOTOS } from '@/lib/photos';
+
+const BANNERS: Record<1 | 2 | 3, { photo: string; title: string; subtitle: string; tip?: string }> = {
+  1: {
+    photo: PHOTOS.wizardClase,
+    title: 'Contanos sobre tu clase',
+    subtitle: 'Empezamos por lo básico: ¿qué vas a enseñar?',
+    tip: '💡 Cuanto más específico seas con el contenido, mejor será tu guía',
+  },
+  2: {
+    photo: PHOTOS.wizardAlumno,
+    title: 'Contanos sobre tu alumno/a',
+    subtitle: 'Seleccioná una o más discapacidades — la guía se adapta a cada una',
+  },
+  3: {
+    photo: PHOTOS.wizardContexto,
+    title: 'Un poco más de contexto',
+    subtitle: 'Opcional pero muy recomendado — mejora mucho la calidad de tu guía',
+    tip: '⭐ Los docentes que completan este paso reciben guías 40% más específicas',
+  },
+};
 
 type Step = 1 | 2 | 3 | 'generando';
 
@@ -160,9 +183,42 @@ export function ConsultaWizard() {
     );
   }
 
+  const currentBanner =
+    typeof step === 'number' ? BANNERS[step] : null;
+
   return (
     <div className="flex flex-col gap-6">
       <Progress step={step} />
+      {currentBanner && (
+        <section className="overflow-hidden rounded-[20px] bg-white shadow-[0_2px_12px_rgba(15,34,64,0.05)]">
+          <div className="relative h-32 w-full overflow-hidden sm:h-40">
+            <Image
+              src={currentBanner.photo}
+              alt=""
+              width={900}
+              height={400}
+              className="h-full w-full object-cover"
+            />
+            <div
+              aria-hidden
+              className="absolute inset-0 bg-gradient-to-t from-white/70 via-transparent to-transparent"
+            />
+          </div>
+          <div className="px-6 py-5">
+            <h2 className="font-serif text-2xl font-bold text-[#1e3a5f] sm:text-3xl">
+              {currentBanner.title}
+            </h2>
+            <p className="mt-1 text-sm text-[#5c6b7f]">
+              {currentBanner.subtitle}
+            </p>
+            {currentBanner.tip && (
+              <div className="mt-3 inline-flex items-start gap-2 rounded-[10px] bg-[#fef3c7] px-3 py-2 text-xs text-[#1a2332]">
+                {currentBanner.tip}
+              </div>
+            )}
+          </div>
+        </section>
+      )}
       {error && <Alert variant="error">{error}</Alert>}
 
       {step === 1 && (
@@ -194,11 +250,6 @@ export function ConsultaWizard() {
 
         <Card>
           <CardContent className="flex flex-col gap-4 p-6">
-            <header className="flex flex-col gap-1">
-              <h2 className="font-serif text-2xl text-primary">Contexto de tu clase</h2>
-              <p className="text-sm text-muted">Contanos qué vas a enseñar y a qué nivel.</p>
-            </header>
-
             <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
               <Field label="Nivel educativo">
                 <Select
@@ -291,15 +342,6 @@ export function ConsultaWizard() {
       {step === 2 && (
         <Card>
           <CardContent className="flex flex-col gap-4 p-6">
-            <header className="flex flex-col gap-1">
-              <h2 className="font-serif text-2xl text-primary">
-                Discapacidad del alumno/a
-              </h2>
-              <p className="text-sm text-muted">
-                Seleccioná una o más — la guía se adaptará a cada una.
-              </p>
-            </header>
-
             <div className="grid grid-cols-2 gap-3 sm:grid-cols-3 md:grid-cols-4">
               {DISCAPACIDADES.map((d) => {
                 const selected = form.discapacidades.includes(d.id);
@@ -360,13 +402,6 @@ export function ConsultaWizard() {
       {step === 3 && (
         <Card>
           <CardContent className="flex flex-col gap-4 p-6">
-            <header className="flex flex-col gap-1">
-              <h2 className="font-serif text-2xl text-primary">Contexto adicional</h2>
-              <p className="text-sm text-muted">
-                Opcional pero recomendado — mejora mucho la calidad.
-              </p>
-            </header>
-
             <Field label="Descripción de tu aula y situación">
               <textarea
                 value={form.contexto_aula ?? ''}
@@ -414,33 +449,94 @@ export function ConsultaWizard() {
         </Card>
       )}
 
-      <div className="flex items-center justify-between">
+      <div
+        style={{
+          display: 'grid',
+          gridTemplateColumns: step > 1 ? '1fr 1fr' : '1fr',
+          gap: '12px',
+          marginTop: '16px',
+          padding: '20px',
+          borderRadius: '16px',
+          border: '3px solid #15803d',
+          backgroundColor: '#f0fdf4',
+          position: 'relative',
+          zIndex: 100,
+        }}
+      >
         {step > 1 ? (
-          <Button
-            variant="outline"
+          <button
+            type="button"
             onClick={() => setStep(((step as number) - 1) as Step)}
+            style={{
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              width: '100%',
+              padding: '14px 24px',
+              fontSize: '16px',
+              fontWeight: 600,
+              border: '2px solid #1e3a5f',
+              borderRadius: '10px',
+              backgroundColor: 'white',
+              color: '#1e3a5f',
+              cursor: 'pointer',
+            }}
           >
             ← Anterior
-          </Button>
+          </button>
         ) : (
-          <span />
+          <span aria-hidden />
         )}
 
         {step < 3 ? (
-          <Button
+          <button
+            type="button"
             onClick={() => {
               const err = validarPaso(step);
               if (err) return setError(err);
               setError(null);
               setStep(((step as number) + 1) as Step);
             }}
+            style={{
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              width: '100%',
+              padding: '14px 28px',
+              fontSize: '16px',
+              fontWeight: 700,
+              border: 'none',
+              borderRadius: '10px',
+              backgroundColor: '#15803d',
+              color: 'white',
+              cursor: 'pointer',
+              boxShadow: '0 4px 12px rgba(22,163,74,0.35)',
+            }}
           >
             Siguiente →
-          </Button>
+          </button>
         ) : (
-          <Button onClick={submit} size="lg">
-            🧩 Generar guía inclusiva
-          </Button>
+          <button
+            type="button"
+            onClick={submit}
+            style={{
+              display: 'inline-flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              width: '100%',
+              padding: '14px 28px',
+              fontSize: '16px',
+              fontWeight: 700,
+              border: 'none',
+              borderRadius: '10px',
+              backgroundColor: '#15803d',
+              color: 'white',
+              cursor: 'pointer',
+              boxShadow: '0 4px 12px rgba(22,163,74,0.35)',
+            }}
+          >
+            🧩 Generar guía
+          </button>
         )}
       </div>
     </div>
@@ -458,24 +554,45 @@ function Field({ label, children }: { label: string; children: React.ReactNode }
 
 function Progress({ step }: { step: Step }) {
   const n = typeof step === 'number' ? step : 3;
-  const labels = ['Contexto de tu clase', 'Discapacidad del alumno/a', 'Contexto adicional'];
+  const labels = ['Tu clase', 'Discapacidad', 'Contexto'];
   return (
-    <div className="flex flex-col gap-2">
-      <div className="flex items-center justify-between text-xs text-muted">
-        <span>Paso {n} de 3</span>
-        <span>{labels[n - 1]}</span>
-      </div>
-      <div className="flex items-center gap-2">
-        {[1, 2, 3].map((i) => (
-          <div
-            key={i}
-            className={cn(
-              'h-1.5 flex-1 rounded-full transition-colors',
-              i <= n ? 'bg-accent' : 'bg-border'
+    <div className="flex items-center justify-between gap-2 px-2 sm:gap-4">
+      {[1, 2, 3].map((i, idx) => {
+        const done = i < n;
+        const active = i === n;
+        return (
+          <div key={i} className="flex flex-1 items-center gap-2 sm:gap-3">
+            <div className="flex flex-col items-center gap-1.5">
+              <div
+                className={cn(
+                  'flex h-9 w-9 shrink-0 items-center justify-center rounded-full text-xs font-bold transition sm:h-10 sm:w-10 sm:text-sm',
+                  done && 'bg-[#15803d] text-white shadow-[0_2px_8px_rgba(22,163,74,0.3)]',
+                  active && 'bg-[#15803d] text-white ring-4 ring-[#dcfce7]',
+                  !done && !active && 'border-2 border-[#e2e8f0] bg-white text-[#5c6b7f]'
+                )}
+              >
+                {done ? '✓' : i}
+              </div>
+              <span
+                className={cn(
+                  'text-[10px] font-semibold sm:text-xs',
+                  active || done ? 'text-[#1e3a5f]' : 'text-[#5c6b7f]'
+                )}
+              >
+                {labels[idx]}
+              </span>
+            </div>
+            {i < 3 && (
+              <div
+                className={cn(
+                  'mb-5 h-0.5 flex-1 rounded-full transition',
+                  done ? 'bg-[#15803d]' : 'bg-[#e2e8f0]'
+                )}
+              />
             )}
-          />
-        ))}
-      </div>
+          </div>
+        );
+      })}
     </div>
   );
 }

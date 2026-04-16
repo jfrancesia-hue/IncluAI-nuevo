@@ -13,9 +13,9 @@ export default async function DashboardLayout({
   }
 
   return (
-    <div className="flex min-h-screen flex-1 flex-col bg-background">
+    <div className="bg-background">
       <Navbar perfil={perfil} />
-      <main className="mx-auto w-full max-w-6xl flex-1 px-4 py-8 sm:px-6">
+      <main className="mx-auto w-full max-w-6xl px-4 pb-32 pt-8 sm:px-6 sm:pb-24">
         {children}
       </main>
     </div>

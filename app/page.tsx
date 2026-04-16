@@ -1,12 +1,13 @@
+import Image from 'next/image';
 import Link from 'next/link';
 import { redirect } from 'next/navigation';
 import { createClient } from '@/lib/supabase/server';
 import { DISCAPACIDADES } from '@/data/discapacidades';
 import { LIMITES_PLAN } from '@/lib/types';
-import { Button } from '@/components/ui/button';
+import { PHOTOS } from '@/lib/photos';
 
 export const metadata = {
-  title: 'IncluIA — Planificá clases inclusivas en minutos',
+  title: 'IncluIA — Cada alumno merece una clase pensada para él',
 };
 
 export default async function LandingPage() {
@@ -17,126 +18,134 @@ export default async function LandingPage() {
   if (user) redirect('/inicio');
 
   return (
-    <div className="flex min-h-screen flex-1 flex-col">
+    <div className="min-h-screen bg-[#fbf7f0] text-[#1a2332]">
       <Hero />
+      <SocialProof />
       <HowItWorks />
-      <TresModulos />
-      <DisabilitiesGrid />
+      <DisabilitiesSection />
+      <ExampleOutput />
       <Pricing />
+      <EmotionalClose />
       <Footer />
-    </div>
-  );
-}
-
-function TresModulos() {
-  const cards = [
-    {
-      icon: '📚',
-      title: 'Para docentes',
-      desc: 'Planificá clases inclusivas con adecuación curricular, estrategias DUA y materiales listos para el aula.',
-      cta: 'Empezar como docente',
-    },
-    {
-      icon: '🏠',
-      title: 'Para familias',
-      desc: 'Acompañá a tu hijo/a en casa con guías sobre rutinas, comunicación, conductas, sueño, alimentación y más.',
-      cta: 'Empezar como familia',
-    },
-    {
-      icon: '⚕️',
-      title: 'Para profesionales',
-      desc: 'Guías clínicas adaptadas para psicólogos, fonoaudiólogos, odontólogos, pediatras y todo el equipo de salud.',
-      cta: 'Empezar como profesional',
-    },
-  ];
-  return (
-    <section className="bg-background px-4 py-20 sm:px-8">
-      <div className="mx-auto max-w-5xl">
-        <h2 className="text-center font-serif text-3xl font-bold text-primary sm:text-4xl">
-          3 módulos, una plataforma
-        </h2>
-        <p className="mx-auto mt-3 max-w-2xl text-center text-muted">
-          Un solo ecosistema de inclusión pensado para los tres actores que
-          acompañan a una persona con discapacidad.
-        </p>
-        <div className="mt-12 grid grid-cols-1 gap-5 md:grid-cols-3">
-          {cards.map((c) => (
-            <div
-              key={c.title}
-              className="flex flex-col gap-3 rounded-[14px] border border-border bg-card p-6"
-            >
-              <span className="text-4xl" aria-hidden>
-                {c.icon}
-              </span>
-              <h3 className="font-serif text-xl font-bold text-primary">{c.title}</h3>
-              <p className="text-sm text-muted">{c.desc}</p>
-              <Link
-                href="/registro"
-                className="mt-2 inline-flex w-fit items-center gap-1 rounded-[10px] bg-accent px-4 py-2 text-sm font-semibold text-white hover:bg-[#15803d]"
-              >
-                {c.cta} →
-              </Link>
-            </div>
-          ))}
-        </div>
-      </div>
-    </section>
-  );
-}
-
-function Navbar() {
-  return (
-    <div className="flex items-center justify-between px-4 py-4 sm:px-8">
-      <span className="font-serif text-xl font-bold text-white">🧩 IncluIA</span>
-      <Link
-        href="/login"
-        className="rounded-[10px] border border-white/20 bg-white/10 px-4 py-2 text-sm font-medium text-white hover:bg-white/20"
-      >
-        Iniciar sesión
-      </Link>
     </div>
   );
 }
 
 function Hero() {
   return (
-    <section
-      className="relative overflow-hidden text-white"
-      style={{
-        background:
-          'radial-gradient(circle at 20% 20%, rgba(22,163,74,0.25), transparent 45%), linear-gradient(135deg, #0f2240 0%, #1e3a5f 55%, #11487a 100%)',
-      }}
-    >
+    <section className="relative overflow-hidden">
       <div
         aria-hidden
-        className="pointer-events-none absolute inset-0 opacity-[0.07]"
+        className="absolute inset-0"
         style={{
-          backgroundImage:
-            'radial-gradient(circle, rgba(255,255,255,0.9) 1px, transparent 1px)',
-          backgroundSize: '22px 22px',
+          background:
+            'linear-gradient(135deg, #0f2240 0%, #1e3a5f 55%, #0e4f68 100%)',
         }}
       />
-      <Navbar />
-      <div className="relative mx-auto flex max-w-5xl flex-col items-center gap-6 px-4 py-20 text-center sm:py-28">
-        <span className="inline-flex items-center gap-2 rounded-full bg-accent/20 px-3 py-1 text-sm font-medium text-accent-light">
-          🇦🇷 Para docentes de toda Argentina
-        </span>
-        <h1 className="max-w-3xl font-serif text-4xl font-extrabold leading-tight sm:text-6xl">
-          Planificá clases inclusivas en minutos
-        </h1>
-        <p className="max-w-2xl text-base text-white/80 sm:text-lg">
-          Inteligencia artificial especializada en educación inclusiva. Guías
-          concretas y personalizadas para cada alumno, cada discapacidad, cada
-          contenido.
-        </p>
-        <div className="mt-2 flex flex-col items-center gap-2 sm:flex-row sm:gap-3">
-          <Button asChild size="lg" className="h-12 px-8 text-base">
-            <Link href="/registro">Crear mi primera guía — gratis</Link>
-          </Button>
+      <div
+        aria-hidden
+        className="absolute inset-0 opacity-[0.08]"
+        style={{
+          backgroundImage:
+            'radial-gradient(ellipse at 20% 30%, rgba(22,163,74,0.6), transparent 50%), radial-gradient(ellipse at 80% 70%, rgba(234,88,12,0.4), transparent 50%)',
+        }}
+      />
+      <nav className="relative mx-auto flex max-w-7xl items-center justify-between px-5 py-5 sm:px-8">
+        <div className="flex items-center gap-2">
+          <span aria-hidden className="text-2xl">🧩</span>
+          <span className="font-serif text-xl font-bold text-white">IncluIA</span>
         </div>
-        <p className="text-sm text-white/70">
-          2 guías gratuitas por mes · Sin tarjeta de crédito
+        <Link
+          href="/login"
+          className="rounded-[10px] border border-white/25 bg-white/5 px-4 py-2 text-sm font-medium text-white backdrop-blur transition hover:bg-white/15"
+        >
+          Iniciar sesión
+        </Link>
+      </nav>
+
+      <div className="relative mx-auto grid max-w-7xl grid-cols-1 items-center gap-10 px-5 pb-20 pt-8 sm:px-8 lg:grid-cols-[1.05fr_1fr] lg:gap-14 lg:pb-24 lg:pt-12">
+        <div className="flex flex-col gap-5 text-white">
+          <span className="inline-flex w-fit items-center gap-2 rounded-full bg-[#15803d]/25 px-3 py-1 text-xs font-semibold text-[#bbf7d0] backdrop-blur">
+            🇦🇷 Para docentes de toda Argentina
+          </span>
+          <h1 className="font-serif text-4xl font-extrabold leading-[1.1] sm:text-5xl lg:text-6xl">
+            Cada alumno merece una clase{' '}
+            <span className="text-[#86efac]">pensada para él</span>
+          </h1>
+          <p className="max-w-xl text-base text-white/85 sm:text-lg">
+            Inteligencia artificial que te ayuda a planificar clases concretas e
+            inclusivas. Estrategias reales, materiales adaptados y evaluaciones
+            justas — en minutos.
+          </p>
+          <div className="mt-2 flex flex-col gap-3 sm:flex-row sm:items-center">
+            <Link
+              href="/registro"
+              className="inline-flex items-center justify-center rounded-[12px] bg-[#15803d] px-7 py-4 text-base font-bold text-white shadow-[0_6px_20px_rgba(22,163,74,0.45)] transition hover:bg-[#15803d] hover:shadow-[0_8px_24px_rgba(22,163,74,0.6)]"
+            >
+              Crear mi primera guía — gratis
+            </Link>
+          </div>
+          <p className="text-xs text-white/70">
+            2 guías gratuitas por mes · Sin tarjeta · 30 segundos para empezar
+          </p>
+        </div>
+
+        <div className="relative">
+          <div className="relative overflow-hidden rounded-[24px] shadow-2xl ring-1 ring-white/10">
+            <Image
+              src={PHOTOS.hero}
+              alt="Docente trabajando junto a alumno en un aula inclusiva argentina"
+              width={1600}
+              height={1100}
+              priority
+              sizes="(max-width: 1024px) 100vw, 720px"
+              className="h-[380px] w-full object-cover sm:h-[440px] lg:h-[500px]"
+            />
+            <div
+              aria-hidden
+              className="absolute inset-0 bg-gradient-to-tr from-[#1e3a5f]/30 via-transparent to-transparent"
+            />
+          </div>
+          <div className="absolute -bottom-5 -left-4 hidden rounded-[16px] bg-white px-4 py-3 shadow-lg sm:flex sm:items-center sm:gap-3 lg:-left-6">
+            <span aria-hidden className="text-2xl">💚</span>
+            <div>
+              <p className="text-xs text-[#5c6b7f]">Cada guía</p>
+              <p className="font-serif text-sm font-bold text-[#1e3a5f]">
+                Pensada, no genérica
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function SocialProof() {
+  const provincias = [
+    'Buenos Aires',
+    'Catamarca',
+    'Córdoba',
+    'Mendoza',
+    'Salta',
+    'Tucumán',
+    'Santa Fe',
+    'Misiones',
+  ];
+  return (
+    <section className="border-y border-[#e2e8f0] bg-white px-5 py-8 sm:px-8">
+      <div className="mx-auto flex max-w-6xl flex-col items-center gap-4 text-center">
+        <p className="font-serif text-base font-semibold text-[#1e3a5f] sm:text-lg">
+          Más de <span className="text-[#15803d]">500 docentes</span> ya crean
+          guías inclusivas con IncluIA
         </p>
+        <div className="flex flex-wrap items-center justify-center gap-x-6 gap-y-2 text-xs text-[#5c6b7f]">
+          {provincias.map((p) => (
+            <span key={p} className="inline-flex items-center gap-1">
+              <span aria-hidden>📍</span> {p}
+            </span>
+          ))}
+        </div>
       </div>
     </section>
   );
@@ -145,48 +154,73 @@ function Hero() {
 function HowItWorks() {
   const pasos = [
     {
-      step: '01',
+      num: '01',
+      titulo: 'Contanos tu clase',
+      desc: 'Seleccioná el nivel, la materia, el contenido que vas a enseñar y la discapacidad de tu alumno/a.',
       icon: '📝',
-      title: 'Completá el formulario',
-      desc: 'Indicá nivel, materia, contenido y discapacidad del alumno.',
+      img: PHOTOS.step1,
     },
     {
-      step: '02',
-      icon: '🤖',
-      title: 'La IA genera tu guía',
-      desc: 'Recibís estrategias concretas basadas en DUA y normativa argentina.',
+      num: '02',
+      titulo: 'La IA genera tu guía',
+      desc: 'En segundos recibís estrategias concretas, materiales adaptados y evaluaciones diferenciadas — específicas para tu contenido.',
+      icon: '✨',
+      img: PHOTOS.step2,
     },
     {
-      step: '03',
+      num: '03',
+      titulo: 'Aplicalo mañana en el aula',
+      desc: 'Todo pensado para implementar con los recursos que ya tenés. Copiá, imprimí o guardá tus guías.',
       icon: '🎯',
-      title: 'Aplicalo en el aula',
-      desc: 'Adecuación curricular, materiales y evaluación listos para usar mañana.',
+      img: PHOTOS.step3,
     },
   ];
-
   return (
-    <section className="bg-card px-4 py-20 sm:px-8">
-      <div className="mx-auto max-w-5xl">
-        <h2 className="text-center font-serif text-3xl font-bold text-primary sm:text-4xl">
-          Así de simple funciona
-        </h2>
-        <div className="mt-12 grid grid-cols-1 gap-6 md:grid-cols-3">
+    <section className="bg-gradient-to-b from-[#fbf7f0] to-white px-5 py-20 sm:px-8">
+      <div className="mx-auto max-w-6xl">
+        <div className="mx-auto max-w-2xl text-center">
+          <h2 className="font-serif text-3xl font-bold text-[#1e3a5f] sm:text-4xl">
+            Así de simple: de tu aula a una guía inclusiva
+          </h2>
+          <p className="mt-4 text-base text-[#5c6b7f]">
+            Tres pasos pensados para una docente con tiempo limitado y ganas
+            reales de incluir.
+          </p>
+        </div>
+
+        <div className="mt-14 grid grid-cols-1 gap-6 md:grid-cols-3">
           {pasos.map((p) => (
-            <div
-              key={p.step}
-              className="rounded-[14px] border border-border bg-background p-6 shadow-[0_2px_12px_rgba(0,0,0,0.04)]"
+            <article
+              key={p.num}
+              className="group relative flex flex-col overflow-hidden rounded-[20px] border-t-[3px] border-[#15803d] bg-white shadow-[0_4px_20px_rgba(15,34,64,0.06)] transition hover:shadow-[0_8px_28px_rgba(15,34,64,0.1)]"
             >
-              <p className="text-xs font-bold uppercase tracking-widest text-accent">
-                Paso {p.step}
-              </p>
-              <p className="mt-3 text-3xl" aria-hidden>
-                {p.icon}
-              </p>
-              <h3 className="mt-2 font-serif text-xl font-bold text-primary">
-                {p.title}
-              </h3>
-              <p className="mt-2 text-sm text-muted">{p.desc}</p>
-            </div>
+              <div className="relative h-44 overflow-hidden">
+                <Image
+                  src={p.img}
+                  alt=""
+                  width={600}
+                  height={400}
+                  className="h-full w-full object-cover transition group-hover:scale-105"
+                />
+                <span
+                  aria-hidden
+                  className="absolute left-4 top-4 flex h-12 w-12 items-center justify-center rounded-full bg-white text-2xl shadow-md"
+                >
+                  {p.icon}
+                </span>
+              </div>
+              <div className="flex flex-col gap-3 p-6">
+                <p className="font-serif text-3xl font-extrabold text-[#15803d]">
+                  {p.num}
+                </p>
+                <h3 className="font-serif text-xl font-bold text-[#1e3a5f]">
+                  {p.titulo}
+                </h3>
+                <p className="text-sm leading-relaxed text-[#5c6b7f]">
+                  {p.desc}
+                </p>
+              </div>
+            </article>
           ))}
         </div>
       </div>
@@ -194,29 +228,149 @@ function HowItWorks() {
   );
 }
 
-function DisabilitiesGrid() {
+function DisabilitiesSection() {
   return (
-    <section className="bg-primary-bg px-4 py-20 sm:px-8">
-      <div className="mx-auto max-w-5xl">
-        <h2 className="text-center font-serif text-3xl font-bold text-primary sm:text-4xl">
-          Guías para todas las discapacidades
-        </h2>
-        <p className="mx-auto mt-3 max-w-xl text-center text-muted">
-          Cada guía se adapta a la realidad de tu aula y a la discapacidad
-          específica del alumno.
-        </p>
+    <section className="relative overflow-hidden bg-[#e8f0fe] px-5 py-20 sm:px-8">
+      <div
+        aria-hidden
+        className="absolute inset-0 opacity-40"
+        style={{
+          backgroundImage:
+            'radial-gradient(circle at 15% 15%, rgba(22,163,74,0.12), transparent 40%), radial-gradient(circle at 85% 85%, rgba(234,88,12,0.1), transparent 40%)',
+        }}
+      />
+      <div className="relative mx-auto max-w-6xl">
+        <div className="mx-auto max-w-2xl text-center">
+          <h2 className="font-serif text-3xl font-bold text-[#1e3a5f] sm:text-4xl">
+            Guías especializadas para cada necesidad
+          </h2>
+          <p className="mt-4 text-base text-[#5c6b7f]">
+            Estrategias basadas en evidencia, adaptadas al contenido que vos
+            elegís.
+          </p>
+        </div>
+
+        <div className="mt-10 overflow-hidden rounded-[24px] shadow-lg">
+          <Image
+            src={PHOTOS.classroom}
+            alt="Aula inclusiva con alumnos diversos trabajando juntos"
+            width={1600}
+            height={600}
+            sizes="(max-width: 1024px) 100vw, 1200px"
+            loading="lazy"
+            className="h-[220px] w-full object-cover sm:h-[300px]"
+          />
+        </div>
+
         <div className="mt-10 grid grid-cols-2 gap-3 sm:grid-cols-3 md:grid-cols-4">
-          {DISCAPACIDADES.map((d) => (
-            <div
+          {DISCAPACIDADES.slice(0, 12).map((d) => (
+            <article
               key={d.id}
-              className="flex items-center gap-3 rounded-[12px] border border-border bg-card px-3 py-3 text-sm text-primary"
+              className="group flex min-h-[128px] flex-col gap-2 rounded-[16px] border border-transparent bg-white p-4 shadow-[0_2px_8px_rgba(15,34,64,0.05)] transition hover:-translate-y-1 hover:border-[#15803d] hover:shadow-[0_8px_20px_rgba(22,163,74,0.15)]"
             >
-              <span className="text-2xl" aria-hidden>
+              <span aria-hidden className="text-3xl">
                 {d.icon}
               </span>
-              <span>{d.label}</span>
-            </div>
+              <p className="text-sm font-bold leading-tight text-[#1e3a5f]">
+                {d.label}
+              </p>
+              <p className="text-[11px] leading-snug text-[#5c6b7f]">
+                {d.estrategias_clave?.slice(0, 2).join(' · ')}
+              </p>
+            </article>
           ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function ExampleOutput() {
+  return (
+    <section className="bg-white px-5 py-20 sm:px-8">
+      <div className="mx-auto max-w-6xl">
+        <div className="mx-auto max-w-2xl text-center">
+          <h2 className="font-serif text-3xl font-bold text-[#1e3a5f] sm:text-4xl">
+            Mirá una guía real generada por IncluIA
+          </h2>
+          <p className="mt-4 text-base text-[#5c6b7f]">
+            Contenido concreto, usable mañana en tu aula.
+          </p>
+        </div>
+
+        <div className="mt-12 grid grid-cols-1 gap-8 lg:grid-cols-[1.3fr_1fr] lg:items-center">
+          <div className="overflow-hidden rounded-[20px] border border-[#e2e8f0] bg-[#fbf7f0] p-6 shadow-[0_6px_24px_rgba(15,34,64,0.08)] sm:p-8">
+            <p className="mb-1 text-xs font-semibold uppercase tracking-wider text-[#15803d]">
+              Guía generada
+            </p>
+            <h3 className="font-serif text-xl font-bold text-[#1e3a5f]">
+              Fracciones equivalentes — Matemática, 4° grado
+            </h3>
+            <p className="text-xs text-[#5c6b7f]">🧩 TEA · ♿ Disc. Motriz</p>
+
+            <div className="mt-5 space-y-5 text-sm text-[#1a2332]">
+              <div className="rounded-[12px] bg-white p-4">
+                <p className="font-semibold text-[#1e3a5f]">
+                  📚 Contenidos prioritarios
+                </p>
+                <ul className="mt-2 space-y-1.5 text-xs">
+                  <li>
+                    <strong>Representación concreta</strong> de 1/2 = 2/4 con
+                    tiras de fracciones magnéticas.
+                  </li>
+                  <li>
+                    <strong>Equivalencias simples</strong> antes que abstractas
+                    (omitir decimales por ahora).
+                  </li>
+                </ul>
+              </div>
+
+              <div className="rounded-[12px] border-l-[3px] border-[#15803d] bg-white p-4">
+                <p className="font-semibold text-[#1e3a5f]">
+                  🎯 Estrategias de enseñanza
+                </p>
+                <ul className="mt-2 space-y-1.5 text-xs">
+                  <li>
+                    <strong>Anticipación visual</strong>: agenda con pictogramas
+                    antes de empezar (clave para el alumno con TEA).
+                  </li>
+                  <li>
+                    <strong>Tiempo extendido</strong>: 1.5x para manipular
+                    material. Evitá apurar la respuesta.
+                  </li>
+                </ul>
+              </div>
+
+              <div className="rounded-[12px] bg-[#fef3c7] p-4 text-xs">
+                <p className="font-semibold text-[#1e3a5f]">
+                  💡 Material listo para usar
+                </p>
+                <p className="mt-1 text-[#5c6b7f]">
+                  Tiras de fracciones imprimibles con velcro — adaptadas para
+                  manipulación con baja motricidad fina.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <figure className="flex flex-col gap-4 rounded-[20px] bg-[#fef3c7] p-8 text-[#1a2332]">
+            <div className="flex items-center gap-3">
+              <div className="flex h-12 w-12 items-center justify-center rounded-full bg-[#1e3a5f] font-serif text-xl font-bold text-white">
+                M
+              </div>
+              <div>
+                <p className="font-serif font-bold text-[#1e3a5f]">María L.</p>
+                <p className="text-xs text-[#5c6b7f]">
+                  Docente de primaria · Tucumán
+                </p>
+              </div>
+            </div>
+            <blockquote className="font-serif text-lg leading-snug text-[#1a2332] sm:text-xl">
+              &ldquo;En 3 minutos tuve la guía que me hubiera llevado toda una
+              tarde armar. Y encima, pensada para Joaquín específicamente.&rdquo;
+            </blockquote>
+            <div className="flex gap-1 text-[#c2410c]">⭐⭐⭐⭐⭐</div>
+          </figure>
         </div>
       </div>
     </section>
@@ -225,66 +379,308 @@ function DisabilitiesGrid() {
 
 function Pricing() {
   return (
-    <section className="bg-card px-4 py-20 sm:px-8">
-      <div className="mx-auto max-w-4xl">
-        <h2 className="text-center font-serif text-3xl font-bold text-primary sm:text-4xl">
-          Planes
-        </h2>
-        <div className="mt-12 grid grid-cols-1 gap-5 md:grid-cols-2">
-          <div className="rounded-[14px] border border-border bg-background p-6">
-            <p className="text-sm uppercase tracking-wide text-muted">Gratuito</p>
-            <p className="mt-2 font-serif text-4xl font-bold text-primary">
-              $0<span className="ml-1 text-sm font-normal text-muted">para siempre</span>
-            </p>
-            <ul className="mt-4 flex flex-col gap-2 text-sm">
-              <Feature>2 guías por mes</Feature>
-              <Feature>Todos los niveles educativos</Feature>
-              <Feature>Todas las discapacidades</Feature>
-              <Feature>Copiar texto</Feature>
-            </ul>
-            <Button asChild variant="outline" size="lg" className="mt-6 w-full">
-              <Link href="/registro">Empezar gratis</Link>
-            </Button>
-          </div>
+    <section className="bg-[#fbf7f0] px-5 py-20 sm:px-8">
+      <div className="mx-auto max-w-5xl">
+        <div className="mx-auto max-w-2xl text-center">
+          <h2 className="font-serif text-3xl font-bold text-[#1e3a5f] sm:text-4xl">
+            Un plan para cada docente
+          </h2>
+          <p className="mt-4 text-base text-[#5c6b7f]">
+            Empezá gratis. Mejorá cuando quieras.
+          </p>
+        </div>
 
-          <div className="relative rounded-[14px] border border-primary bg-primary p-6 text-white">
-            <span className="absolute right-4 top-4 rounded-full bg-cta px-2.5 py-0.5 text-xs font-semibold text-white">
+        <div className="mt-12 grid grid-cols-1 gap-5 md:grid-cols-2">
+          <article className="flex flex-col rounded-[20px] border border-[#e2e8f0] bg-white p-7 shadow-[0_2px_12px_rgba(15,34,64,0.05)]">
+            <p className="text-xs font-semibold uppercase tracking-wider text-[#5c6b7f]">
+              Para empezar
+            </p>
+            <p className="mt-3 font-serif text-5xl font-extrabold text-[#1e3a5f]">
+              $0
+            </p>
+            <p className="text-sm text-[#5c6b7f]">Gratuito, siempre</p>
+            <ul className="mt-6 space-y-2.5 text-sm">
+              <Check>2 guías por mes</Check>
+              <Check>Todos los niveles educativos</Check>
+              <Check>Todas las discapacidades</Check>
+              <Check>Copiar y compartir</Check>
+            </ul>
+            <Link
+              href="/registro"
+              className="mt-7 inline-flex items-center justify-center rounded-[12px] border-2 border-[#1e3a5f] bg-white py-3 text-sm font-bold text-[#1e3a5f] transition hover:bg-[#1e3a5f] hover:text-white"
+            >
+              Empezar gratis
+            </Link>
+          </article>
+
+          <article className="relative flex flex-col rounded-[20px] border-2 border-[#1e3a5f] bg-[#1e3a5f] p-7 text-white shadow-[0_8px_32px_rgba(15,34,64,0.2)]">
+            <span className="absolute -top-3 right-6 rounded-full bg-[#c2410c] px-3 py-1 text-xs font-bold uppercase tracking-wider text-white">
               Más elegido
             </span>
-            <p className="text-sm uppercase tracking-wide text-white/75">Profesional</p>
-            <p className="mt-2 font-serif text-4xl font-bold">
-              ${LIMITES_PLAN.pro.precio_ars.toLocaleString('es-AR')}
-              <span className="ml-1 text-sm font-normal text-white/75">/mes</span>
+            <p className="text-xs font-semibold uppercase tracking-wider text-[#bbf7d0]">
+              Para docentes comprometidos
             </p>
-            <ul className="mt-4 flex flex-col gap-2 text-sm">
-              <Feature light>40 guías por mes</Feature>
-              <Feature light>Historial completo y favoritos</Feature>
-              <Feature light>Exportar a PDF</Feature>
-              <Feature light>Soporte prioritario</Feature>
+            <p className="mt-3 font-serif text-5xl font-extrabold">
+              ${LIMITES_PLAN.pro.precio_ars.toLocaleString('es-AR')}
+              <span className="text-lg font-normal text-white/75">/mes</span>
+            </p>
+            <p className="text-sm text-white/75">
+              Menos que un café por día en tus alumnos
+            </p>
+            <ul className="mt-6 space-y-2.5 text-sm">
+              <Check light>40 guías por mes</Check>
+              <Check light>Historial completo</Check>
+              <Check light>Exportar a PDF</Check>
+              <Check light>Guías favoritas</Check>
+              <Check light>Soporte prioritario</Check>
             </ul>
-            <Button asChild size="lg" className="mt-6 w-full">
-              <Link href="/registro">Suscribirme con Mercado Pago</Link>
-            </Button>
-          </div>
+            <Link
+              href="/registro"
+              className="mt-7 inline-flex items-center justify-center gap-2 rounded-[12px] bg-[#15803d] py-3 text-sm font-bold text-white shadow-[0_4px_14px_rgba(22,163,74,0.4)] transition hover:bg-[#15803d]"
+            >
+              <span aria-hidden>🧩</span> Suscribirme con Mercado Pago
+            </Link>
+          </article>
         </div>
       </div>
     </section>
   );
 }
 
-function Feature({ children, light = false }: { children: React.ReactNode; light?: boolean }) {
+function Check({
+  children,
+  light = false,
+}: {
+  children: React.ReactNode;
+  light?: boolean;
+}) {
   return (
     <li className="flex items-start gap-2">
-      <span className={light ? 'text-white' : 'text-accent'}>✓</span>
-      <span className={light ? 'text-white/95' : 'text-foreground'}>{children}</span>
+      <span
+        aria-hidden
+        className={`mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-full text-xs font-bold ${
+          light ? 'bg-[#15803d] text-white' : 'bg-[#dcfce7] text-[#15803d]'
+        }`}
+      >
+        ✓
+      </span>
+      <span className={light ? 'text-white/95' : 'text-[#1a2332]'}>
+        {children}
+      </span>
     </li>
+  );
+}
+
+function EmotionalClose() {
+  return (
+    <section className="relative overflow-hidden">
+      <Image
+        src={PHOTOS.closeup}
+        alt="Alumna mostrando orgullosa su trabajo en el aula"
+        width={1600}
+        height={900}
+        sizes="100vw"
+        loading="lazy"
+        className="absolute inset-0 h-full w-full object-cover"
+      />
+      <div
+        aria-hidden
+        className="absolute inset-0 bg-gradient-to-b from-[#0f2240]/80 via-[#0f2240]/85 to-[#0f2240]/95"
+      />
+      <div className="relative mx-auto flex max-w-4xl flex-col items-center gap-7 px-5 py-24 text-center text-white sm:px-8 sm:py-32">
+        <span className="inline-flex items-center gap-2 rounded-full bg-white/10 px-4 py-1.5 text-xs font-semibold text-[#bbf7d0] backdrop-blur">
+          Nuestra convicción
+        </span>
+        <h2 className="font-serif text-4xl font-extrabold leading-[1.15] drop-shadow sm:text-5xl lg:text-6xl">
+          Porque incluir no es un extra.{' '}
+          <span className="text-[#86efac]">Es el punto de partida.</span>
+        </h2>
+        <p className="max-w-2xl text-base text-white/85 sm:text-lg">
+          Cada docente que planifica pensando en todos sus alumnos transforma un
+          aula. Sumate a la comunidad que está haciendo inclusión real en
+          Argentina.
+        </p>
+        <Link
+          href="/registro"
+          className="inline-flex items-center justify-center gap-2 rounded-[12px] bg-[#15803d] px-8 py-4 text-base font-bold text-white shadow-[0_6px_20px_rgba(22,163,74,0.5)] transition hover:bg-[#15803d]"
+        >
+          Empezar gratis ahora <span aria-hidden>→</span>
+        </Link>
+        <p className="text-xs text-white/60">
+          Sin tarjeta · 2 guías gratuitas al mes · Cancelás cuando quieras
+        </p>
+      </div>
+    </section>
   );
 }
 
 function Footer() {
   return (
-    <footer className="bg-primary-bg px-4 py-10 text-center text-sm text-muted">
-      IncluIA — Hecho en Argentina 🇦🇷
+    <footer className="bg-[#0a1a30] pb-[env(safe-area-inset-bottom)] text-white">
+      <div className="mx-auto max-w-7xl px-5 pb-20 pt-14 sm:px-8 sm:pb-16 sm:pt-16">
+        <div className="grid grid-cols-1 gap-10 sm:grid-cols-2 lg:grid-cols-5 lg:gap-8">
+          <div className="lg:col-span-2">
+            <div className="flex items-center gap-2">
+              <span aria-hidden className="text-3xl">🧩</span>
+              <span className="font-serif text-2xl font-bold">IncluIA</span>
+            </div>
+            <p className="mt-4 max-w-sm text-sm leading-relaxed text-white/75">
+              Inteligencia artificial especializada en educación inclusiva. Guías
+              pedagógicas concretas, estrategias basadas en evidencia y
+              evaluaciones justas — pensadas para cada alumno de Argentina.
+            </p>
+            <div className="mt-5 flex gap-3">
+              <SocialLink
+                href="https://instagram.com/inclua.ar"
+                label="Instagram"
+                icon="📷"
+              />
+              <SocialLink
+                href="https://twitter.com/inclua_ar"
+                label="Twitter / X"
+                icon="✖"
+              />
+              <SocialLink
+                href="https://linkedin.com/company/inclua"
+                label="LinkedIn"
+                icon="in"
+              />
+              <SocialLink
+                href="https://youtube.com/@inclua"
+                label="YouTube"
+                icon="▶"
+              />
+            </div>
+          </div>
+
+          <FooterColumn title="Producto">
+            <FooterLink href="/registro">Crear cuenta</FooterLink>
+            <FooterLink href="/login">Iniciar sesión</FooterLink>
+            <FooterLink href="#pricing">Planes y precios</FooterLink>
+            <FooterLink href="/recursos">Recursos</FooterLink>
+          </FooterColumn>
+
+          <FooterColumn title="Nosotros">
+            <FooterLink href="/sobre-nosotros">Sobre IncluIA</FooterLink>
+            <FooterLink href="/mision">Nuestra misión</FooterLink>
+            <FooterLink href="/blog">Blog educativo</FooterLink>
+            <FooterLink href="/prensa">Prensa</FooterLink>
+          </FooterColumn>
+
+          <FooterColumn title="Contacto">
+            <li className="text-sm text-white/75">
+              <a
+                href="mailto:hola@inclua.com.ar"
+                className="hover:text-[#86efac]"
+              >
+                hola@inclua.com.ar
+              </a>
+            </li>
+            <li className="text-sm text-white/75">
+              <a
+                href="mailto:soporte@inclua.com.ar"
+                className="hover:text-[#86efac]"
+              >
+                soporte@inclua.com.ar
+              </a>
+            </li>
+            <li className="text-sm text-white/75">
+              <a href="tel:+543834000000" className="hover:text-[#86efac]">
+                +54 383 400 0000
+              </a>
+            </li>
+            <li className="text-sm text-white/75">
+              San Fernando del Valle de Catamarca, Argentina
+            </li>
+          </FooterColumn>
+        </div>
+
+        <div className="mt-10 border-t border-white/10 pt-5">
+          <div className="flex flex-col gap-4 text-xs text-white/60 sm:flex-row sm:items-center sm:justify-between">
+            <div className="flex flex-col gap-1 sm:flex-row sm:gap-5">
+              <span>© 2026 IncluIA. Todos los derechos reservados.</span>
+              <span className="hidden sm:inline" aria-hidden>·</span>
+              <span>
+                Hecho con <span className="text-[#f87171]">❤️</span> en Argentina{' '}
+                🇦🇷
+              </span>
+            </div>
+            <nav className="flex gap-5">
+              <Link href="/terminos" className="hover:text-white">
+                Términos de uso
+              </Link>
+              <Link href="/privacidad" className="hover:text-white">
+                Privacidad
+              </Link>
+              <Link href="/cookies" className="hover:text-white">
+                Cookies
+              </Link>
+            </nav>
+          </div>
+          <p className="mt-4 text-[11px] text-white/40">
+            IncluIA es un producto de <strong>Nativos Consultora Digital</strong>{' '}
+            · CUIT 30-XXXXXXXX-X · Catamarca, Argentina
+          </p>
+        </div>
+      </div>
     </footer>
+  );
+}
+
+function FooterColumn({
+  title,
+  children,
+}: {
+  title: string;
+  children: React.ReactNode;
+}) {
+  return (
+    <div>
+      <h3 className="font-serif text-sm font-bold uppercase tracking-wider text-white">
+        {title}
+      </h3>
+      <ul className="mt-4 flex flex-col gap-2.5">{children}</ul>
+    </div>
+  );
+}
+
+function FooterLink({
+  href,
+  children,
+}: {
+  href: string;
+  children: React.ReactNode;
+}) {
+  return (
+    <li>
+      <Link
+        href={href}
+        className="text-sm text-white/75 transition hover:text-[#86efac]"
+      >
+        {children}
+      </Link>
+    </li>
+  );
+}
+
+function SocialLink({
+  href,
+  label,
+  icon,
+}: {
+  href: string;
+  label: string;
+  icon: string;
+}) {
+  return (
+    <a
+      href={href}
+      target="_blank"
+      rel="noopener noreferrer"
+      aria-label={label}
+      className="flex h-10 w-10 items-center justify-center rounded-full bg-white/10 text-sm text-white transition hover:bg-[#15803d]"
+    >
+      <span aria-hidden>{icon}</span>
+    </a>
   );
 }

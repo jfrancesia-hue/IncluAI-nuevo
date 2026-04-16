@@ -64,9 +64,9 @@ export default function RootLayout({
     <html
       lang="es-AR"
       suppressHydrationWarning
-      className={`${fraunces.variable} ${dmSans.variable} h-full antialiased`}
+      className={`${fraunces.variable} ${dmSans.variable} antialiased`}
     >
-      <body className="min-h-full flex flex-col">
+      <body className="min-h-screen">
         <ThemeProvider attribute="class" defaultTheme="light" enableSystem>
           <AxeA11y />
           {children}

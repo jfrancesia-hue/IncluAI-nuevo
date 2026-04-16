@@ -25,6 +25,18 @@ export async function POST(request: NextRequest) {
     return NextResponse.json({ error: 'Payload inválido' }, { status: 400 });
   }
 
+  // Defensa en profundidad: verificar que la consulta pertenece al user.
+  // RLS filtra también, pero un SELECT explícito evita bugs si alguien cambia policies.
+  const { data: consulta } = await supabase
+    .from('consultas')
+    .select('id')
+    .eq('id', parsed.data.consulta_id)
+    .eq('user_id', user.id)
+    .maybeSingle<{ id: string }>();
+  if (!consulta) {
+    return NextResponse.json({ error: 'Consulta no encontrada' }, { status: 404 });
+  }
+
   const { data, error } = await supabase
     .from('guias_guardadas')
     .insert({

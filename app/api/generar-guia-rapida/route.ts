@@ -39,6 +39,7 @@ Respondé en <400 palabras. Priorizá lo accionable AHORA. Si la situación requ
   return streamGuiaYResponder({
     supabase: guard.supabase,
     userId: guard.user.id,
+    plan: guard.plan.plan,
     modulo: 'profesionales',
     systemPrompt: SYSTEM_PROMPT_PROFESIONALES,
     userPrompt: prompt,

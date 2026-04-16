@@ -2,6 +2,7 @@
 
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
+import Image from 'next/image';
 import { DISCAPACIDADES } from '@/data/discapacidades';
 import { ESPECIALIDADES } from '@/data/especialidades';
 import { OBJETIVOS_PROFESIONAL, CONTEXTOS_ATENCION } from '@/data/objetivos-profesional';
@@ -21,6 +22,27 @@ import { Card, CardContent } from '@/components/ui/card';
 import { GuideView } from '../guide/guide-view';
 import { consumirSSE } from './sse';
 import { cn } from '@/lib/utils';
+import { PHOTOS } from '@/lib/photos';
+
+const BANNERS: Record<1 | 2 | 3, { photo: string; title: string; subtitle: string; tip?: string }> = {
+  1: {
+    photo: PHOTOS.wizardProfesional1,
+    title: 'Tu practica profesional',
+    subtitle: 'Contanos desde donde vas a atender.',
+    tip: '💡 La guia se adapta a tu especialidad y contexto de atencion',
+  },
+  2: {
+    photo: PHOTOS.wizardProfesional2,
+    title: 'Sobre el paciente',
+    subtitle: 'Quien es y como se comunica.',
+  },
+  3: {
+    photo: PHOTOS.wizardProfesional3,
+    title: '¿Que necesitas?',
+    subtitle: 'Elegi los objetivos y describi la situacion.',
+    tip: '⭐ Cuanto mas detalle aportes, mas especifica sera la guia clinica',
+  },
+};
 
 type Step = 1 | 2 | 3 | 'generando';
 
@@ -74,15 +96,15 @@ export function ProfesionalWizard({
 
   function validar(n: Step): string | null {
     if (n === 1) {
-      if (!form.lugar_atencion.trim()) return 'Indicá el lugar de atención';
+      if (!form.lugar_atencion.trim()) return 'Indica el lugar de atencion';
     }
     if (n === 2) {
-      if (form.discapacidades.length === 0) return 'Elegí al menos una discapacidad';
-      if (!form.comunicacion_paciente.trim()) return 'Describí el nivel de comunicación del paciente';
+      if (form.discapacidades.length === 0) return 'Elegi al menos una discapacidad';
+      if (!form.comunicacion_paciente.trim()) return 'Describi el nivel de comunicacion del paciente';
     }
     if (n === 3) {
-      if (form.objetivos.length === 0) return 'Elegí al menos un objetivo';
-      if (form.situacion_especifica.trim().length < 10) return 'Contanos un poco más';
+      if (form.objetivos.length === 0) return 'Elegi al menos un objetivo';
+      if (form.situacion_especifica.trim().length < 10) return 'Contanos un poco mas';
     }
     return null;
   }
@@ -106,7 +128,7 @@ export function ProfesionalWizard({
       });
       if (!res.ok) {
         const data = await res.json().catch(() => ({}));
-        throw new Error(data.error ?? 'Error generando la guía');
+        throw new Error(data.error ?? 'Error generando la guia');
       }
       await consumirSSE(res, {
         onDelta: (t) => {
@@ -128,9 +150,12 @@ export function ProfesionalWizard({
   if (step === 'generando') {
     return (
       <div className="flex flex-col gap-6">
-        <h1 className="text-2xl text-primary sm:text-3xl">
-          {streamText ? 'Guía clínica adaptada' : 'Generando tu guía…'}
-        </h1>
+        <div className="flex items-center gap-3">
+          {!streamText && <Spinner />}
+          <h1 className="font-serif text-2xl font-bold text-[#1e3a5f] sm:text-3xl">
+            {streamText ? 'Guia clinica adaptada' : 'Generando tu guia...'}
+          </h1>
+        </div>
         {error && <Alert variant="error">{error}</Alert>}
         {streamText ? (
           <GuideView markdown={streamText} />
@@ -138,7 +163,7 @@ export function ProfesionalWizard({
           <Card>
             <CardContent className="flex flex-col items-center gap-3 p-10 text-center text-muted">
               <Spinner />
-              <p>Generando tu guía…</p>
+              <p>Generando tu guia...</p>
             </CardContent>
           </Card>
         )}
@@ -148,7 +173,7 @@ export function ProfesionalWizard({
               Ir al inicio
             </Button>
             <Button onClick={() => router.push(`/resultado?id=${consultaId}`)}>
-              Ver guía completa →
+              Ver guia completa →
             </Button>
           </div>
         )}
@@ -156,21 +181,48 @@ export function ProfesionalWizard({
     );
   }
 
+  const currentBanner = typeof step === 'number' ? BANNERS[step] : null;
+
   return (
     <div className="flex flex-col gap-6">
       <Progress step={step} />
+
+      {currentBanner && (
+        <section className="overflow-hidden rounded-[20px] bg-white shadow-[0_2px_12px_rgba(15,34,64,0.05)]">
+          <div className="relative h-32 w-full overflow-hidden sm:h-40">
+            <Image
+              src={currentBanner.photo}
+              alt=""
+              width={900}
+              height={400}
+              className="h-full w-full object-cover"
+            />
+            <div
+              aria-hidden
+              className="absolute inset-0 bg-gradient-to-t from-white/70 via-transparent to-transparent"
+            />
+          </div>
+          <div className="px-6 py-5">
+            <h2 className="font-serif text-2xl font-bold text-[#1e3a5f] sm:text-3xl">
+              {currentBanner.title}
+            </h2>
+            <p className="mt-1 text-sm text-[#5c6b7f]">
+              {currentBanner.subtitle}
+            </p>
+            {currentBanner.tip && (
+              <div className="mt-3 inline-flex items-start gap-2 rounded-[10px] bg-[#fef3c7] px-3 py-2 text-xs text-[#1a2332]">
+                {currentBanner.tip}
+              </div>
+            )}
+          </div>
+        </section>
+      )}
+
       {error && <Alert variant="error">{error}</Alert>}
 
       {step === 1 && (
         <Card>
           <CardContent className="flex flex-col gap-4 p-6">
-            <header>
-              <h2 className="font-serif text-2xl text-primary">Tu práctica profesional</h2>
-              <p className="text-sm text-muted">
-                Contanos desde dónde vas a atender.
-              </p>
-            </header>
-
             <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
               <Field label="Especialidad">
                 <Select
@@ -184,7 +236,7 @@ export function ProfesionalWizard({
                   ))}
                 </Select>
               </Field>
-              <Field label="Contexto de atención">
+              <Field label="Contexto de atencion">
                 <Select
                   value={form.contexto_atencion}
                   onChange={(e) => update('contexto_atencion', e.target.value as ContextoAtencion)}
@@ -199,20 +251,20 @@ export function ProfesionalWizard({
             </div>
 
             {form.especialidad === 'otro' && (
-              <Field label="¿Cuál especialidad?">
+              <Field label="¿Cual especialidad?">
                 <Input
                   value={form.especialidad_otra ?? ''}
                   onChange={(e) => update('especialidad_otra', e.target.value)}
-                  placeholder="Especificá tu especialidad"
+                  placeholder="Especifica tu especialidad"
                 />
               </Field>
             )}
 
-            <Field label="Lugar de atención">
+            <Field label="Lugar de atencion">
               <Input
                 value={form.lugar_atencion}
                 onChange={(e) => update('lugar_atencion', e.target.value)}
-                placeholder='Ej: Consultorio privado / Hospital público / Domicilio'
+                placeholder='Ej: Consultorio privado / Hospital publico / Domicilio'
               />
             </Field>
           </CardContent>
@@ -222,11 +274,6 @@ export function ProfesionalWizard({
       {step === 2 && (
         <Card>
           <CardContent className="flex flex-col gap-4 p-6">
-            <header>
-              <h2 className="font-serif text-2xl text-primary">Sobre el paciente</h2>
-              <p className="text-sm text-muted">Quién es y cómo se comunica.</p>
-            </header>
-
             <Field label="Edad">
               <Select
                 value={form.edad_paciente}
@@ -241,7 +288,7 @@ export function ProfesionalWizard({
             </Field>
 
             <Field label="Discapacidad/es">
-              <div className="grid grid-cols-2 gap-2 sm:grid-cols-3 md:grid-cols-4">
+              <div className="grid grid-cols-2 gap-3 sm:grid-cols-3 md:grid-cols-4">
                 {DISCAPACIDADES.map((d) => {
                   const selected = form.discapacidades.includes(d.id);
                   return (
@@ -250,14 +297,14 @@ export function ProfesionalWizard({
                       type="button"
                       onClick={() => toggleArr('discapacidades', d.id)}
                       className={cn(
-                        'flex flex-col items-center gap-1 rounded-[12px] border px-3 py-3 text-center text-xs font-medium transition',
+                        'flex flex-col items-center gap-1 rounded-[14px] border px-3 py-4 text-center text-xs font-medium transition',
                         selected
                           ? 'border-accent bg-accent-light text-accent'
                           : 'border-border bg-card text-primary hover:bg-primary-bg'
                       )}
                       aria-pressed={selected}
                     >
-                      <span className="text-xl" aria-hidden>
+                      <span className="text-2xl" aria-hidden>
                         {d.icon}
                       </span>
                       <span>{d.label}</span>
@@ -267,14 +314,14 @@ export function ProfesionalWizard({
               </div>
             </Field>
 
-            <Field label="Detalle del diagnóstico (opcional)">
+            <Field label="Detalle del diagnostico (opcional)">
               <Input
                 value={form.diagnostico_detalle ?? ''}
                 onChange={(e) => update('diagnostico_detalle', e.target.value)}
               />
             </Field>
 
-            <Field label="Nivel de comunicación del paciente">
+            <Field label="Nivel de comunicacion del paciente">
               <Input
                 value={form.comunicacion_paciente}
                 onChange={(e) => update('comunicacion_paciente', e.target.value)}
@@ -288,11 +335,6 @@ export function ProfesionalWizard({
       {step === 3 && (
         <Card>
           <CardContent className="flex flex-col gap-4 p-6">
-            <header>
-              <h2 className="font-serif text-2xl text-primary">¿Qué necesitás?</h2>
-              <p className="text-sm text-muted">Elegí los objetivos y describí la situación.</p>
-            </header>
-
             <div className="grid grid-cols-1 gap-2 sm:grid-cols-2">
               {OBJETIVOS_PROFESIONAL.map((o) => {
                 const selected = form.objetivos.includes(o.id);
@@ -302,14 +344,14 @@ export function ProfesionalWizard({
                     type="button"
                     onClick={() => toggleArr('objetivos', o.id)}
                     className={cn(
-                      'flex items-start gap-2 rounded-[12px] border px-3 py-3 text-left text-sm transition',
+                      'flex items-start gap-2 rounded-[14px] border px-4 py-4 text-left text-sm transition',
                       selected
                         ? 'border-accent bg-accent-light text-accent'
                         : 'border-border bg-card text-primary hover:bg-primary-bg'
                     )}
                     aria-pressed={selected}
                   >
-                    <span className="text-lg" aria-hidden>
+                    <span className="text-xl" aria-hidden>
                       {o.icon}
                     </span>
                     <span className="flex flex-col">
@@ -321,13 +363,13 @@ export function ProfesionalWizard({
               })}
             </div>
 
-            <Field label="Situación específica">
+            <Field label="Situacion especifica">
               <textarea
                 value={form.situacion_especifica}
                 onChange={(e) => update('situacion_especifica', e.target.value)}
                 rows={4}
-                placeholder="Ej: Primera consulta odontológica con nene de 6 años con TEA, antecedentes de desregulación en intentos previos…"
-                className="min-h-[108px] w-full rounded-[10px] border border-border bg-card p-3 text-sm"
+                placeholder="Ej: Primera consulta odontologica con nene de 6 anios con TEA, antecedentes de desregulacion en intentos previos..."
+                className="min-h-[108px] w-full rounded-[10px] border border-border bg-card p-3 text-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent"
               />
             </Field>
 
@@ -336,36 +378,130 @@ export function ProfesionalWizard({
                 value={form.contexto_adicional ?? ''}
                 onChange={(e) => update('contexto_adicional', e.target.value)}
                 rows={3}
-                className="min-h-[80px] w-full rounded-[10px] border border-border bg-card p-3 text-sm"
+                className="min-h-[80px] w-full rounded-[10px] border border-border bg-card p-3 text-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent"
               />
             </Field>
+
+            <div className="rounded-[14px] bg-primary-bg p-4 text-sm">
+              <p className="mb-2 font-semibold text-primary">📋 Resumen</p>
+              <ul className="flex flex-col gap-0.5 text-primary/80">
+                <li>
+                  <strong>Especialidad:</strong>{' '}
+                  {ESPECIALIDADES.find((e) => e.id === form.especialidad)?.label || '—'}
+                </li>
+                <li>
+                  <strong>Lugar:</strong> {form.lugar_atencion || '—'}
+                </li>
+                <li>
+                  <strong>Discapacidad/es:</strong>{' '}
+                  {form.discapacidades.length
+                    ? form.discapacidades
+                        .map((id) => DISCAPACIDADES.find((d) => d.id === id)?.label)
+                        .filter(Boolean)
+                        .join(', ')
+                    : '—'}
+                </li>
+                <li>
+                  <strong>Objetivos:</strong>{' '}
+                  {form.objetivos.length
+                    ? form.objetivos
+                        .map((id) => OBJETIVOS_PROFESIONAL.find((o) => o.id === id)?.label)
+                        .filter(Boolean)
+                        .join(', ')
+                    : '—'}
+                </li>
+              </ul>
+            </div>
           </CardContent>
         </Card>
       )}
 
-      <div className="flex items-center justify-between">
+      <div
+        style={{
+          display: 'grid',
+          gridTemplateColumns: step > 1 ? '1fr 1fr' : '1fr',
+          gap: '12px',
+          marginTop: '16px',
+          padding: '20px',
+          borderRadius: '16px',
+          border: '3px solid #15803d',
+          backgroundColor: '#f0fdf4',
+        }}
+      >
         {step > 1 ? (
-          <Button variant="outline" onClick={() => setStep(((step as number) - 1) as Step)}>
+          <button
+            type="button"
+            onClick={() => setStep(((step as number) - 1) as Step)}
+            style={{
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              width: '100%',
+              padding: '14px 24px',
+              fontSize: '16px',
+              fontWeight: 600,
+              border: '2px solid #1e3a5f',
+              borderRadius: '10px',
+              backgroundColor: 'white',
+              color: '#1e3a5f',
+              cursor: 'pointer',
+            }}
+          >
             ← Anterior
-          </Button>
+          </button>
         ) : (
-          <span />
+          <span aria-hidden />
         )}
+
         {step < 3 ? (
-          <Button
+          <button
+            type="button"
             onClick={() => {
               const err = validar(step);
               if (err) return setError(err);
               setError(null);
               setStep(((step as number) + 1) as Step);
             }}
+            style={{
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              width: '100%',
+              padding: '14px 28px',
+              fontSize: '16px',
+              fontWeight: 700,
+              border: 'none',
+              borderRadius: '10px',
+              backgroundColor: '#15803d',
+              color: 'white',
+              cursor: 'pointer',
+              boxShadow: '0 4px 12px rgba(22,163,74,0.35)',
+            }}
           >
             Siguiente →
-          </Button>
+          </button>
         ) : (
-          <Button onClick={submit} size="lg">
-            ⚕️ Generar guía clínica
-          </Button>
+          <button
+            type="button"
+            onClick={submit}
+            style={{
+              display: 'inline-flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              width: '100%',
+              padding: '14px 28px',
+              fontSize: '16px',
+              fontWeight: 700,
+              border: 'none',
+              borderRadius: '10px',
+              backgroundColor: '#15803d',
+              color: 'white',
+              cursor: 'pointer',
+              boxShadow: '0 4px 12px rgba(22,163,74,0.35)',
+            }}
+          >
+            ⚕️ Generar guia clinica
+          </button>
         )}
       </div>
     </div>
@@ -383,24 +519,45 @@ function Field({ label, children }: { label: string; children: React.ReactNode }
 
 function Progress({ step }: { step: Step }) {
   const n = typeof step === 'number' ? step : 3;
-  const labels = ['Tu práctica profesional', 'Sobre el paciente', '¿Qué necesitás?'];
+  const labels = ['Tu practica', 'Paciente', 'Objetivos'];
   return (
-    <div className="flex flex-col gap-2">
-      <div className="flex items-center justify-between text-xs text-muted">
-        <span>Paso {n} de 3</span>
-        <span>{labels[n - 1]}</span>
-      </div>
-      <div className="flex items-center gap-2">
-        {[1, 2, 3].map((i) => (
-          <div
-            key={i}
-            className={cn(
-              'h-1.5 flex-1 rounded-full transition-colors',
-              i <= n ? 'bg-accent' : 'bg-border'
+    <div className="flex items-center justify-between gap-2 px-2 sm:gap-4">
+      {[1, 2, 3].map((i, idx) => {
+        const done = i < n;
+        const active = i === n;
+        return (
+          <div key={i} className="flex flex-1 items-center gap-2 sm:gap-3">
+            <div className="flex flex-col items-center gap-1.5">
+              <div
+                className={cn(
+                  'flex h-9 w-9 shrink-0 items-center justify-center rounded-full text-xs font-bold transition sm:h-10 sm:w-10 sm:text-sm',
+                  done && 'bg-[#15803d] text-white shadow-[0_2px_8px_rgba(22,163,74,0.3)]',
+                  active && 'bg-[#15803d] text-white ring-4 ring-[#dcfce7]',
+                  !done && !active && 'border-2 border-[#e2e8f0] bg-white text-[#5c6b7f]'
+                )}
+              >
+                {done ? '✓' : i}
+              </div>
+              <span
+                className={cn(
+                  'text-[10px] font-semibold sm:text-xs',
+                  active || done ? 'text-[#1e3a5f]' : 'text-[#5c6b7f]'
+                )}
+              >
+                {labels[idx]}
+              </span>
+            </div>
+            {i < 3 && (
+              <div
+                className={cn(
+                  'mb-5 h-0.5 flex-1 rounded-full transition',
+                  done ? 'bg-[#15803d]' : 'bg-[#e2e8f0]'
+                )}
+              />
             )}
-          />
-        ))}
-      </div>
+          </div>
+        );
+      })}
     </div>
   );
 }

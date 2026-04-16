@@ -77,16 +77,30 @@ export async function registrarUsuario(formData: FormData): Promise<RegistroResu
       data.tipo_usuario !== 'docente' ||
       data.especialidad)
   ) {
-    await supabase
+    const updates = {
+      tipo_usuario: data.tipo_usuario,
+      especialidad: data.especialidad || null,
+      institucion: data.institucion || null,
+      localidad: data.localidad || null,
+      provincia: data.provincia || 'No especificada',
+    };
+    // El trigger handle_new_user corre AFTER INSERT en auth.users; puede haber
+    // una ventana en la que el perfil aún no esté. Reintentamos una vez tras delay.
+    let { count } = await supabase
       .from('perfiles')
-      .update({
-        tipo_usuario: data.tipo_usuario,
-        especialidad: data.especialidad || null,
-        institucion: data.institucion || null,
-        localidad: data.localidad || null,
-        provincia: data.provincia || 'No especificada',
-      })
+      .update(updates, { count: 'exact' })
       .eq('id', authData.user.id);
+    if (!count || count === 0) {
+      await new Promise((r) => setTimeout(r, 500));
+      const retry = await supabase
+        .from('perfiles')
+        .update(updates, { count: 'exact' })
+        .eq('id', authData.user.id);
+      count = retry.count;
+      if (!count || count === 0) {
+        console.error('[registro] perfil no actualizado tras retry', authData.user.id);
+      }
+    }
   }
 
   const requiresEmailConfirm = !authData.session;

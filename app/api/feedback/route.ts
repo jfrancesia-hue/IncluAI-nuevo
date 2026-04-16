@@ -28,14 +28,17 @@ export async function POST(request: NextRequest) {
   };
   if (parsed.data.texto) update.feedback_texto = parsed.data.texto;
 
-  const { error } = await supabase
+  const { error, count } = await supabase
     .from('consultas')
-    .update(update)
+    .update(update, { count: 'exact' })
     .eq('id', parsed.data.consulta_id)
     .eq('user_id', user.id);
 
   if (error) {
     return NextResponse.json({ error: error.message }, { status: 500 });
+  }
+  if (!count || count === 0) {
+    return NextResponse.json({ error: 'Consulta no encontrada' }, { status: 404 });
   }
   return NextResponse.json({ ok: true });
 }

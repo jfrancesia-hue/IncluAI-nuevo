@@ -1,0 +1,67 @@
+/**
+ * Fotos curadas para IncluIA — Pexels tiene mejor cobertura que Unsplash
+ * en fotos reales de niños con discapacidad en contextos educativos,
+ * terapéuticos y de inclusión. Todas con licencia Pexels (uso libre).
+ *
+ * Fuente: Pexels (gratis, con atribución opcional).
+ * Para swap futuro: reemplazá la URL manteniendo la clave.
+ */
+
+const px = (id: string, w = 1400) =>
+  `https://images.pexels.com/photos/${id}/pexels-photo-${id}.jpeg?auto=compress&cs=tinysrgb&w=${w}&fit=crop`;
+
+export const PHOTOS = {
+  // Hero: terapeuta/docente trabajando con niño con necesidades especiales
+  hero: px('8613307', 1600),
+
+  // Niños en sesión de apoyo / inclusión
+  action: px('8612995', 1400),
+
+  // Pasos "cómo funciona"
+  step1: px('6146929', 600), // niña completando actividad pedagógica
+  step2: px('8364024', 600), // material adaptado / terapia
+  step3: px('7092343', 600), // profesional con niño aprendiendo
+
+  // Banner discapacidades / aula inclusiva
+  classroom: px('5691627', 1600), // juego sensorial con niño
+
+  // Emocional close-up
+  closeup: px('6964359', 1400), // niña con materiales especiales
+
+  // Celebración / éxito de pago
+  celebration: px('8364026', 1400), // niño alegre en sesión
+
+  // Auth screens
+  registro: px('6941093', 900), // niño participando activamente
+  login: px('8364007', 900), // adulto ayudando con tablet
+
+  // Wizard (3 pasos)
+  wizardClase: px('5417659', 900), // docente preparando material
+  wizardAlumno: px('8613090', 900), // sesión individual con niño
+  wizardContexto: px('7592999', 900), // niño usando recurso adaptado
+
+  // Header de guía generada
+  guiaHeader: px('6146970', 800), // niño con material manipulativo
+
+  // Paywall
+  paywall: px('8364024', 600), // apoyo terapéutico
+
+  // Banner planes
+  planesHeader: px('8612995', 1400),
+
+  // Loading accent
+  loadingAccent: px('6146929', 600),
+
+  // Avatar testimonio
+  avatar: px('7092343', 200),
+
+  // Wizard Familia (3 pasos)
+  wizardFamilia1: px('8612931', 900),  // niño aprendiendo con ábaco (sobre tu hijo/a)
+  wizardFamilia2: px('7269673', 900),  // madre e hijo jugando con juguetes educativos
+  wizardFamilia3: px('7606004', 900),  // madre e hijo jugando juntos (contexto familiar)
+
+  // Wizard Profesional (3 pasos)
+  wizardProfesional1: px('8460035', 900), // consultorio pediátrico (tu práctica)
+  wizardProfesional2: px('7653108', 900), // profesional con niño (sobre el paciente)
+  wizardProfesional3: px('5336930', 900), // sesión de consejería (qué necesitás)
+} as const;
