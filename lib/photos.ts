@@ -79,4 +79,18 @@ export const PHOTOS = {
 
   // Recursos — header
   recursosHeader: px('7869083', 1200), // docente y niños aprendiendo electrónica
+
+  // === Guide renderer v2 — fotos reales por sección ===
+  // Header principal: escritorio docente con materiales
+  guideHeroBackdrop: px('4145354', 1600), // manos trabajando con material concreto
+  // Estrategias: una foto contextual por tipo
+  strategyAgenda: px('8363139', 800),       // alumno con planificador visual
+  strategyManipulativo: px('6256015', 800), // manos con bloques/material concreto
+  strategyRitmo: px('5212339', 800),        // reloj / calma en aula
+  strategyColaboracion: px('8617553', 800), // dos alumnos trabajando juntos
+  strategyGenerica: px('5905927', 800),     // escena de aula inclusiva
+  // Sección de recursos: fondo sutil
+  recursosBackdrop: px('4144923', 1200),    // materiales sobre mesa
+  // Coordinación: familia + docente
+  coordinacionBackdrop: px('5905445', 1200),
 } as const;

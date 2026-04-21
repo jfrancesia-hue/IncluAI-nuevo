@@ -1,0 +1,914 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>IncluIA — Guía generada · Mockup v2</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,700;9..144,800&family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet" />
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+tailwind.config = {
+  theme: {
+    extend: {
+      fontFamily: {
+        serif: ['Fraunces', 'serif'],
+        sans:  ['"DM Sans"', 'system-ui', 'sans-serif']
+      },
+      colors: {
+        ink:     '#0f2240',
+        navy:    '#1e3a5f',
+        leaf:    '#15803d',
+        leafmid: '#16a34a',
+        leafsoft:'#dcfce7',
+        cream:   '#fbf7f0',
+        amber:   '#c2410c',
+        ambersoft:'#fef3c7',
+        border:  '#e2e8f0',
+        muted:   '#5c6b7f'
+      },
+      boxShadow: {
+        soft:  '0 2px 12px rgba(15,34,64,0.06)',
+        card:  '0 6px 24px rgba(15,34,64,0.08)',
+        lift:  '0 12px 32px rgba(15,34,64,0.12)'
+      }
+    }
+  }
+}
+</script>
+<style>
+  html, body { font-family: 'DM Sans', system-ui, sans-serif; background:#fbf7f0; color:#1a2332; }
+  .serif { font-family: 'Fraunces', serif; font-optical-sizing:auto; }
+  .numchip {
+    display:inline-flex; align-items:center; justify-content:center;
+    width:28px; height:28px; border-radius:9999px;
+    font-family:'Fraunces', serif; font-weight:700; font-size:13px;
+  }
+  /* ilustraciones: trazo grueso, plano */
+  .ill { stroke-linecap:round; stroke-linejoin:round; }
+  /* sidebar dot step */
+  .dotstep { width:10px; height:10px; border-radius:9999px; background:#cbd5e1; }
+  .dotstep.done { background:#15803d; }
+  .dotstep.active { background:#15803d; box-shadow:0 0 0 4px #dcfce7; }
+
+  /* timeline connector */
+  .tl-line { background: linear-gradient(180deg,#15803d 0%,#15803d 55%,#cbd5e1 55%,#cbd5e1 100%); }
+
+  /* stagger */
+  @keyframes rise { from { transform:translateY(12px); opacity:0 } to { transform:translateY(0); opacity:1 } }
+  .rise { animation: rise .6s ease-out both; }
+  .rise.d1 { animation-delay:.06s } .rise.d2 { animation-delay:.12s }
+  .rise.d3 { animation-delay:.18s } .rise.d4 { animation-delay:.24s }
+
+  /* progress bar */
+  .bar { height:8px; border-radius:9999px; background:#e2e8f0; overflow:hidden; }
+  .bar > span { display:block; height:100%; background:#15803d; border-radius:9999px; }
+</style>
+</head>
+<body class="min-h-screen antialiased">
+
+<!-- ============ TOP BAR ============ -->
+<header class="sticky top-0 z-40 border-b border-border/70 bg-cream/85 backdrop-blur">
+  <div class="mx-auto flex max-w-[1400px] items-center justify-between px-6 py-3">
+    <a href="#" class="flex items-center gap-2">
+      <!-- logo IncluIA: puzzle stylized -->
+      <svg width="28" height="28" viewBox="0 0 32 32" fill="none">
+        <path d="M5 10a3 3 0 0 1 3-3h5V5a3 3 0 1 1 6 0v2h5a3 3 0 0 1 3 3v5h2a3 3 0 1 1 0 6h-2v5a3 3 0 0 1-3 3h-5v-2a3 3 0 1 0-6 0v2H8a3 3 0 0 1-3-3v-5H3a3 3 0 1 1 0-6h2v-5Z" fill="#15803d"/>
+        <circle cx="22" cy="22" r="4" fill="#c2410c"/>
+      </svg>
+      <span class="serif text-xl font-bold text-navy">IncluIA</span>
+    </a>
+    <nav class="hidden items-center gap-6 text-sm text-muted md:flex">
+      <a href="#" class="hover:text-navy">Inicio</a>
+      <a href="#" class="font-semibold text-navy">Mis guías</a>
+      <a href="#" class="hover:text-navy">Familias</a>
+      <a href="#" class="hover:text-navy">Profesionales</a>
+      <a href="#" class="hover:text-navy">Recursos</a>
+    </nav>
+    <div class="flex items-center gap-3">
+      <span class="hidden rounded-full bg-leafsoft px-3 py-1 text-xs font-semibold text-leaf sm:inline-flex">Plan Pro · 12 / 40</span>
+      <div class="flex h-9 w-9 items-center justify-center rounded-full bg-navy text-sm font-bold text-white">M</div>
+    </div>
+  </div>
+</header>
+
+<!-- ============ BREADCRUMB ============ -->
+<div class="mx-auto max-w-[1400px] px-6 pt-6 text-xs text-muted">
+  <a href="#" class="hover:text-navy">Mis guías</a>
+  <span class="px-1">/</span>
+  <a href="#" class="hover:text-navy">Matemática</a>
+  <span class="px-1">/</span>
+  <span class="text-navy">Fracciones equivalentes</span>
+</div>
+
+<!-- ============================================================ -->
+<!-- ============ 1. HERO CARD DE LA GUÍA ====================== -->
+<!-- ============================================================ -->
+<section class="mx-auto mt-4 max-w-[1400px] px-6">
+  <article class="relative overflow-hidden rounded-[28px] bg-gradient-to-br from-[#0f2240] via-[#1e3a5f] to-[#0e4f68] p-8 text-white shadow-card sm:p-12">
+    <!-- fondo decorativo -->
+    <div aria-hidden class="absolute inset-0 opacity-[0.10]" style="background:radial-gradient(ellipse at 20% 30%,rgba(22,163,74,.55),transparent 55%),radial-gradient(ellipse at 80% 70%,rgba(234,88,12,.40),transparent 55%)"></div>
+    <div aria-hidden class="absolute -right-16 -top-16 h-64 w-64 rounded-full bg-white/5 blur-3xl"></div>
+
+    <div class="relative grid grid-cols-1 items-center gap-10 lg:grid-cols-[1.2fr_1fr]">
+      <div class="flex flex-col gap-5">
+        <div class="flex flex-wrap items-center gap-2">
+          <span class="inline-flex items-center gap-1.5 rounded-full bg-leaf/25 px-3 py-1 text-xs font-semibold text-[#bbf7d0]">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" class="ill"><path d="M5 13l4 4L19 7" stroke="#86efac" stroke-width="2.5"/></svg>
+            Guía generada · hace 2 minutos
+          </span>
+          <span class="rounded-full bg-white/10 px-3 py-1 text-xs font-medium">Modelo: Claude Opus 4.7</span>
+        </div>
+
+        <h1 class="serif text-4xl font-extrabold leading-[1.05] sm:text-5xl lg:text-[54px]">
+          Fracciones <span class="text-[#86efac]">equivalentes</span>
+        </h1>
+        <p class="max-w-xl text-[15px] leading-relaxed text-white/85">
+          Guía pedagógica concreta para trabajar este contenido con Joaquín (TEA) y Valentina (Discapacidad motriz) — dos adaptaciones, una sola clase, 28 alumnos.
+        </p>
+
+        <!-- chips de metadata -->
+        <div class="flex flex-wrap gap-2">
+          <span class="inline-flex items-center gap-2 rounded-[10px] border border-white/20 bg-white/5 px-3 py-1.5 text-xs backdrop-blur">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" class="ill"><path d="M4 7h16M4 12h16M4 17h10" stroke="#86efac" stroke-width="2"/></svg>
+            Matemática · 4° grado
+          </span>
+          <span class="inline-flex items-center gap-2 rounded-[10px] border border-white/20 bg-white/5 px-3 py-1.5 text-xs">
+            <span class="h-2 w-2 rounded-full bg-[#86efac]"></span> TEA
+          </span>
+          <span class="inline-flex items-center gap-2 rounded-[10px] border border-white/20 bg-white/5 px-3 py-1.5 text-xs">
+            <span class="h-2 w-2 rounded-full bg-[#fca5a5]"></span> Disc. motriz
+          </span>
+          <span class="inline-flex items-center gap-2 rounded-[10px] border border-white/20 bg-white/5 px-3 py-1.5 text-xs">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" class="ill"><circle cx="12" cy="12" r="9" stroke="#fbbf24" stroke-width="2"/><path d="M12 7v5l3 2" stroke="#fbbf24" stroke-width="2"/></svg>
+            Lectura · 8 min
+          </span>
+          <span class="inline-flex items-center gap-2 rounded-[10px] border border-amber/60 bg-amber/20 px-3 py-1.5 text-xs font-semibold text-[#fed7aa]">
+            Sin MAI · necesita más apoyos
+          </span>
+        </div>
+
+        <!-- acciones -->
+        <div class="mt-2 flex flex-wrap items-center gap-3">
+          <button class="inline-flex items-center gap-2 rounded-[12px] bg-leaf px-5 py-3 text-sm font-bold shadow-[0_6px_18px_rgba(22,163,74,.45)] transition hover:bg-leafmid">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" class="ill"><path d="M12 3v12m0 0l-4-4m4 4l4-4M5 21h14" stroke="white" stroke-width="2"/></svg>
+            Descargar PDF
+          </button>
+          <button class="inline-flex items-center gap-2 rounded-[12px] bg-white/10 px-5 py-3 text-sm font-semibold backdrop-blur transition hover:bg-white/20">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" class="ill"><rect x="8" y="3" width="12" height="15" rx="2" stroke="white" stroke-width="2"/><rect x="4" y="7" width="12" height="14" rx="2" stroke="white" stroke-width="2"/></svg>
+            Copiar al portapapeles
+          </button>
+          <button class="inline-flex items-center gap-2 rounded-[12px] bg-amber px-5 py-3 text-sm font-bold shadow-[0_6px_18px_rgba(194,65,12,.45)] transition hover:bg-[#9a3412]">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" class="ill"><path d="M12 3l1.8 4.8L18 9l-4 3.1 1.3 5L12 14.8 8.7 17l1.3-5L6 9l4.2-1.2L12 3z" stroke="white" stroke-width="2"/></svg>
+            Refinar con IA
+          </button>
+          <button class="inline-flex items-center gap-2 rounded-[12px] px-4 py-3 text-sm text-white/80 transition hover:bg-white/10 hover:text-white">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" class="ill"><path d="M19 14V5a2 2 0 0 0-2-2H7a2 2 0 0 0-2 2v14l7-4 7 4z" stroke="white" stroke-width="2"/></svg>
+            Favorita
+          </button>
+        </div>
+      </div>
+
+      <!-- Ilustración SVG custom: grupo diverso trabajando -->
+      <div class="relative">
+        <div class="absolute inset-0 -z-10 rounded-[24px] bg-white/5 backdrop-blur-sm"></div>
+        <svg viewBox="0 0 520 360" class="h-auto w-full" aria-hidden="true">
+          <!-- piso -->
+          <ellipse cx="260" cy="330" rx="220" ry="14" fill="#0a1a30" opacity=".35"/>
+          <!-- mesa -->
+          <rect x="80" y="230" width="360" height="12" rx="6" fill="#fbf7f0"/>
+          <rect x="110" y="242" width="8" height="70" fill="#fbf7f0"/>
+          <rect x="402" y="242" width="8" height="70" fill="#fbf7f0"/>
+
+          <!-- tiras de fracciones sobre la mesa -->
+          <g transform="translate(170,192)">
+            <rect width="180" height="16" rx="4" fill="#15803d"/>
+            <rect y="20" width="90" height="16" rx="4" fill="#16a34a"/>
+            <rect x="92" y="20" width="90" height="16" rx="4" fill="#16a34a"/>
+            <rect width="45" height="16" y="-22" rx="4" fill="#c2410c"/><rect x="47" width="45" height="16" y="-22" rx="4" fill="#c2410c"/><rect x="94" width="45" height="16" y="-22" rx="4" fill="#c2410c"/><rect x="141" width="45" height="16" y="-22" rx="4" fill="#c2410c"/>
+          </g>
+
+          <!-- docente -->
+          <g class="ill">
+            <circle cx="120" cy="140" r="22" fill="#fde68a"/>
+            <path d="M110 118 q10 -14 22 0 q-4 -2 -11 -1 q-6 1 -11 1 z" fill="#451a03"/>
+            <rect x="96" y="160" width="48" height="70" rx="12" fill="#c2410c"/>
+            <rect x="102" y="185" width="10" height="30" rx="4" fill="#fbf7f0"/>
+            <path d="M140 200 q20 -10 40 -6" stroke="#fde68a" stroke-width="8"/>
+          </g>
+
+          <!-- alumno 1: silla de ruedas -->
+          <g class="ill">
+            <circle cx="230" cy="150" r="18" fill="#fca5a5"/>
+            <rect x="210" y="168" width="40" height="50" rx="10" fill="#86efac"/>
+            <rect x="205" y="215" width="50" height="18" rx="6" fill="#1e3a5f"/>
+            <circle cx="214" cy="244" r="14" fill="none" stroke="#1e3a5f" stroke-width="3"/>
+            <circle cx="246" cy="244" r="14" fill="none" stroke="#1e3a5f" stroke-width="3"/>
+            <circle cx="214" cy="244" r="4" fill="#1e3a5f"/>
+            <circle cx="246" cy="244" r="4" fill="#1e3a5f"/>
+          </g>
+
+          <!-- alumno 2: con audífono cochlear -->
+          <g class="ill">
+            <circle cx="315" cy="145" r="20" fill="#fde68a"/>
+            <circle cx="298" cy="138" r="4" fill="#1e3a5f"/>
+            <rect x="293" y="130" width="3" height="10" rx="1" fill="#1e3a5f"/>
+            <rect x="295" y="160" width="40" height="60" rx="10" fill="#60a5fa"/>
+            <rect x="299" y="220" width="12" height="18" fill="#1e3a5f"/>
+            <rect x="320" y="220" width="12" height="18" fill="#1e3a5f"/>
+          </g>
+
+          <!-- alumno 3: con agenda pictográfica en mano -->
+          <g class="ill">
+            <circle cx="395" cy="152" r="19" fill="#c4b5fd"/>
+            <rect x="376" y="170" width="40" height="55" rx="10" fill="#ea580c"/>
+            <rect x="382" y="218" width="12" height="15" fill="#1e3a5f"/>
+            <rect x="400" y="218" width="12" height="15" fill="#1e3a5f"/>
+            <!-- tablet/agenda -->
+            <rect x="405" y="180" width="34" height="24" rx="3" fill="#fbf7f0" stroke="#1e3a5f" stroke-width="2"/>
+            <rect x="408" y="184" width="8" height="7" fill="#15803d"/>
+            <rect x="418" y="184" width="8" height="7" fill="#c2410c"/>
+            <rect x="428" y="184" width="8" height="7" fill="#60a5fa"/>
+            <rect x="408" y="194" width="8" height="7" fill="#fde68a"/>
+            <rect x="418" y="194" width="8" height="7" fill="#c4b5fd"/>
+            <rect x="428" y="194" width="8" height="7" fill="#86efac"/>
+          </g>
+
+          <!-- estrellita/sparkle IA -->
+          <g class="ill" opacity=".9">
+            <path d="M450 60 l6 14 14 6 -14 6 -6 14 -6 -14 -14 -6 14 -6z" fill="#86efac"/>
+            <circle cx="70" cy="80" r="4" fill="#fde68a"/>
+            <circle cx="80" cy="70" r="2" fill="#fde68a"/>
+          </g>
+        </svg>
+      </div>
+    </div>
+  </article>
+</section>
+
+<!-- ============================================================ -->
+<!-- ============ LAYOUT: SIDEBAR + CONTENIDO ================== -->
+<!-- ============================================================ -->
+<div class="mx-auto grid max-w-[1400px] grid-cols-1 gap-10 px-6 py-14 lg:grid-cols-[260px_1fr]">
+
+  <!-- ======== SIDEBAR STICKY ======== -->
+  <aside class="order-2 lg:order-1">
+    <div class="sticky top-24">
+      <p class="mb-3 text-[11px] font-semibold uppercase tracking-wider text-muted">Contenido de la guía</p>
+      <div class="mb-5 flex items-center gap-2">
+        <div class="bar flex-1"><span style="width:28%"></span></div>
+        <span class="text-xs font-semibold text-leaf">28%</span>
+      </div>
+      <nav class="flex flex-col gap-1">
+        <a href="#s1" class="group flex items-center gap-3 rounded-[10px] bg-leafsoft px-3 py-2.5 text-sm font-semibold text-leaf">
+          <span class="dotstep active"></span> Contenidos prioritarios
+        </a>
+        <a href="#s2" class="flex items-center gap-3 rounded-[10px] px-3 py-2.5 text-sm text-navy transition hover:bg-white">
+          <span class="dotstep done"></span> Estrategias de enseñanza
+        </a>
+        <a href="#s3" class="flex items-center gap-3 rounded-[10px] px-3 py-2.5 text-sm text-muted transition hover:bg-white hover:text-navy">
+          <span class="dotstep"></span> Materiales y recursos
+        </a>
+        <a href="#s4" class="flex items-center gap-3 rounded-[10px] px-3 py-2.5 text-sm text-muted transition hover:bg-white hover:text-navy">
+          <span class="dotstep"></span> Evaluación diferenciada
+        </a>
+        <a href="#s5" class="flex items-center gap-3 rounded-[10px] px-3 py-2.5 text-sm text-muted transition hover:bg-white hover:text-navy">
+          <span class="dotstep"></span> Comunicación en el aula
+        </a>
+        <a href="#s6" class="flex items-center gap-3 rounded-[10px] px-3 py-2.5 text-sm text-muted transition hover:bg-white hover:text-navy">
+          <span class="dotstep"></span> Qué evitar
+        </a>
+        <a href="#s7" class="flex items-center gap-3 rounded-[10px] px-3 py-2.5 text-sm text-muted transition hover:bg-white hover:text-navy">
+          <span class="dotstep"></span> Coordinación con otros actores
+        </a>
+      </nav>
+
+      <div class="mt-8 rounded-[14px] border border-border bg-white p-4 shadow-soft">
+        <p class="serif text-sm font-bold text-navy">¿Necesitás ajustar la guía?</p>
+        <p class="mt-1 text-xs text-muted">Refinala con IA: más breve, más actividades, enfoque lúdico, etc.</p>
+        <button class="mt-3 inline-flex w-full items-center justify-center gap-2 rounded-[10px] bg-amber px-3 py-2 text-xs font-bold text-white hover:bg-[#9a3412]">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" class="ill"><path d="M12 3l1.8 4.8L18 9l-4 3.1 1.3 5L12 14.8 8.7 17l1.3-5L6 9l4.2-1.2L12 3z" stroke="white" stroke-width="2"/></svg>
+          Refinar con IA
+        </button>
+      </div>
+    </div>
+  </aside>
+
+  <!-- ======== CONTENIDO ======== -->
+  <main class="order-1 flex min-w-0 flex-col gap-14 lg:order-2">
+
+    <!-- ======== SECCIÓN 1 — CONTENIDOS PRIORITARIOS (timeline) ======== -->
+    <section id="s1">
+      <div class="mb-6 flex items-center gap-3">
+        <span class="numchip bg-leafsoft text-leaf">01</span>
+        <h2 class="serif text-2xl font-bold text-navy sm:text-3xl">Contenidos prioritarios y adecuación curricular</h2>
+      </div>
+      <p class="mb-8 max-w-2xl text-sm text-muted">Qué priorizar, qué postergar y cómo adaptar el contenido sin empobrecerlo.</p>
+
+      <ol class="relative flex flex-col gap-5 border-l-[3px] border-dashed border-leaf/40 pl-6">
+        <li class="rise d1 relative">
+          <span class="absolute -left-[34px] top-1 flex h-7 w-7 items-center justify-center rounded-full border-[3px] border-leaf bg-white">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" class="ill"><path d="M5 13l4 4L19 7" stroke="#15803d" stroke-width="3"/></svg>
+          </span>
+          <div class="rounded-[14px] border border-border bg-white p-5 shadow-soft">
+            <p class="text-xs font-semibold uppercase tracking-wider text-leaf">Prioridad 1</p>
+            <p class="serif mt-1 text-lg font-bold text-navy">Representación concreta antes que abstracta</p>
+            <p class="mt-2 text-sm text-muted">Empezá con tiras de fracciones magnéticas (1/2 = 2/4) — la manipulación física es clave para Joaquín (TEA) y permite a Valentina participar sin escribir.</p>
+            <div class="mt-3 inline-flex items-center gap-2 rounded-[8px] bg-ambersoft px-3 py-1.5 text-xs text-[#78350f]">
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" class="ill"><circle cx="12" cy="12" r="9" stroke="#78350f" stroke-width="2"/><path d="M12 8v4M12 16h.01" stroke="#78350f" stroke-width="2"/></svg>
+              Saltear decimales por ahora — reduce carga cognitiva
+            </div>
+          </div>
+        </li>
+
+        <li class="rise d2 relative">
+          <span class="absolute -left-[34px] top-1 flex h-7 w-7 items-center justify-center rounded-full border-[3px] border-leaf bg-white">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" class="ill"><path d="M5 13l4 4L19 7" stroke="#15803d" stroke-width="3"/></svg>
+          </span>
+          <div class="rounded-[14px] border border-border bg-white p-5 shadow-soft">
+            <p class="text-xs font-semibold uppercase tracking-wider text-leaf">Prioridad 2</p>
+            <p class="serif mt-1 text-lg font-bold text-navy">Equivalencias simples (familias de fracciones)</p>
+            <p class="mt-2 text-sm text-muted">Trabajá 1/2 = 2/4 = 4/8 como "familia". Evitá saltos grandes como 3/5 = 6/10 en esta clase: queda para la próxima.</p>
+          </div>
+        </li>
+
+        <li class="rise d3 relative">
+          <span class="absolute -left-[34px] top-1 flex h-7 w-7 items-center justify-center rounded-full border-[3px] border-slate-300 bg-white">
+            <span class="h-2 w-2 rounded-full bg-slate-400"></span>
+          </span>
+          <div class="rounded-[14px] border border-border bg-white p-5 shadow-soft">
+            <p class="text-xs font-semibold uppercase tracking-wider text-muted">Prioridad 3 · opcional</p>
+            <p class="serif mt-1 text-lg font-bold text-navy">Representación pictórica como puente</p>
+            <p class="mt-2 text-sm text-muted">Si Joaquín se engancha, pasá al dibujo (rectángulos divididos). Si no, sostené lo concreto. Respetá el ritmo.</p>
+          </div>
+        </li>
+
+        <li class="rise d4 relative">
+          <span class="absolute -left-[34px] top-1 flex h-7 w-7 items-center justify-center rounded-full border-[3px] border-amber bg-white">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" class="ill"><path d="M12 8v5m0 3h.01" stroke="#c2410c" stroke-width="2.5"/></svg>
+          </span>
+          <div class="rounded-[14px] border-l-[4px] border-amber bg-ambersoft/40 p-5">
+            <p class="text-xs font-semibold uppercase tracking-wider text-amber">Marco legal aplicado</p>
+            <p class="mt-1 text-sm leading-relaxed text-[#1a2332]">Estas adecuaciones son <strong>de acceso, no significativas</strong> — Valentina y Joaquín trabajan el mismo contenido curricular, con distintos apoyos. Encuadre: <strong>Res. CFE 311/16, art. 23</strong>.</p>
+          </div>
+        </li>
+      </ol>
+    </section>
+
+    <!-- ======== SECCIÓN 2 — ESTRATEGIAS (trading cards) ======== -->
+    <section id="s2">
+      <div class="mb-6 flex items-center gap-3">
+        <span class="numchip bg-navy text-white">02</span>
+        <h2 class="serif text-2xl font-bold text-navy sm:text-3xl">Estrategias de enseñanza concretas</h2>
+      </div>
+      <p class="mb-8 max-w-2xl text-sm text-muted">Cuatro estrategias basadas en DUA — cada una con ejemplo paso a paso usando fracciones equivalentes.</p>
+
+      <div class="grid grid-cols-1 gap-5 sm:grid-cols-2">
+        <!-- Estrategia 1: Agenda pictográfica -->
+        <article class="group flex flex-col overflow-hidden rounded-[18px] border border-border bg-white shadow-soft transition hover:-translate-y-1 hover:shadow-lift">
+          <div class="relative h-44 overflow-hidden bg-gradient-to-br from-[#dcfce7] to-[#bbf7d0]">
+            <svg viewBox="0 0 280 160" class="h-full w-full ill">
+              <rect x="70" y="20" width="140" height="120" rx="10" fill="white" stroke="#15803d" stroke-width="2.5"/>
+              <rect x="85" y="35" width="110" height="12" rx="3" fill="#15803d"/>
+              <!-- pictogramas -->
+              <g><rect x="85" y="55" width="24" height="24" rx="4" fill="#fde68a"/><circle cx="97" cy="67" r="6" fill="#c2410c"/></g>
+              <g><rect x="113" y="55" width="24" height="24" rx="4" fill="#bfdbfe"/><path d="M118 72 L125 60 L131 70 L137 63" stroke="#1e3a5f" stroke-width="2" fill="none"/></g>
+              <g><rect x="141" y="55" width="24" height="24" rx="4" fill="#fecaca"/><rect x="147" y="61" width="12" height="12" fill="#c2410c"/></g>
+              <g><rect x="169" y="55" width="24" height="24" rx="4" fill="#c4b5fd"/><circle cx="181" cy="67" r="7" stroke="#1e3a5f" stroke-width="2" fill="none"/></g>
+              <!-- check progress -->
+              <rect x="85" y="90" width="16" height="16" rx="3" fill="#15803d"/>
+              <path d="M88 98 L92 102 L98 94" stroke="white" stroke-width="2.5"/>
+              <rect x="105" y="90" width="16" height="16" rx="3" fill="#15803d"/>
+              <path d="M108 98 L112 102 L118 94" stroke="white" stroke-width="2.5"/>
+              <rect x="125" y="90" width="16" height="16" rx="3" fill="none" stroke="#cbd5e1" stroke-width="2"/>
+              <rect x="145" y="90" width="16" height="16" rx="3" fill="none" stroke="#cbd5e1" stroke-width="2"/>
+              <rect x="85" y="116" width="100" height="6" rx="2" fill="#e2e8f0"/>
+            </svg>
+            <span class="absolute left-4 top-4 rounded-full bg-white/90 px-2.5 py-1 text-[10px] font-bold uppercase tracking-wider text-leaf">DUA · Representación</span>
+          </div>
+          <div class="flex flex-1 flex-col gap-3 p-5">
+            <div class="flex items-start justify-between gap-2">
+              <p class="serif text-lg font-bold text-navy">Anticipación visual con agenda pictográfica</p>
+              <span class="shrink-0 rounded-md bg-leafsoft px-2 py-0.5 text-[11px] font-bold text-leaf">TEA</span>
+            </div>
+            <p class="text-sm leading-relaxed text-muted">Pegá la secuencia de la clase en el pupitre de Joaquín con 4 pictogramas: <em>saludo → tiras de fracciones → pausa sensorial → cierre</em>. Él marca con ✓ a medida que avanza.</p>
+            <div class="mt-auto flex items-center justify-between border-t border-border pt-3 text-xs">
+              <span class="text-muted">⏱ 3 min de preparación</span>
+              <a href="#" class="font-semibold text-leaf hover:underline">Ver pictogramas ARASAAC →</a>
+            </div>
+          </div>
+        </article>
+
+        <!-- Estrategia 2: Tiras magnéticas -->
+        <article class="group flex flex-col overflow-hidden rounded-[18px] border border-border bg-white shadow-soft transition hover:-translate-y-1 hover:shadow-lift">
+          <div class="relative h-44 overflow-hidden bg-gradient-to-br from-[#fef3c7] to-[#fde68a]">
+            <svg viewBox="0 0 280 160" class="h-full w-full ill">
+              <!-- pizarrón -->
+              <rect x="30" y="25" width="220" height="110" rx="8" fill="#1e3a5f"/>
+              <!-- tiras -->
+              <rect x="50" y="45" width="180" height="14" rx="3" fill="#c2410c"/>
+              <text x="140" y="56" font-size="10" fill="white" text-anchor="middle" font-family="DM Sans">1 entero</text>
+
+              <rect x="50" y="65" width="87" height="14" rx="3" fill="#15803d"/>
+              <rect x="140" y="65" width="87" height="14" rx="3" fill="#15803d"/>
+              <text x="94" y="76" font-size="9" fill="white" text-anchor="middle">1/2</text>
+              <text x="185" y="76" font-size="9" fill="white" text-anchor="middle">1/2</text>
+
+              <rect x="50" y="85" width="42" height="14" rx="3" fill="#fbbf24"/>
+              <rect x="95" y="85" width="42" height="14" rx="3" fill="#fbbf24"/>
+              <rect x="140" y="85" width="42" height="14" rx="3" fill="#fbbf24"/>
+              <rect x="185" y="85" width="42" height="14" rx="3" fill="#fbbf24"/>
+
+              <rect x="50" y="105" width="20" height="14" rx="3" fill="#f87171"/>
+              <rect x="72" y="105" width="20" height="14" rx="3" fill="#f87171"/>
+              <rect x="95" y="105" width="20" height="14" rx="3" fill="#f87171"/>
+              <rect x="118" y="105" width="20" height="14" rx="3" fill="#f87171"/>
+              <rect x="140" y="105" width="20" height="14" rx="3" fill="#f87171"/>
+              <rect x="163" y="105" width="20" height="14" rx="3" fill="#f87171"/>
+              <rect x="185" y="105" width="20" height="14" rx="3" fill="#f87171"/>
+              <rect x="208" y="105" width="20" height="14" rx="3" fill="#f87171"/>
+
+              <!-- equivalencia -->
+              <text x="140" y="140" font-size="13" fill="#fbbf24" text-anchor="middle" font-family="Fraunces" font-weight="700">1/2 = 2/4 = 4/8</text>
+            </svg>
+            <span class="absolute left-4 top-4 rounded-full bg-white/90 px-2.5 py-1 text-[10px] font-bold uppercase tracking-wider text-amber">DUA · Acción</span>
+          </div>
+          <div class="flex flex-1 flex-col gap-3 p-5">
+            <div class="flex items-start justify-between gap-2">
+              <p class="serif text-lg font-bold text-navy">Manipulativos: tiras de fracciones magnéticas</p>
+              <span class="shrink-0 rounded-md bg-ambersoft px-2 py-0.5 text-[11px] font-bold text-amber">Motriz</span>
+            </div>
+            <p class="text-sm leading-relaxed text-muted">Tiras de cartulina con velcro grueso (pinza fácil para Valentina). Superponen y comprueban que 2 tiras de 1/4 ocupan lo mismo que 1 de 1/2. Concepto antes que número.</p>
+            <div class="mt-auto flex items-center justify-between border-t border-border pt-3 text-xs">
+              <span class="text-muted">🧰 Incluye PDF imprimible</span>
+              <a href="#" class="font-semibold text-leaf hover:underline">Descargar plantilla →</a>
+            </div>
+          </div>
+        </article>
+
+        <!-- Estrategia 3: Tiempo extendido + pausas -->
+        <article class="group flex flex-col overflow-hidden rounded-[18px] border border-border bg-white shadow-soft transition hover:-translate-y-1 hover:shadow-lift">
+          <div class="relative h-44 overflow-hidden bg-gradient-to-br from-[#bfdbfe] to-[#c4b5fd]">
+            <svg viewBox="0 0 280 160" class="h-full w-full ill">
+              <!-- reloj -->
+              <circle cx="110" cy="80" r="52" fill="white" stroke="#1e3a5f" stroke-width="3"/>
+              <circle cx="110" cy="80" r="4" fill="#1e3a5f"/>
+              <path d="M110 80 L110 42" stroke="#1e3a5f" stroke-width="3"/>
+              <path d="M110 80 L140 92" stroke="#15803d" stroke-width="3"/>
+              <!-- ticks -->
+              <g stroke="#1e3a5f" stroke-width="2">
+                <line x1="110" y1="32" x2="110" y2="38"/>
+                <line x1="158" y1="80" x2="152" y2="80"/>
+                <line x1="110" y1="128" x2="110" y2="122"/>
+                <line x1="62" y1="80" x2="68" y2="80"/>
+              </g>
+              <!-- sector destacado: pausa -->
+              <path d="M110 80 L110 28 A52 52 0 0 1 162 80 Z" fill="#15803d" opacity=".2"/>
+              <!-- icono pausa -->
+              <g transform="translate(195,55)">
+                <circle cx="30" cy="30" r="30" fill="#c2410c"/>
+                <rect x="20" y="17" width="7" height="26" rx="2" fill="white"/>
+                <rect x="33" y="17" width="7" height="26" rx="2" fill="white"/>
+              </g>
+              <text x="225" y="115" font-size="11" fill="#1e3a5f" text-anchor="middle" font-weight="600">+50% tiempo</text>
+            </svg>
+            <span class="absolute left-4 top-4 rounded-full bg-white/90 px-2.5 py-1 text-[10px] font-bold uppercase tracking-wider text-[#1e3a5f]">DUA · Motivación</span>
+          </div>
+          <div class="flex flex-1 flex-col gap-3 p-5">
+            <div class="flex items-start justify-between gap-2">
+              <p class="serif text-lg font-bold text-navy">Tiempo extendido con pausas sensoriales</p>
+              <span class="shrink-0 rounded-md bg-leafsoft px-2 py-0.5 text-[11px] font-bold text-leaf">TEA</span>
+            </div>
+            <p class="text-sm leading-relaxed text-muted">1,5x el tiempo estándar + una pausa de 2 min cada 15 min (respirar profundo, tocar pelotita sensorial, cambiar postura). No apurar la respuesta verbal.</p>
+            <div class="mt-auto flex items-center justify-between border-t border-border pt-3 text-xs">
+              <span class="text-muted">⏱ Cronograma sugerido incluido</span>
+              <a href="#" class="font-semibold text-leaf hover:underline">Ver cronograma →</a>
+            </div>
+          </div>
+        </article>
+
+        <!-- Estrategia 4: Trabajo en parejas con roles -->
+        <article class="group flex flex-col overflow-hidden rounded-[18px] border border-border bg-white shadow-soft transition hover:-translate-y-1 hover:shadow-lift">
+          <div class="relative h-44 overflow-hidden bg-gradient-to-br from-[#fecaca] to-[#fca5a5]">
+            <svg viewBox="0 0 280 160" class="h-full w-full ill">
+              <!-- dos alumnos -->
+              <g>
+                <circle cx="105" cy="72" r="22" fill="#fde68a"/>
+                <rect x="85" y="94" width="40" height="45" rx="10" fill="#15803d"/>
+                <text x="105" y="135" font-size="9" fill="white" font-weight="700" text-anchor="middle">ARMADOR</text>
+              </g>
+              <g>
+                <circle cx="180" cy="72" r="22" fill="#c4b5fd"/>
+                <rect x="160" y="94" width="40" height="45" rx="10" fill="#c2410c"/>
+                <text x="180" y="135" font-size="9" fill="white" font-weight="700" text-anchor="middle">NARRADOR</text>
+              </g>
+              <!-- mesa -->
+              <rect x="120" y="100" width="45" height="18" rx="4" fill="#fbf7f0" stroke="#1e3a5f" stroke-width="2"/>
+              <rect x="128" y="104" width="12" height="10" rx="2" fill="#c2410c"/>
+              <rect x="142" y="104" width="12" height="10" rx="2" fill="#c2410c"/>
+              <!-- flecha bidireccional -->
+              <path d="M130 50 Q142 30 155 50" stroke="#1e3a5f" stroke-width="2.5" fill="none" marker-end="url(#ar)"/>
+              <defs><marker id="ar" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#1e3a5f"/></marker></defs>
+            </svg>
+            <span class="absolute left-4 top-4 rounded-full bg-white/90 px-2.5 py-1 text-[10px] font-bold uppercase tracking-wider text-[#9f1239]">DUA · Colaboración</span>
+          </div>
+          <div class="flex flex-1 flex-col gap-3 p-5">
+            <div class="flex items-start justify-between gap-2">
+              <p class="serif text-lg font-bold text-navy">Trabajo en parejas con roles claros</p>
+              <span class="shrink-0 rounded-md bg-leafsoft px-2 py-0.5 text-[11px] font-bold text-leaf">Ambos</span>
+            </div>
+            <p class="text-sm leading-relaxed text-muted">Joaquín = "armador" (manipula tiras). Valentina = "narradora" (dice qué hacer). Los dos aprenden — y ningún rol queda como "el que no puede".</p>
+            <div class="mt-auto flex items-center justify-between border-t border-border pt-3 text-xs">
+              <span class="text-muted">👥 Rota roles cada 10 min</span>
+              <a href="#" class="font-semibold text-leaf hover:underline">Ver guion de apoyo →</a>
+            </div>
+          </div>
+        </article>
+      </div>
+
+      <!-- tip docente destacado -->
+      <div class="mt-6 flex items-start gap-4 rounded-[16px] border-l-[4px] border-leaf bg-leafsoft/40 p-5">
+        <div class="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-leaf text-white">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" class="ill"><path d="M12 2v2m0 16v2M4 12H2m20 0h-2M6 6L4.5 4.5M19.5 19.5L18 18M6 18l-1.5 1.5M19.5 4.5L18 6" stroke="white" stroke-width="2"/><circle cx="12" cy="12" r="4" stroke="white" stroke-width="2"/></svg>
+        </div>
+        <div>
+          <p class="serif text-base font-bold text-navy">💡 Tip de docente</p>
+          <p class="mt-1 text-sm text-[#1a2332]">Las 4 estrategias combinan DUA + bajo costo + sin depender de MAI. Si hoy solo podés implementar una, empezá por la #2 (tiras magnéticas): es la que más impacto tiene con menos preparación.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ======== SECCIÓN 3 — MATERIALES Y RECURSOS (grid) ======== -->
+    <section id="s3">
+      <div class="mb-6 flex items-center gap-3">
+        <span class="numchip bg-amber text-white">03</span>
+        <h2 class="serif text-2xl font-bold text-navy sm:text-3xl">Materiales y recursos adaptados</h2>
+      </div>
+      <p class="mb-8 max-w-2xl text-sm text-muted">Seleccionados para Argentina — gratuitos, imprimibles o con materiales de la casa.</p>
+
+      <div class="grid grid-cols-1 gap-5 md:grid-cols-3">
+        <article class="flex flex-col overflow-hidden rounded-[16px] border border-border bg-white shadow-soft">
+          <div class="flex h-32 items-center justify-center bg-[#fef3c7]">
+            <svg width="80" height="80" viewBox="0 0 80 80" fill="none" class="ill">
+              <rect x="14" y="22" width="52" height="36" rx="4" fill="white" stroke="#c2410c" stroke-width="3"/>
+              <rect x="22" y="14" width="36" height="14" rx="2" fill="#fde68a" stroke="#c2410c" stroke-width="3"/>
+              <rect x="22" y="42" width="36" height="24" rx="2" fill="#c2410c"/>
+              <line x1="28" y1="50" x2="52" y2="50" stroke="white" stroke-width="2"/>
+              <line x1="28" y1="56" x2="45" y2="56" stroke="white" stroke-width="2"/>
+              <circle cx="58" cy="32" r="2" fill="#c2410c"/>
+            </svg>
+          </div>
+          <div class="flex flex-1 flex-col gap-3 p-5">
+            <div class="flex items-center gap-2">
+              <span class="rounded-md bg-ambersoft px-2 py-0.5 text-[10px] font-bold uppercase text-amber">Imprimible</span>
+              <span class="rounded-md bg-leafsoft px-2 py-0.5 text-[10px] font-bold uppercase text-leaf">Listo</span>
+            </div>
+            <p class="serif text-base font-bold text-navy">Tiras de fracciones imprimibles</p>
+            <p class="text-xs text-muted">PDF A4 · 6 páginas · con velcro sugerido para motricidad fina.</p>
+            <a href="#" class="mt-auto inline-flex items-center gap-1 text-sm font-semibold text-leaf hover:underline">Descargar PDF <span>→</span></a>
+          </div>
+        </article>
+
+        <article class="flex flex-col overflow-hidden rounded-[16px] border border-border bg-white shadow-soft">
+          <div class="flex h-32 items-center justify-center bg-[#dbeafe]">
+            <svg width="80" height="80" viewBox="0 0 80 80" fill="none" class="ill">
+              <path d="M20 48 Q12 48 12 40 Q12 32 20 32 Q22 22 34 22 Q46 22 50 32 Q62 32 62 42 Q62 50 54 50 L20 50 Z" fill="white" stroke="#1e3a5f" stroke-width="3"/>
+              <path d="M34 40 L34 58 M28 52 L34 58 L40 52" stroke="#1e3a5f" stroke-width="3" fill="none"/>
+            </svg>
+          </div>
+          <div class="flex flex-1 flex-col gap-3 p-5">
+            <div class="flex items-center gap-2">
+              <span class="rounded-md bg-[#dbeafe] px-2 py-0.5 text-[10px] font-bold uppercase text-[#1e3a5f]">Digital gratuito</span>
+            </div>
+            <p class="serif text-base font-bold text-navy">ARASAAC — pictogramas</p>
+            <p class="text-xs text-muted">Base de datos pública con +12.000 pictogramas para agendas visuales. Descarga gratuita.</p>
+            <a href="#" class="mt-auto inline-flex items-center gap-1 text-sm font-semibold text-leaf hover:underline">Abrir arasaac.org <span>→</span></a>
+          </div>
+        </article>
+
+        <article class="flex flex-col overflow-hidden rounded-[16px] border border-border bg-white shadow-soft">
+          <div class="flex h-32 items-center justify-center bg-[#dcfce7]">
+            <svg width="80" height="80" viewBox="0 0 80 80" fill="none" class="ill">
+              <path d="M18 42 L40 22 L62 42 L62 62 L18 62 Z" fill="white" stroke="#15803d" stroke-width="3"/>
+              <rect x="34" y="46" width="12" height="16" fill="#15803d"/>
+              <rect x="24" y="46" width="6" height="6" fill="#fbbf24"/>
+              <rect x="50" y="46" width="6" height="6" fill="#fbbf24"/>
+            </svg>
+          </div>
+          <div class="flex flex-1 flex-col gap-3 p-5">
+            <div class="flex items-center gap-2">
+              <span class="rounded-md bg-leafsoft px-2 py-0.5 text-[10px] font-bold uppercase text-leaf">De la casa</span>
+            </div>
+            <p class="serif text-base font-bold text-navy">Cartones de pizza cortados</p>
+            <p class="text-xs text-muted">Alternativa de bajísimo costo: círculos divididos en mitades, cuartos, octavos. Instrucciones paso a paso.</p>
+            <a href="#" class="mt-auto inline-flex items-center gap-1 text-sm font-semibold text-leaf hover:underline">Ver instructivo <span>→</span></a>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <!-- ======== SECCIÓN 4 — EVALUACIÓN (comparativa + rúbrica) ======== -->
+    <section id="s4">
+      <div class="mb-6 flex items-center gap-3">
+        <span class="numchip bg-[#c4b5fd] text-[#4c1d95]">04</span>
+        <h2 class="serif text-2xl font-bold text-navy sm:text-3xl">Evaluación justa y diferenciada</h2>
+      </div>
+      <p class="mb-8 max-w-2xl text-sm text-muted">Los dos alumnos aprenden el mismo contenido — los instrumentos son distintos.</p>
+
+      <div class="grid grid-cols-1 gap-5 md:grid-cols-2">
+        <div class="rounded-[16px] border border-border bg-white p-6 shadow-soft">
+          <div class="mb-4 flex items-center gap-2">
+            <span class="flex h-8 w-8 items-center justify-center rounded-full bg-slate-200 text-slate-700">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" class="ill"><path d="M4 6h16M4 12h16M4 18h16" stroke="#475569" stroke-width="2"/></svg>
+            </span>
+            <p class="font-semibold uppercase text-[11px] tracking-wider text-muted">Evaluación tradicional</p>
+          </div>
+          <ul class="flex flex-col gap-3 text-sm">
+            <li class="flex gap-2"><span class="text-slate-400">○</span> Prueba escrita individual con 10 ejercicios.</li>
+            <li class="flex gap-2"><span class="text-slate-400">○</span> Tiempo 45 min estándar, silencio total.</li>
+            <li class="flex gap-2"><span class="text-slate-400">○</span> Respuesta única correcta (numérica).</li>
+            <li class="flex gap-2"><span class="text-slate-400">○</span> Evalúa al final de la unidad.</li>
+          </ul>
+        </div>
+
+        <div class="relative rounded-[16px] border-2 border-leaf bg-leafsoft/30 p-6">
+          <span class="absolute -top-3 left-6 rounded-full bg-leaf px-3 py-1 text-[10px] font-bold uppercase tracking-wider text-white">Adaptada para TEA + motriz</span>
+          <div class="mb-4 flex items-center gap-2">
+            <span class="flex h-8 w-8 items-center justify-center rounded-full bg-leaf text-white">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" class="ill"><path d="M5 13l4 4L19 7" stroke="white" stroke-width="2.5"/></svg>
+            </span>
+            <p class="font-semibold uppercase text-[11px] tracking-wider text-leaf">Evaluación adaptada</p>
+          </div>
+          <ul class="flex flex-col gap-3 text-sm">
+            <li class="flex gap-2"><span class="font-bold text-leaf">1.</span> <span><strong>Demostración con material:</strong> arma con tiras 3 equivalencias y las explica en voz alta (se graba).</span></li>
+            <li class="flex gap-2"><span class="font-bold text-leaf">2.</span> <span><strong>Prueba gráfica:</strong> marca con ✓ / ✗ sobre dibujos preparados — no requiere escritura.</span></li>
+            <li class="flex gap-2"><span class="font-bold text-leaf">3.</span> <span><strong>Rúbrica por criterio</strong> en lugar de nota única — observá progreso real.</span></li>
+            <li class="flex gap-2"><span class="font-bold text-leaf">4.</span> <span>Evaluación continua durante la clase, no solo al final.</span></li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- rúbrica visual -->
+      <div class="mt-6 rounded-[16px] border border-border bg-white p-6 shadow-soft">
+        <div class="mb-4 flex items-center justify-between">
+          <p class="serif text-lg font-bold text-navy">Mini rúbrica — Joaquín</p>
+          <span class="text-xs text-muted">4 criterios · escala 1-4</span>
+        </div>
+        <div class="flex flex-col gap-4">
+          <div>
+            <div class="mb-1.5 flex justify-between text-sm"><span class="text-navy">Identifica fracciones equivalentes con material concreto</span><span class="font-bold text-leaf">4 / 4</span></div>
+            <div class="bar"><span style="width:100%"></span></div>
+          </div>
+          <div>
+            <div class="mb-1.5 flex justify-between text-sm"><span class="text-navy">Explica oralmente el procedimiento</span><span class="font-bold text-leaf">3 / 4</span></div>
+            <div class="bar"><span style="width:75%; background:#16a34a"></span></div>
+          </div>
+          <div>
+            <div class="mb-1.5 flex justify-between text-sm"><span class="text-navy">Representa la equivalencia en dibujo</span><span class="font-bold text-amber">2 / 4</span></div>
+            <div class="bar"><span style="width:50%; background:#c2410c"></span></div>
+          </div>
+          <div>
+            <div class="mb-1.5 flex justify-between text-sm"><span class="text-navy">Escribe la fracción en número</span><span class="font-bold text-slate-500">En progreso</span></div>
+            <div class="bar"><span style="width:30%; background:#94a3b8"></span></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ======== SECCIÓN 5 — COMUNICACIÓN Y VÍNCULO (qué decir / qué no) ======== -->
+    <section id="s5">
+      <div class="mb-6 flex items-center gap-3">
+        <span class="numchip bg-[#fde68a] text-[#78350f]">05</span>
+        <h2 class="serif text-2xl font-bold text-navy sm:text-3xl">Comunicación y vínculo en el aula</h2>
+      </div>
+      <p class="mb-8 max-w-2xl text-sm text-muted">Lo que decís importa tanto como lo que enseñás.</p>
+
+      <div class="grid grid-cols-1 gap-5 md:grid-cols-2">
+        <div>
+          <p class="mb-3 inline-flex items-center gap-2 rounded-full bg-leafsoft px-3 py-1 text-xs font-bold uppercase tracking-wider text-leaf">✓ Sí decí</p>
+          <div class="flex flex-col gap-3">
+            <blockquote class="relative rounded-[14px] border-l-[3px] border-leaf bg-white p-4 shadow-soft">
+              <p class="text-sm italic leading-relaxed text-navy">"Joaquín, cuando termines con la agenda visual, avisame y seguimos con las tiras."</p>
+              <p class="mt-2 text-[11px] font-semibold uppercase tracking-wider text-leaf">Anticipa · predice · respeta su ritmo</p>
+            </blockquote>
+            <blockquote class="relative rounded-[14px] border-l-[3px] border-leaf bg-white p-4 shadow-soft">
+              <p class="text-sm italic leading-relaxed text-navy">"Valentina, ¿querés ser la narradora en la pareja con Tomás?"</p>
+              <p class="mt-2 text-[11px] font-semibold uppercase tracking-wider text-leaf">Ofrece agencia · rol de valor</p>
+            </blockquote>
+            <blockquote class="relative rounded-[14px] border-l-[3px] border-leaf bg-white p-4 shadow-soft">
+              <p class="text-sm italic leading-relaxed text-navy">"Hoy vamos a descubrir cuándo dos fracciones que parecen distintas, en realidad son iguales."</p>
+              <p class="mt-2 text-[11px] font-semibold uppercase tracking-wider text-leaf">Abre curiosidad · es para TODOS</p>
+            </blockquote>
+          </div>
+        </div>
+
+        <div>
+          <p class="mb-3 inline-flex items-center gap-2 rounded-full bg-[#fee2e2] px-3 py-1 text-xs font-bold uppercase tracking-wider text-[#b91c1c]">✗ Evitá</p>
+          <div class="flex flex-col gap-3">
+            <blockquote class="relative rounded-[14px] border-l-[3px] border-[#f87171] bg-white p-4 shadow-soft">
+              <p class="text-sm italic leading-relaxed text-slate-500 line-through decoration-[#f87171]/60">"Chicos, Joaquín necesita ayuda especial, entonces trabajen sin él."</p>
+              <p class="mt-2 text-[11px] font-semibold uppercase tracking-wider text-[#b91c1c]">Segrega · estigmatiza</p>
+            </blockquote>
+            <blockquote class="relative rounded-[14px] border-l-[3px] border-[#f87171] bg-white p-4 shadow-soft">
+              <p class="text-sm italic leading-relaxed text-slate-500 line-through decoration-[#f87171]/60">"Valentina no puede escribir, así que le pongo un dibujo y listo."</p>
+              <p class="mt-2 text-[11px] font-semibold uppercase tracking-wider text-[#b91c1c]">Subestima · empobrece el contenido</p>
+            </blockquote>
+            <blockquote class="relative rounded-[14px] border-l-[3px] border-[#f87171] bg-white p-4 shadow-soft">
+              <p class="text-sm italic leading-relaxed text-slate-500 line-through decoration-[#f87171]/60">"¡Vamos dale, apurate que todos terminaron!"</p>
+              <p class="mt-2 text-[11px] font-semibold uppercase tracking-wider text-[#b91c1c]">Genera ansiedad · fracaso</p>
+            </blockquote>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ======== SECCIÓN 6 — QUÉ EVITAR (alert elegante) ======== -->
+    <section id="s6">
+      <div class="mb-6 flex items-center gap-3">
+        <span class="numchip bg-[#fecaca] text-[#991b1b]">06</span>
+        <h2 class="serif text-2xl font-bold text-navy sm:text-3xl">Qué evitar</h2>
+      </div>
+
+      <div class="overflow-hidden rounded-[18px] border-[1.5px] border-[#fca5a5] bg-gradient-to-br from-[#fef2f2] to-[#fee2e2]">
+        <div class="flex items-center gap-3 border-b border-[#fca5a5]/60 bg-white/50 px-6 py-4">
+          <span class="flex h-9 w-9 items-center justify-center rounded-full bg-[#b91c1c] text-white">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" class="ill"><path d="M12 8v5m0 3h.01M12 3l10 17H2L12 3z" stroke="white" stroke-width="2"/></svg>
+          </span>
+          <p class="serif text-lg font-bold text-[#7f1d1d]">Errores comunes que parecen inclusivos pero no lo son</p>
+        </div>
+        <div class="grid grid-cols-1 gap-4 p-6 md:grid-cols-2">
+          <div class="flex items-start gap-3 rounded-[12px] bg-white/70 p-4">
+            <span class="mt-0.5 flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-[#b91c1c] text-xs font-bold text-white">1</span>
+            <div>
+              <p class="text-sm font-semibold text-[#7f1d1d]">Reducir el contenido ≠ incluir</p>
+              <p class="mt-0.5 text-xs text-[#9f1239]">Bajar a "identificar fracción en dibujo simple" no es adecuación: es eliminar el aprendizaje real.</p>
+            </div>
+          </div>
+          <div class="flex items-start gap-3 rounded-[12px] bg-white/70 p-4">
+            <span class="mt-0.5 flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-[#b91c1c] text-xs font-bold text-white">2</span>
+            <div>
+              <p class="text-sm font-semibold text-[#7f1d1d]">Separar físicamente</p>
+              <p class="mt-0.5 text-xs text-[#9f1239]">Sentarlos en una mesa aparte "para que se concentren" rompe el vínculo con los pares.</p>
+            </div>
+          </div>
+          <div class="flex items-start gap-3 rounded-[12px] bg-white/70 p-4">
+            <span class="mt-0.5 flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-[#b91c1c] text-xs font-bold text-white">3</span>
+            <div>
+              <p class="text-sm font-semibold text-[#7f1d1d]">Asumir que el compañero lo ayuda</p>
+              <p class="mt-0.5 text-xs text-[#9f1239]">Sin rol claro, el compañero "hace por él". Diseñá roles específicos (armador / narrador).</p>
+            </div>
+          </div>
+          <div class="flex items-start gap-3 rounded-[12px] bg-white/70 p-4">
+            <span class="mt-0.5 flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-[#b91c1c] text-xs font-bold text-white">4</span>
+            <div>
+              <p class="text-sm font-semibold text-[#7f1d1d]">Esperar que "compense" trabajando de más en casa</p>
+              <p class="mt-0.5 text-xs text-[#9f1239]">La adecuación es en tu clase — no tarea extra para la familia.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ======== SECCIÓN 7 — COORDINACIÓN CON OTROS ACTORES (stakeholder map) ======== -->
+    <section id="s7">
+      <div class="mb-6 flex items-center gap-3">
+        <span class="numchip bg-[#bfdbfe] text-[#1e3a5f]">07</span>
+        <h2 class="serif text-2xl font-bold text-navy sm:text-3xl">Coordinación con otros actores</h2>
+      </div>
+      <p class="mb-8 max-w-2xl text-sm text-muted">Incluir no es un trabajo solitario. Estos son tus aliados.</p>
+
+      <div class="rounded-[18px] border border-border bg-white p-6 shadow-soft">
+        <!-- mapa -->
+        <div class="relative mx-auto max-w-[720px]">
+          <svg viewBox="0 0 720 440" class="h-auto w-full ill" aria-hidden="true">
+            <!-- conexiones -->
+            <g stroke="#15803d" stroke-width="2" stroke-dasharray="4 4" opacity=".5">
+              <line x1="360" y1="220" x2="150" y2="90"/>
+              <line x1="360" y1="220" x2="570" y2="90"/>
+              <line x1="360" y1="220" x2="150" y2="350"/>
+              <line x1="360" y1="220" x2="570" y2="350"/>
+            </g>
+            <!-- centro: alumno -->
+            <g>
+              <circle cx="360" cy="220" r="70" fill="#15803d"/>
+              <circle cx="360" cy="220" r="80" fill="none" stroke="#15803d" stroke-width="2" stroke-dasharray="3 3" opacity=".5"/>
+              <text x="360" y="210" font-size="13" fill="white" text-anchor="middle" font-family="DM Sans" font-weight="700">ALUMNO/A</text>
+              <text x="360" y="226" font-size="10" fill="#86efac" text-anchor="middle">en el centro</text>
+              <text x="360" y="244" font-size="9" fill="#bbf7d0" text-anchor="middle">Joaquín · Valentina</text>
+            </g>
+            <!-- familia -->
+            <g>
+              <circle cx="150" cy="90" r="46" fill="#fef3c7" stroke="#c2410c" stroke-width="2.5"/>
+              <text x="150" y="86" font-size="11" fill="#78350f" text-anchor="middle" font-weight="700">FAMILIA</text>
+              <text x="150" y="100" font-size="9" fill="#92400e" text-anchor="middle">comunicación</text>
+              <text x="150" y="112" font-size="9" fill="#92400e" text-anchor="middle">semanal</text>
+            </g>
+            <!-- EOE -->
+            <g>
+              <circle cx="570" cy="90" r="46" fill="#dbeafe" stroke="#1e3a5f" stroke-width="2.5"/>
+              <text x="570" y="86" font-size="11" fill="#1e3a5f" text-anchor="middle" font-weight="700">EOE</text>
+              <text x="570" y="100" font-size="9" fill="#1e40af" text-anchor="middle">gestionar</text>
+              <text x="570" y="112" font-size="9" fill="#1e40af" text-anchor="middle">apoyos</text>
+            </g>
+            <!-- equipo docente -->
+            <g>
+              <circle cx="150" cy="350" r="46" fill="#fce7f3" stroke="#be185d" stroke-width="2.5"/>
+              <text x="150" y="346" font-size="11" fill="#9f1239" text-anchor="middle" font-weight="700">EQUIPO</text>
+              <text x="150" y="358" font-size="11" fill="#9f1239" text-anchor="middle" font-weight="700">DOCENTE</text>
+            </g>
+            <!-- especialistas -->
+            <g>
+              <circle cx="570" cy="350" r="46" fill="#dcfce7" stroke="#15803d" stroke-width="2.5"/>
+              <text x="570" y="346" font-size="11" fill="#14532d" text-anchor="middle" font-weight="700">ESPECIALISTAS</text>
+              <text x="570" y="360" font-size="9" fill="#166534" text-anchor="middle">fonoaudiólogo</text>
+              <text x="570" y="372" font-size="9" fill="#166534" text-anchor="middle">kinesiólogo</text>
+            </g>
+          </svg>
+        </div>
+
+        <!-- acciones por actor -->
+        <div class="mt-8 grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-4">
+          <div class="rounded-[12px] border border-border bg-cream p-4">
+            <p class="serif mb-2 text-sm font-bold text-amber">👪 Familia</p>
+            <ul class="flex flex-col gap-1.5 text-xs text-muted">
+              <li>• Cuaderno de comunicación diario con foto de la actividad</li>
+              <li>• Reunión quincenal de 15 min</li>
+              <li>• Compartir tira de fracciones para casa</li>
+            </ul>
+          </div>
+          <div class="rounded-[12px] border border-border bg-cream p-4">
+            <p class="serif mb-2 text-sm font-bold text-[#1e3a5f]">🏛 EOE</p>
+            <ul class="flex flex-col gap-1.5 text-xs text-muted">
+              <li>• Solicitá MAI formalmente por nota (Res. CFE 311/16)</li>
+              <li>• Gestioná pauta con psicopedagoga zonal</li>
+              <li>• Registrá acuerdos en PPI</li>
+            </ul>
+          </div>
+          <div class="rounded-[12px] border border-border bg-cream p-4">
+            <p class="serif mb-2 text-sm font-bold text-[#9f1239]">👩‍🏫 Equipo docente</p>
+            <ul class="flex flex-col gap-1.5 text-xs text-muted">
+              <li>• Alineá criterios de evaluación con profes de materia</li>
+              <li>• Compartí la agenda pictográfica con todas</li>
+              <li>• Preparen juntas el próximo contenido</li>
+            </ul>
+          </div>
+          <div class="rounded-[12px] border border-border bg-cream p-4">
+            <p class="serif mb-2 text-sm font-bold text-leaf">🩺 Especialistas</p>
+            <ul class="flex flex-col gap-1.5 text-xs text-muted">
+              <li>• Pedí informe funcional escrito para el legajo</li>
+              <li>• Consultá si hay contraindicaciones motrices</li>
+              <li>• Coordiná tiempos de terapia para no superponer</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ======== FOOTER DE LA GUÍA — FEEDBACK + ACCIONES ======== -->
+    <section>
+      <div class="rounded-[22px] bg-gradient-to-br from-[#1e3a5f] to-[#0e4f68] p-8 text-white shadow-card">
+        <div class="grid grid-cols-1 items-center gap-8 md:grid-cols-[1fr_1fr]">
+          <div>
+            <p class="serif text-2xl font-bold">¿Esta guía te sirvió?</p>
+            <p class="mt-2 text-sm text-white/80">Tu feedback nos ayuda a mejorar el modelo para el próximo docente que genere algo parecido.</p>
+            <div class="mt-4 flex items-center gap-2">
+              <button class="text-3xl transition hover:scale-110" aria-label="1 estrella">⭐</button>
+              <button class="text-3xl transition hover:scale-110">⭐</button>
+              <button class="text-3xl transition hover:scale-110">⭐</button>
+              <button class="text-3xl transition hover:scale-110">⭐</button>
+              <button class="text-3xl transition hover:scale-110" style="filter:grayscale(.4)">⭐</button>
+            </div>
+            <p class="mt-2 text-xs text-white/60">Calificá del 1 al 5 · opcional agregar comentario</p>
+          </div>
+          <div class="flex flex-col gap-3">
+            <button class="inline-flex w-full items-center justify-center gap-2 rounded-[12px] bg-amber px-5 py-3 text-sm font-bold transition hover:bg-[#9a3412]">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" class="ill"><path d="M12 3l1.8 4.8L18 9l-4 3.1 1.3 5L12 14.8 8.7 17l1.3-5L6 9l4.2-1.2L12 3z" stroke="white" stroke-width="2"/></svg>
+              Refinar guía · más actividades
+            </button>
+            <button class="inline-flex w-full items-center justify-center gap-2 rounded-[12px] bg-white/10 px-5 py-3 text-sm font-semibold backdrop-blur transition hover:bg-white/20">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" class="ill"><circle cx="6" cy="12" r="3" stroke="white" stroke-width="2"/><circle cx="18" cy="6" r="3" stroke="white" stroke-width="2"/><circle cx="18" cy="18" r="3" stroke="white" stroke-width="2"/><path d="M8.5 10.5L15.5 7.5M8.5 13.5L15.5 16.5" stroke="white" stroke-width="2"/></svg>
+              Compartir con colegas
+            </button>
+            <button class="inline-flex w-full items-center justify-center gap-2 rounded-[12px] border border-white/20 bg-transparent px-5 py-3 text-sm font-semibold transition hover:bg-white/10">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" class="ill"><path d="M19 14V5a2 2 0 0 0-2-2H7a2 2 0 0 0-2 2v14l7-4 7 4z" stroke="white" stroke-width="2"/></svg>
+              Guardar en favoritas
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <p class="mt-6 text-center text-xs text-muted">
+        Generado con Claude Opus 4.7 · Basado en Res. CFE 311/16 y Ley 26.206 · IncluIA no reemplaza el juicio profesional docente.
+      </p>
+    </section>
+  </main>
+</div>
+
+<!-- ============ FOOTER DEL SITE ============ -->
+<footer class="mt-10 bg-ink py-8 text-center text-xs text-white/50">
+  © 2026 IncluIA · Mockup v2 — propuesta de rediseño
+</footer>
+
+</body>
+</html>

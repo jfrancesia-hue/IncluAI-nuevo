@@ -2,6 +2,12 @@ import 'server-only';
 import type { createClient } from '@/lib/supabase/server';
 import { anthropic, CLAUDE_MODEL } from '@/lib/anthropic';
 import { LIMITES_PLAN, type ModuloIncluIA, type PlanUsuario } from '@/lib/types';
+import { enrichGuideToStructured } from '@/lib/structure-guide';
+
+// Flag de runtime: si es "false" explícito, desactivamos el enrichment.
+// Ante cualquier otro valor (incluyendo undefined) lo dejamos activo.
+const STRUCTURED_GUIDE_ENABLED =
+  process.env.INCLUA_DISABLE_STRUCTURED_GUIDE !== 'true';
 
 type ServerSupabase = Awaited<ReturnType<typeof createClient>>;
 
@@ -91,10 +97,44 @@ export function streamGuiaYResponder(input: InsertConsultaInput): Response {
         const tokens =
           finalMessage.usage.input_tokens + finalMessage.usage.output_tokens;
 
+        // Enrichment estructurado: segunda llamada a Claude con tool use
+        // que devuelve JSON tipado. Si falla → null y se guarda solo markdown.
+        // Guardamos el JSON dentro de datos_modulo.structured (campo JSONB
+        // ya existente, sin necesidad de migración).
+        let datosModuloFinal: Record<string, unknown> = {
+          ...(input.datosModulo ?? {}),
+        };
+
+        if (STRUCTURED_GUIDE_ENABLED) {
+          try {
+            const structured = await enrichGuideToStructured({
+              markdown: textoCompleto,
+              modulo: input.modulo,
+              context: {
+                contenido: input.legacy?.contenido ?? input.contenidoResumen,
+                materia: input.legacy?.materia ?? null,
+                nivel: input.legacy?.nivel ?? null,
+                anio_grado: input.legacy?.anio_grado ?? null,
+                discapacidades: input.discapacidades,
+                situacion_apoyo: input.legacy?.situacion_apoyo ?? null,
+              },
+            });
+            if (structured) {
+              datosModuloFinal = {
+                ...datosModuloFinal,
+                structured,
+              };
+            }
+          } catch (enrichErr) {
+            // Nunca bloqueamos el guardado principal por un error aquí.
+            console.error('[enrich-structure] fallback a markdown:', enrichErr);
+          }
+        }
+
         const insertRow: Record<string, unknown> = {
           user_id: input.userId,
           modulo: input.modulo,
-          datos_modulo: input.datosModulo,
+          datos_modulo: datosModuloFinal,
           discapacidades: input.discapacidades,
           contenido: input.contenidoResumen,
           respuesta_ia: textoCompleto,

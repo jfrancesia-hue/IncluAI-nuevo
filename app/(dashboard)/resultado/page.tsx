@@ -6,6 +6,8 @@ import { GuideView } from '@/components/guide/guide-view';
 import { GuideActions } from '@/components/guide/guide-actions';
 import { RefinarBotones } from '@/components/guide/refinar-botones';
 import { FeedbackStars } from '@/components/guide/feedback-stars';
+import { StructuredGuideView } from '@/components/guide/structured/structured-guide-view';
+import { readStructuredGuide } from '@/lib/structure-guide';
 import { DISCAPACIDADES } from '@/data/discapacidades';
 import { getEspecialidadById } from '@/data/especialidades';
 import { getAreaFamiliaById } from '@/data/areas-familia';
@@ -79,6 +81,21 @@ export default async function ResultadoPage({
   const tags = data.discapacidades
     .map((did) => DISCAPACIDADES.find((d) => d.id === did))
     .filter((x): x is (typeof DISCAPACIDADES)[number] => Boolean(x));
+
+  // Si el enrichment estructurado está disponible, usamos el nuevo renderer.
+  // Si no, caemos al renderer markdown legado — zero-breaking.
+  const structured = readStructuredGuide(data.datos_modulo);
+  if (structured && data.respuesta_ia) {
+    return (
+      <StructuredGuideView
+        guide={structured}
+        markdown={data.respuesta_ia}
+        consultaId={data.id}
+        initialStars={data.feedback_estrellas ?? 0}
+        createdAtIso={data.created_at}
+      />
+    );
+  }
 
   return (
     <div className="flex flex-col gap-6">
