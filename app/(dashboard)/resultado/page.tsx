@@ -7,7 +7,9 @@ import { GuideActions } from '@/components/guide/guide-actions';
 import { RefinarBotones } from '@/components/guide/refinar-botones';
 import { FeedbackStars } from '@/components/guide/feedback-stars';
 import { StructuredGuideView } from '@/components/guide/structured/structured-guide-view';
+import { RegenerarBanner } from '@/components/guide/regenerar-banner';
 import { readStructuredGuide } from '@/lib/structure-guide';
+import { isGuiaIncompleta } from '@/lib/guide-status';
 import { DISCAPACIDADES } from '@/data/discapacidades';
 import { getEspecialidadById } from '@/data/especialidades';
 import { getAreaFamiliaById } from '@/data/areas-familia';
@@ -82,10 +84,12 @@ export default async function ResultadoPage({
     .map((did) => DISCAPACIDADES.find((d) => d.id === did))
     .filter((x): x is (typeof DISCAPACIDADES)[number] => Boolean(x));
 
+  const incompleta = isGuiaIncompleta(data);
+
   // Si el enrichment estructurado está disponible, usamos el nuevo renderer.
   // Si no, caemos al renderer markdown legado — zero-breaking.
   const structured = readStructuredGuide(data.datos_modulo);
-  if (structured && data.respuesta_ia) {
+  if (structured && data.respuesta_ia && !incompleta) {
     return (
       <StructuredGuideView
         guide={structured}
@@ -132,10 +136,10 @@ export default async function ResultadoPage({
         </div>
         <div>
           <h1 className="font-serif text-2xl font-bold text-[#1e3a5f] sm:text-3xl">
-            Tu guía inclusiva está lista ✨
+            {incompleta ? 'Tu guía quedó incompleta' : 'Tu guía inclusiva está lista ✨'}
           </h1>
           <p className="mt-1 text-sm text-[#5c6b7f]">
-            Generada especialmente para{' '}
+            {incompleta ? 'Generada parcialmente para' : 'Generada especialmente para'}{' '}
             <strong className="text-[#1e3a5f]">
               {data.materia ? `${data.materia} · ${data.contenido}` : data.contenido}
             </strong>
@@ -143,56 +147,64 @@ export default async function ResultadoPage({
         </div>
       </header>
 
+      {incompleta && <RegenerarBanner consultaId={data.id} />}
+
       {data.respuesta_ia ? (
         <div className="overflow-hidden rounded-[20px] border border-[#e2e8f0] bg-white p-6 shadow-[0_4px_20px_rgba(15,34,64,0.06)] sm:p-8">
           <GuideView markdown={data.respuesta_ia} />
         </div>
       ) : (
-        <p className="text-[#5c6b7f]">
-          Esta consulta aún no tiene respuesta generada.
-        </p>
+        !incompleta && (
+          <p className="text-[#5c6b7f]">
+            Esta consulta aún no tiene respuesta generada.
+          </p>
+        )
       )}
 
-      {data.respuesta_ia && (
+      {data.respuesta_ia && !incompleta && (
         <GuideActions
           markdown={data.respuesta_ia}
           titulo={data.materia ?? meta.label}
         />
       )}
 
-      {data.respuesta_ia && <RefinarBotones consultaId={data.id} />}
+      {data.respuesta_ia && !incompleta && <RefinarBotones consultaId={data.id} />}
 
-      <aside aria-label="Feedback de la guía" className="rounded-[20px] bg-[#fff7ed] p-6 text-center">
-        <p className="font-serif text-lg font-bold text-[#1e3a5f]">
-          ¿Esta guía te resultó útil para tu clase?
-        </p>
-        <p className="mt-1 text-xs text-[#5c6b7f]">
-          Tu feedback nos ayuda a mejorar las guías
-        </p>
-        <div className="mt-4 flex justify-center">
-          <FeedbackStars consultaId={data.id} initial={data.feedback_estrellas ?? 0} />
-        </div>
-      </aside>
-
-      <div
-        data-no-print
-        className="flex flex-col gap-3 rounded-[20px] border-2 border-[#15803d] bg-[#f0fdf4] p-6 sm:flex-row sm:items-center sm:justify-between"
-      >
-        <div>
+      {!incompleta && (
+        <aside aria-label="Feedback de la guía" className="rounded-[20px] bg-[#fff7ed] p-6 text-center">
           <p className="font-serif text-lg font-bold text-[#1e3a5f]">
-            ¿Necesitás otra guía?
+            ¿Esta guía te resultó útil para tu clase?
           </p>
-          <p className="text-xs text-[#5c6b7f]">
-            Otra clase, otro alumno, otro contenido.
+          <p className="mt-1 text-xs text-[#5c6b7f]">
+            Tu feedback nos ayuda a mejorar las guías
           </p>
-        </div>
-        <Link
-          href={meta.nuevaHref}
-          className="inline-flex items-center justify-center rounded-[12px] bg-[#15803d] px-6 py-3 text-sm font-bold text-white transition hover:bg-[#15803d]"
+          <div className="mt-4 flex justify-center">
+            <FeedbackStars consultaId={data.id} initial={data.feedback_estrellas ?? 0} />
+          </div>
+        </aside>
+      )}
+
+      {!incompleta && (
+        <div
+          data-no-print
+          className="flex flex-col gap-3 rounded-[20px] border-2 border-[#15803d] bg-[#f0fdf4] p-6 sm:flex-row sm:items-center sm:justify-between"
         >
-          Nueva consulta →
-        </Link>
-      </div>
+          <div>
+            <p className="font-serif text-lg font-bold text-[#1e3a5f]">
+              ¿Necesitás otra guía?
+            </p>
+            <p className="text-xs text-[#5c6b7f]">
+              Otra clase, otro alumno, otro contenido.
+            </p>
+          </div>
+          <Link
+            href={meta.nuevaHref}
+            className="inline-flex items-center justify-center rounded-[12px] bg-[#15803d] px-6 py-3 text-sm font-bold text-white transition hover:bg-[#15803d]"
+          >
+            Nueva consulta →
+          </Link>
+        </div>
+      )}
 
       <div data-no-print className="text-center">
         <Link
