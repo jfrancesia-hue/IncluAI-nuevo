@@ -31,7 +31,7 @@ export function StructuredGuideView({
       <div className="grid grid-cols-1 gap-10 lg:grid-cols-[260px_1fr]">
         <GuideSidebar sections={guide.sections} />
 
-        <main className="order-1 flex min-w-0 flex-col gap-14 lg:order-2">
+        <div className="order-1 flex min-w-0 flex-col gap-14 lg:order-2">
           {guide.sections.map((section, i) => (
             <RevealOnScroll key={`${section.kind}-${i}`}>
               <SectionRouter
@@ -49,7 +49,7 @@ export function StructuredGuideView({
               legalFooter={guide.legalFooter}
             />
           </RevealOnScroll>
-        </main>
+        </div>
       </div>
     </div>
   );

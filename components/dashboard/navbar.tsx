@@ -21,7 +21,7 @@ export function Navbar({ perfil }: { perfil: Perfil }) {
           🧩 IncluIA
         </Link>
 
-        <nav className="hidden items-center gap-6 text-sm text-muted md:flex">
+        <nav aria-label="Navegación principal" className="hidden items-center gap-6 text-sm text-muted md:flex">
           <Link href="/inicio" className="hover:text-primary">Inicio</Link>
           <Link href="/historial" className="hover:text-primary">Historial</Link>
           <Link href="/recursos" className="hover:text-primary">Recursos</Link>

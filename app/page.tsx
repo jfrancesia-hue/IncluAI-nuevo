@@ -19,13 +19,15 @@ export default async function LandingPage() {
 
   return (
     <div className="min-h-screen bg-[#fbf7f0] text-[#1a2332]">
-      <Hero />
-      <SocialProof />
-      <HowItWorks />
-      <DisabilitiesSection />
-      <ExampleOutput />
-      <Pricing />
-      <EmotionalClose />
+      <main>
+        <Hero />
+        <SocialProof />
+        <HowItWorks />
+        <DisabilitiesSection />
+        <ExampleOutput />
+        <Pricing />
+        <EmotionalClose />
+      </main>
       <Footer />
     </div>
   );
@@ -50,7 +52,7 @@ function Hero() {
             'radial-gradient(ellipse at 20% 30%, rgba(22,163,74,0.6), transparent 50%), radial-gradient(ellipse at 80% 70%, rgba(234,88,12,0.4), transparent 50%)',
         }}
       />
-      <nav className="relative mx-auto flex max-w-7xl items-center justify-between px-5 py-5 sm:px-8">
+      <nav aria-label="Barra superior" className="relative mx-auto flex max-w-7xl items-center justify-between px-5 py-5 sm:px-8">
         <div className="flex items-center gap-2">
           <span aria-hidden className="text-2xl">🧩</span>
           <span className="font-serif text-xl font-bold text-white">IncluIA</span>
@@ -605,7 +607,7 @@ function Footer() {
                 🇦🇷
               </span>
             </div>
-            <nav className="flex gap-5">
+            <nav aria-label="Enlaces legales" className="flex gap-5">
               <Link href="/terminos" className="hover:text-white">
                 Términos de uso
               </Link>
@@ -617,7 +619,7 @@ function Footer() {
               </Link>
             </nav>
           </div>
-          <p className="mt-4 text-[11px] text-white/40">
+          <p className="mt-4 text-[11px] text-white/75">
             IncluIA es un producto de <strong>Nativos Consultora Digital</strong>{' '}
             · CUIT 30-XXXXXXXX-X · Catamarca, Argentina
           </p>

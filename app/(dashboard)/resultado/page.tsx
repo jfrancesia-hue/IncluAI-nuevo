@@ -162,7 +162,7 @@ export default async function ResultadoPage({
 
       {data.respuesta_ia && <RefinarBotones consultaId={data.id} />}
 
-      <aside className="rounded-[20px] bg-[#fff7ed] p-6 text-center">
+      <aside aria-label="Feedback de la guía" className="rounded-[20px] bg-[#fff7ed] p-6 text-center">
         <p className="font-serif text-lg font-bold text-[#1e3a5f]">
           ¿Esta guía te resultó útil para tu clase?
         </p>

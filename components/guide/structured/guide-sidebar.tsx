@@ -57,7 +57,7 @@ export function GuideSidebar({ sections }: { sections: GuideSection[] }) {
   const progress = items.length > 0 ? Math.round(((activeIdx + 1) / items.length) * 100) : 0;
 
   return (
-    <aside className="order-2 lg:order-1">
+    <aside aria-label="Índice de la guía" className="order-2 lg:order-1">
       <div className="sticky top-24">
         <p className="mb-3 text-[11px] font-semibold uppercase tracking-wider text-[#5c6b7f]">
           Contenido de la guía
@@ -71,7 +71,7 @@ export function GuideSidebar({ sections }: { sections: GuideSection[] }) {
           </div>
           <span className="text-xs font-semibold text-[#15803d]">{progress}%</span>
         </div>
-        <nav className="flex flex-col gap-1">
+        <nav aria-label="Tabla de contenido de la guía" className="flex flex-col gap-1">
           {items.map((it, i) => {
             const isActive = it.id === activeId;
             const isDone = i < activeIdx;
