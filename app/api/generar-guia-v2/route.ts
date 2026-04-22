@@ -6,7 +6,7 @@ import {
   GuiaPedagogicaSchema,
   type GuiaPedagogica,
 } from '@/lib/schemas/guia-schema';
-import { enriquecerImagen } from '@/lib/servicios/unsplash';
+import { enriquecerImagen } from '@/lib/servicios/imagenes';
 import { enriquecerVideo } from '@/lib/servicios/videos';
 import { formularioConsultaSchema } from '@/lib/validators';
 import { LIMITES_PLAN } from '@/lib/types';

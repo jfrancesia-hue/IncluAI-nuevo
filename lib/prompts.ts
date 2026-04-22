@@ -396,7 +396,7 @@ REGLAS PARA REFERENCIAS MULTIMEDIA
 
 Para cada concepto clave, estrategia que lo amerite, y material, generás un objeto ImagenRef con estos campos:
 
-1. **tipo**: siempre "unsplash" por defecto (es el más confiable). Solo usás "pexels" si el concepto es muy específico de Latinoamérica y Unsplash no tiene buena cobertura. Nunca inventes URLs.
+1. **tipo**: "unsplash" o "pexels" — ambos son bancos de stock confiables con queries en inglés. Preferí "pexels" para conceptos específicos de Latinoamérica (pampa, Amazonas, Andes) donde suele tener mejor cobertura local; "unsplash" para paisajes genéricos y escenas de aula. Nunca inventes URLs.
 
 2. **query**: el query de búsqueda que el frontend va a usar contra la API de Unsplash. Reglas para escribir buenos queries:
    - Usar inglés (las APIs de stock están optimizadas en inglés)
