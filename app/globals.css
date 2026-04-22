@@ -13,6 +13,52 @@
   --card: #ffffff;
   --text-muted: #5c6b7f;
   --border: #e2e8f0;
+
+  /* v2.1 — paleta "esperanza" para el renderer de guías estructuradas */
+  --color-docentes-primary: #185FA5;
+  --color-docentes-light: #378ADD;
+  --color-docentes-bg: #E6F1FB;
+  --color-docentes-dark: #042C53;
+
+  --color-selva: #3B6D11;
+  --color-selva-bg: #EAF3DE;
+  --color-selva-dark: #173404;
+  --color-desierto: #D85A30;
+  --color-desierto-bg: #FAEEDA;
+  --color-desierto-dark: #633806;
+  --color-pampa: #EF9F27;
+  --color-oceano: #378ADD;
+  --color-montana: #888780;
+
+  --color-familias-primary: #3B6D11;
+  --color-profesionales-primary: #534AB7;
+
+  --color-sol: #FAC775;
+  --color-terracota: #F0997B;
+  --color-coral: #D85A30;
+
+  --color-papel: #F9F7F0;
+  --color-papel-alt: #F1EFE8;
+  --color-texto: #1F1F1D;
+  --color-texto-medio: #5F5E5A;
+  --color-borde: #E5E2D6;
+
+  --color-exito: #1D9E75;
+  --color-exito-bg: #E1F5EE;
+  --color-alerta: #854F0B;
+  --color-alerta-bg: #FAEEDA;
+
+  --font-display: var(--font-fraunces), Georgia, serif;
+  --font-body: var(--font-dm-sans), -apple-system, BlinkMacSystemFont, sans-serif;
+
+  --radius-sm: 8px;
+  --radius-md: 12px;
+  --radius-lg: 16px;
+  --radius-xl: 20px;
+  --radius-2xl: 24px;
+
+  --shadow-medium: 0 4px 20px rgba(0, 0, 0, 0.08);
+  --shadow-strong: 0 12px 32px rgba(0, 0, 0, 0.08);
 }
 
 .dark {
@@ -129,5 +175,69 @@ h1, h2, h3, h4 {
     opacity: 1;
     transform: none;
     transition: none;
+  }
+}
+
+/* ============================================
+   v2.1 — Accesibilidad tamaño de texto y alto contraste
+   Activadas por toggles en BarraAccesibilidad.
+   ============================================ */
+body.text-large { font-size: 20px; }
+body.text-xlarge { font-size: 22px; }
+
+body.high-contrast {
+  --color-papel: #FFFFFF;
+  --color-texto: #000000;
+  --color-texto-medio: #000000;
+  --color-borde: #000000;
+}
+body.high-contrast * {
+  border-width: 2px !important;
+}
+
+/* ============================================
+   v2.1 — Estilos de impresión
+   Oculta controles interactivos, expande acordeones,
+   imprime URLs completas junto a los links.
+   ============================================ */
+@media print {
+  .barra-accesibilidad,
+  .cta-feedback,
+  .videos-grid,
+  .grilla-checks {
+    display: none !important;
+  }
+
+  .estrategia-acordeon[open] .estrategia-body,
+  .estrategia-acordeon .estrategia-body {
+    display: block !important;
+  }
+
+  body {
+    font-size: 13px;
+    background: white;
+    color: black;
+  }
+
+  .guia-container {
+    max-width: 100%;
+    padding: 0;
+  }
+
+  h1, h2, h3 {
+    page-break-after: avoid;
+  }
+  .estrategia-acordeon {
+    page-break-inside: avoid;
+  }
+
+  a[href]::after {
+    content: " (" attr(href) ")";
+    font-size: 0.85em;
+  }
+
+  img {
+    max-width: 100%;
+    page-break-inside: avoid;
   }
 }

@@ -8,8 +8,10 @@ import { RefinarBotones } from '@/components/guide/refinar-botones';
 import { FeedbackStars } from '@/components/guide/feedback-stars';
 import { StructuredGuideView } from '@/components/guide/structured/structured-guide-view';
 import { RegenerarBanner } from '@/components/guide/regenerar-banner';
+import { GuiaLayout } from '@/components/guia/GuiaLayout';
 import { readStructuredGuide } from '@/lib/structure-guide';
 import { isGuiaIncompleta } from '@/lib/guide-status';
+import { GuiaPedagogicaSchema } from '@/lib/schemas/guia-schema';
 import { DISCAPACIDADES } from '@/data/discapacidades';
 import { getEspecialidadById } from '@/data/especialidades';
 import { getAreaFamiliaById } from '@/data/areas-familia';
@@ -25,9 +27,14 @@ type ConsultaRow = {
   modulo: 'docentes' | 'familias' | 'profesionales';
   datos_modulo: Record<string, unknown> | null;
   materia: string | null;
+  nivel: string | null;
+  anio_grado: string | null;
+  cantidad_alumnos: number | null;
   contenido: string;
   discapacidades: string[];
   respuesta_ia: string | null;
+  respuesta_ia_estructurada: unknown;
+  version_schema: string | null;
   feedback_estrellas: number | null;
   created_at: string;
 };
@@ -71,7 +78,7 @@ export default async function ResultadoPage({
   const { data } = await supabase
     .from('consultas')
     .select(
-      'id, modulo, datos_modulo, materia, contenido, discapacidades, respuesta_ia, feedback_estrellas, created_at'
+      'id, modulo, datos_modulo, materia, nivel, anio_grado, cantidad_alumnos, contenido, discapacidades, respuesta_ia, respuesta_ia_estructurada, version_schema, feedback_estrellas, created_at'
     )
     .eq('id', id)
     .eq('user_id', user.id)
@@ -86,8 +93,30 @@ export default async function ResultadoPage({
 
   const incompleta = isGuiaIncompleta(data);
 
-  // Si el enrichment estructurado está disponible, usamos el nuevo renderer.
-  // Si no, caemos al renderer markdown legado — zero-breaking.
+  // v2.1: JSON estructurado enriquecido con multimedia — renderer nuevo.
+  if (data.version_schema === '2.1' && data.respuesta_ia_estructurada) {
+    const parsed = GuiaPedagogicaSchema.safeParse(data.respuesta_ia_estructurada);
+    if (parsed.success) {
+      return (
+        <GuiaLayout
+          guia={parsed.data}
+          metadata={{
+            id: data.id,
+            materia: data.materia,
+            nivel: data.nivel,
+            anio_grado: data.anio_grado,
+            cantidad_alumnos: data.cantidad_alumnos,
+            discapacidades: data.discapacidades,
+            feedback_estrellas: data.feedback_estrellas,
+          }}
+        />
+      );
+    }
+    // Si el JSON está corrupto caemos al renderer estructurado legacy.
+    console.warn('[resultado] v2.1 JSON inválido — fallback a structured-view', parsed.error);
+  }
+
+  // v1 estructurado (schema interno): structured-guide-view
   const structured = readStructuredGuide(data.datos_modulo);
   if (structured && data.respuesta_ia && !incompleta) {
     return (
