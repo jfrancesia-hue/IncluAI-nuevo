@@ -43,3 +43,8 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# evals — los resultados de cada run no se versionan (contienen guías generadas
+# y scores que son reproducibles con el dataset). El dataset y la rúbrica SÍ se versionan.
+evals/results/*
+!evals/results/.gitkeep
