@@ -122,24 +122,28 @@ export type GuiaGuardada = {
 
 export const LIMITES_PLAN: Record<PlanUsuario, {
   guias_por_mes: number
+  ppis_por_ciclo: number
   historial: boolean
   exportar_pdf: boolean
   precio_ars: number
 }> = {
   free: {
     guias_por_mes: 2,
+    ppis_por_ciclo: 1,
     historial: false,
     exportar_pdf: false,
     precio_ars: 0,
   },
   pro: {
     guias_por_mes: 40,
+    ppis_por_ciclo: 5,
     historial: true,
     exportar_pdf: true,
     precio_ars: 9900,
   },
   institucional: {
     guias_por_mes: 999,
+    ppis_por_ciclo: 999,
     historial: true,
     exportar_pdf: true,
     precio_ars: 29900,
