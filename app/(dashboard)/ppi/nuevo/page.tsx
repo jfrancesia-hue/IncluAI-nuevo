@@ -1,6 +1,7 @@
 import { redirect } from 'next/navigation'
 import { checkPPILimit } from '@/lib/ppi/plan-limits'
 import { DISCAPACIDADES } from '@/data/discapacidades'
+import { JURISDICCIONES_PPI } from '@/data/jurisdicciones-ar'
 import { PPIWizard } from '@/components/ppi/PPIWizard'
 import { cicloLectivoActual } from '@/lib/types/ppi'
 
@@ -27,6 +28,7 @@ export default async function NuevoPPIPage() {
 
       <PPIWizard
         discapacidades={DISCAPACIDADES.map((d) => ({ id: d.id, label: d.label }))}
+        jurisdicciones={JURISDICCIONES_PPI.map((j) => ({ id: j.id, nombre: j.nombre }))}
         cicloLectivoDefault={cicloLectivoActual()}
       />
     </main>

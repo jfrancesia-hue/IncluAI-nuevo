@@ -67,12 +67,15 @@ export async function POST(
     alumno_discapacidades: ppi.alumno_discapacidades,
     alumno_diagnostico: ppi.alumno_diagnostico,
     institucion: ppi.institucion,
+    jurisdiccion: ppi.jurisdiccion ?? 'bsas',
     ciclo_lectivo: ppi.ciclo_lectivo,
     periodo: ppi.periodo,
     fortalezas_observadas: ppi.fortalezas_observadas ?? '',
     barreras_observadas: ppi.barreras_observadas ?? '',
     contexto_familiar: ppi.contexto_familiar,
     equipo_externo: ppi.equipo_externo,
+    familia_responsable: ppi.familia_responsable,
+    requiere_interprete_lsa: ppi.requiere_interprete_lsa ?? false,
     consultas_vinculadas: [],
   }
 

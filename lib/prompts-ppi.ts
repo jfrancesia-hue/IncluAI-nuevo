@@ -50,7 +50,11 @@ export function buildPPIUserPrompt(
           .join('\n')}`
       : ''
 
-  return `Redactá el Proyecto Pedagógico Individual (PPI) del siguiente estudiante:
+  const lsaNota = input.requiere_interprete_lsa
+    ? '\nIMPORTANTE: el/la estudiante requiere intérprete de Lengua de Señas Argentina (LSA). Mencionalo explícitamente en la sección "Configuraciones de apoyo" y en "Articulación con equipo de apoyo externo".'
+    : ''
+
+  return `Redactá el Proyecto Pedagógico Individual (PPI) del siguiente estudiante conforme a los ejes prioritarios del Anexo II de la Resolución CFE 311/16:
 
 IDENTIFICACIÓN (interna — NO incluir nombre completo en el documento):
 - Identificador: ${input.alumno_identificador}
@@ -60,10 +64,12 @@ IDENTIFICACIÓN (interna — NO incluir nombre completo en el documento):
 - Discapacidad/es: ${listarDiscapacidades(input.alumno_discapacidades)}
 - Diagnóstico aportado por el docente: ${input.alumno_diagnostico ?? 'no especificado'}
 
-INSTITUCIÓN Y CICLO:
+INSTITUCIÓN, JURISDICCIÓN Y CICLO:
 - Institución: ${input.institucion}
+- Jurisdicción: ${input.jurisdiccion}
 - Ciclo lectivo: ${input.ciclo_lectivo}
 - Período del PPI: ${input.periodo.replace(/_/g, ' ')}
+${lsaNota}
 
 OBSERVACIONES DEL DOCENTE:
 Fortalezas observadas:

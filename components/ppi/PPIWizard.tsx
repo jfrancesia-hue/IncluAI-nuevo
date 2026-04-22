@@ -4,12 +4,22 @@ import { useState } from 'react'
 import { useRouter } from 'next/navigation'
 
 type DiscapacidadOpt = { id: string; label: string }
+type JurisdiccionOpt = { id: string; nombre: string }
+
+type FamiliaResp = {
+  parentesco: 'madre' | 'padre' | 'tutor' | 'otro'
+  iniciales_o_alias: string
+  contacto_masked: string
+  ocupacion: string
+}
 
 export function PPIWizard({
   discapacidades,
+  jurisdicciones,
   cicloLectivoDefault,
 }: {
   discapacidades: DiscapacidadOpt[]
+  jurisdicciones: JurisdiccionOpt[]
   cicloLectivoDefault: string
 }) {
   const router = useRouter()
@@ -25,12 +35,20 @@ export function PPIWizard({
     alumno_discapacidades: [] as string[],
     alumno_diagnostico: '',
     institucion: '',
+    jurisdiccion: 'bsas',
     ciclo_lectivo: cicloLectivoDefault,
     periodo: 'anual' as 'anual' | 'primer_cuatrimestre' | 'segundo_cuatrimestre' | 'trimestral',
     fortalezas_observadas: '',
     barreras_observadas: '',
     contexto_familiar: '',
     equipo_externo: '',
+    familia_responsable: {
+      parentesco: 'madre' as FamiliaResp['parentesco'],
+      iniciales_o_alias: '',
+      contacto_masked: '',
+      ocupacion: '',
+    },
+    requiere_interprete_lsa: false,
   })
 
   function update<K extends keyof typeof form>(k: K, v: (typeof form)[K]) {
@@ -38,12 +56,14 @@ export function PPIWizard({
   }
 
   function toggleDiscap(id: string) {
-    setForm((f) => ({
-      ...f,
-      alumno_discapacidades: f.alumno_discapacidades.includes(id)
+    setForm((f) => {
+      const next = f.alumno_discapacidades.includes(id)
         ? f.alumno_discapacidades.filter((x) => x !== id)
-        : [...f.alumno_discapacidades, id],
-    }))
+        : [...f.alumno_discapacidades, id]
+      // Si agregan/quitan "auditiva" sugerimos LSA (el docente puede desmarcar).
+      const sugerirLsa = next.includes('auditiva') ? true : f.requiere_interprete_lsa
+      return { ...f, alumno_discapacidades: next, requiere_interprete_lsa: sugerirLsa }
+    })
   }
 
   function canContinueStep1(): boolean {
@@ -71,10 +91,16 @@ export function PPIWizard({
     setLoading(true)
     setError(null)
     try {
+      const body = {
+        ...form,
+        familia_responsable: form.familia_responsable.iniciales_o_alias
+          ? form.familia_responsable
+          : null,
+      }
       const res = await fetch('/api/ppi/crear', {
         method: 'POST',
         headers: { 'content-type': 'application/json' },
-        body: JSON.stringify(form),
+        body: JSON.stringify(body),
       })
       const data = await res.json()
       if (!res.ok) {
@@ -208,6 +234,24 @@ export function PPIWizard({
             />
           </label>
 
+          <label style={label}>
+            Jurisdicción
+            <select
+              value={form.jurisdiccion}
+              onChange={(e) => update('jurisdiccion', e.target.value)}
+              style={input}
+            >
+              {jurisdicciones.map((j) => (
+                <option key={j.id} value={j.id}>
+                  {j.nombre}
+                </option>
+              ))}
+            </select>
+            <small style={charCount}>
+              Ajusta el alias del PPI y la norma provincial que se cita al pie del documento.
+            </small>
+          </label>
+
           <div style={row}>
             <label style={label}>
               Ciclo lectivo
@@ -233,6 +277,37 @@ export function PPIWizard({
               </select>
             </label>
           </div>
+
+          {form.alumno_discapacidades.includes('auditiva') && (
+            <label
+              style={{
+                display: 'flex',
+                gap: 10,
+                padding: 12,
+                background: '#e6f1fb',
+                borderRadius: 8,
+                fontSize: 13,
+                fontWeight: 500,
+                color: '#042C53',
+                cursor: 'pointer',
+                alignItems: 'flex-start',
+              }}
+            >
+              <input
+                type="checkbox"
+                checked={form.requiere_interprete_lsa}
+                onChange={(e) => update('requiere_interprete_lsa', e.target.checked)}
+                style={{ marginTop: 2 }}
+              />
+              <span>
+                <strong>Requiere intérprete de Lengua de Señas Argentina (LSA)</strong>
+                <br />
+                <span style={{ fontWeight: 400, color: '#5c6b7f' }}>
+                  Obligatorio según el Anexo II de la Res. CFE 311/16 cuando aplica.
+                </span>
+              </span>
+            </label>
+          )}
 
           <Nav
             onBack={() => setStep(1)}
@@ -298,6 +373,66 @@ export function PPIWizard({
               style={{ ...input, resize: 'vertical' }}
             />
           </label>
+
+          <fieldset style={{ border: '1px solid #e5e2d6', padding: 12, borderRadius: 8, margin: 0 }}>
+            <legend style={{ padding: '0 6px', fontSize: 13, fontWeight: 600, color: '#042C53' }}>
+              Familia / tutor responsable (Anexo II CFE 311/16)
+            </legend>
+            <p style={{ ...help, margin: '4px 0 10px' }}>
+              Sin nombre completo. Usá iniciales o alias. Campos opcionales.
+            </p>
+            <div style={row}>
+              <label style={label}>
+                Parentesco
+                <select
+                  value={form.familia_responsable.parentesco}
+                  onChange={(e) =>
+                    update('familia_responsable', {
+                      ...form.familia_responsable,
+                      parentesco: e.target.value as FamiliaResp['parentesco'],
+                    })
+                  }
+                  style={input}
+                >
+                  <option value="madre">Madre</option>
+                  <option value="padre">Padre</option>
+                  <option value="tutor">Tutor/a legal</option>
+                  <option value="otro">Otro</option>
+                </select>
+              </label>
+              <label style={label}>
+                Iniciales o alias
+                <input
+                  type="text"
+                  value={form.familia_responsable.iniciales_o_alias}
+                  onChange={(e) =>
+                    update('familia_responsable', {
+                      ...form.familia_responsable,
+                      iniciales_o_alias: e.target.value,
+                    })
+                  }
+                  placeholder='Ej: S.G. (mamá)'
+                  maxLength={40}
+                  style={input}
+                />
+              </label>
+              <label style={label}>
+                Contacto (enmascarado)
+                <input
+                  type="text"
+                  value={form.familia_responsable.contacto_masked}
+                  onChange={(e) =>
+                    update('familia_responsable', {
+                      ...form.familia_responsable,
+                      contacto_masked: e.target.value,
+                    })
+                  }
+                  placeholder='Ej: 11-****-5432'
+                  style={input}
+                />
+              </label>
+            </div>
+          </fieldset>
 
           <label style={label}>
             Equipo externo de apoyo

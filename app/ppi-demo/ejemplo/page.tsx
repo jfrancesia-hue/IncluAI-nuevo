@@ -10,9 +10,13 @@ const EJEMPLO = {
   alumno_nivel: 'primaria',
   alumno_anio_grado: '4° grado',
   institucion: 'Escuela N° 19 Bernardino Rivadavia',
+  jurisdiccion: 'Provincia de Buenos Aires',
+  norma_provincial: 'Res. 1664/2017 DGCyE',
   ciclo_lectivo: '2026',
   periodo: 'anual',
   docente: 'Prof. Laura Sánchez',
+  familia: 'madre (S.G.) · 11-****-5432',
+  requiere_lsa: false,
   generado_at: '2026-04-22T10:30:00Z',
   secciones: {
     datos_generales: {
@@ -234,12 +238,12 @@ export default function PPIEjemploPage() {
 
       <article className="ppi-page">
         <header className="ppi-header">
-          <h1>Proyecto Pedagógico Individual</h1>
+          <h1>Propuesta Pedagógica de Inclusión (PPI)</h1>
           <div className="sub">
-            Conforme a Resolución CFE 311/16, Ley 26.206 y Ley 26.378
+            Conforme a Resolución CFE 311/16, Ley 26.206 y Ley 26.378 — {EJEMPLO.norma_provincial}
           </div>
           <div className="sub" style={{ marginTop: 8, fontWeight: 600 }}>
-            {EJEMPLO.institucion} — Ciclo lectivo {EJEMPLO.ciclo_lectivo}
+            {EJEMPLO.institucion} — {EJEMPLO.jurisdiccion} — Ciclo lectivo {EJEMPLO.ciclo_lectivo}
           </div>
         </header>
 
@@ -262,6 +266,8 @@ export default function PPIEjemploPage() {
           <dd>{EJEMPLO.docente}</dd>
           <dt>Fecha de elaboración</dt>
           <dd>{new Date(EJEMPLO.generado_at).toLocaleDateString('es-AR')}</dd>
+          <dt>Familia/tutor responsable</dt>
+          <dd>{EJEMPLO.familia}</dd>
         </dl>
 
         {SECCIONES_ORDEN.map((key: PPISeccionKey) => {
@@ -298,10 +304,17 @@ export default function PPIEjemploPage() {
           Documento generado con asistencia de IncluIA ({new Date().toLocaleDateString('es-AR')}).
           Requiere revisión, edición y firma del equipo docente y directivo.
           <br />
-          Marco normativo: Resolución CFE 311/16 (trayectorias educativas integrales de
-          estudiantes con discapacidad), Ley 26.206 (Educación Nacional), Ley 26.378
-          (Convención sobre los Derechos de las Personas con Discapacidad), Ley 25.326
-          (Protección de Datos Personales).
+          <strong>Marco normativo nacional:</strong> Resolución CFE 311/16 (ejes prioritarios
+          Anexo II), Ley 26.206 (Educación Nacional), Ley 26.378 (Convención sobre los Derechos
+          de las Personas con Discapacidad), Ley 25.326 (Protección de Datos Personales).
+          <br />
+          <strong>Marco normativo provincial:</strong> {EJEMPLO.jurisdiccion} — {EJEMPLO.norma_provincial}.
+          <br />
+          <em>
+            Este documento cumple los ejes prioritarios del Anexo II de la Res. CFE 311/16.
+            Si tu jurisdicción exige un formulario específico adicional, podés usar este PPI
+            como base para trasladar el contenido al formato requerido por tu institución.
+          </em>
         </footer>
       </article>
     </>

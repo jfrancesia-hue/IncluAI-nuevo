@@ -2,6 +2,7 @@ import { notFound } from 'next/navigation'
 import { createClient } from '@/lib/supabase/server'
 import type { PPIDocumento, PPISeccionKey } from '@/lib/types/ppi'
 import { SECCIONES_ORDEN, SECCION_LABELS } from '@/lib/types/ppi'
+import { findJurisdiccion } from '@/data/jurisdicciones-ar'
 
 export const dynamic = 'force-dynamic'
 
@@ -42,6 +43,9 @@ export default async function PPIImprimirPage({
     }>()
 
   const docenteNombre = perfil ? `${perfil.nombre} ${perfil.apellido}`.trim() : '—'
+  const juris = findJurisdiccion(ppi.jurisdiccion)
+  const tituloPPI = juris?.alias_ppi ?? 'Proyecto Pedagógico Individual (PPI)'
+  const familia = ppi.familia_responsable
 
   return (
     <>
@@ -170,12 +174,13 @@ export default async function PPIImprimirPage({
 
       <article className="ppi-page">
         <header className="ppi-header">
-          <h1>Proyecto Pedagógico Individual</h1>
+          <h1>{tituloPPI}</h1>
           <div className="sub">
             Conforme a Resolución CFE 311/16, Ley 26.206 y Ley 26.378
+            {juris?.norma_provincial && <> — {juris.norma_provincial}</>}
           </div>
           <div className="sub" style={{ marginTop: 8, fontWeight: 600 }}>
-            {ppi.institucion} — Ciclo lectivo {ppi.ciclo_lectivo}
+            {ppi.institucion} — {juris?.nombre ?? 'Argentina'} — Ciclo lectivo {ppi.ciclo_lectivo}
           </div>
         </header>
 
@@ -205,6 +210,23 @@ export default async function PPIImprimirPage({
           <dd>
             {new Date(ppi.generado_at ?? ppi.created_at).toLocaleDateString('es-AR')}
           </dd>
+
+          {ppi.requiere_interprete_lsa && (
+            <>
+              <dt>Intérprete LSA</dt>
+              <dd>Requiere intérprete de Lengua de Señas Argentina</dd>
+            </>
+          )}
+
+          {familia && (
+            <>
+              <dt>Familia/tutor responsable</dt>
+              <dd>
+                {familia.parentesco} ({familia.iniciales_o_alias}
+                {familia.contacto_masked ? ` · ${familia.contacto_masked}` : ''})
+              </dd>
+            </>
+          )}
         </dl>
 
         {SECCIONES_ORDEN.map((key: PPISeccionKey) => {
@@ -241,10 +263,22 @@ export default async function PPIImprimirPage({
           Documento generado con asistencia de IncluIA ({new Date().toLocaleDateString('es-AR')}).
           Requiere revisión, edición y firma del equipo docente y directivo.
           <br />
-          Marco normativo: Resolución CFE 311/16 (trayectorias educativas integrales de
-          estudiantes con discapacidad), Ley 26.206 (Educación Nacional), Ley 26.378
-          (Convención sobre los Derechos de las Personas con Discapacidad), Ley 25.326
-          (Protección de Datos Personales).
+          <strong>Marco normativo nacional:</strong> Resolución CFE 311/16 (ejes prioritarios
+          Anexo II · trayectorias educativas integrales de estudiantes con discapacidad),
+          Ley 26.206 (Educación Nacional), Ley 26.378 (Convención sobre los Derechos de las
+          Personas con Discapacidad), Ley 25.326 (Protección de Datos Personales).
+          {juris?.norma_provincial && (
+            <>
+              <br />
+              <strong>Marco normativo provincial:</strong> {juris.nombre} — {juris.norma_provincial}.
+            </>
+          )}
+          <br />
+          <em>
+            Este documento cumple los ejes prioritarios del Anexo II de la Res. CFE 311/16.
+            Si tu jurisdicción exige un formulario específico adicional, podés usar este PPI
+            como base para trasladar el contenido al formato requerido por tu institución.
+          </em>
         </footer>
       </article>
     </>

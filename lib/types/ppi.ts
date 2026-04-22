@@ -59,6 +59,14 @@ export const SECCION_LABELS: Record<PPISeccionKey, string> = {
 
 // ---------- Documento completo ----------
 
+export interface FamiliaResponsable {
+  parentesco: 'madre' | 'padre' | 'tutor' | 'otro'
+  iniciales_o_alias: string
+  contacto_masked?: string | null
+  ocupacion?: string | null
+  observaciones?: string | null
+}
+
 export interface PPIDocumento {
   id: string
   user_id: string
@@ -69,12 +77,15 @@ export interface PPIDocumento {
   alumno_discapacidades: string[]
   alumno_diagnostico: string | null
   institucion: string
+  jurisdiccion: string
   ciclo_lectivo: string
   periodo: PPIPeriodo
   fortalezas_observadas: string | null
   barreras_observadas: string | null
   contexto_familiar: string | null
   equipo_externo: string | null
+  familia_responsable: FamiliaResponsable | null
+  requiere_interprete_lsa: boolean
   secciones: PPISecciones
   estado: PPIEstado
   version_schema: string
@@ -97,6 +108,20 @@ export interface PPISeguimiento {
 
 // ---------- Zod schemas para formularios ----------
 
+export const familiaResponsableSchema = z
+  .object({
+    parentesco: z.enum(['madre', 'padre', 'tutor', 'otro']),
+    iniciales_o_alias: z
+      .string()
+      .min(1)
+      .max(40, 'Máximo 40 caracteres — iniciales o alias, nunca nombre completo.'),
+    contacto_masked: z.string().max(40).optional().nullable(),
+    ocupacion: z.string().max(80).optional().nullable(),
+    observaciones: z.string().max(400).optional().nullable(),
+  })
+  .optional()
+  .nullable()
+
 export const ppiFormSchema = z.object({
   // Paso 1 — alumno
   alumno_identificador: z
@@ -116,8 +141,9 @@ export const ppiFormSchema = z.object({
     .min(1, 'Seleccioná al menos una discapacidad.'),
   alumno_diagnostico: z.string().max(600).optional().nullable(),
 
-  // Paso 2 — institución
+  // Paso 2 — institución + jurisdicción
   institucion: z.string().min(2, 'Nombre de la institución').max(200),
+  jurisdiccion: z.string().min(2).max(40),
   ciclo_lectivo: z
     .string()
     .regex(/^\d{4}$/, 'Año de 4 dígitos, ej: 2026'),
@@ -141,6 +167,10 @@ export const ppiFormSchema = z.object({
   // Paso 4 — contexto
   contexto_familiar: z.string().max(1500).optional().nullable(),
   equipo_externo: z.string().max(1500).optional().nullable(),
+
+  // Campos Anexo II CFE 311/16 — familia responsable + intérprete LSA
+  familia_responsable: familiaResponsableSchema,
+  requiere_interprete_lsa: z.boolean().default(false),
 
   // Vínculo opcional con consultas previas
   consultas_vinculadas: z.array(z.string().uuid()).optional().default([]),

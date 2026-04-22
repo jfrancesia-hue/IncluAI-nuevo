@@ -2,6 +2,7 @@ import { notFound } from 'next/navigation'
 import Link from 'next/link'
 import { PPIWizard } from '@/components/ppi/PPIWizard'
 import { DISCAPACIDADES } from '@/data/discapacidades'
+import { JURISDICCIONES_PPI } from '@/data/jurisdicciones-ar'
 import { cicloLectivoActual } from '@/lib/types/ppi'
 
 export const dynamic = 'force-dynamic'
@@ -48,6 +49,7 @@ export default function PPIDemoPage() {
 
         <PPIWizard
           discapacidades={DISCAPACIDADES.map((d) => ({ id: d.id, label: d.label }))}
+          jurisdicciones={JURISDICCIONES_PPI.map((j) => ({ id: j.id, nombre: j.nombre }))}
           cicloLectivoDefault={cicloLectivoActual()}
         />
       </div>
