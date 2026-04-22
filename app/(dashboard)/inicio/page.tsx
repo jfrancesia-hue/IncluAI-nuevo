@@ -147,6 +147,28 @@ export default async function InicioPage() {
         </div>
       </article>
 
+      {perfil.tipo_usuario === 'docente' && (
+        <article className="relative overflow-hidden rounded-[20px] border border-[#e2e8f0] bg-gradient-to-br from-[#042C53] to-[#185FA5] p-6 text-white shadow-[0_8px_24px_rgba(4,44,83,0.2)] sm:p-8">
+          <div className="relative flex flex-col gap-4 sm:max-w-xl">
+            <p className="text-xs font-semibold uppercase tracking-wider text-white/80">
+              Documento institucional
+            </p>
+            <h2 className="font-serif text-2xl font-bold sm:text-3xl">
+              Proyecto Pedagógico Individual (PPI)
+            </h2>
+            <p className="text-sm text-white/90 sm:text-base">
+              Obligatorio por Res. CFE 311/16 para cada alumno con discapacidad. IncluIA redacta las 10 secciones completas en base a tus observaciones. Te ahorrás días de trabajo administrativo.
+            </p>
+            <Link
+              href="/ppi"
+              className="mt-2 inline-flex w-fit items-center gap-2 rounded-[12px] bg-white px-6 py-3 text-sm font-bold text-[#042C53] shadow-[0_4px_12px_rgba(0,0,0,0.15)] transition hover:bg-[#f9f7f0]"
+            >
+              Mis PPIs <span aria-hidden>→</span>
+            </Link>
+          </div>
+        </article>
+      )}
+
       <ModuleSelector tipoUsuario={perfil.tipo_usuario} />
 
       <section className="grid grid-cols-1 gap-4 sm:grid-cols-3">

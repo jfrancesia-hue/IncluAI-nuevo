@@ -12,6 +12,7 @@ type SearchParams = Promise<{ status?: string }>;
 
 const FEATURES_FREE = [
   '2 guías por mes',
+  '1 PPI por ciclo lectivo',
   'Todos los niveles educativos',
   'Todas las discapacidades',
   'Copiar y compartir',
@@ -19,6 +20,7 @@ const FEATURES_FREE = [
 
 const FEATURES_PRO = [
   '40 guías por mes',
+  '5 PPIs por ciclo lectivo',
   'Historial completo',
   'Exportar a PDF',
   'Guías favoritas',

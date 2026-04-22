@@ -95,8 +95,9 @@ supabase/schema.sql
   → 001-expansion-modulos.sql
   → 002-feedback-texto.sql
   → 003-schema-v21.sql
-  → 004-fase8-gobierno.sql       (NUEVO — Fase 8 schema)
-  → 005-fase8-hardening.sql      (NUEVO — security review fixes C1/C2/H2/M2/M4)
+  → 004-fase8-gobierno.sql       (Fase 8 schema)
+  → 005-fase8-hardening.sql      (security review fixes)
+  → 006-ppi-docentes.sql         (NUEVO — PPI Proyecto Pedagógico Individual)
 ```
 
 Correr después de aplicar 005:
@@ -150,3 +151,25 @@ Ver `.env.local.example`. Todo lo marcado "opcional" degrada graciosamente si fa
 ## Data room para inversores
 - `/investor-room/README.md` — pitch deck 15 slides, tesis de inversión,
   modelo financiero 5 años, análisis competitivo, ask, demo script.
+
+## Módulo PPI — Proyecto Pedagógico Individual (docentes)
+El PPI es el documento formal obligatorio por Res. CFE 311/16 para cada
+alumno con discapacidad. IncluIA lo genera en base a las observaciones
+del docente (Claude produce 10 secciones estructuradas) y el docente
+edita/regenera sección por sección antes de imprimirlo para firma.
+
+Principio de privacidad no negociable: IncluIA NUNCA almacena el nombre
+completo del alumno. El docente usa iniciales o pseudónimo ("M.G.",
+"Alumno A"), y cuando imprime el PPI lo completa a mano fuera del sistema.
+Esto mantiene coherencia con la política de `/compliance/`.
+
+Rutas:
+- `/ppi` — listado con cuotas del plan
+- `/ppi/nuevo` — wizard 4 pasos (alumno · institución · observaciones · contexto)
+- `/ppi/[id]` — vista + editor con regenerar-sección-por-IA
+- `/ppi/[id]/imprimir` — versión imprimible A4 con firmas y pie normativo
+
+Límites por plan:
+- Free: 1 PPI por ciclo lectivo (marzo-febrero)
+- Pro: 5 PPIs por ciclo lectivo
+- Institucional: ilimitado
