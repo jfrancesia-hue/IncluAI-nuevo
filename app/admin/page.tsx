@@ -17,7 +17,7 @@ function fmtNum(v: number) {
 
 export default async function AdminMetricasPage() {
   const supabase = await createClient()
-  const m = await getBusinessMetrics(supabase as never)
+  const m = await getBusinessMetrics(supabase)
 
   return (
     <>

@@ -35,9 +35,12 @@ async function getPosthog(): Promise<PosthogLike | null> {
     return null
   }
   try {
-    const mod = (await import('posthog-node' as string).catch(() => null)) as {
+    const mod = (await import(
+      // @ts-expect-error — dependencia opcional, puede no estar instalada
+      /* webpackIgnore: true */ /* turbopackIgnore: true */ 'posthog-node'
+    )) as {
       PostHog?: new (key: string, opts?: unknown) => PosthogLike
-    } | null
+    }
     if (!mod?.PostHog) {
       _posthog = false
       return null

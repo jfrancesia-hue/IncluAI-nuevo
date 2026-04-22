@@ -4,6 +4,12 @@ import type { EarlyWarning } from '@/lib/types/gobierno'
 
 export const dynamic = 'force-dynamic'
 
+// Server Component dinámico (force-dynamic): Date.now() vive en un helper
+// aislado para mantener el cuerpo del componente puro.
+function nowMs(): number {
+  return Date.now()
+}
+
 export default async function AlertasPage() {
   const supabase = await createClient()
   const {
@@ -31,7 +37,8 @@ export default async function AlertasPage() {
   }
   const { data: rows } = await rowsQuery
 
-  const thirtyDaysAgo = Date.now() - 30 * 24 * 60 * 60 * 1000
+  const now = nowMs()
+  const thirtyDaysAgo = now - 30 * 24 * 60 * 60 * 1000
   const alerts: EarlyWarning[] = []
 
   for (const row of (rows ?? []) as unknown as Array<{
@@ -49,7 +56,7 @@ export default async function AlertasPage() {
         tipo_alerta: 'escuela_inactiva',
         severidad: last === 0 ? 'alta' : 'media',
         dias_sin_actividad:
-          last > 0 ? Math.floor((Date.now() - last) / (24 * 60 * 60 * 1000)) : undefined,
+          last > 0 ? Math.floor((now - last) / (24 * 60 * 60 * 1000)) : undefined,
         descripcion: 'Escuela sin actividad en los últimos 30 días.',
       })
     }

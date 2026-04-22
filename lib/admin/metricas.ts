@@ -1,10 +1,5 @@
 import 'server-only'
-
-type Supa = {
-  from: (table: string) => {
-    select: (cols: string, opts?: { count?: 'exact' | null; head?: boolean }) => any
-  }
-}
+import type { SupabaseClient } from '@supabase/supabase-js'
 
 export interface BusinessMetrics {
   totalUsers: number
@@ -13,8 +8,8 @@ export interface BusinessMetrics {
   mrr_ars: number
   arr_ars: number
   mrr_usd_aprox: number
-  activation_rate: number        // % users que hicieron >=1 consulta en los primeros 7 días
-  retention_30d: number          // % users que siguen activos después de 30d
+  activation_rate: number
+  retention_30d: number
   churn_rate_30d: number
   avg_consultas_por_user: number
   total_consultas: number
@@ -35,14 +30,20 @@ export interface BusinessMetrics {
 
 const PRECIO_PRO_ARS = 9900
 const PRECIO_INSTITUCIONAL_ARS = 29900
-const USD_ARS = 1150 // fallback estático — idealmente tomar de API BCRA/dolarapi
+const USD_ARS = 1150 // fallback — idealmente tomar de API BCRA/dolarapi
 
-export async function getBusinessMetrics(supabase: Supa): Promise<BusinessMetrics> {
+export async function getBusinessMetrics(
+  supabase: SupabaseClient
+): Promise<BusinessMetrics> {
   const { count: totalUsers } = await supabase
     .from('perfiles')
     .select('id', { count: 'exact', head: true })
 
-  const tipos: Array<'docente' | 'familia' | 'profesional'> = ['docente', 'familia', 'profesional']
+  const tipos: Array<'docente' | 'familia' | 'profesional'> = [
+    'docente',
+    'familia',
+    'profesional',
+  ]
   const usersByTipoArr = await Promise.all(
     tipos.map(async (t) => {
       const { count } = await supabase
@@ -73,8 +74,9 @@ export async function getBusinessMetrics(supabase: Supa): Promise<BusinessMetric
     .from('consultas')
     .select('id', { count: 'exact', head: true })
 
-  const thirtyDaysAgoIso = new Date(Date.now() - 30 * 24 * 60 * 60 * 1000).toISOString()
-  const sevenDaysAgoIso = new Date(Date.now() - 7 * 24 * 60 * 60 * 1000).toISOString()
+  const nowMs = Date.now()
+  const thirtyDaysAgoIso = new Date(nowMs - 30 * 24 * 60 * 60 * 1000).toISOString()
+  const sevenDaysAgoIso = new Date(nowMs - 7 * 24 * 60 * 60 * 1000).toISOString()
 
   const { count: consultas_30d } = await supabase
     .from('consultas')
@@ -89,16 +91,17 @@ export async function getBusinessMetrics(supabase: Supa): Promise<BusinessMetric
   const users = totalUsers ?? 0
   const avgConsultas = users > 0 ? (total_consultas ?? 0) / users : 0
 
-  // Activación: user con >=1 consulta (proxy simple). Un cálculo más fino requiere window.
   const { count: activatedUsers } = await supabase
     .from('consultas')
     .select('user_id', { count: 'exact', head: true })
 
-  const activation_rate = users > 0 ? Math.min(((activatedUsers ?? 0) / users) * 100, 100) : 0
+  const activation_rate =
+    users > 0 ? Math.min(((activatedUsers ?? 0) / users) * 100, 100) : 0
 
-  const { data: feedbackData } = (await supabase
+  const { data: feedbackData } = await supabase
     .from('consultas')
-    .select('feedback_estrellas')) as { data: Array<{ feedback_estrellas: number | null }> | null }
+    .select('feedback_estrellas')
+    .returns<Array<{ feedback_estrellas: number | null }>>()
 
   const feedbacks =
     feedbackData?.map((r) => r.feedback_estrellas).filter((x): x is number => x !== null) ?? []
@@ -107,7 +110,6 @@ export async function getBusinessMetrics(supabase: Supa): Promise<BusinessMetric
       ? Math.round((feedbacks.reduce((a, b) => a + b, 0) / feedbacks.length) * 100) / 100
       : null
 
-  // NPS proxy: %5★ - %1-3★
   const promoters = feedbacks.filter((f) => f === 5).length
   const detractors = feedbacks.filter((f) => f <= 3).length
   const nps_aprox =
@@ -115,7 +117,7 @@ export async function getBusinessMetrics(supabase: Supa): Promise<BusinessMetric
       ? Math.round(((promoters - detractors) / feedbacks.length) * 100)
       : null
 
-  const ltv_estimado_ars = PRECIO_PRO_ARS * 12 * 0.6 // 60% retención año 1 conservador
+  const ltv_estimado_ars = PRECIO_PRO_ARS * 12 * 0.6
 
   return {
     totalUsers: users,
@@ -125,8 +127,8 @@ export async function getBusinessMetrics(supabase: Supa): Promise<BusinessMetric
     arr_ars: mrr * 12,
     mrr_usd_aprox: Math.round((mrr / USD_ARS) * 100) / 100,
     activation_rate,
-    retention_30d: 0,                // requiere cohort analysis; placeholder
-    churn_rate_30d: 0,               // idem
+    retention_30d: 0,
+    churn_rate_30d: 0,
     avg_consultas_por_user: Math.round(avgConsultas * 100) / 100,
     total_consultas: total_consultas ?? 0,
     consultas_30d: consultas_30d ?? 0,
@@ -135,6 +137,6 @@ export async function getBusinessMetrics(supabase: Supa): Promise<BusinessMetric
     cac_payback_meses: null,
     feedback_promedio,
     nps_aprox,
-    cohorts: [],                     // lo completa /admin/cohortes con query SQL dedicada
+    cohorts: [],
   }
 }

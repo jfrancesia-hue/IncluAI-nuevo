@@ -53,7 +53,8 @@ export function buildAuthorizationUrl(params: {
  * Por ahora devuelve un error explícito para forzar login por Supabase email/password
  * hasta que se obtenga el client_id productivo.
  */
-export async function exchangeCodeForUserInfo(_code: string): Promise<CidiUserInfo> {
+export async function exchangeCodeForUserInfo(code: string): Promise<CidiUserInfo> {
+  void code
   throw new Error(
     'Ciudadano Digital Córdoba — integración pendiente de convenio. Usar login email/password por ahora.'
   )

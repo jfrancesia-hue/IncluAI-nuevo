@@ -2,6 +2,10 @@ import { createClient } from '@/lib/supabase/server'
 
 export const dynamic = 'force-dynamic'
 
+function nowMs(): number {
+  return Date.now()
+}
+
 type AssignmentRow = {
   school_id: string
   jurisdiction_id: string
@@ -38,7 +42,7 @@ export default async function CoberturaPage() {
     data: AssignmentRow[] | null
   }
 
-  const thirtyDaysAgo = Date.now() - 30 * 24 * 60 * 60 * 1000
+  const thirtyDaysAgo = nowMs() - 30 * 24 * 60 * 60 * 1000
   const byDep = new Map<string, { total: number; active: number; name: string }>()
 
   for (const dep of departamentos ?? []) {

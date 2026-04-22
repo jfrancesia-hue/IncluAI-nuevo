@@ -29,11 +29,10 @@ async function getSentry(): Promise<SentryLike | null> {
   if (!process.env.SENTRY_DSN) return null
   if (_sentry) return _sentry
   try {
-    const mod = (await import('@sentry/nextjs' as string).catch(() => null)) as unknown as {
-      captureException: SentryLike['captureException']
-      captureMessage: SentryLike['captureMessage']
-    } | null
-    if (!mod) return null
+    const mod = (await import(
+      // @ts-expect-error — dependencia opcional, puede no estar instalada
+      /* webpackIgnore: true */ /* turbopackIgnore: true */ '@sentry/nextjs'
+    )) as unknown as SentryLike
     _sentry = mod
     return mod
   } catch {
