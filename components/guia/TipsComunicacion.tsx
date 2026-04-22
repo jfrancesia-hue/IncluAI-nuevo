@@ -1,9 +1,17 @@
 import type { TipComunicacion } from '@/lib/schemas/guia-schema';
 
+const TITULOS_POR_MODULO: Record<string, string> = {
+  docentes: '💬 Comunicación en el aula',
+  familias: '💬 Comunicación en casa',
+  profesionales: '💬 Comunicación con paciente y familia',
+};
+
 export function TipsComunicacion({
   tips,
+  modulo = 'docentes',
 }: {
   tips: TipComunicacion[];
+  modulo?: string;
 }) {
   return (
     <section aria-labelledby="h-comunicacion" style={{ marginBottom: 56 }}>
@@ -18,7 +26,7 @@ export function TipsComunicacion({
           letterSpacing: '-0.01em',
         }}
       >
-        💬 Comunicación en el aula
+        {TITULOS_POR_MODULO[modulo] ?? TITULOS_POR_MODULO.docentes}
       </h2>
       <div style={{ display: 'grid', gap: 12 }}>
         {tips.map((t, i) => (

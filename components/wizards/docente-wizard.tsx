@@ -7,15 +7,13 @@ import { getMateriasPorNivel } from '@/data/materias';
 import { DISCAPACIDADES } from '@/data/discapacidades';
 import type { FormularioConsulta } from '@/lib/types';
 import type { SituacionApoyo } from '@/lib/types';
-import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Select } from '@/components/ui/select';
 import { Alert } from '@/components/ui/alert';
 import Image from 'next/image';
 import { Card, CardContent } from '@/components/ui/card';
-import { GuideView } from '../guide/guide-view';
-import { consumirSSE } from './sse';
+import { LoaderGenerando } from './loader-generando';
 import { PLANTILLAS_DOCENTE } from '@/data/plantillas-docente';
 import { cn } from '@/lib/utils';
 import { PHOTOS } from '@/lib/photos';
@@ -60,8 +58,6 @@ export function ConsultaWizard() {
   const [step, setStep] = useState<Step>(1);
   const [form, setForm] = useState<FormularioConsulta>(estadoInicial);
   const [error, setError] = useState<string | null>(null);
-  const [streamText, setStreamText] = useState('');
-  const [consultaId, setConsultaId] = useState<string | null>(null);
 
   const nivel = useMemo(
     () => (form.nivel_id ? getNivelById(form.nivel_id) : undefined),
@@ -118,34 +114,18 @@ export function ConsultaWizard() {
       return;
     }
     setStep('generando');
-    setStreamText('');
-    setConsultaId(null);
 
-    let acumulado = '';
-    let streamError: string | null = null;
     try {
-      const res = await fetch('/api/generar-guia', {
+      const res = await fetch('/api/generar-guia-v2', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(form),
       });
-
-      if (!res.ok) {
-        const data = await res.json().catch(() => ({}));
-        throw new Error(data.error ?? 'Error generando la guía');
+      const data = await res.json().catch(() => ({}));
+      if (!res.ok || !data.success || !data.id) {
+        throw new Error(data.error ?? 'No se pudo generar la guía');
       }
-
-      await consumirSSE(res, {
-        onDelta: (t) => {
-          acumulado += t;
-          setStreamText(acumulado);
-        },
-        onDone: (id) => setConsultaId(id),
-        onError: (msg) => {
-          streamError = msg;
-        },
-      });
-      if (streamError) setError(streamError);
+      router.push(`/resultado?id=${data.id}`);
     } catch (e) {
       setError(e instanceof Error ? e.message : 'Error inesperado');
       setStep(3);
@@ -153,34 +133,7 @@ export function ConsultaWizard() {
   }
 
   if (step === 'generando') {
-    return (
-      <div className="flex flex-col gap-6">
-        <StreamingHeader hasText={streamText.length > 0} />
-        {error && <Alert variant="error">{error}</Alert>}
-        {streamText ? (
-          <GuideView markdown={streamText} />
-        ) : (
-          <Card>
-            <CardContent className="flex flex-col items-center gap-3 p-10 text-center text-muted">
-              <Spinner />
-              <p>Generando tu guía inclusiva…</p>
-              <p className="text-xs">Esto puede tomar unos segundos.</p>
-            </CardContent>
-          </Card>
-        )}
-
-        {consultaId && (
-          <div className="flex flex-col gap-3 sm:flex-row sm:justify-end">
-            <Button variant="outline" onClick={() => router.push('/inicio')}>
-              Ir al inicio
-            </Button>
-            <Button onClick={() => router.push(`/resultado?id=${consultaId}`)}>
-              Ver guía completa →
-            </Button>
-          </div>
-        )}
-      </div>
-    );
+    return <LoaderGenerando error={error} onVolver={() => setStep(3)} />;
   }
 
   const currentBanner =
@@ -597,25 +550,6 @@ function Progress({ step }: { step: Step }) {
   );
 }
 
-function StreamingHeader({ hasText }: { hasText: boolean }) {
-  return (
-    <div className="flex items-center gap-3">
-      {hasText ? null : <Spinner />}
-      <h1 className="text-2xl text-primary sm:text-3xl">
-        {hasText ? 'Tu guía inclusiva' : 'Generando tu guía…'}
-      </h1>
-    </div>
-  );
-}
-
-function Spinner() {
-  return (
-    <span
-      aria-hidden
-      className="inline-block h-5 w-5 animate-spin rounded-full border-2 border-accent border-t-transparent"
-    />
-  );
-}
 
 function labelNivel(form: FormularioConsulta) {
   const nivel = form.nivel_id ? getNivelById(form.nivel_id) : undefined;

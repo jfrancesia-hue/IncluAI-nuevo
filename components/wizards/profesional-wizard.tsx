@@ -19,8 +19,7 @@ import { Label } from '@/components/ui/label';
 import { Select } from '@/components/ui/select';
 import { Alert } from '@/components/ui/alert';
 import { Card, CardContent } from '@/components/ui/card';
-import { GuideView } from '../guide/guide-view';
-import { consumirSSE } from './sse';
+import { LoaderGenerando } from './loader-generando';
 import { cn } from '@/lib/utils';
 import { PHOTOS } from '@/lib/photos';
 
@@ -73,8 +72,6 @@ export function ProfesionalWizard({
     especialidad: especialidadDefault ?? initial.especialidad,
   });
   const [error, setError] = useState<string | null>(null);
-  const [streamText, setStreamText] = useState('');
-  const [consultaId, setConsultaId] = useState<string | null>(null);
 
   function update<K extends keyof FormularioProfesional>(
     key: K,
@@ -115,32 +112,17 @@ export function ProfesionalWizard({
     if (err) return setError(err);
 
     setStep('generando');
-    setStreamText('');
-    setConsultaId(null);
-
-    let acumulado = '';
-    let streamError: string | null = null;
     try {
-      const res = await fetch('/api/generar-guia-profesional', {
+      const res = await fetch('/api/generar-guia-v2', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(form),
+        body: JSON.stringify({ modulo: 'profesionales', ...form }),
       });
-      if (!res.ok) {
-        const data = await res.json().catch(() => ({}));
-        throw new Error(data.error ?? 'Error generando la guia');
+      const data = await res.json().catch(() => ({}));
+      if (!res.ok || !data.success || !data.id) {
+        throw new Error(data.error ?? 'No se pudo generar la guía');
       }
-      await consumirSSE(res, {
-        onDelta: (t) => {
-          acumulado += t;
-          setStreamText(acumulado);
-        },
-        onDone: (id) => setConsultaId(id),
-        onError: (msg) => {
-          streamError = msg;
-        },
-      });
-      if (streamError) setError(streamError);
+      router.push(`/resultado?id=${data.id}`);
     } catch (e) {
       setError(e instanceof Error ? e.message : 'Error inesperado');
       setStep(3);
@@ -148,37 +130,7 @@ export function ProfesionalWizard({
   }
 
   if (step === 'generando') {
-    return (
-      <div className="flex flex-col gap-6">
-        <div className="flex items-center gap-3">
-          {!streamText && <Spinner />}
-          <h1 className="font-serif text-2xl font-bold text-[#1e3a5f] sm:text-3xl">
-            {streamText ? 'Guia clinica adaptada' : 'Generando tu guia...'}
-          </h1>
-        </div>
-        {error && <Alert variant="error">{error}</Alert>}
-        {streamText ? (
-          <GuideView markdown={streamText} />
-        ) : (
-          <Card>
-            <CardContent className="flex flex-col items-center gap-3 p-10 text-center text-muted">
-              <Spinner />
-              <p>Generando tu guia...</p>
-            </CardContent>
-          </Card>
-        )}
-        {consultaId && (
-          <div className="flex flex-col gap-3 sm:flex-row sm:justify-end">
-            <Button variant="outline" onClick={() => router.push('/inicio')}>
-              Ir al inicio
-            </Button>
-            <Button onClick={() => router.push(`/resultado?id=${consultaId}`)}>
-              Ver guia completa →
-            </Button>
-          </div>
-        )}
-      </div>
-    );
+    return <LoaderGenerando error={error} onVolver={() => setStep(3)} />;
   }
 
   const currentBanner = typeof step === 'number' ? BANNERS[step] : null;
@@ -562,11 +514,3 @@ function Progress({ step }: { step: Step }) {
   );
 }
 
-function Spinner() {
-  return (
-    <span
-      aria-hidden
-      className="inline-block h-5 w-5 animate-spin rounded-full border-2 border-accent border-t-transparent"
-    />
-  );
-}

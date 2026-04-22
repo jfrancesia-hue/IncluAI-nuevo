@@ -102,6 +102,7 @@ export default async function ResultadoPage({
           guia={parsed.data}
           metadata={{
             id: data.id,
+            modulo: data.modulo,
             materia: data.materia,
             nivel: data.nivel,
             anio_grado: data.anio_grado,

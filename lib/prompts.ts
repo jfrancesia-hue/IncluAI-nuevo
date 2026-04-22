@@ -516,3 +516,140 @@ ${JSON.stringify(GUIA_JSON_SCHEMA, null, 2)}
 
 RESPONDE AHORA CON EL JSON DE LA GUÍA:`
 }
+
+// ============================================
+// BUILDER v2.1 — FAMILIAS
+// ============================================
+
+export function buildPromptFamiliasV2(form: FormularioFamilia): string {
+  const discapacidades = getDiscapacidadesByIds(form.discapacidades)
+  const bloqueDisc = discapacidades
+    .map((d) => `- **${d.label}**: ${d.descripcion}`)
+    .join('\n')
+  const areasLabels = form.areas_ayuda
+    .map((id) => getAreaFamiliaById(id)?.label ?? id)
+    .join(', ')
+
+  const situacionTexto: Record<string, string> = {
+    ambos_padres: 'Familia con ambos padres presentes',
+    monoparental: 'Familia monoparental',
+    familia_ampliada: 'Familia ampliada (abuelos, tíos involucrados)',
+    otro: 'Otra situación familiar',
+  }
+
+  return `${SYSTEM_PROMPT_FAMILIAS}
+
+## CONTEXTO DEL HIJO/A Y DE LA FAMILIA
+
+- Edad: ${form.edad_rango} años${form.nombre_hijo ? ` · Nombre: ${form.nombre_hijo}` : ''}
+- Discapacidades presentes:
+${bloqueDisc}${form.discapacidad_otra ? `\n- Otra condición: ${form.discapacidad_otra}` : ''}
+${form.diagnostico_detalle ? `- Detalle diagnóstico: ${form.diagnostico_detalle}` : ''}
+- Áreas donde la familia pide ayuda: ${areasLabels}
+- Situación específica: ${form.situacion_especifica}
+- Estructura familiar: ${situacionTexto[form.situacion_familiar] ?? form.situacion_familiar}
+- Terapias actuales: ${form.tiene_terapias ? form.terapias_detalle ?? 'Sí' : 'Ninguna'}
+${form.contexto_adicional ? `- Contexto adicional: ${form.contexto_adicional}` : ''}
+
+${MULTIMEDIA_RULES}
+
+## FORMATO DE SALIDA OBLIGATORIO
+
+Devolvés ÚNICAMENTE un objeto JSON válido (sin texto antes ni después, sin bloque \`\`\`json\`\`\`) que cumpla con este JSON Schema:
+
+${JSON.stringify(GUIA_JSON_SCHEMA, null, 2)}
+
+## CÓMO ADAPTAR EL SCHEMA PARA FAMILIAS
+
+El schema fue diseñado pensando en aula, pero aplica también para familias:
+- vistaRapida.titulo: resumen emocional + práctico (ej: "Acompañar a Juan con las transiciones en casa")
+- conceptosClave: áreas centrales (ej: rutina, comunicación, regulación). Usá color "neutro" si no hay paralelo con biomas.
+- estrategias: acciones concretas para casa. tipo "manipulativa" (juego con objetos), "visual" (pictogramas/rutinas visuales), "corporal" (ejercicios), "social" (comunicación).
+- videos: para la familia — cortos, prácticos, de fuentes oficiales (Pakapaka familia, canal oficial de ANDIS, etc.).
+- materiales: cosas que hacen en casa con papel/cartón/tapitas.
+- criteriosEvaluacion: señales de progreso observables por la familia (no reemplazan evaluación clínica).
+- tipsComunicacion: cómo hablarle, qué evitar.
+- erroresComunes: mitos, consejos bienintencionados contraproducentes.
+- fuentesNormativas: Ley 24.901, Ley 22.431, Ley 26.378 cuando aplique.
+
+## REGLAS DE CONTENIDO
+
+1. El tono es cálido, empático, como colega-amiga que pasó por lo mismo. NUNCA jerga clínica.
+2. Cada estrategia tiene que ser ejecutable por un adulto agotado con recursos limitados.
+3. Incluí al menos 1 opción "de baja energía" (cuando están exhaustos).
+4. Normalizá la situación — "esto es esperable, tiene solución, no estás fallando".
+5. Las imágenes deben mostrar interacciones familiares cálidas, no entornos clínicos estériles.
+6. version = "2.1", generadaEn = ISO 8601 timestamp actual.
+
+RESPONDE AHORA CON EL JSON DE LA GUÍA:`
+}
+
+// ============================================
+// BUILDER v2.1 — PROFESIONALES
+// ============================================
+
+export function buildPromptProfesionalesV2(form: FormularioProfesional): string {
+  const discapacidades = getDiscapacidadesByIds(form.discapacidades)
+  const bloqueDisc = discapacidades
+    .map((d) => `- **${d.label}**: ${d.descripcion}`)
+    .join('\n')
+  const esp = getEspecialidadById(form.especialidad)
+  const objetivosLabels = form.objetivos
+    .map((id) => getObjetivoProfesionalById(id)?.label ?? id)
+    .join(', ')
+
+  const contextoTexto: Record<string, string> = {
+    consultorio: 'Consultorio privado',
+    hospital: 'Hospital público',
+    domicilio: 'Atención domiciliaria',
+    escuela: 'Atención en escuela/centro educativo',
+    otro: 'Otro contexto de atención',
+  }
+
+  return `${SYSTEM_PROMPT_PROFESIONALES}
+
+## CONTEXTO DEL/A PROFESIONAL Y PACIENTE
+
+- Especialidad: ${esp?.label ?? form.especialidad}${form.especialidad_otra ? ` (${form.especialidad_otra})` : ''}
+- Contexto de atención: ${contextoTexto[form.contexto_atencion] ?? form.contexto_atencion}
+- Lugar específico: ${form.lugar_atencion}
+- Edad del paciente: ${form.edad_paciente}
+- Discapacidades del paciente:
+${bloqueDisc}${form.discapacidad_otra ? `\n- Otra condición: ${form.discapacidad_otra}` : ''}
+${form.diagnostico_detalle ? `- Detalle diagnóstico: ${form.diagnostico_detalle}` : ''}
+- Comunicación del paciente: ${form.comunicacion_paciente}
+- Objetivos de la consulta: ${objetivosLabels}
+- Situación específica: ${form.situacion_especifica}
+${form.contexto_adicional ? `- Contexto adicional: ${form.contexto_adicional}` : ''}
+
+${MULTIMEDIA_RULES}
+
+## FORMATO DE SALIDA OBLIGATORIO
+
+Devolvés ÚNICAMENTE un objeto JSON válido (sin texto antes ni después, sin bloque \`\`\`json\`\`\`) que cumpla con este JSON Schema:
+
+${JSON.stringify(GUIA_JSON_SCHEMA, null, 2)}
+
+## CÓMO ADAPTAR EL SCHEMA PARA PROFESIONALES
+
+- vistaRapida.titulo: objetivo clínico + contexto (ej: "Adaptación de evaluación de lenguaje en paciente TEA, 7 años").
+- conceptosClave: ejes clínicos (adaptaciones del espacio, comunicación adaptada, manejo conductual). Color "neutro".
+- estrategias: protocolos paso a paso aplicables en la consulta. tipo según corresponda (manipulativa, visual, corporal, etc.).
+- videos: de fuentes profesionales (canales oficiales de universidades, sociedades de especialidad, OMS).
+- materiales: para la sesión (pictogramas ARASAAC, anticipadores visuales, rúbricas adaptadas).
+- criteriosEvaluacion: indicadores clínicos observables en sesión.
+- tipsComunicacion: qué comunicar a la familia después, qué registrar en historia clínica.
+- erroresComunes: errores habituales de abordaje con esta población.
+- fuentesNormativas: Ley 24.901, Ley 26.378, guías ministeriales aplicables.
+
+## REGLAS DE CONTENIDO
+
+1. Nivel técnico-profesional pero accesible — el destinatario es colega, no paciente.
+2. Diferenciá "lo ideal" de "lo posible con recursos limitados".
+3. Incluí al menos 1 estrategia ejecutable sin equipamiento especial.
+4. Las imágenes deben mostrar contextos clínicos/profesionales reales, no forzados.
+5. Citá marco legal y protocolos cuando aplique.
+6. version = "2.1", generadaEn = ISO 8601 timestamp actual.
+
+RESPONDE AHORA CON EL JSON DE LA GUÍA:`
+}

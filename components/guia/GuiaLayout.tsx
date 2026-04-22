@@ -14,6 +14,7 @@ import type { VideoEnriquecido } from '@/lib/servicios/videos';
 
 type Metadata = {
   id: string;
+  modulo?: 'docentes' | 'familias' | 'profesionales';
   materia?: string | null;
   nivel?: string | null;
   anio_grado?: string | null;
@@ -61,7 +62,7 @@ export function GuiaLayout({ guia, metadata }: Props) {
           guiaId={metadata.id}
         />
 
-        <TipsComunicacion tips={guia.tipsComunicacion} />
+        <TipsComunicacion tips={guia.tipsComunicacion} modulo={metadata.modulo} />
 
         <AlertaErrores errores={guia.erroresComunes} />
 
