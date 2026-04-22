@@ -13,6 +13,22 @@ export const ImagenRefSchema = z.object({
     .string()
     .optional()
     .describe('Por qué esta imagen es pedagógicamente útil'),
+  urls: z
+    .object({
+      full: z.string().optional(),
+      regular: z.string().optional(),
+      small: z.string().optional(),
+      thumb: z.string().optional(),
+    })
+    .optional()
+    .describe('URLs enriquecidas por el servicio de imágenes (Pexels/Unsplash)'),
+  autor: z
+    .object({
+      nombre: z.string(),
+      url: z.string(),
+    })
+    .optional()
+    .describe('Atribución del autor de la imagen enriquecida'),
 });
 
 export const VideoRefSchema = z.object({
