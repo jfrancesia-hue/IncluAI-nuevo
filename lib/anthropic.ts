@@ -9,9 +9,8 @@ export const anthropic = new Anthropic({ apiKey });
 
 export const CLAUDE_MODEL = 'claude-sonnet-4-6' as const;
 
-// v2.1 con Haiku 4.5: el schema JSON pesa ~4k tokens solo el esquema y la
-// guia generada ~3.5k. Sonnet tomaba 45-55s y timeouteaba el 60s de Vercel
-// Hobby. Haiku 4.5 es 3-5x mas rapido con adherencia al schema aceptable
-// para este tipo estructurado.  Si la calidad baja mucho, upgrade a Vercel
-// Pro (maxDuration 300s) y volver a Sonnet/Opus.
-export const CLAUDE_MODEL_V2 = 'claude-haiku-4-5-20251001' as const;
+// v2.1 con Sonnet 4.6 + tool-use: el prompt ya no embebe el schema (~4k
+// tokens menos), asi que Sonnet entra comodo en el maxDuration 60s de
+// Vercel Hobby. Haiku era mas rapido pero ignoraba maxLength del schema
+// y omitia campos requeridos; Sonnet respeta el schema estricto.
+export const CLAUDE_MODEL_V2 = 'claude-sonnet-4-6' as const;
