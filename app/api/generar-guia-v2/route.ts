@@ -22,7 +22,7 @@ import {
 import type { ModuloIncluIA } from '@/lib/types';
 
 export const runtime = 'nodejs';
-export const maxDuration = 60;
+export const maxDuration = 300;
 
 // Endpoint v2.1: genera una guía estructurada (JSON enriquecido con multimedia)
 // para los 3 módulos. El módulo se infiere del body:
@@ -67,7 +67,7 @@ export async function POST(request: NextRequest) {
     // menos de input), bajando latencia.
     const response = await anthropic.messages.create({
       model: CLAUDE_MODEL_V2,
-      max_tokens: 5500,
+      max_tokens: 8000,
       tools: [
         {
           name: 'guardar_guia_pedagogica',
@@ -97,15 +97,11 @@ export async function POST(request: NextRequest) {
     // el tipo TS. El SDK ya valida que input cumpla el JSON schema.
     const guiaValidada = GuiaPedagogicaSchema.parse(toolUse.input);
     const rawText = JSON.stringify(toolUse.input);
-    // Race con timeout duro: si el enriquecimiento tarda mas de 8s, devolvemos
-    // la guia con refs sin URLs. ImagenInteligente muestra bloques con alt-text
-    // como fallback. Asi nunca dejamos que Unsplash/Pexels volteen el 60s limit.
-    const guiaEnriquecida = await Promise.race([
-      enriquecerGuia(guiaValidada),
-      new Promise<GuiaPedagogica>((resolve) =>
-        setTimeout(() => resolve(guiaValidada), 8000)
-      ),
-    ]);
+    // Enriquecemos todas las imagenes con calidad completa. Las llamadas a
+    // Unsplash/Pexels tienen timeout individual de 5s en los servicios; si
+    // algun servicio cae, esa imagen queda sin URL (ImagenInteligente usa el
+    // fallback con alt-text). Con Vercel Pro tenemos tiempo de sobra.
+    const guiaEnriquecida = await enriquecerGuia(guiaValidada);
 
     const tokens = response.usage.input_tokens + response.usage.output_tokens;
     const insertRow = construirInsertRow({
