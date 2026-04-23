@@ -18,7 +18,7 @@ import {
   formularioFamiliaSchema,
   formularioProfesionalSchema,
 } from '@/lib/validators';
-import { LIMITES_PLAN, type ModuloIncluIA } from '@/lib/types';
+import type { ModuloIncluIA } from '@/lib/types';
 
 export const runtime = 'nodejs';
 export const maxDuration = 60;
@@ -31,7 +31,7 @@ export const maxDuration = 60;
 export async function POST(request: NextRequest) {
   const guard = await guardApi();
   if (!guard.ok) return guard.response;
-  const { user, supabase, plan } = guard;
+  const { user, supabase } = guard;
 
   const rawBody = await request.json().catch(() => null);
   if (!rawBody || typeof rawBody !== 'object') {
@@ -50,32 +50,18 @@ export async function POST(request: NextRequest) {
   }
   const { modulo, form } = detected;
 
-  // Reserva atómica de cupo antes de gastar tokens
-  const limite = LIMITES_PLAN[plan.plan].guias_por_mes;
-  const reserva = await supabase.rpc('reservar_consulta', {
-    p_user_id: user.id,
-    p_limite: limite,
-  });
-  if (reserva.error) {
-    return NextResponse.json(
-      {
-        error:
-          reserva.error.code === 'P0001'
-            ? 'Alcanzaste el límite de guías de este mes.'
-            : 'No se pudo reservar cupo de consulta.',
-        detail: reserva.error.message,
-      },
-      { status: 402 }
-    );
-  }
-  let cupoConsumido = true;
+  // El cupo se consume SOLO al final, despues del insert exitoso. Asi cualquier
+  // error intermedio (timeout de Vercel, Claude 401, Zod parse, Supabase save)
+  // no descuenta guia al usuario. guardApi ya valido que hay cupo disponible;
+  // la race entre requests paralelas puede hacer que un usuario exceda en 1
+  // ocasionalmente — es preferible a cobrarle una guia por cada error.
 
   try {
     const prompt = buildPromptPorModulo(modulo, form);
 
     const response = await anthropic.messages.create({
       model: CLAUDE_MODEL_V2,
-      max_tokens: 4500,
+      max_tokens: 3500,
       messages: [{ role: 'user', content: prompt }],
     });
 
@@ -121,7 +107,15 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    cupoConsumido = false;
+    // Recien ahora consumimos el cupo. Si falla, la guia igual existe en BD,
+    // solo que el contador queda desincronizado (se loguea para revision).
+    const inc = await supabase.rpc('incrementar_consultas', {
+      p_user_id: user.id,
+    });
+    if (inc.error) {
+      console.error('[generar-guia-v2] incrementar_consultas fallo:', inc.error);
+    }
+
     return NextResponse.json({
       success: true,
       id: saved.id,
@@ -138,14 +132,6 @@ export async function POST(request: NextRequest) {
       },
       { status: 500 }
     );
-  } finally {
-    if (cupoConsumido) {
-      try {
-        await supabase.rpc('decrementar_consultas', { p_user_id: user.id });
-      } catch (compErr) {
-        console.error('[generar-guia-v2] decrementar fallido:', compErr);
-      }
-    }
   }
 }
 
