@@ -9,6 +9,7 @@ export const anthropic = new Anthropic({ apiKey });
 
 export const CLAUDE_MODEL = 'claude-sonnet-4-6' as const;
 
-// v2.1 usa Opus para el JSON estructurado con multimedia — más preciso en
-// adherencia al schema Zod y en queries de Unsplash en inglés.
-export const CLAUDE_MODEL_V2 = 'claude-opus-4-7' as const;
+// v2.1 con Sonnet 4.6: suficiente para el JSON estructurado y ~3x más rápido
+// que Opus dentro del maxDuration de 60s de Vercel Hobby. Si hiciera falta
+// mayor adherencia, volver a Opus requiere Vercel Pro (maxDuration 300s).
+export const CLAUDE_MODEL_V2 = 'claude-sonnet-4-6' as const;

@@ -45,6 +45,7 @@ export async function enriquecerImagen(
     const res = await fetch(`${UNSPLASH_ENDPOINT}?${params.toString()}`, {
       headers: { Authorization: `Client-ID ${accessKey}` },
       next: { revalidate: 86400 }, // caché 24h
+      signal: AbortSignal.timeout(5000),
     });
 
     if (!res.ok) {

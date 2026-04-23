@@ -59,6 +59,7 @@ export async function enriquecerImagenPexels(
     const res = await fetch(`${PEXELS_ENDPOINT}?${params.toString()}`, {
       headers: { Authorization: apiKey },
       next: { revalidate: 86400 }, // caché 24h
+      signal: AbortSignal.timeout(5000),
     });
 
     if (!res.ok) {
