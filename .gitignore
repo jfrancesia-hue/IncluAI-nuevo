@@ -48,3 +48,7 @@ next-env.d.ts
 # y scores que son reproducibles con el dataset). El dataset y la rúbrica SÍ se versionan.
 evals/results/*
 !evals/results/.gitkeep
+
+# binarios pesados (videos de referencia, material externo)
+*.mp4
+*.mov
