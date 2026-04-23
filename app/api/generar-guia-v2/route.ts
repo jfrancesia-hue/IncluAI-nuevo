@@ -75,7 +75,7 @@ export async function POST(request: NextRequest) {
 
     const response = await anthropic.messages.create({
       model: CLAUDE_MODEL_V2,
-      max_tokens: 5500,
+      max_tokens: 4500,
       messages: [{ role: 'user', content: prompt }],
     });
 
@@ -89,7 +89,15 @@ export async function POST(request: NextRequest) {
 
     const parsedJson = JSON.parse(jsonText);
     const guiaValidada = GuiaPedagogicaSchema.parse(parsedJson);
-    const guiaEnriquecida = await enriquecerGuia(guiaValidada);
+    // Race con timeout duro: si el enriquecimiento tarda mas de 8s, devolvemos
+    // la guia con refs sin URLs. ImagenInteligente muestra bloques con alt-text
+    // como fallback. Asi nunca dejamos que Unsplash/Pexels volteen el 60s limit.
+    const guiaEnriquecida = await Promise.race([
+      enriquecerGuia(guiaValidada),
+      new Promise<GuiaPedagogica>((resolve) =>
+        setTimeout(() => resolve(guiaValidada), 8000)
+      ),
+    ]);
 
     const tokens = response.usage.input_tokens + response.usage.output_tokens;
     const insertRow = construirInsertRow({
