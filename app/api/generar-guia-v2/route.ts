@@ -3,6 +3,7 @@ import { z } from 'zod';
 import { anthropic, CLAUDE_MODEL_V2 } from '@/lib/anthropic';
 import { guardApi } from '@/lib/api-guard';
 import {
+  GUIA_JSON_SCHEMA,
   buildPromptDocentesV2,
   buildPromptFamiliasV2,
   buildPromptProfesionalesV2,
@@ -59,22 +60,43 @@ export async function POST(request: NextRequest) {
   try {
     const prompt = buildPromptPorModulo(modulo, form);
 
+    // Tool-use: en vez de pedir JSON en texto (fragil, se trunca, Haiku
+    // rompe sintaxis), definimos una tool con el schema como input. El SDK
+    // fuerza que Claude devuelva un objeto conforme al schema. Ventaja
+    // adicional: el prompt ya no necesita embeber el schema (~4k tokens
+    // menos de input), bajando latencia.
     const response = await anthropic.messages.create({
       model: CLAUDE_MODEL_V2,
       max_tokens: 5500,
+      tools: [
+        {
+          name: 'guardar_guia_pedagogica',
+          description:
+            'Guarda la guía pedagógica inclusiva completa con todas sus secciones. Invocá esta tool exactamente una vez con la guía que respondés al usuario.',
+          input_schema: GUIA_JSON_SCHEMA as unknown as {
+            type: 'object';
+            properties?: Record<string, unknown>;
+            required?: string[];
+          },
+        },
+      ],
+      tool_choice: { type: 'tool', name: 'guardar_guia_pedagogica' },
       messages: [{ role: 'user', content: prompt }],
     });
 
-    const rawText =
-      response.content[0]?.type === 'text' ? response.content[0].text : '';
-
-    const jsonText = extraerJSON(rawText);
-    if (!jsonText) {
-      throw new Error('No se encontró JSON en la respuesta del modelo');
+    const toolUse = response.content.find(
+      (block) => block.type === 'tool_use' && block.name === 'guardar_guia_pedagogica'
+    );
+    if (!toolUse || toolUse.type !== 'tool_use') {
+      throw new Error(
+        'El modelo no invocó la tool guardar_guia_pedagogica — respuesta inesperada'
+      );
     }
 
-    const parsedJson = JSON.parse(jsonText);
-    const guiaValidada = GuiaPedagogicaSchema.parse(parsedJson);
+    // Validamos con Zod por las dudas (segunda capa de defensa) y para obtener
+    // el tipo TS. El SDK ya valida que input cumpla el JSON schema.
+    const guiaValidada = GuiaPedagogicaSchema.parse(toolUse.input);
+    const rawText = JSON.stringify(toolUse.input);
     // Race con timeout duro: si el enriquecimiento tarda mas de 8s, devolvemos
     // la guia con refs sin URLs. ImagenInteligente muestra bloques con alt-text
     // como fallback. Asi nunca dejamos que Unsplash/Pexels volteen el 60s limit.
@@ -242,18 +264,6 @@ function construirInsertRow({
     ...base,
     contenido: f.situacion_especifica.slice(0, 300),
   };
-}
-
-// Intenta extraer un objeto JSON del texto, tolerando bloques ```json ... ```
-function extraerJSON(text: string): string | null {
-  const fenced = text.match(/```(?:json)?\s*(\{[\s\S]*?\})\s*```/);
-  if (fenced?.[1]) return fenced[1];
-  const firstBrace = text.indexOf('{');
-  const lastBrace = text.lastIndexOf('}');
-  if (firstBrace !== -1 && lastBrace > firstBrace) {
-    return text.slice(firstBrace, lastBrace + 1);
-  }
-  return null;
 }
 
 async function enriquecerGuia(

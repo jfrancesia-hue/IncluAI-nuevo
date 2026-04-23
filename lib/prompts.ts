@@ -459,9 +459,11 @@ Ejemplo de video bien generado:
 Si no estás seguro de que un recurso existe, NO LO INCLUYAS. Es preferible devolver 2 videos verificables que 5 inventados. El docente pierde confianza en IncluIA si encuentra un solo link roto.
 `
 
-// JSON Schema generado desde el Zod schema — lo pasamos a Claude para que
-// conozca la estructura exacta que debe devolver.
-const GUIA_JSON_SCHEMA = z.toJSONSchema(GuiaPedagogicaSchema)
+// JSON Schema generado desde el Zod schema. Se expone para usar como
+// input_schema de la tool `guardar_guia_pedagogica` en el endpoint v2.
+// Con tool-use no hace falta embeberlo en el prompt: Claude lo recibe
+// como metadata de la tool y el SDK fuerza adherencia al schema.
+export const GUIA_JSON_SCHEMA = z.toJSONSchema(GuiaPedagogicaSchema)
 
 export function buildPromptDocentesV2(form: FormularioConsulta): string {
   const discapacidades = getDiscapacidadesByIds(form.discapacidades)
@@ -497,11 +499,10 @@ ${bloqueDiscapacidades}${form.discapacidad_otra ? `\n- Otra condición: ${form.d
 
 ${MULTIMEDIA_RULES}
 
-## FORMATO DE SALIDA OBLIGATORIO
+## FORMATO DE SALIDA
 
-Devolvés ÚNICAMENTE un objeto JSON válido (sin texto antes ni después, sin bloque \`\`\`json\`\`\`) que cumpla con este JSON Schema:
-
-${JSON.stringify(GUIA_JSON_SCHEMA, null, 2)}
+Invocá la herramienta \`guardar_guia_pedagogica\` con la guía completa.
+El schema de la herramienta define los campos exactos esperados.
 
 ## REGLAS DE CONTENIDO
 
@@ -514,7 +515,7 @@ ${JSON.stringify(GUIA_JSON_SCHEMA, null, 2)}
 7. Los queries de imágenes en inglés; los textos visibles en español rioplatense.
 8. version = "2.1", generadaEn = ISO 8601 timestamp actual.
 
-RESPONDE AHORA CON EL JSON DE LA GUÍA:`
+Invocá la tool ahora con la guía.`
 }
 
 // ============================================
@@ -553,11 +554,10 @@ ${form.contexto_adicional ? `- Contexto adicional: ${form.contexto_adicional}` :
 
 ${MULTIMEDIA_RULES}
 
-## FORMATO DE SALIDA OBLIGATORIO
+## FORMATO DE SALIDA
 
-Devolvés ÚNICAMENTE un objeto JSON válido (sin texto antes ni después, sin bloque \`\`\`json\`\`\`) que cumpla con este JSON Schema:
-
-${JSON.stringify(GUIA_JSON_SCHEMA, null, 2)}
+Invocá la herramienta \`guardar_guia_pedagogica\` con la guía completa.
+El schema de la herramienta define los campos exactos esperados.
 
 ## CÓMO ADAPTAR EL SCHEMA PARA FAMILIAS
 
@@ -581,7 +581,7 @@ El schema fue diseñado pensando en aula, pero aplica también para familias:
 5. Las imágenes deben mostrar interacciones familiares cálidas, no entornos clínicos estériles.
 6. version = "2.1", generadaEn = ISO 8601 timestamp actual.
 
-RESPONDE AHORA CON EL JSON DE LA GUÍA:`
+Invocá la tool ahora con la guía.`
 }
 
 // ============================================
@@ -624,11 +624,10 @@ ${form.contexto_adicional ? `- Contexto adicional: ${form.contexto_adicional}` :
 
 ${MULTIMEDIA_RULES}
 
-## FORMATO DE SALIDA OBLIGATORIO
+## FORMATO DE SALIDA
 
-Devolvés ÚNICAMENTE un objeto JSON válido (sin texto antes ni después, sin bloque \`\`\`json\`\`\`) que cumpla con este JSON Schema:
-
-${JSON.stringify(GUIA_JSON_SCHEMA, null, 2)}
+Invocá la herramienta \`guardar_guia_pedagogica\` con la guía completa.
+El schema de la herramienta define los campos exactos esperados.
 
 ## CÓMO ADAPTAR EL SCHEMA PARA PROFESIONALES
 
@@ -651,5 +650,5 @@ ${JSON.stringify(GUIA_JSON_SCHEMA, null, 2)}
 5. Citá marco legal y protocolos cuando aplique.
 6. version = "2.1", generadaEn = ISO 8601 timestamp actual.
 
-RESPONDE AHORA CON EL JSON DE LA GUÍA:`
+Invocá la tool ahora con la guía.`
 }
