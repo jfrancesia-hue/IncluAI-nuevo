@@ -1,17 +1,9 @@
 import 'server-only';
 import type { ImagenRef } from '@/lib/schemas/guia-schema';
 
-export interface ImagenEnriquecida extends ImagenRef {
-  urls?: {
-    small: string; // 400px
-    regular: string; // 1080px
-    full: string; // original
-  };
-  autor?: {
-    nombre: string;
-    url: string;
-  };
-}
+// ImagenEnriquecida vive ahora en el schema Zod (ImagenRefSchema.urls/autor).
+// Lo dejamos como alias para no romper imports previos.
+export type ImagenEnriquecida = ImagenRef;
 
 type UnsplashPhoto = {
   urls: { small: string; regular: string; full: string };
