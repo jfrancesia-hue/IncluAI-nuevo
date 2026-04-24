@@ -1,6 +1,7 @@
 import 'server-only';
 import type { VideoRef } from '@/lib/schemas/guia-schema';
 import { fetchPexelsThumbnail } from '@/lib/servicios/pexels';
+import { fetchUnsplashThumbnail } from '@/lib/servicios/unsplash';
 
 export interface VideoEnriquecido extends VideoRef {
   thumbnail?: string;
@@ -36,10 +37,14 @@ export async function enriquecerVideo(
     };
   }
 
-  // Sin embedId: traemos una imagen "ambiental" de Pexels como thumbnail.
-  // Si Pexels no responde o no hay match, queda undefined y el frontend
-  // muestra el gradiente por thumbnailHint (fallback existente).
-  const thumbnail = (await fetchPexelsThumbnail(ref.queryBusqueda)) ?? undefined;
+  // Sin embedId: buscamos una imagen "ambiental" como thumbnail.
+  // Orden de caída: Pexels → Unsplash → undefined (el frontend muestra el
+  // gradiente por thumbnailHint). Si solo una de las 2 API keys está
+  // configurada, igual funciona.
+  const thumbnail =
+    (await fetchPexelsThumbnail(ref.queryBusqueda)) ??
+    (await fetchUnsplashThumbnail(ref.queryBusqueda)) ??
+    undefined;
 
   return {
     ...ref,

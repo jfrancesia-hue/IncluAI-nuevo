@@ -60,6 +60,29 @@ async function buscarEnUnsplash(
   return data.results?.[0] ?? null;
 }
 
+/**
+ * Busca una foto en Unsplash y devuelve solo la URL regular. Uso: thumbnails
+ * de videos sin embedId de YouTube cuando Pexels no encuentra nada.
+ */
+export async function fetchUnsplashThumbnail(
+  query: string,
+  orientation: 'horizontal' | 'vertical' | 'cuadrada' = 'horizontal'
+): Promise<string | null> {
+  const accessKey = process.env.UNSPLASH_ACCESS_KEY;
+  if (!accessKey) return null;
+  try {
+    const o = orientacionUnsplash(orientation);
+    let foto = await buscarEnUnsplash(query, o, accessKey);
+    if (!foto) {
+      const fb = queryFallback(query);
+      if (fb !== query) foto = await buscarEnUnsplash(fb, o, accessKey);
+    }
+    return foto?.urls.regular ?? null;
+  } catch {
+    return null;
+  }
+}
+
 export async function enriquecerImagen(
   ref: ImagenRef
 ): Promise<ImagenEnriquecida> {

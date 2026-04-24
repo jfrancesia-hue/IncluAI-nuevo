@@ -38,11 +38,13 @@ export function SeccionMateriales({
               overflow: 'hidden',
             }}
           >
-            {m.imagenReferencia && (
+            {m.imagenReferencia ? (
               <ImagenInteligente
                 imagen={m.imagenReferencia}
                 aspectRatio="16 / 10"
               />
+            ) : (
+              <MaterialPlaceholder nombre={m.nombre} indice={i} />
             )}
             <div style={{ padding: 18 }}>
               <h3
@@ -86,5 +88,40 @@ export function SeccionMateriales({
         ))}
       </div>
     </section>
+  );
+}
+
+// Fallback visual cuando Claude no generó imagenReferencia para el material.
+// Gradiente rotado por índice + emoji contextual. No intenta ser bonito,
+// solo evitar el hueco blanco que quedaba antes.
+const GRADIENTES_MATERIAL = [
+  'linear-gradient(135deg, #D7EAF6, #2E86C1)',
+  'linear-gradient(135deg, #D6F0E0, #27AE60)',
+  'linear-gradient(135deg, #fef3c7, #E67E22)',
+  'linear-gradient(135deg, #ede9fe, #8b5cf6)',
+  'linear-gradient(135deg, #fce7f3, #ec4899)',
+];
+
+function MaterialPlaceholder({ nombre, indice }: { nombre: string; indice: number }) {
+  const gradiente = GRADIENTES_MATERIAL[indice % GRADIENTES_MATERIAL.length];
+  return (
+    <div
+      role="img"
+      aria-label={nombre}
+      style={{
+        width: '100%',
+        aspectRatio: '16 / 10',
+        background: gradiente,
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
+        color: 'white',
+        fontSize: 48,
+        fontWeight: 700,
+        textShadow: '0 2px 12px rgba(0,0,0,0.25)',
+      }}
+    >
+      <span aria-hidden>🧰</span>
+    </div>
   );
 }

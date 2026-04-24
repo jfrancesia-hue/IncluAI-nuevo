@@ -323,9 +323,18 @@ async function enriquecerGuia(
     Promise.all(
       guia.materiales.map(async (m) => ({
         ...m,
-        imagenReferencia: m.imagenReferencia
-          ? await enriquecerImagen(m.imagenReferencia)
-          : undefined,
+        // Si Claude no generó imagenReferencia (schema la tiene como
+        // optional), fabricamos una ref sintética usando el nombre del
+        // material como query de Pexels. Así ningún material queda sin
+        // imagen en la tarjeta.
+        imagenReferencia: await enriquecerImagen(
+          m.imagenReferencia ?? {
+            tipo: 'pexels',
+            query: m.nombre,
+            alt: m.nombre,
+            orientacion: 'horizontal',
+          }
+        ),
       }))
     ),
   ]);
