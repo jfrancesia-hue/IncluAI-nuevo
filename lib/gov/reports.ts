@@ -87,7 +87,7 @@ Período: ${b.period?.period_from ?? '-'} a ${b.period?.period_to ?? '-'}
 
 ---
 Generado automáticamente por IncluIA. Datos agregados — no contiene PII individual.
-Fuente: Nativos Consultora Digital (CUIT XX-XXXXXXXX-X).
+Fuente: Nativos Consultora Digital.
 `
 }
 

@@ -621,7 +621,7 @@ function Footer() {
           </div>
           <p className="mt-4 text-[11px] text-white/75">
             IncluIA es un producto de <strong>Nativos Consultora Digital</strong>{' '}
-            · CUIT 30-XXXXXXXX-X · Catamarca, Argentina
+            · Catamarca, Argentina
           </p>
         </div>
       </div>
