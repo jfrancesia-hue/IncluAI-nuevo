@@ -3,6 +3,7 @@ import { HeroGuia } from './HeroGuia';
 import { VistaRapida } from './VistaRapida';
 import { SeccionConceptosClave } from './SeccionConceptosClave';
 import { SeccionEstrategias } from './SeccionEstrategias';
+import { SeccionPlanificacion } from './SeccionPlanificacion';
 import { SeccionVideos } from './SeccionVideos';
 import { SeccionMateriales } from './SeccionMateriales';
 import { GrillaEvaluacion } from './GrillaEvaluacion';
@@ -54,6 +55,8 @@ export function GuiaLayout({ guia, metadata, userPlan = 'free' }: Props) {
         <SeccionConceptosClave conceptos={guia.conceptosClave} />
 
         <SeccionEstrategias estrategias={guia.estrategias} />
+
+        {guia.planificacion && <SeccionPlanificacion data={guia.planificacion} />}
 
         <SeccionVideos videos={videos} />
 

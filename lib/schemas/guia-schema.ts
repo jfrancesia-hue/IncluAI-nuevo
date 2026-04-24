@@ -153,6 +153,44 @@ export const ErrorComunSchema = z.object({
 });
 
 // ─────────────────────────────────────────────────────────
+// PLANIFICACIÓN PASO A PASO (contextualizada por módulo)
+// Docentes: planificación de la clase (Inicio / Desarrollo / Cierre).
+// Profesionales: planificación de la consulta (Acogida / Evaluación / Devolución).
+// Familias: planificación para la casa (Antes / Durante / Después).
+// ─────────────────────────────────────────────────────────
+
+export const MomentoPlanificacionSchema = z.object({
+  nombre: boundedString(80).describe(
+    'Etapa del proceso. Docentes: Inicio/Desarrollo/Cierre. Profesionales: Acogida/Evaluación/Devolución. Familias: Antes/Durante/Después.'
+  ),
+  duracion: boundedString(40).describe(
+    "Tiempo aproximado. Ej: '10 min', '2-3 min', 'rutina diaria'"
+  ),
+  pasos: z
+    .array(boundedString(260))
+    .min(2)
+    .max(6)
+    .describe(
+      'Acciones concretas en orden, en imperativo argentino: "Mostrá el pictograma", "Preguntale a Juan…".'
+    ),
+  ajusteInclusivo: boundedString(280)
+    .optional()
+    .describe(
+      'Adaptación específica para la/s discapacidad/es en este momento puntual. Omitir si no aplica.'
+    ),
+});
+
+export const PlanificacionSchema = z.object({
+  titulo: boundedString(120).describe(
+    'Docentes: "Planificación de la clase". Profesionales: "Planificación de la consulta". Familias: "Qué hacer en casa, paso a paso".'
+  ),
+  duracionTotal: boundedString(60)
+    .optional()
+    .describe("Ej: '40 min', '1 sesión de 45 min', 'rutina semanal'"),
+  momentos: z.array(MomentoPlanificacionSchema).min(3).max(5),
+});
+
+// ─────────────────────────────────────────────────────────
 // GUÍA COMPLETA (RESPUESTA DEL AGENTE)
 // ─────────────────────────────────────────────────────────
 
@@ -185,6 +223,10 @@ export const GuiaPedagogicaSchema = z.object({
   // 7. Errores a evitar
   erroresComunes: z.array(ErrorComunSchema).min(2).max(4),
 
+  // 8. Planificación paso a paso (opcional para retrocompat con guías pre-v2.2;
+  //    las guías nuevas siempre la traen — el prompt lo exige).
+  planificacion: PlanificacionSchema.optional(),
+
   // Fuentes normativas citadas (para legitimidad)
   fuentesNormativas: z.array(z.string()).optional(),
 });
@@ -199,3 +241,5 @@ export type CriterioEvaluacion = z.infer<typeof CriterioEvaluacionSchema>;
 export type TipComunicacion = z.infer<typeof TipComunicacionSchema>;
 export type ErrorComun = z.infer<typeof ErrorComunSchema>;
 export type VistaRapida = z.infer<typeof VistaRapidaSchema>;
+export type Planificacion = z.infer<typeof PlanificacionSchema>;
+export type MomentoPlanificacion = z.infer<typeof MomentoPlanificacionSchema>;

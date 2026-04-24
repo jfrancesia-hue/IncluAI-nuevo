@@ -503,6 +503,20 @@ ${MULTIMEDIA_RULES}
 Invocá la herramienta \`guardar_guia_pedagogica\` con la guía completa.
 El schema de la herramienta define los campos exactos esperados.
 
+## SECCIÓN PLANIFICACIÓN (OBLIGATORIA)
+
+Incluí el campo \`planificacion\` con la planificación temporal concreta de la clase. Tres momentos mínimo, máximo cinco:
+
+- **Inicio / Anticipación** (5-10 min): agenda visual, rutina de entrada, anticipación de lo que viene. Indispensable para alumnos con TEA, TDAH, discapacidad intelectual.
+- **Desarrollo** (20-30 min): la actividad central. Podés desglosarla en 2 momentos si es compleja (ej: "Exploración manipulativa" + "Producción").
+- **Cierre / Evaluación formativa** (5-10 min): qué hicieron, qué aprendieron, cómo se sintieron. Registro rápido del docente.
+
+Para cada momento:
+- \`nombre\`: etiqueta clara ("Inicio con agenda visual", "Desarrollo manipulativo").
+- \`duracion\`: tiempo estimado en minutos.
+- \`pasos\`: 3-5 acciones concretas en imperativo argentino ("Mostrá la agenda visual con los 4 pasos", "Entregá las tiras magnéticas uno por uno").
+- \`ajusteInclusivo\`: adaptación puntual para la/s discapacidad/es del alumno en ESE momento (ej: "Para Juan con TEA: señalar cada paso de la agenda antes de avanzar"). Omitir solo si no aplica.
+
 ## REGLAS DE CONTENIDO
 
 1. Priorizá siempre lo concreto sobre lo teórico.
@@ -574,6 +588,22 @@ El schema fue diseñado pensando en aula, pero aplica también para familias:
 - erroresComunes: mitos, consejos bienintencionados contraproducentes.
 - fuentesNormativas: Ley 24.901, Ley 22.431, Ley 26.378 cuando aplique.
 
+## SECCIÓN PLANIFICACIÓN (OBLIGATORIA)
+
+Incluí el campo \`planificacion\` con el "paso a paso" para implementar la rutina en casa. El titulo sugerido: "Qué hacer en casa, paso a paso". Tres momentos mínimo, máximo cinco:
+
+- **Antes / Preparación del entorno**: cómo preparar el espacio, los objetos, avisar a otros hijos, bajar las luces, cualquier preparativo. Duración corta.
+- **Durante / La rutina**: qué hacer momento a momento con tu hijo/a. El cuerpo de la actividad.
+- **Después / Cierre y registro mental**: cómo terminar, qué observar en los próximos días, cuándo volver a hacerlo.
+
+Para cada momento:
+- \`nombre\`: etiqueta práctica ("Antes de la cena: bajar estímulos", "Durante el baño: rutina visual").
+- \`duracion\`: tiempo realista ("5 min", "20 min", "todo el día con recordatorios").
+- \`pasos\`: 3-5 acciones CONCRETAS, simples, en segunda persona familiar ("Poné la lámpara de noche antes de entrar al cuarto", "Hablá despacio, sin gritar aunque esté desregulado").
+- \`ajusteInclusivo\`: adaptación puntual para la condición del hijo/a en ese momento.
+
+Regla clave: los pasos tienen que poder ejecutarlos una madre/padre agotada, sin recursos extra, en 1 sola noche. Nada de "comprar material X" o "armar ruleta visual" — eso va en la sección materiales, no acá.
+
 ## REGLAS DE CONTENIDO
 
 1. El tono es cálido, empático, como colega-amiga que pasó por lo mismo. NUNCA jerga clínica.
@@ -642,6 +672,22 @@ El schema de la herramienta define los campos exactos esperados.
 - tipsComunicacion: qué comunicar a la familia después, qué registrar en historia clínica.
 - erroresComunes: errores habituales de abordaje con esta población.
 - fuentesNormativas: Ley 24.901, Ley 26.378, guías ministeriales aplicables.
+
+## SECCIÓN PLANIFICACIÓN (OBLIGATORIA)
+
+Incluí el campo \`planificacion\` con el paso a paso de la sesión/consulta. Titulo sugerido: "Planificación de la consulta". Tres momentos mínimo, máximo cinco:
+
+- **Acogida y anticipación** (3-5 min): recibir al paciente, presentar el entorno, anticipar la sesión con apoyo visual si aplica.
+- **Evaluación / Intervención** (cuerpo de la sesión, 20-40 min): los procedimientos adaptados. Podés desglosarla en 2 momentos si la sesión incluye evaluación + intervención.
+- **Devolución y registro** (5-10 min): cierre con el paciente, comunicación a la familia/acompañante, registro en historia clínica.
+
+Para cada momento:
+- \`nombre\`: etiqueta clínica ("Acogida con pictogramas", "Evaluación adaptada de lenguaje", "Devolución a la familia").
+- \`duracion\`: tiempo en minutos.
+- \`pasos\`: 3-5 acciones concretas en imperativo profesional ("Presentale los 4 pictogramas de la sesión antes de comenzar", "Registrá las respuestas en planilla adaptada, no exijas verbalización").
+- \`ajusteInclusivo\`: adaptación concreta según la discapacidad del paciente en ESE paso.
+
+Pensá el paso a paso desde el punto de vista del profesional en la consulta — qué hace, qué dice, qué registra.
 
 ## REGLAS DE CONTENIDO
 
