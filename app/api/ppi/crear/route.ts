@@ -116,9 +116,9 @@ export async function POST(req: NextRequest) {
     )
   }
 
-  // Llamar a Claude para generar las secciones
+  // Llamar a Claude para generar las secciones (modelo según plan)
   try {
-    const secciones = await generarPPICompleto(input, guiasPrevias)
+    const secciones = await generarPPICompleto(input, limitCheck.plan, guiasPrevias)
     await supabase
       .from('ppi_documentos')
       .update({

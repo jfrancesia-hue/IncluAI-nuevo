@@ -71,7 +71,7 @@ export async function guardApi(
         response: NextResponse.json(
           {
             error: plan.planVencido
-              ? 'Tu plan Pro venció. Renovalo para seguir generando guías.'
+              ? 'Tu plan venció. Renovalo para seguir generando guías.'
               : 'Alcanzaste tu límite mensual de guías.',
             plan,
           },

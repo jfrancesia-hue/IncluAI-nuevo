@@ -1,6 +1,6 @@
 import { NextResponse, type NextRequest } from 'next/server';
 import { z } from 'zod';
-import { anthropic, CLAUDE_MODEL } from '@/lib/anthropic';
+import { anthropic, getModelForPlan } from '@/lib/anthropic';
 import { guardApi } from '@/lib/api-guard';
 import { isGuiaIncompleta } from '@/lib/guide-status';
 import { enrichGuideToStructured } from '@/lib/structure-guide';
@@ -49,7 +49,7 @@ export async function POST(request: NextRequest) {
   // checkPlan:false — no descontamos cuota, solo regeneramos lo ya pagado.
   const guard = await guardApi({ checkPlan: false });
   if (!guard.ok) return guard.response;
-  const { user, supabase } = guard;
+  const { user, supabase, plan } = guard;
 
   const payload = await request.json().catch(() => null);
   const parsed = bodySchema.safeParse(payload);
@@ -101,7 +101,7 @@ export async function POST(request: NextRequest) {
 
       try {
         const claude = anthropic.messages.stream({
-          model: CLAUDE_MODEL,
+          model: getModelForPlan(plan.plan),
           max_tokens: 4000,
           system: [
             {

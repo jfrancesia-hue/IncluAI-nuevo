@@ -27,7 +27,7 @@ interface Props {
   guia: GuiaPedagogica;
   metadata: Metadata;
   /** Plan del usuario — determina si puede usar "Descargar PDF". */
-  userPlan?: 'free' | 'pro' | 'institucional';
+  userPlan?: 'free' | 'basico' | 'profesional' | 'premium';
 }
 
 export function GuiaLayout({ guia, metadata, userPlan = 'free' }: Props) {

@@ -1,6 +1,7 @@
 import 'server-only'
-import { anthropic, CLAUDE_MODEL } from '@/lib/anthropic'
+import { anthropic, getModelForPlan } from '@/lib/anthropic'
 import { PPI_SYSTEM_PROMPT, buildPPIUserPrompt, buildPPIRegenerarPrompt } from '@/lib/prompts-ppi'
+import type { PlanUsuario } from '@/lib/types'
 import type {
   PPIFormValues,
   PPISecciones,
@@ -28,10 +29,11 @@ function extractJson(raw: string): string {
 
 export async function generarPPICompleto(
   input: PPIFormValues,
+  plan: PlanUsuario,
   guiasPrevias: Array<{ materia?: string; contenido: string }> = []
 ): Promise<PPISecciones> {
   const response = await anthropic.messages.create({
-    model: CLAUDE_MODEL,
+    model: getModelForPlan(plan),
     max_tokens: MAX_TOKENS_FULL,
     system: PPI_SYSTEM_PROMPT,
     messages: [{ role: 'user', content: buildPPIUserPrompt(input, guiasPrevias) }],
@@ -48,11 +50,12 @@ export async function generarPPICompleto(
 
 export async function regenerarSeccion(
   input: PPIFormValues,
+  plan: PlanUsuario,
   seccion: PPISeccionKey,
   instruccion?: string
 ): Promise<PPISeccion> {
   const response = await anthropic.messages.create({
-    model: CLAUDE_MODEL,
+    model: getModelForPlan(plan),
     max_tokens: MAX_TOKENS_SECTION,
     system: PPI_SYSTEM_PROMPT,
     messages: [

@@ -27,7 +27,7 @@ export async function checkPPILimit(): Promise<PPILimitCheck> {
       plan: 'free',
       ppis_usados: 0,
       ppis_restantes: 0,
-      limite: LIMITES_PLAN.free.ppis_por_ciclo,
+      limite: LIMITES_PLAN.free.ppis_ciclo,
       ciclo_lectivo: ciclo,
       razon: 'sin_sesion',
     }
@@ -45,7 +45,7 @@ export async function checkPPILimit(): Promise<PPILimitCheck> {
       plan: 'free',
       ppis_usados: 0,
       ppis_restantes: 0,
-      limite: LIMITES_PLAN.free.ppis_por_ciclo,
+      limite: LIMITES_PLAN.free.ppis_ciclo,
       ciclo_lectivo: ciclo,
       razon: 'sin_perfil',
     }
@@ -53,8 +53,9 @@ export async function checkPPILimit(): Promise<PPILimitCheck> {
 
   let plan = perfil.plan
   let planVencido = false
+  // Si el usuario tiene un plan pago vencido, lo degradamos a free.
   if (
-    (plan === 'pro' || plan === 'institucional') &&
+    plan !== 'free' &&
     perfil.plan_activo_hasta &&
     new Date(perfil.plan_activo_hasta) < new Date()
   ) {
@@ -68,7 +69,7 @@ export async function checkPPILimit(): Promise<PPILimitCheck> {
   })
   const ppis_usados = typeof countRaw === 'number' ? countRaw : 0
 
-  const limite = LIMITES_PLAN[plan].ppis_por_ciclo
+  const limite = LIMITES_PLAN[plan].ppis_ciclo
   const ppis_restantes = Math.max(0, limite - ppis_usados)
   const permitido = ppis_restantes > 0
 

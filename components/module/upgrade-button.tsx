@@ -4,7 +4,7 @@ import { useState, useTransition } from 'react';
 import { Button } from '@/components/ui/button';
 
 type Props = {
-  plan: 'pro' | 'institucional';
+  plan: 'basico' | 'profesional' | 'premium';
   children?: React.ReactNode;
 };
 

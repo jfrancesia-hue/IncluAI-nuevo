@@ -1,5 +1,6 @@
 import { createClient } from '@/lib/supabase/server'
 import { getBusinessMetrics } from '@/lib/admin/metricas'
+import { LIMITES_PLAN } from '@/lib/types'
 
 export const dynamic = 'force-dynamic'
 
@@ -30,7 +31,11 @@ export default async function AdminMetricasPage() {
         <Kpi label="MRR" value={fmtARS(m.mrr_ars)} hint={`≈ USD ${fmtNum(m.mrr_usd_aprox)}`} />
         <Kpi label="ARR" value={fmtARS(m.arr_ars)} />
         <Kpi label="Usuarios totales" value={fmtNum(m.totalUsers)} />
-        <Kpi label="Pro / Institucional" value={`${m.usersByPlan.pro} / ${m.usersByPlan.institucional}`} />
+        <Kpi
+          label="Pagos (B / P / Pr)"
+          value={`${m.usersByPlan.basico} / ${m.usersByPlan.profesional} / ${m.usersByPlan.premium}`}
+          hint="Básico / Profesional / Premium"
+        />
         <Kpi label="Consultas totales" value={fmtNum(m.total_consultas)} />
         <Kpi label="Consultas últimos 30d" value={fmtNum(m.consultas_30d)} />
         <Kpi label="Consultas últimos 7d" value={fmtNum(m.consultas_7d)} />
@@ -76,14 +81,19 @@ export default async function AdminMetricasPage() {
               <td>—</td>
             </tr>
             <tr>
-              <td>Pro</td>
-              <td>{m.usersByPlan.pro}</td>
-              <td>{fmtARS(m.usersByPlan.pro * 9900)}</td>
+              <td>Básico</td>
+              <td>{m.usersByPlan.basico}</td>
+              <td>{fmtARS(m.usersByPlan.basico * LIMITES_PLAN.basico.precio_ars)}</td>
             </tr>
             <tr>
-              <td>Institucional</td>
-              <td>{m.usersByPlan.institucional}</td>
-              <td>{fmtARS(m.usersByPlan.institucional * 29900)}</td>
+              <td>Profesional</td>
+              <td>{m.usersByPlan.profesional}</td>
+              <td>{fmtARS(m.usersByPlan.profesional * LIMITES_PLAN.profesional.precio_ars)}</td>
+            </tr>
+            <tr>
+              <td>Premium</td>
+              <td>{m.usersByPlan.premium}</td>
+              <td>{fmtARS(m.usersByPlan.premium * LIMITES_PLAN.premium.precio_ars)}</td>
             </tr>
           </tbody>
         </table>

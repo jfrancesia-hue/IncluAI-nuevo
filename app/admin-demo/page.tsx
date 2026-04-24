@@ -1,8 +1,13 @@
+import { LIMITES_PLAN } from '@/lib/types'
+
 const mock = {
   totalUsers: 1842,
   usersByTipo: { docente: 1284, familia: 402, profesional: 156 },
-  usersByPlan: { free: 1520, pro: 298, institucional: 24 },
-  mrr_ars: 298 * 9900 + 24 * 29900,
+  usersByPlan: { free: 1420, basico: 220, profesional: 180, premium: 22 },
+  mrr_ars:
+    220 * LIMITES_PLAN.basico.precio_ars +
+    180 * LIMITES_PLAN.profesional.precio_ars +
+    22 * LIMITES_PLAN.premium.precio_ars,
   consultas_totales: 24180,
   consultas_30d: 6820,
   consultas_7d: 1840,
@@ -10,7 +15,7 @@ const mock = {
   nps_aprox: 62,
   activation_rate: 74,
   avg_consultas_por_user: 13.1,
-  ltv_ars: 9900 * 12 * 0.6,
+  ltv_ars: LIMITES_PLAN.profesional.precio_ars * 12 * 0.6,
 }
 
 function fmtARS(v: number) {
@@ -41,8 +46,9 @@ export default function AdminDemoPage() {
         <Kpi label="ARR" value={fmtARS(m.mrr_ars * 12)} />
         <Kpi label="Usuarios totales" value={fmtNum(m.totalUsers)} />
         <Kpi
-          label="Pro / Institucional"
-          value={`${m.usersByPlan.pro} / ${m.usersByPlan.institucional}`}
+          label="Pagos (B / P / Pr)"
+          value={`${m.usersByPlan.basico} / ${m.usersByPlan.profesional} / ${m.usersByPlan.premium}`}
+          hint="Básico / Profesional / Premium"
         />
         <Kpi label="Consultas totales" value={fmtNum(m.consultas_totales)} />
         <Kpi label="Consultas últimos 30d" value={fmtNum(m.consultas_30d)} />
@@ -89,14 +95,19 @@ export default function AdminDemoPage() {
               <td>—</td>
             </tr>
             <tr>
-              <td>Pro</td>
-              <td>{fmtNum(m.usersByPlan.pro)}</td>
-              <td>{fmtARS(m.usersByPlan.pro * 9900)}</td>
+              <td>Básico</td>
+              <td>{fmtNum(m.usersByPlan.basico)}</td>
+              <td>{fmtARS(m.usersByPlan.basico * LIMITES_PLAN.basico.precio_ars)}</td>
             </tr>
             <tr>
-              <td>Institucional</td>
-              <td>{fmtNum(m.usersByPlan.institucional)}</td>
-              <td>{fmtARS(m.usersByPlan.institucional * 29900)}</td>
+              <td>Profesional</td>
+              <td>{fmtNum(m.usersByPlan.profesional)}</td>
+              <td>{fmtARS(m.usersByPlan.profesional * LIMITES_PLAN.profesional.precio_ars)}</td>
+            </tr>
+            <tr>
+              <td>Premium</td>
+              <td>{fmtNum(m.usersByPlan.premium)}</td>
+              <td>{fmtARS(m.usersByPlan.premium * LIMITES_PLAN.premium.precio_ars)}</td>
             </tr>
           </tbody>
         </table>

@@ -2,7 +2,14 @@ import Link from 'next/link';
 import Image from 'next/image';
 import type { ComponentType, SVGProps } from 'react';
 import { getPerfil } from '@/lib/auth';
-import { LIMITES_PLAN } from '@/lib/types';
+import { LIMITES_PLAN, type PlanUsuario } from '@/lib/types';
+
+function nombrePlan(plan: PlanUsuario): string {
+  if (plan === 'free') return 'Gratuito';
+  if (plan === 'basico') return 'Básico';
+  if (plan === 'profesional') return 'Profesional';
+  return 'Premium';
+}
 import { createClient } from '@/lib/supabase/server';
 import { DISCAPACIDADES } from '@/data/discapacidades';
 import { ModuleSelector } from '@/components/module/module-selector';
@@ -58,7 +65,7 @@ export default async function InicioPage() {
   const perfil = await getPerfil();
   if (!perfil) return null;
 
-  const limite = LIMITES_PLAN[perfil.plan].guias_por_mes;
+  const limite = LIMITES_PLAN[perfil.plan].guias_mes;
   const restantes = Math.max(0, limite - perfil.consultas_mes);
   const pct = limite > 0 ? Math.min(100, (perfil.consultas_mes / limite) * 100) : 0;
 
@@ -206,14 +213,8 @@ export default async function InicioPage() {
           iconBg="bg-[#dbeafe]"
           iconStroke="#2E86C1"
           label="Tu plan"
-          value={
-            perfil.plan === 'free'
-              ? 'Gratuito'
-              : perfil.plan === 'pro'
-                ? 'Pro'
-                : 'Institucional'
-          }
-          caption={perfil.plan === 'pro' ? 'activo' : ''}
+          value={nombrePlan(perfil.plan)}
+          caption={perfil.plan !== 'free' ? 'activo' : ''}
         >
           {perfil.plan === 'free' && (
             <Link

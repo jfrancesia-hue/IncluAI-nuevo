@@ -6,14 +6,16 @@ import {
   buildExternalReference,
   PLAN_PRECIOS_ARS,
 } from '@/lib/mercadopago';
+import type { PlanPago } from '@/lib/types';
 
 const bodySchema = z.object({
-  plan: z.enum(['pro', 'institucional']).default('pro'),
+  plan: z.enum(['basico', 'profesional', 'premium']).default('basico'),
 });
 
-const ITEM_TITULOS: Record<'pro' | 'institucional', string> = {
-  pro: 'IncluAI Plan Profesional',
-  institucional: 'IncluAI Plan Institucional',
+const ITEM_TITULOS: Record<PlanPago, string> = {
+  basico: 'IncluAI Plan Básico',
+  profesional: 'IncluAI Plan Profesional',
+  premium: 'IncluAI Plan Premium',
 };
 
 export async function POST(request: NextRequest) {

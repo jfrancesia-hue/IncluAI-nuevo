@@ -3,6 +3,7 @@ import { createClient } from '@/lib/supabase/server'
 import { checkRateLimit } from '@/lib/rate-limit'
 import { regenerarSeccion } from '@/lib/ppi/generar'
 import { ppiRegenerarSeccionSchema } from '@/lib/types/ppi'
+import type { PlanUsuario } from '@/lib/types'
 import type {
   PPIDocumento,
   PPISecciones,
@@ -58,6 +59,14 @@ export async function POST(
     return NextResponse.json({ error: 'PPI no encontrado' }, { status: 404 })
   }
 
+  // Resolver plan del usuario para elegir el modelo (Sonnet vs Opus).
+  const { data: perfil } = await supabase
+    .from('perfiles')
+    .select('plan')
+    .eq('id', user.id)
+    .single<{ plan: PlanUsuario }>()
+  const plan: PlanUsuario = perfil?.plan ?? 'free'
+
   // Reconstruir PPIFormValues desde la fila
   const formValues: PPIFormValues = {
     alumno_identificador: ppi.alumno_identificador,
@@ -82,6 +91,7 @@ export async function POST(
   try {
     const nuevaSeccion = await regenerarSeccion(
       formValues,
+      plan,
       parsed.data.seccion,
       parsed.data.instruccion_adicional
     )

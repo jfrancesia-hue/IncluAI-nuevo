@@ -9,7 +9,7 @@
 // - El frontend hace fallback al renderer markdown legado.
 // ============================================
 import 'server-only';
-import { anthropic, CLAUDE_MODEL } from '@/lib/anthropic';
+import { anthropic, MODELO_OPERATIVO } from '@/lib/anthropic';
 import {
   structuredGuideSchema,
   STRUCTURED_GUIDE_TOOL_SCHEMA,
@@ -84,7 +84,7 @@ export async function enrichGuideToStructured(
 ): Promise<StructuredGuide | null> {
   try {
     const response = await anthropic.messages.create({
-      model: CLAUDE_MODEL,
+      model: MODELO_OPERATIVO,
       max_tokens: 4000,
       system: SYSTEM_ENRICHER,
       tools: [

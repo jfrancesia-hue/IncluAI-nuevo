@@ -32,7 +32,7 @@ export const checkPlanLimits = cache(async (): Promise<PlanCheck> => {
       plan: 'free',
       consultasMes: 0,
       consultasRestantes: 0,
-      limite: LIMITES_PLAN.free.guias_por_mes,
+      limite: LIMITES_PLAN.free.guias_mes,
       planVencido: false,
       razon: 'sin_sesion',
     };
@@ -55,7 +55,7 @@ export const checkPlanLimits = cache(async (): Promise<PlanCheck> => {
       plan: 'free',
       consultasMes: 0,
       consultasRestantes: 0,
-      limite: LIMITES_PLAN.free.guias_por_mes,
+      limite: LIMITES_PLAN.free.guias_mes,
       planVencido: false,
       razon: 'sin_perfil',
     };
@@ -63,8 +63,9 @@ export const checkPlanLimits = cache(async (): Promise<PlanCheck> => {
 
   let plan = perfil.plan;
   let planVencido = false;
+  // Si el usuario tiene un plan pago vencido, lo degradamos a free.
   if (
-    (plan === 'pro' || plan === 'institucional') &&
+    plan !== 'free' &&
     perfil.plan_activo_hasta &&
     new Date(perfil.plan_activo_hasta) < new Date()
   ) {
@@ -74,7 +75,7 @@ export const checkPlanLimits = cache(async (): Promise<PlanCheck> => {
 
   const mesCorrecto = perfil.mes_actual === mesActualISO();
   const consultasMes = mesCorrecto ? perfil.consultas_mes : 0;
-  const limite = LIMITES_PLAN[plan].guias_por_mes;
+  const limite = LIMITES_PLAN[plan].guias_mes;
   const consultasRestantes = Math.max(0, limite - consultasMes);
   const permitido = consultasRestantes > 0;
 

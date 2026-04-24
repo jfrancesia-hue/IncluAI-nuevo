@@ -11,8 +11,16 @@ const TIPO_META: Record<'docente' | 'familia' | 'profesional', { icon: string; l
 
 export function Navbar({ perfil }: { perfil: Perfil }) {
   const iniciales = `${perfil.nombre[0] ?? ''}${perfil.apellido[0] ?? ''}`.toUpperCase();
-  const esPro = perfil.plan === 'pro' || perfil.plan === 'institucional';
+  const esPago = perfil.plan !== 'free';
   const tipo = TIPO_META[perfil.tipo_usuario] ?? TIPO_META.docente;
+  const nombrePlan =
+    perfil.plan === 'free'
+      ? 'Gratuito'
+      : perfil.plan === 'basico'
+        ? 'Básico ✓'
+        : perfil.plan === 'profesional'
+          ? 'Profesional ✓'
+          : 'Premium ✓';
 
   return (
     <header className="sticky top-0 z-30 border-b border-border bg-card/90 backdrop-blur">
@@ -35,12 +43,12 @@ export function Navbar({ perfil }: { perfil: Perfil }) {
           <span
             className={
               'hidden rounded-full px-2.5 py-0.5 text-xs font-medium sm:inline-flex ' +
-              (esPro
+              (esPago
                 ? 'bg-accent-light text-accent'
                 : 'bg-primary-bg text-primary')
             }
           >
-            {esPro ? 'Pro ✓' : 'Gratuito'}
+            {nombrePlan}
           </span>
           <Link
             href="/perfil"

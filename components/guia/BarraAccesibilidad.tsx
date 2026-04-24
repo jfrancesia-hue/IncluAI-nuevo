@@ -5,10 +5,10 @@ import { track } from '@vercel/analytics';
 import { useAccesibilidad } from '@/hooks/guia/useAccesibilidad';
 import { useImprimir } from '@/hooks/guia/useImprimir';
 
-type UserPlan = 'free' | 'pro' | 'institucional';
+type UserPlan = 'free' | 'basico' | 'profesional' | 'premium';
 
 interface Props {
-  /** Si es 'free', el boton PDF redirige a /planes. Pro/institucional imprime. */
+  /** Si es 'free', el botón PDF redirige a /planes. Planes pagos imprimen. */
   userPlan?: UserPlan;
 }
 
@@ -17,7 +17,7 @@ export function BarraAccesibilidad({ userPlan = 'free' }: Props) {
   const { tamano, setTamano, altoContraste, setAltoContraste } =
     useAccesibilidad();
   const imprimir = useImprimir();
-  const pdfHabilitado = userPlan === 'pro' || userPlan === 'institucional';
+  const pdfHabilitado = userPlan !== 'free';
 
   function onClickPdf() {
     if (pdfHabilitado) {
@@ -82,12 +82,12 @@ export function BarraAccesibilidad({ userPlan = 'free' }: Props) {
         aria-label={
           pdfHabilitado
             ? 'Descargar la guía como PDF'
-            : 'Descargar PDF — disponible en plan Pro'
+            : 'Descargar PDF — disponible en planes pagos'
         }
         title={
           pdfHabilitado
             ? 'En el diálogo, elegí "Guardar como PDF" en destino.'
-            : 'Funcionalidad del plan Pro — click para ver planes'
+            : 'Funcionalidad de planes pagos — click para ver planes'
         }
         style={{
           minWidth: 44,

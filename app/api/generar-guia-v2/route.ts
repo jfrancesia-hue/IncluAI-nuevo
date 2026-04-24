@@ -1,6 +1,6 @@
 import { NextResponse, type NextRequest } from 'next/server';
 import { z } from 'zod';
-import { anthropic, CLAUDE_MODEL_V2 } from '@/lib/anthropic';
+import { anthropic, getModelForPlan } from '@/lib/anthropic';
 import { guardApi } from '@/lib/api-guard';
 import { logError } from '@/lib/errors';
 import { trackServerEvent } from '@/lib/analytics';
@@ -75,7 +75,7 @@ export async function POST(request: NextRequest) {
     // facture a 0.10x (read) en vez de 1.0x (write). TTL 5 min, se renueva
     // en cada hit. Ahorro esperado: 50-70% del input cost de Opus.
     const response = await anthropic.messages.create({
-      model: CLAUDE_MODEL_V2,
+      model: getModelForPlan(plan.plan),
       max_tokens: 8000,
       system: [
         {

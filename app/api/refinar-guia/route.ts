@@ -1,6 +1,6 @@
 import { NextResponse, type NextRequest } from 'next/server';
 import { z } from 'zod';
-import { anthropic, CLAUDE_MODEL } from '@/lib/anthropic';
+import { anthropic, getModelForPlan } from '@/lib/anthropic';
 import { guardApi } from '@/lib/api-guard';
 import { LIMITES_PLAN, type ModuloIncluIA } from '@/lib/types';
 import { enrichGuideToStructured } from '@/lib/structure-guide';
@@ -80,7 +80,7 @@ export async function POST(request: NextRequest) {
       try {
         // Reserva atómica de cupo ANTES de gastar tokens — mismo patrón
         // que en generar-guia-stream. Evita que un refinar se pase del límite.
-        const limite = LIMITES_PLAN[plan.plan].guias_por_mes;
+        const limite = LIMITES_PLAN[plan.plan].guias_mes;
         const reserva = await supabase.rpc('reservar_consulta', {
           p_user_id: user.id,
           p_limite: limite,
@@ -99,7 +99,7 @@ export async function POST(request: NextRequest) {
         reservado = true;
 
         const claude = anthropic.messages.stream({
-          model: CLAUDE_MODEL,
+          model: getModelForPlan(plan.plan),
           max_tokens: 4000,
           system:
             'Sos un editor pedagógico que reescribe guías inclusivas según la instrucción dada. Mantenés el español rioplatense argentino, el tono y la estructura de secciones con ##.',

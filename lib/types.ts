@@ -66,7 +66,9 @@ export type FormularioConsulta = {
 
 export type RolUsuario = 'docente' | 'admin'
 
-export type PlanUsuario = 'free' | 'pro' | 'institucional'
+export type PlanUsuario = 'free' | 'basico' | 'profesional' | 'premium'
+
+export type PlanPago = Exclude<PlanUsuario, 'free'>
 
 export type Perfil = {
   id: string
@@ -118,35 +120,54 @@ export type GuiaGuardada = {
   consulta?: Consulta // Join opcional
 }
 
-// --- Límites por plan ---
+// --- Límites por plan (Planes Híbridos Sonnet/Opus) ---
+// Free/Básico/Profesional usan Sonnet 4.6 (más barato, misma calidad de base).
+// Premium usa Opus 4.7 (máxima calidad estructural y adherencia al schema).
 
 export const LIMITES_PLAN: Record<PlanUsuario, {
-  guias_por_mes: number
-  ppis_por_ciclo: number
+  guias_mes: number
+  ppis_ciclo: number
+  modelo: 'claude-sonnet-4-6' | 'claude-opus-4-7'
+  guia_persistente: boolean
   historial: boolean
   exportar_pdf: boolean
   precio_ars: number
 }> = {
   free: {
-    guias_por_mes: 2,
-    ppis_por_ciclo: 1,
-    historial: false,
+    guias_mes: 1,
+    ppis_ciclo: 0,
+    modelo: 'claude-sonnet-4-6',
+    guia_persistente: true,
+    historial: true,
     exportar_pdf: false,
     precio_ars: 0,
   },
-  pro: {
-    guias_por_mes: 40,
-    ppis_por_ciclo: 5,
+  basico: {
+    guias_mes: 20,
+    ppis_ciclo: 2,
+    modelo: 'claude-sonnet-4-6',
+    guia_persistente: true,
     historial: true,
     exportar_pdf: true,
-    precio_ars: 9900,
+    precio_ars: 10_000,
   },
-  institucional: {
-    guias_por_mes: 999,
-    ppis_por_ciclo: 999,
+  profesional: {
+    guias_mes: 40,
+    ppis_ciclo: 3,
+    modelo: 'claude-sonnet-4-6',
+    guia_persistente: true,
     historial: true,
     exportar_pdf: true,
-    precio_ars: 29900,
+    precio_ars: 15_000,
+  },
+  premium: {
+    guias_mes: 10,
+    ppis_ciclo: 5,
+    modelo: 'claude-opus-4-7',
+    guia_persistente: true,
+    historial: true,
+    exportar_pdf: true,
+    precio_ars: 25_000,
   },
 }
 

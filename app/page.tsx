@@ -88,7 +88,7 @@ function Hero() {
             </Link>
           </div>
           <p className="text-xs text-white/70">
-            2 guías gratuitas por mes · Sin tarjeta · 30 segundos para empezar
+            1 guía gratuita por mes · Sin tarjeta · 30 segundos para empezar
           </p>
         </div>
 
@@ -381,71 +381,167 @@ function ExampleOutput() {
 
 function Pricing() {
   return (
-    <section className="bg-[#FBF8F2] px-5 py-20 sm:px-8">
-      <div className="mx-auto max-w-5xl">
+    <section id="pricing" className="bg-[#FBF8F2] px-5 py-20 sm:px-8">
+      <div className="mx-auto max-w-7xl">
         <div className="mx-auto max-w-2xl text-center">
           <h2 className="font-serif text-3xl font-bold text-[#2E86C1] sm:text-4xl">
             Un plan para cada docente
           </h2>
           <p className="mt-4 text-base text-[#4A5968]">
-            Empezá gratis. Mejorá cuando quieras.
+            Empezá gratis. Escalá cuando lo necesites.
           </p>
         </div>
 
-        <div className="mt-12 grid grid-cols-1 gap-5 md:grid-cols-2">
-          <article className="flex flex-col rounded-[20px] border border-[#e2e8f0] bg-white p-7 shadow-[0_2px_12px_rgba(15,34,64,0.05)]">
-            <p className="text-xs font-semibold uppercase tracking-wider text-[#4A5968]">
-              Para empezar
-            </p>
-            <p className="mt-3 font-serif text-5xl font-extrabold text-[#2E86C1]">
-              $0
-            </p>
-            <p className="text-sm text-[#4A5968]">Gratuito, siempre</p>
-            <ul className="mt-6 space-y-2.5 text-sm">
-              <Check>2 guías por mes</Check>
-              <Check>Todos los niveles educativos</Check>
-              <Check>Todas las discapacidades</Check>
-              <Check>Copiar y compartir</Check>
-            </ul>
-            <Link
-              href="/registro"
-              className="mt-7 inline-flex items-center justify-center rounded-[12px] border-2 border-[#2E86C1] bg-white py-3 text-sm font-bold text-[#2E86C1] transition hover:bg-[#2E86C1] hover:text-white"
-            >
-              Empezar gratis
-            </Link>
-          </article>
-
-          <article className="relative flex flex-col rounded-[20px] border-2 border-[#2E86C1] bg-[#2E86C1] p-7 text-white shadow-[0_8px_32px_rgba(15,34,64,0.2)]">
-            <span className="absolute -top-3 right-6 rounded-full bg-[#E67E22] px-3 py-1 text-xs font-bold uppercase tracking-wider text-white">
-              Más elegido
-            </span>
-            <p className="text-xs font-semibold uppercase tracking-wider text-[#D6F0E0]">
-              Para docentes comprometidos
-            </p>
-            <p className="mt-3 font-serif text-5xl font-extrabold">
-              ${LIMITES_PLAN.pro.precio_ars.toLocaleString('es-AR')}
-              <span className="text-lg font-normal text-white/75">/mes</span>
-            </p>
-            <p className="text-sm text-white/75">
-              Menos que un café por día en tus alumnos
-            </p>
-            <ul className="mt-6 space-y-2.5 text-sm">
-              <Check light>40 guías por mes</Check>
-              <Check light>Historial completo</Check>
-              <Check light>Exportar a PDF</Check>
-              <Check light>Guías favoritas</Check>
-              <Check light>Soporte prioritario</Check>
-            </ul>
-            <Link
-              href="/registro"
-              className="mt-7 inline-flex items-center justify-center gap-2 rounded-[12px] bg-[#27AE60] py-3 text-sm font-bold text-white shadow-[0_4px_14px_rgba(22,163,74,0.4)] transition hover:bg-[#27AE60]"
-            >
-              <span aria-hidden>🧩</span> Suscribirme con Mercado Pago
-            </Link>
-          </article>
+        <div className="mt-12 grid grid-cols-1 gap-5 md:grid-cols-2 xl:grid-cols-4">
+          <PricingCard
+            tier="Para empezar"
+            price="$0"
+            period="gratuito"
+            description="Para conocer la herramienta"
+            features={[
+              '1 guía por mes',
+              'Guía guardada para siempre',
+              'Todas las discapacidades',
+              'IA avanzada (estándar)',
+            ]}
+            cta={{ label: 'Empezar gratis', href: '/registro', variant: 'outline' }}
+          />
+          <PricingCard
+            tier="Básico"
+            price={`$${LIMITES_PLAN.basico.precio_ars.toLocaleString('es-AR')}`}
+            period="/mes"
+            description="Para docentes que recién arrancan"
+            features={[
+              '20 guías por mes',
+              '2 PPIs por ciclo',
+              'Historial + PDF',
+              'IA avanzada (estándar)',
+            ]}
+            cta={{ label: 'Suscribirme', href: '/registro', variant: 'outline' }}
+          />
+          <PricingCard
+            tier="Profesional"
+            price={`$${LIMITES_PLAN.profesional.precio_ars.toLocaleString('es-AR')}`}
+            period="/mes"
+            description="El más elegido"
+            highlighted
+            badge="Más elegido"
+            features={[
+              '40 guías por mes',
+              '3 PPIs por ciclo',
+              'Historial + PDF',
+              'Guías favoritas',
+              'Soporte prioritario',
+            ]}
+            cta={{ label: 'Suscribirme', href: '/registro', variant: 'filled' }}
+          />
+          <PricingCard
+            tier="Premium"
+            price={`$${LIMITES_PLAN.premium.precio_ars.toLocaleString('es-AR')}`}
+            period="/mes"
+            description="Máxima potencia de IA"
+            badge="IA Premium"
+            badgeTone="gold"
+            features={[
+              '10 guías de máxima profundidad',
+              '5 PPIs por ciclo',
+              'IA de máxima potencia',
+              'Historial + PDF',
+              'Soporte premium',
+            ]}
+            cta={{ label: 'Suscribirme', href: '/registro', variant: 'outline' }}
+          />
         </div>
       </div>
     </section>
+  );
+}
+
+function PricingCard({
+  tier,
+  price,
+  period,
+  description,
+  features,
+  cta,
+  highlighted = false,
+  badge,
+  badgeTone = 'orange',
+}: {
+  tier: string;
+  price: string;
+  period: string;
+  description: string;
+  features: string[];
+  cta: { label: string; href: string; variant: 'outline' | 'filled' };
+  highlighted?: boolean;
+  badge?: string;
+  badgeTone?: 'orange' | 'gold';
+}) {
+  const isHighlighted = highlighted;
+  return (
+    <article
+      className={
+        isHighlighted
+          ? 'relative flex flex-col rounded-[20px] border-2 border-[#2E86C1] bg-[#2E86C1] p-6 text-white shadow-[0_8px_32px_rgba(15,34,64,0.2)]'
+          : 'relative flex flex-col rounded-[20px] border border-[#e2e8f0] bg-white p-6 shadow-[0_2px_12px_rgba(15,34,64,0.05)]'
+      }
+    >
+      {badge && (
+        <span
+          className={`absolute -top-3 right-6 rounded-full px-3 py-1 text-xs font-bold uppercase tracking-wider text-white ${
+            badgeTone === 'gold' ? 'bg-[#b45309]' : 'bg-[#E67E22]'
+          }`}
+        >
+          {badge}
+        </span>
+      )}
+      <p
+        className={`text-xs font-semibold uppercase tracking-wider ${
+          isHighlighted ? 'text-[#D6F0E0]' : 'text-[#4A5968]'
+        }`}
+      >
+        {tier}
+      </p>
+      <p
+        className={`mt-3 font-serif text-4xl font-extrabold ${
+          isHighlighted ? 'text-white' : 'text-[#2E86C1]'
+        }`}
+      >
+        {price}
+        <span
+          className={`text-base font-normal ${
+            isHighlighted ? 'text-white/75' : 'text-[#4A5968]'
+          }`}
+        >
+          {period}
+        </span>
+      </p>
+      <p
+        className={`text-sm ${isHighlighted ? 'text-white/75' : 'text-[#4A5968]'}`}
+      >
+        {description}
+      </p>
+      <ul className="mt-5 flex flex-1 flex-col gap-2 text-sm">
+        {features.map((f) => (
+          <Check key={f} light={isHighlighted}>
+            {f}
+          </Check>
+        ))}
+      </ul>
+      <Link
+        href={cta.href}
+        className={
+          cta.variant === 'filled'
+            ? 'mt-6 inline-flex items-center justify-center gap-2 rounded-[12px] bg-[#27AE60] py-3 text-sm font-bold text-white shadow-[0_4px_14px_rgba(22,163,74,0.4)] transition hover:bg-[#27AE60]'
+            : isHighlighted
+              ? 'mt-6 inline-flex items-center justify-center rounded-[12px] border-2 border-white bg-transparent py-3 text-sm font-bold text-white transition hover:bg-white/10'
+              : 'mt-6 inline-flex items-center justify-center rounded-[12px] border-2 border-[#2E86C1] bg-white py-3 text-sm font-bold text-[#2E86C1] transition hover:bg-[#2E86C1] hover:text-white'
+        }
+      >
+        {cta.label}
+      </Link>
+    </article>
   );
 }
 
@@ -466,9 +562,7 @@ function Check({
       >
         ✓
       </span>
-      <span className={light ? 'text-white/95' : 'text-[#1F2E3D]'}>
-        {children}
-      </span>
+      <span className={light ? 'text-white/95' : 'text-[#1F2E3D]'}>{children}</span>
     </li>
   );
 }
@@ -509,7 +603,7 @@ function EmotionalClose() {
           Empezar gratis ahora <span aria-hidden>→</span>
         </Link>
         <p className="text-xs text-white/60">
-          Sin tarjeta · 2 guías gratuitas al mes · Cancelás cuando quieras
+          Sin tarjeta · 1 guía gratuita al mes · Cancelás cuando quieras
         </p>
       </div>
     </section>

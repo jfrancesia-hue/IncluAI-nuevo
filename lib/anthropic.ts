@@ -1,4 +1,5 @@
 import Anthropic from '@anthropic-ai/sdk';
+import { LIMITES_PLAN, type PlanUsuario } from './types';
 
 const apiKey = process.env.ANTHROPIC_API_KEY?.trim();
 if (!apiKey) {
@@ -7,9 +8,19 @@ if (!apiKey) {
 
 export const anthropic = new Anthropic({ apiKey });
 
-export const CLAUDE_MODEL = 'claude-sonnet-4-6' as const;
+/**
+ * Resuelve el modelo de Claude según el plan del usuario.
+ * Sonnet 4.6 para Free/Básico/Profesional; Opus 4.7 solo para Premium.
+ * Fallback a modelo Free si el plan es desconocido.
+ */
+export function getModelForPlan(plan: PlanUsuario): string {
+  return LIMITES_PLAN[plan]?.modelo ?? LIMITES_PLAN.free.modelo;
+}
 
-// v2.1 con Opus 4.7 + tool-use: maxima calidad de JSON estructurado y
-// adherencia estricta al schema. Con Vercel Pro (maxDuration 300s) Opus
-// tiene margen de sobra para generar 8000 tokens + enriquecer imagenes.
-export const CLAUDE_MODEL_V2 = 'claude-opus-4-7' as const;
+/**
+ * Modelo fijo para trabajos operativos/internos (enrichment, reformateo,
+ * housekeeping) que NO son el output principal al usuario. Siempre Sonnet
+ * porque estas tareas son reformatear texto ya generado — Opus sería un
+ * desperdicio aun para usuarios Premium.
+ */
+export const MODELO_OPERATIVO = 'claude-sonnet-4-6' as const;

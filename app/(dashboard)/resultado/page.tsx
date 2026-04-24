@@ -88,7 +88,7 @@ export default async function ResultadoPage({
       .from('perfiles')
       .select('plan')
       .eq('id', user.id)
-      .single<{ plan: 'free' | 'pro' | 'institucional' }>(),
+      .single<{ plan: 'free' | 'basico' | 'profesional' | 'premium' }>(),
   ]);
 
   if (!data) notFound();

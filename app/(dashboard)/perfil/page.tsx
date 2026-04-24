@@ -1,8 +1,15 @@
 import Link from 'next/link';
 import { getPerfil } from '@/lib/auth';
-import { LIMITES_PLAN } from '@/lib/types';
+import { LIMITES_PLAN, type PlanUsuario } from '@/lib/types';
 import { signOutAction } from '@/app/(dashboard)/actions';
 import { PerfilForm } from './perfil-form';
+
+function nombrePlanHumano(plan: PlanUsuario): string {
+  if (plan === 'free') return 'Gratuito';
+  if (plan === 'basico') return 'Básico';
+  if (plan === 'profesional') return 'Profesional';
+  return 'Premium';
+}
 
 export const metadata = { title: 'Mi perfil · IncluAI' };
 
@@ -10,8 +17,8 @@ export default async function PerfilPage() {
   const perfil = await getPerfil();
   if (!perfil) return null;
 
-  const esPro = perfil.plan === 'pro' || perfil.plan === 'institucional';
-  const limite = LIMITES_PLAN[perfil.plan].guias_por_mes;
+  const esPago = perfil.plan !== 'free';
+  const limite = LIMITES_PLAN[perfil.plan].guias_mes;
   const restantes = Math.max(0, limite - perfil.consultas_mes);
   const iniciales = `${perfil.nombre?.[0] ?? ''}${perfil.apellido?.[0] ?? ''}`.toUpperCase();
 
@@ -49,20 +56,15 @@ export default async function PerfilPage() {
             <span
               className={
                 'inline-flex items-center gap-1.5 rounded-full px-4 py-1.5 text-sm font-bold ' +
-                (esPro
+                (esPago
                   ? 'bg-[#27AE60] text-white shadow-[0_2px_8px_rgba(22,163,74,0.3)]'
                   : 'bg-[#D7EAF6] text-[#2E86C1]')
               }
             >
-              {esPro && <span aria-hidden>✓</span>}
-              Plan{' '}
-              {perfil.plan === 'free'
-                ? 'Gratuito'
-                : perfil.plan === 'pro'
-                  ? 'Pro'
-                  : 'Institucional'}
+              {esPago && <span aria-hidden>✓</span>}
+              Plan {nombrePlanHumano(perfil.plan)}
             </span>
-            {esPro && perfil.plan_activo_hasta && (
+            {esPago && perfil.plan_activo_hasta && (
               <span className="text-sm text-[#4A5968]">
                 Vence el{' '}
                 <strong className="text-[#2E86C1]">

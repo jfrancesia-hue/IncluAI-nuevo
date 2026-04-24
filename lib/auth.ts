@@ -15,7 +15,7 @@ type PerfilRow = {
   rol: 'docente' | 'admin';
   tipo_usuario: 'docente' | 'familia' | 'profesional' | null;
   especialidad: string | null;
-  plan: 'free' | 'pro' | 'institucional';
+  plan: 'free' | 'basico' | 'profesional' | 'premium';
   plan_activo_hasta: string | null;
   consultas_mes: number;
   created_at: string;

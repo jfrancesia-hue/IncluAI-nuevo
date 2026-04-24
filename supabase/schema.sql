@@ -20,7 +20,7 @@ CREATE TABLE perfiles (
   localidad TEXT,
   provincia TEXT DEFAULT 'No especificada',
   rol TEXT NOT NULL DEFAULT 'docente' CHECK (rol IN ('docente', 'admin')),
-  plan TEXT NOT NULL DEFAULT 'free' CHECK (plan IN ('free', 'pro', 'institucional')),
+  plan TEXT NOT NULL DEFAULT 'free' CHECK (plan IN ('free', 'basico', 'profesional', 'premium')),
   plan_activo_hasta TIMESTAMPTZ,
   consultas_mes INTEGER NOT NULL DEFAULT 0,
   mes_actual TEXT NOT NULL DEFAULT to_char(NOW(), 'YYYY-MM'), -- para resetear contador mensual
@@ -83,7 +83,7 @@ CREATE TABLE pagos (
   id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
   user_id UUID NOT NULL REFERENCES perfiles(id) ON DELETE CASCADE,
   monto_ars NUMERIC(10,2) NOT NULL,
-  plan TEXT NOT NULL CHECK (plan IN ('pro', 'institucional')),
+  plan TEXT NOT NULL CHECK (plan IN ('basico', 'profesional', 'premium')),
   estado TEXT NOT NULL DEFAULT 'pendiente' CHECK (estado IN ('pendiente', 'aprobado', 'rechazado', 'devuelto')),
   mercadopago_payment_id TEXT,
   mercadopago_status TEXT,
@@ -227,7 +227,9 @@ SELECT
   COUNT(CASE WHEN c.created_at > NOW() - INTERVAL '30 days' THEN 1 END) AS consultas_ultimo_mes,
   COUNT(CASE WHEN c.created_at > NOW() - INTERVAL '7 days' THEN 1 END) AS consultas_ultima_semana,
   ROUND(AVG(c.feedback_estrellas), 2) AS promedio_feedback,
-  COUNT(DISTINCT CASE WHEN p.plan = 'pro' THEN p.id END) AS usuarios_pro,
-  COUNT(DISTINCT CASE WHEN p.plan = 'free' THEN p.id END) AS usuarios_free
+  COUNT(DISTINCT CASE WHEN p.plan = 'free' THEN p.id END) AS usuarios_free,
+  COUNT(DISTINCT CASE WHEN p.plan = 'basico' THEN p.id END) AS usuarios_basico,
+  COUNT(DISTINCT CASE WHEN p.plan = 'profesional' THEN p.id END) AS usuarios_profesional,
+  COUNT(DISTINCT CASE WHEN p.plan = 'premium' THEN p.id END) AS usuarios_premium
 FROM perfiles p
 LEFT JOIN consultas c ON p.id = c.user_id;

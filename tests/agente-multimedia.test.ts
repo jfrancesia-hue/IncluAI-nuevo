@@ -17,7 +17,7 @@ import {
 } from '@/lib/schemas/guia-schema';
 import { enriquecerImagen } from '@/lib/servicios/unsplash';
 import { enriquecerVideo } from '@/lib/servicios/videos';
-import { anthropic, CLAUDE_MODEL_V2 } from '@/lib/anthropic';
+import { anthropic, getModelForPlan } from '@/lib/anthropic';
 import { buildPromptDocentesV2 } from '@/lib/prompts';
 import type { FormularioConsulta } from '@/lib/types';
 
@@ -40,8 +40,10 @@ const casoBiomas: FormularioConsulta = {
 async function generarGuiaTest(
   form: FormularioConsulta
 ): Promise<GuiaPedagogica> {
+  // Test usa el modelo del plan Premium (Opus 4.7) para validar la calidad
+  // máxima del JSON estructurado con tool-use.
   const response = await anthropic.messages.create({
-    model: CLAUDE_MODEL_V2,
+    model: getModelForPlan('premium'),
     max_tokens: 8000,
     messages: [{ role: 'user', content: buildPromptDocentesV2(form) }],
   });

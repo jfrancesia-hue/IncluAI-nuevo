@@ -1,7 +1,7 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import { getPerfil } from '@/lib/auth';
-import { LIMITES_PLAN } from '@/lib/types';
+import { LIMITES_PLAN, type PlanPago } from '@/lib/types';
 import { UpgradeButton } from '@/components/module/upgrade-button';
 import { PHOTOS } from '@/lib/photos';
 import { cn } from '@/lib/utils';
@@ -11,20 +11,40 @@ export const metadata = { title: 'Elegí tu plan · IncluAI' };
 type SearchParams = Promise<{ status?: string }>;
 
 const FEATURES_FREE = [
-  '2 guías por mes',
-  '1 PPI por ciclo lectivo',
+  '1 guía por mes',
+  'Guía guardada para siempre',
   'Todos los niveles educativos',
   'Todas las discapacidades',
-  'Copiar y compartir',
+  'IA avanzada (estándar)',
 ];
 
-const FEATURES_PRO = [
+const FEATURES_BASICO = [
+  '20 guías por mes',
+  '2 PPIs por ciclo lectivo',
+  'Historial completo',
+  'Exportar a PDF',
+  'IA avanzada (estándar)',
+  'Soporte por email',
+];
+
+const FEATURES_PROFESIONAL = [
   '40 guías por mes',
-  '5 PPIs por ciclo lectivo',
+  '3 PPIs por ciclo lectivo',
   'Historial completo',
   'Exportar a PDF',
   'Guías favoritas',
+  'IA avanzada (estándar)',
   'Soporte prioritario',
+];
+
+const FEATURES_PREMIUM = [
+  '10 guías de máxima profundidad',
+  '5 PPIs por ciclo lectivo',
+  'IA de máxima potencia',
+  'Historial completo',
+  'Exportar a PDF',
+  'Guías favoritas',
+  'Soporte prioritario premium',
 ];
 
 export default async function PlanesPage({
@@ -35,7 +55,7 @@ export default async function PlanesPage({
   const [perfil, sp] = await Promise.all([getPerfil(), searchParams]);
   if (!perfil) return null;
 
-  const esPro = perfil.plan === 'pro' || perfil.plan === 'institucional';
+  const esPago = perfil.plan !== 'free';
   const status = sp.status;
 
   return (
@@ -71,11 +91,11 @@ export default async function PlanesPage({
         </div>
       )}
 
-      <div className="grid grid-cols-1 gap-5 md:grid-cols-2">
+      <div className="grid grid-cols-1 gap-5 md:grid-cols-2 xl:grid-cols-4">
         <PlanCard
           title="Para empezar"
           price="$0"
-          period="gratuito, siempre"
+          period="gratuito"
           features={FEATURES_FREE}
           current={perfil.plan === 'free'}
           cta={
@@ -95,21 +115,63 @@ export default async function PlanesPage({
         />
 
         <PlanCard
-          title="Para docentes comprometidos"
-          price={`$${LIMITES_PLAN.pro.precio_ars.toLocaleString('es-AR')}`}
+          title="Básico"
+          price={`$${LIMITES_PLAN.basico.precio_ars.toLocaleString('es-AR')}`}
           period="por mes"
-          subtitle="Menos que un café por día en tus alumnos"
-          highlighted
-          badge="Más elegido"
-          features={FEATURES_PRO}
-          current={perfil.plan === 'pro'}
+          subtitle="Para docentes que recién arrancan"
+          features={FEATURES_BASICO}
+          current={perfil.plan === 'basico'}
           cta={
-            perfil.plan === 'pro' ? (
+            perfil.plan === 'basico' ? (
               <span className="inline-flex items-center gap-2 text-sm font-bold text-[#27AE60]">
                 Tu plan actual ✓
               </span>
             ) : (
-              <UpgradeButton plan="pro">
+              <UpgradeButton plan="basico">
+                Suscribirme con Mercado Pago
+              </UpgradeButton>
+            )
+          }
+        />
+
+        <PlanCard
+          title="Profesional"
+          price={`$${LIMITES_PLAN.profesional.precio_ars.toLocaleString('es-AR')}`}
+          period="por mes"
+          subtitle="El más elegido"
+          highlighted
+          badge="Más elegido"
+          features={FEATURES_PROFESIONAL}
+          current={perfil.plan === 'profesional'}
+          cta={
+            perfil.plan === 'profesional' ? (
+              <span className="inline-flex items-center gap-2 text-sm font-bold text-white">
+                Tu plan actual ✓
+              </span>
+            ) : (
+              <UpgradeButton plan="profesional">
+                Suscribirme con Mercado Pago
+              </UpgradeButton>
+            )
+          }
+        />
+
+        <PlanCard
+          title="Premium"
+          price={`$${LIMITES_PLAN.premium.precio_ars.toLocaleString('es-AR')}`}
+          period="por mes"
+          subtitle="Máxima potencia de IA"
+          badge="IA Premium"
+          badgeTone="gold"
+          features={FEATURES_PREMIUM}
+          current={perfil.plan === 'premium'}
+          cta={
+            perfil.plan === 'premium' ? (
+              <span className="inline-flex items-center gap-2 text-sm font-bold text-[#27AE60]">
+                Tu plan actual ✓
+              </span>
+            ) : (
+              <UpgradeButton plan="premium">
                 Suscribirme con Mercado Pago
               </UpgradeButton>
             )
@@ -153,9 +215,9 @@ export default async function PlanesPage({
         </blockquote>
       </figure>
 
-      {esPro && perfil.plan_activo_hasta && (
+      {esPago && perfil.plan_activo_hasta && (
         <p className="text-center text-sm text-[#4A5968]">
-          Tu plan Pro está activo hasta el{' '}
+          Tu plan {nombrePlanHumano(perfil.plan as PlanPago)} está activo hasta el{' '}
           <strong className="text-[#2E86C1]">
             {new Date(perfil.plan_activo_hasta).toLocaleDateString('es-AR', {
               day: '2-digit',
@@ -169,6 +231,12 @@ export default async function PlanesPage({
   );
 }
 
+function nombrePlanHumano(plan: PlanPago): string {
+  if (plan === 'basico') return 'Básico';
+  if (plan === 'profesional') return 'Profesional';
+  return 'Premium';
+}
+
 function PlanCard({
   title,
   price,
@@ -178,6 +246,7 @@ function PlanCard({
   cta,
   highlighted = false,
   badge,
+  badgeTone = 'orange',
   current = false,
 }: {
   title: string;
@@ -188,19 +257,25 @@ function PlanCard({
   cta: React.ReactNode;
   highlighted?: boolean;
   badge?: string;
+  badgeTone?: 'orange' | 'gold';
   current?: boolean;
 }) {
   return (
     <article
       className={cn(
-        'relative flex flex-col rounded-[20px] border p-7 transition',
+        'relative flex flex-col rounded-[20px] border p-6 transition',
         highlighted
           ? 'border-2 border-[#2E86C1] bg-[#2E86C1] text-white shadow-[0_10px_40px_rgba(15,34,64,0.2)]'
           : 'border-[#e2e8f0] bg-white shadow-[0_2px_12px_rgba(15,34,64,0.05)]'
       )}
     >
       {badge && (
-        <span className="absolute -top-3 right-6 rounded-full bg-[#E67E22] px-3 py-1 text-xs font-bold uppercase tracking-wider text-white">
+        <span
+          className={cn(
+            'absolute -top-3 right-6 rounded-full px-3 py-1 text-xs font-bold uppercase tracking-wider text-white',
+            badgeTone === 'gold' ? 'bg-[#b45309]' : 'bg-[#E67E22]'
+          )}
+        >
           {badge}
         </span>
       )}
@@ -214,14 +289,14 @@ function PlanCard({
       </p>
       <p
         className={cn(
-          'mt-3 font-serif text-5xl font-extrabold',
+          'mt-3 font-serif text-4xl font-extrabold',
           highlighted ? 'text-white' : 'text-[#2E86C1]'
         )}
       >
         {price}
         <span
           className={cn(
-            'ml-1 text-base font-normal',
+            'ml-1 text-sm font-normal',
             highlighted ? 'text-white/75' : 'text-[#4A5968]'
           )}
         >
@@ -237,7 +312,7 @@ function PlanCard({
         {subtitle ?? period}
       </p>
 
-      <ul className="mt-6 flex flex-col gap-2.5 text-sm">
+      <ul className="mt-5 flex flex-1 flex-col gap-2 text-sm">
         {features.map((f) => (
           <li key={f} className="flex items-start gap-2">
             <span
@@ -258,7 +333,7 @@ function PlanCard({
         ))}
       </ul>
 
-      <div className="mt-7">{cta}</div>
+      <div className="mt-6">{cta}</div>
       {current && !highlighted && (
         <p className="mt-3 text-center text-xs font-semibold text-[#27AE60]">
           Plan actual ✓

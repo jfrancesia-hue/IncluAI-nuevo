@@ -1,6 +1,6 @@
 import 'server-only';
 import type { createClient } from '@/lib/supabase/server';
-import { anthropic, CLAUDE_MODEL } from '@/lib/anthropic';
+import { anthropic, getModelForPlan } from '@/lib/anthropic';
 import { LIMITES_PLAN, type ModuloIncluIA, type PlanUsuario } from '@/lib/types';
 import { enrichGuideToStructured } from '@/lib/structure-guide';
 
@@ -55,7 +55,7 @@ export function streamGuiaYResponder(input: InsertConsultaInput): Response {
       try {
         // Reserva atómica de cupo ANTES de gastar tokens (evita race conditions
         // con requests concurrentes). Si falla, cortamos sin llamar a Claude.
-        const limite = LIMITES_PLAN[input.plan].guias_por_mes;
+        const limite = LIMITES_PLAN[input.plan].guias_mes;
         const reserva = await input.supabase.rpc('reservar_consulta', {
           p_user_id: input.userId,
           p_limite: limite,
@@ -75,8 +75,9 @@ export function streamGuiaYResponder(input: InsertConsultaInput): Response {
 
         // Prompt caching: el system prompt (grande, estable) se cachea por 5
         // minutos en los servers de Anthropic. 90% más barato en hits.
+        // Modelo híbrido: Sonnet para Free/Básico/Profesional, Opus para Premium.
         const claudeStream = anthropic.messages.stream({
-          model: CLAUDE_MODEL,
+          model: getModelForPlan(input.plan),
           max_tokens: 4000,
           system: [
             {

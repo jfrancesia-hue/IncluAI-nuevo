@@ -1,10 +1,11 @@
 import 'server-only'
 import type { SupabaseClient } from '@supabase/supabase-js'
+import { LIMITES_PLAN } from '@/lib/types'
 
 export interface BusinessMetrics {
   totalUsers: number
   usersByTipo: { docente: number; familia: number; profesional: number }
-  usersByPlan: { free: number; pro: number; institucional: number }
+  usersByPlan: { free: number; basico: number; profesional: number; premium: number }
   mrr_ars: number
   arr_ars: number
   mrr_usd_aprox: number
@@ -28,8 +29,9 @@ export interface BusinessMetrics {
   }>
 }
 
-const PRECIO_PRO_ARS = 9900
-const PRECIO_INSTITUCIONAL_ARS = 29900
+const PRECIO_BASICO_ARS = LIMITES_PLAN.basico.precio_ars
+const PRECIO_PROFESIONAL_ARS = LIMITES_PLAN.profesional.precio_ars
+const PRECIO_PREMIUM_ARS = LIMITES_PLAN.premium.precio_ars
 const USD_ARS = 1150 // fallback — idealmente tomar de API BCRA/dolarapi
 
 export async function getBusinessMetrics(
@@ -55,7 +57,12 @@ export async function getBusinessMetrics(
   )
   const usersByTipo = Object.fromEntries(usersByTipoArr) as BusinessMetrics['usersByTipo']
 
-  const planes: Array<'free' | 'pro' | 'institucional'> = ['free', 'pro', 'institucional']
+  const planes: Array<'free' | 'basico' | 'profesional' | 'premium'> = [
+    'free',
+    'basico',
+    'profesional',
+    'premium',
+  ]
   const usersByPlanArr = await Promise.all(
     planes.map(async (p) => {
       const { count } = await supabase
@@ -65,10 +72,14 @@ export async function getBusinessMetrics(
       return [p, count ?? 0] as const
     })
   )
-  const usersByPlan = Object.fromEntries(usersByPlanArr) as BusinessMetrics['usersByPlan']
+  const usersByPlan = Object.fromEntries(
+    usersByPlanArr
+  ) as BusinessMetrics['usersByPlan']
 
   const mrr =
-    usersByPlan.pro * PRECIO_PRO_ARS + usersByPlan.institucional * PRECIO_INSTITUCIONAL_ARS
+    usersByPlan.basico * PRECIO_BASICO_ARS +
+    usersByPlan.profesional * PRECIO_PROFESIONAL_ARS +
+    usersByPlan.premium * PRECIO_PREMIUM_ARS
 
   const { count: total_consultas } = await supabase
     .from('consultas')
@@ -117,7 +128,8 @@ export async function getBusinessMetrics(
       ? Math.round(((promoters - detractors) / feedbacks.length) * 100)
       : null
 
-  const ltv_estimado_ars = PRECIO_PRO_ARS * 12 * 0.6
+  // LTV sobre el plan profesional (el "most elegido" de referencia)
+  const ltv_estimado_ars = PRECIO_PROFESIONAL_ARS * 12 * 0.6
 
   return {
     totalUsers: users,
