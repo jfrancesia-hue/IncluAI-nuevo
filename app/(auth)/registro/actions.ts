@@ -5,6 +5,7 @@ import { after } from 'next/server';
 import { createClient } from '@/lib/supabase/server';
 import { PROVINCIAS_AR } from '@/data/provincias';
 import { enviarBienvenida } from '@/lib/email';
+import { trackServerEvent } from '@/lib/analytics';
 
 const tipoUsuarioSchema = z.enum(['docente', 'familia', 'profesional']);
 
@@ -117,6 +118,11 @@ export async function registrarUsuario(formData: FormData): Promise<RegistroResu
     } catch (err) {
       console.error('[registro] email bienvenida falló', err);
     }
+    await trackServerEvent('sign_up', {
+      tipo_usuario: data.tipo_usuario,
+      provincia: data.provincia ?? 'No especificada',
+      con_institucion: Boolean(data.institucion),
+    });
   });
 
   return { ok: true, requiresEmailConfirm };

@@ -1,6 +1,7 @@
 'use client';
 
 import { useState } from 'react';
+import { track } from '@vercel/analytics';
 import {
   IconDownload,
   IconCopy,
@@ -29,7 +30,9 @@ export function GuideHeroActions({ markdown, onRefinar, onFavorita }: Props) {
   }
 
   function handlePrint() {
-    if (typeof window !== 'undefined') window.print();
+    if (typeof window === 'undefined') return;
+    track('pdf_downloaded', { source: 'guide_hero' });
+    window.print();
   }
 
   function handleRefinar() {

@@ -1,6 +1,7 @@
 'use client';
 
 import { useRouter } from 'next/navigation';
+import { track } from '@vercel/analytics';
 import { useAccesibilidad } from '@/hooks/guia/useAccesibilidad';
 import { useImprimir } from '@/hooks/guia/useImprimir';
 
@@ -20,8 +21,10 @@ export function BarraAccesibilidad({ userPlan = 'free' }: Props) {
 
   function onClickPdf() {
     if (pdfHabilitado) {
+      track('pdf_downloaded', { plan: userPlan });
       imprimir();
     } else {
+      track('pdf_download_blocked', { plan: userPlan });
       router.push('/planes?feature=pdf');
     }
   }
