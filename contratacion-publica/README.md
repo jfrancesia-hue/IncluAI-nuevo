@@ -1,6 +1,6 @@
-# Kit de Contratación Pública — IncluIA
+# Kit de Contratación Pública — IncluAI
 
-Kit listo-para-licitar diseñado para que un área de Compras o Contrataciones de un Ministerio de Educación provincial (u organismo educativo público) pueda evaluar, adjudicar y contratar IncluIA como solución de apoyo a la educación inclusiva, reduciendo el tiempo de armado de pliego de meses a días.
+Kit listo-para-licitar diseñado para que un área de Compras o Contrataciones de un Ministerio de Educación provincial (u organismo educativo público) pueda evaluar, adjudicar y contratar IncluAI como solución de apoyo a la educación inclusiva, reduciendo el tiempo de armado de pliego de meses a días.
 
 ---
 
@@ -8,8 +8,8 @@ Kit listo-para-licitar diseñado para que un área de Compras o Contrataciones d
 
 **Nativos Consultora Digital**
 Titular: Jorge Eduardo Francesia
-Producto: IncluIA — Plataforma argentina de planificación de clases inclusivas con IA
-Sitio: [incluia.com.ar](https://incluia.com.ar)
+Producto: IncluAI — Plataforma argentina de planificación de clases inclusivas con IA
+Sitio: [incluai.com.ar](https://incluai.com.ar)
 Contacto comercial y técnico: jfrancesia@gmail.com
 
 ---
@@ -73,7 +73,7 @@ Convenio marco a 24-36 meses
 
 - Los montos están expresados en pesos argentinos (ARS) al mes abril 2026 y contemplan actualización semestral por IPC INDEC + Nivel General.
 - La normativa citada es federal. Cada provincia puede sumar su propio régimen de contratación (ej: Córdoba Ley 10.155, Buenos Aires Ley 13.981, CABA Ley 2.095).
-- El kit es de uso libre para organismos públicos argentinos en el marco de evaluar la contratación de IncluIA. No sustituye el asesoramiento legal formal del área jurídica del organismo.
+- El kit es de uso libre para organismos públicos argentinos en el marco de evaluar la contratación de IncluAI. No sustituye el asesoramiento legal formal del área jurídica del organismo.
 
 ---
 

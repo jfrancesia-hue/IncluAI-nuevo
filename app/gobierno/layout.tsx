@@ -6,7 +6,7 @@ import type { ReactNode } from 'react'
 import '../(gobierno)/globals-gov.css'
 
 export const metadata = {
-  title: 'IncluIA · Panel Gubernamental',
+  title: 'IncluAI · Panel Gubernamental',
   description:
     'Panel ejecutivo para Ministerios provinciales. Métricas agregadas, cumplimiento normativo y reportes.',
   robots: { index: false, follow: false },

@@ -1,6 +1,6 @@
 # Consentimiento informado y tratamiento de datos de menores
 
-**Producto:** IncluIA
+**Producto:** IncluAI
 **Norma principal:** Ley 25.326 (Art. 7, datos sensibles; Art. 10 bis, consentimiento), Convención sobre los Derechos del Niño (Ley 23.849), Ley 26.061 de Protección Integral de Derechos de Niños, Niñas y Adolescentes, Ley 26.378 (Convención sobre los Derechos de las Personas con Discapacidad).
 **Versión:** 1.0
 **Última revisión:** 22 de abril de 2026
@@ -10,13 +10,13 @@
 
 ## Principio de diseño estructural: "Datos de estudiantes NUNCA se cargan individualmente"
 
-La decisión de diseño más importante de IncluIA desde el punto de vista de protección de datos es la siguiente:
+La decisión de diseño más importante de IncluAI desde el punto de vista de protección de datos es la siguiente:
 
-> **IncluIA no permite cargar, almacenar, procesar ni visualizar datos personales identificatorios de estudiantes (menores de edad).**
+> **IncluAI no permite cargar, almacenar, procesar ni visualizar datos personales identificatorios de estudiantes (menores de edad).**
 
-Esta decisión es **el pilar legal y ético** que protege a IncluIA, a los docentes usuarios, a las instituciones educativas contratantes y fundamentalmente a los niños, niñas y adolescentes (NNyA) de quienes se habla en contextos pedagógicos dentro de la plataforma.
+Esta decisión es **el pilar legal y ético** que protege a IncluAI, a los docentes usuarios, a las instituciones educativas contratantes y fundamentalmente a los niños, niñas y adolescentes (NNyA) de quienes se habla en contextos pedagógicos dentro de la plataforma.
 
-Esta política convierte la mayor parte de las preocupaciones habituales de EdTech en no aplicables a IncluIA: **no tratamos datos sensibles de menores porque no los tenemos**.
+Esta política convierte la mayor parte de las preocupaciones habituales de EdTech en no aplicables a IncluAI: **no tratamos datos sensibles de menores porque no los tenemos**.
 
 ---
 
@@ -38,7 +38,7 @@ La plataforma bloquea técnica y normativamente la carga de:
 
 ## 2. Qué sí se procesa y cómo se estructura
 
-Para que IncluIA pueda cumplir su propósito pedagógico sin tratar datos personales de menores, el docente describe **contextos pedagógicos genéricos**, no personas.
+Para que IncluAI pueda cumplir su propósito pedagógico sin tratar datos personales de menores, el docente describe **contextos pedagógicos genéricos**, no personas.
 
 Ejemplo de descripción aceptable (anonimizada):
 
@@ -90,13 +90,13 @@ Al registrarse, el docente debe aceptar una cláusula específica que explica es
 
 > **Compromiso de uso responsable**
 >
-> Al registrarme en IncluIA declaro que comprendo y acepto que:
+> Al registrarme en IncluAI declaro que comprendo y acepto que:
 >
-> 1. IncluIA es una herramienta para generar guías pedagógicas inclusivas a partir de descripciones genéricas de contextos educativos.
+> 1. IncluAI es una herramienta para generar guías pedagógicas inclusivas a partir de descripciones genéricas de contextos educativos.
 > 2. **Me comprometo a NO cargar en la plataforma datos personales identificatorios de ningún estudiante, tales como nombres, apellidos, DNI, fotografías, diagnósticos individuales firmados, domicilios o cualquier otro dato que permita identificar a un niño, niña o adolescente.**
 > 3. Entiendo que describir un "contexto pedagógico" implica hablar en términos generales y anonimizados ("un estudiante de tercer grado con discapacidad auditiva") y no de individuos concretos.
 > 4. Comprendo que la plataforma incluye controles automatizados para bloquear la carga de datos personales, pero la responsabilidad final del contenido que ingreso es mía como docente profesional.
-> 5. Asumo que cualquier tratamiento de datos personales de alumnos concretos debe realizarse por fuera de IncluIA, dentro del marco normativo que corresponda a mi institución educativa (Ley 26.206, Resolución CFE 311/16, política de privacidad del establecimiento).
+> 5. Asumo que cualquier tratamiento de datos personales de alumnos concretos debe realizarse por fuera de IncluAI, dentro del marco normativo que corresponda a mi institución educativa (Ley 26.206, Resolución CFE 311/16, política de privacidad del establecimiento).
 >
 > ☐ Leí y acepto el compromiso anterior.
 >
@@ -142,16 +142,16 @@ Este diseño técnico es **una garantía estructural** al Ministerio contratante
 
 ## 7. Marco normativo de respaldo
 
-- **Ley 25.326, Art. 7:** los datos sensibles (incluidos los relativos a salud y discapacidad) sólo pueden tratarse con consentimiento expreso y escrito. **IncluIA elude este artículo no tratando datos sensibles individualizados.**
-- **Ley 26.061, Art. 22:** derecho a la intimidad y a la propia imagen de NNyA. **IncluIA respeta este derecho por diseño.**
+- **Ley 25.326, Art. 7:** los datos sensibles (incluidos los relativos a salud y discapacidad) sólo pueden tratarse con consentimiento expreso y escrito. **IncluAI elude este artículo no tratando datos sensibles individualizados.**
+- **Ley 26.061, Art. 22:** derecho a la intimidad y a la propia imagen de NNyA. **IncluAI respeta este derecho por diseño.**
 - **Convención sobre los Derechos del Niño, Art. 16:** protección contra injerencias arbitrarias en la vida privada.
-- **Resolución CFE 311/16:** promueve trayectorias educativas inclusivas. Las guías generadas por IncluIA apoyan esta resolución sin requerir datos individualizados.
+- **Resolución CFE 311/16:** promueve trayectorias educativas inclusivas. Las guías generadas por IncluAI apoyan esta resolución sin requerir datos individualizados.
 
 ---
 
 ## 8. Declaración final
 
-Nativos Consultora Digital S.A.S. declara que IncluIA, por diseño, no recolecta, almacena ni procesa datos personales identificatorios de estudiantes menores de edad. Esta declaración se sostiene tanto en términos normativos (consentimiento y políticas) como técnicos (controles preventivos, detectivos y correctivos).
+Nativos Consultora Digital S.A.S. declara que IncluAI, por diseño, no recolecta, almacena ni procesa datos personales identificatorios de estudiantes menores de edad. Esta declaración se sostiene tanto en términos normativos (consentimiento y políticas) como técnicos (controles preventivos, detectivos y correctivos).
 
 Esta política será revisada al menos una vez al año y ante cualquier cambio sustantivo en el producto.
 

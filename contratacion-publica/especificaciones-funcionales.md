@@ -1,6 +1,6 @@
-# Especificaciones Funcionales y No Funcionales — IncluIA
+# Especificaciones Funcionales y No Funcionales — IncluAI
 
-Anexo I del Pliego Técnico Modelo. Este documento detalla los requisitos funcionales (RF) y no funcionales (RNF) que IncluIA cumple actualmente o se compromete a cumplir dentro de la implementación.
+Anexo I del Pliego Técnico Modelo. Este documento detalla los requisitos funcionales (RF) y no funcionales (RNF) que IncluAI cumple actualmente o se compromete a cumplir dentro de la implementación.
 
 ---
 
@@ -123,7 +123,7 @@ Anexo I del Pliego Técnico Modelo. Este documento detalla los requisitos funcio
 
 ## 3. Matriz de cumplimiento
 
-| Código | Estado IncluIA | Comentario |
+| Código | Estado IncluAI | Comentario |
 |---|---|---|
 | RF-01 a RF-08 | Cumplido | Funcionalidad nativa de la plataforma |
 | RF-09 (SSO SAML) | Parcial — compromiso de entrega en 60 días si se adjudica | Requiere implementación específica |
@@ -133,4 +133,4 @@ Anexo I del Pliego Técnico Modelo. Este documento detalla los requisitos funcio
 
 ---
 
-*Documento emitido por Nativos Consultora Digital, titular Jorge Eduardo Francesia, proveedor de IncluIA (incluia.com.ar).*
+*Documento emitido por Nativos Consultora Digital, titular Jorge Eduardo Francesia, proveedor de IncluAI (incluai.com.ar).*

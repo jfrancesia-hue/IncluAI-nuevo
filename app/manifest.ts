@@ -2,8 +2,8 @@ import type { MetadataRoute } from 'next';
 
 export default function manifest(): MetadataRoute.Manifest {
   return {
-    name: 'IncluIA — Educación inclusiva con IA',
-    short_name: 'IncluIA',
+    name: 'IncluAI — Educación inclusiva con IA',
+    short_name: 'IncluAI',
     description:
       'Guías pedagógicas y clínicas con IA para docentes, familias y profesionales de salud en Argentina.',
     start_url: '/',

@@ -47,7 +47,7 @@ export default async function GobiernoDashboardPage() {
           Resumen ejecutivo
         </h2>
         <p style={{ color: 'var(--gov-text-muted)', lineHeight: 1.6 }}>
-          IncluIA está generando impacto pedagógico documentable en {coverage.schoolsActive}{' '}
+          IncluAI está generando impacto pedagógico documentable en {coverage.schoolsActive}{' '}
           escuelas activas. En los últimos 30 días se produjeron{' '}
           <strong>{impact.adaptationsGenerated} adaptaciones curriculares</strong>, ahorrando
           aproximadamente <strong>{impact.teacherHoursSaved} horas docentes</strong>. El

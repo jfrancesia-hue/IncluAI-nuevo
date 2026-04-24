@@ -1,4 +1,4 @@
-# Acuerdo de Nivel de Servicio (SLA) — IncluIA
+# Acuerdo de Nivel de Servicio (SLA) — IncluAI
 
 Anexo III del Pliego Técnico Modelo. Define los niveles de servicio comprometidos por Nativos Consultora Digital al cliente público y sus remedios en caso de incumplimiento.
 
@@ -6,7 +6,7 @@ Anexo III del Pliego Técnico Modelo. Define los niveles de servicio comprometid
 
 ## 1. Alcance
 
-Este SLA aplica a la plataforma IncluIA y sus servicios asociados (soporte, mesa de ayuda, capacitación) prestados en el marco de un convenio vigente con un organismo público argentino.
+Este SLA aplica a la plataforma IncluAI y sus servicios asociados (soporte, mesa de ayuda, capacitación) prestados en el marco de un convenio vigente con un organismo público argentino.
 
 ## 2. Horario del servicio
 
@@ -50,7 +50,7 @@ Un 99,5% mensual equivale a un máximo tolerado de **~3 horas 39 minutos** de ca
 ## 5. Canales de soporte
 
 1. **Mesa de ayuda web** (prioridad alta): portal con ticketing, visible desde la plataforma para todos los usuarios.
-2. **Correo electrónico** (prioridad media): soporte@incluia.com.ar (o la que se acuerde con el cliente).
+2. **Correo electrónico** (prioridad media): soporte@incluai.com.ar (o la que se acuerde con el cliente).
 3. **Teléfono / WhatsApp** (prioridad alta para S1/S2): número provisto al referente técnico del Ministerio al momento del alta.
 
 ## 6. Mesa de ayuda — Niveles
@@ -108,7 +108,7 @@ Si el uptime cae por debajo del 95% en **tres meses consecutivos**, o si los rem
 
 ## 11. Comunicación al cliente
 
-- **Statuspage público** con estado en vivo de la plataforma (ej: status.incluia.com.ar).
+- **Statuspage público** con estado en vivo de la plataforma (ej: status.incluai.com.ar).
 - **Reporte mensual** de uptime, tickets y actualizaciones enviado al referente técnico.
 - **Revisión trimestral de servicio (QBR)** con el Ministerio: 60 minutos, presencial o virtual, con dashboards de impacto.
 
@@ -126,4 +126,4 @@ Las partes pueden revisar este SLA una vez al año para ajustarlo a la realidad 
 
 ---
 
-*Acuerdo de Nivel de Servicio emitido por Nativos Consultora Digital, titular Jorge Eduardo Francesia, proveedor de IncluIA. Contacto de escalamiento: jfrancesia@gmail.com.*
+*Acuerdo de Nivel de Servicio emitido por Nativos Consultora Digital, titular Jorge Eduardo Francesia, proveedor de IncluAI. Contacto de escalamiento: jfrancesia@gmail.com.*

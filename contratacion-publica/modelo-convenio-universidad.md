@@ -2,7 +2,7 @@
 
 **Entre** la **UNIVERSIDAD [NACIONAL/PROVINCIAL] DE [UNIVERSIDAD]**, representada en este acto por el/la [RECTOR/A | DECANO/A | SECRETARIO/A DE INVESTIGACIÓN] [NOMBRE], con domicilio en [DOMICILIO], CUIT [CUIT], en adelante "LA UNIVERSIDAD",
 
-**y** **NATIVOS CONSULTORA DIGITAL**, representada por su titular el Sr. **Jorge Eduardo Francesia**, DNI [DNI], CUIT [CUIT], con domicilio en [DOMICILIO], titular de la plataforma **IncluIA** (incluia.com.ar), correo electrónico constituido en jfrancesia@gmail.com, en adelante "EL PROVEEDOR",
+**y** **NATIVOS CONSULTORA DIGITAL**, representada por su titular el Sr. **Jorge Eduardo Francesia**, DNI [DNI], CUIT [CUIT], con domicilio en [DOMICILIO], titular de la plataforma **IncluAI** (incluai.com.ar), correo electrónico constituido en jfrancesia@gmail.com, en adelante "EL PROVEEDOR",
 
 conjuntamente **LAS PARTES**, manifiestan su voluntad de celebrar el presente CONVENIO DE COOPERACIÓN E INVESTIGACIÓN APLICADA, sujeto a las siguientes cláusulas:
 
@@ -10,9 +10,9 @@ conjuntamente **LAS PARTES**, manifiestan su voluntad de celebrar el presente CO
 
 ## Cláusula Primera — Objeto
 
-El presente convenio tiene por objeto desarrollar una investigación aplicada conjunta orientada a **evaluar el impacto pedagógico y la experiencia de uso** de la plataforma IncluIA en contextos escolares reales argentinos, generando evidencia académica útil para:
+El presente convenio tiene por objeto desarrollar una investigación aplicada conjunta orientada a **evaluar el impacto pedagógico y la experiencia de uso** de la plataforma IncluAI en contextos escolares reales argentinos, generando evidencia académica útil para:
 1. La toma de decisiones del sistema educativo público.
-2. La mejora iterativa de la plataforma IncluIA.
+2. La mejora iterativa de la plataforma IncluAI.
 3. La producción científica de LA UNIVERSIDAD.
 
 ## Cláusula Segunda — Considerandos
@@ -26,7 +26,7 @@ El presente convenio tiene por objeto desarrollar una investigación aplicada co
 ## Cláusula Tercera — Líneas de investigación sugeridas
 
 Sin carácter excluyente, LAS PARTES acuerdan que la investigación podría incluir:
-1. **Impacto en la carga de trabajo docente**: medición de tiempo dedicado a la planificación antes y después del uso de IncluIA.
+1. **Impacto en la carga de trabajo docente**: medición de tiempo dedicado a la planificación antes y después del uso de IncluAI.
 2. **Calidad pedagógica de las planificaciones generadas**: evaluación por expertos en educación inclusiva mediante rúbrica acordada.
 3. **Experiencia y apropiación del docente**: estudio cualitativo sobre adopción, resistencias, transformaciones de práctica.
 4. **Impacto en estudiantes**: indicadores de participación, continuidad de trayectoria, resultados académicos cuando sean medibles.
@@ -48,7 +48,7 @@ El plan de trabajo será suscripto como Anexo del presente por autoridad compete
 ## Cláusula Quinta — Recursos aportados
 
 ### Por EL PROVEEDOR
-1. Acceso completo y sin costo a la plataforma IncluIA para el equipo de investigación durante la vigencia del convenio.
+1. Acceso completo y sin costo a la plataforma IncluAI para el equipo de investigación durante la vigencia del convenio.
 2. Acceso a logs y datos agregados anonimizados necesarios para la investigación, con aprobación ética previa.
 3. Un aporte económico acordado en el plan de trabajo para cubrir:
    - Becas de investigación para estudiantes avanzados y/o graduados
@@ -81,7 +81,7 @@ El plan de trabajo será suscripto como Anexo del presente por autoridad compete
 ## Cláusula Octava — Propiedad intelectual
 
 1. Los resultados de investigación (artículos, tesis, ponencias, datos anonimizados) son propiedad de LA UNIVERSIDAD y sus autores.
-2. La plataforma IncluIA, su código y sus algoritmos siguen siendo propiedad exclusiva de EL PROVEEDOR.
+2. La plataforma IncluAI, su código y sus algoritmos siguen siendo propiedad exclusiva de EL PROVEEDOR.
 3. Toda mejora del producto inspirada en hallazgos de la investigación permanece como propiedad de EL PROVEEDOR.
 4. Los datasets construidos en el marco de la investigación se regirán por política de datos abiertos de LA UNIVERSIDAD cuando sea posible.
 

@@ -6,7 +6,7 @@ export const runtime = 'nodejs'
 export const dynamic = 'force-dynamic'
 
 /**
- * Sincronización unidireccional IncluIA → SINIDE.
+ * Sincronización unidireccional IncluAI → SINIDE.
  * STUB: el cliente real requiere credenciales que se firman por convenio.
  * Por ahora valida permisos y devuelve preview de lo que se exportaría.
  */

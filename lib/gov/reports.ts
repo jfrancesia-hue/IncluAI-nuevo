@@ -62,7 +62,7 @@ type ReportBundle = {
 }
 
 function buildPdfLikeMarkdown(title: string, b: ReportBundle): string {
-  return `# ${title} — IncluIA
+  return `# ${title} — IncluAI
 Período: ${b.period?.period_from ?? '-'} a ${b.period?.period_to ?? '-'}
 
 ## Cobertura
@@ -86,7 +86,7 @@ Período: ${b.period?.period_from ?? '-'} a ${b.period?.period_to ?? '-'}
 - ISO 27001 readiness: ${b.compliance.iso_27001_readiness}%
 
 ---
-Generado automáticamente por IncluIA. Datos agregados — no contiene PII individual.
+Generado automáticamente por IncluAI. Datos agregados — no contiene PII individual.
 Fuente: Nativos Consultora Digital.
 `
 }
@@ -113,7 +113,7 @@ function buildCsvDataset(b: ReportBundle): string {
 function buildSvgInfographic(b: ReportBundle): string {
   return `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" width="1200" height="630">
   <rect width="100%" height="100%" fill="#0B3D91"/>
-  <text x="60" y="100" font-family="Inter, system-ui" font-size="48" fill="#ffffff" font-weight="700">IncluIA</text>
+  <text x="60" y="100" font-family="Inter, system-ui" font-size="48" fill="#ffffff" font-weight="700">IncluAI</text>
   <text x="60" y="150" font-family="Inter" font-size="22" fill="#B8D0FF">Resultados del mes</text>
   <text x="60" y="260" font-family="Inter" font-size="72" fill="#ffffff" font-weight="800">${b.coverage.schoolsActive}</text>
   <text x="60" y="300" font-family="Inter" font-size="20" fill="#B8D0FF">escuelas activas</text>
@@ -121,6 +121,6 @@ function buildSvgInfographic(b: ReportBundle): string {
   <text x="440" y="300" font-family="Inter" font-size="20" fill="#B8D0FF">adaptaciones generadas</text>
   <text x="860" y="260" font-family="Inter" font-size="72" fill="#ffffff" font-weight="800">${b.impact.teacherHoursSaved}</text>
   <text x="860" y="300" font-family="Inter" font-size="20" fill="#B8D0FF">horas ahorradas a docentes</text>
-  <text x="60" y="570" font-family="Inter" font-size="16" fill="#B8D0FF">Nativos Consultora Digital · incluia.com.ar</text>
+  <text x="60" y="570" font-family="Inter" font-size="16" fill="#B8D0FF">Nativos Consultora Digital · incluai.com.ar</text>
 </svg>`
 }

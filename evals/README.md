@@ -1,6 +1,6 @@
-# IncluIA — Sistema de Evals automáticos
+# IncluAI — Sistema de Evals automáticos
 
-Este directorio contiene el **sistema de evaluación automática** de la calidad del prompt de IncluIA. Sirve para tres cosas:
+Este directorio contiene el **sistema de evaluación automática** de la calidad del prompt de IncluAI. Sirve para tres cosas:
 
 1. **Garantizar calidad del prompt sobre cambios**: cada PR que toca `lib/prompts.ts` pasa por los 60 casos y debe mantener score ≥ 85 / 100.
 2. **Detectar drift al cambiar de modelo Claude**: si cambia `CLAUDE_MODEL` (ej: de `claude-sonnet-4-6` a `claude-sonnet-4-7`), el run compara resultados contra el baseline.

@@ -23,8 +23,8 @@ export default function GlobalError({
       <p className="max-w-md text-muted">
         Tuvimos un inconveniente procesando tu solicitud. Probá de nuevo en un
         momento. Si sigue fallando, escribinos a{' '}
-        <a href="mailto:soporte@inclua.com.ar" className="text-accent hover:underline">
-          soporte@inclua.com.ar
+        <a href="mailto:soporte@incluai.com.ar" className="text-accent hover:underline">
+          soporte@incluai.com.ar
         </a>.
       </p>
       {error.digest && (

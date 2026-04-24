@@ -1,4 +1,4 @@
-# IncluIA para Córdoba
+# IncluAI para Córdoba
 ## Un asistente en español cordobés para cada docente de inclusión educativa
 
 ---
@@ -9,7 +9,7 @@ En la provincia de Córdoba, más de **45.000 estudiantes** tienen una Propuesta
 
 ### La respuesta
 
-**IncluIA** es una plataforma argentina con inteligencia artificial que ayuda al docente cordobés a:
+**IncluAI** es una plataforma argentina con inteligencia artificial que ayuda al docente cordobés a:
 - **Planificar en minutos** una clase adaptada a un estudiante con discapacidad visual, auditiva, intelectual, motora, TEA o TDAH.
 - **Cumplir la Resolución CFE 311/16** (PPI con campos estandarizados).
 - **Producir materiales accesibles**: lectura fácil, subtítulos, descripción de imágenes, audio.
@@ -19,9 +19,9 @@ Está hecho en Argentina, en **español rioplatense neutro**, y reconoce modismo
 
 ### Por qué Córdoba tiene ventaja
 
-1. **Red de escuelas rurales**: IncluIA funciona con conectividad 4G promedio — probado en zonas con señal intermitente. Una docente de Serrezuela puede generar una planificación tan válida como una del Cerro de las Rosas.
+1. **Red de escuelas rurales**: IncluAI funciona con conectividad 4G promedio — probado en zonas con señal intermitente. Una docente de Serrezuela puede generar una planificación tan válida como una del Cerro de las Rosas.
 2. **Universidades cordobesas**: UNC y UNRC tienen tradición en investigación educativa. El kit incluye modelo de convenio para que una de ellas evalúe el impacto con rigor académico.
-3. **Red de Institutos de Formación Docente**: IncluIA puede integrarse como herramienta de la formación inicial y continua.
+3. **Red de Institutos de Formación Docente**: IncluAI puede integrarse como herramienta de la formación inicial y continua.
 
 ### Cómo se mide el éxito
 
@@ -40,12 +40,12 @@ Presupuesto del piloto: **ARS 738.000 totales** para 400 estudiantes durante 3 m
 
 ### Quiénes somos
 
-**Nativos Consultora Digital** — Jorge Eduardo Francesia. Empresa argentina con sede operativa en el país. IncluIA nace de entender que la educación inclusiva no se resuelve con software importado: necesita hablar como hablan las maestras de acá.
+**Nativos Consultora Digital** — Jorge Eduardo Francesia. Empresa argentina con sede operativa en el país. IncluAI nace de entender que la educación inclusiva no se resuelve con software importado: necesita hablar como hablan las maestras de acá.
 
 ### Contacto directo
 
 **Jorge Eduardo Francesia** — jfrancesia@gmail.com
-Web: [incluia.com.ar](https://incluia.com.ar)
+Web: [incluai.com.ar](https://incluai.com.ar)
 Kit de contratación pública completo disponible a pedido: pliego técnico, SLA, modelo de convenio y presupuesto escalonado listos para el área de Compras.
 
 ---

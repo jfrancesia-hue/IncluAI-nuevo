@@ -4,7 +4,7 @@
  * Útil para demos de ventas sin tener que crear usuarios gov reales.
  *
  * Se oculta en producción por defecto (404) salvo que se active con
- * NEXT_PUBLIC_ENABLE_DEMO=1 — ej. para un ambiente "demo.incluia.com.ar".
+ * NEXT_PUBLIC_ENABLE_DEMO=1 — ej. para un ambiente "demo.incluai.com.ar".
  */
 import { notFound } from 'next/navigation'
 import { ShellInstitucional } from '@/components/gov/ShellInstitucional'
@@ -12,7 +12,7 @@ import type { ReactNode } from 'react'
 import '../(gobierno)/globals-gov.css'
 
 export const metadata = {
-  title: 'IncluIA · Panel Gubernamental (DEMO)',
+  title: 'IncluAI · Panel Gubernamental (DEMO)',
   robots: { index: false, follow: false },
 }
 

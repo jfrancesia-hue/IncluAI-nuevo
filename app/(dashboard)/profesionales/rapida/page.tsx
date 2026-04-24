@@ -3,7 +3,7 @@ import { checkPlanLimits } from '@/lib/plan';
 import Link from 'next/link';
 import { Alert } from '@/components/ui/alert';
 
-export const metadata = { title: 'Consulta rápida · IncluIA' };
+export const metadata = { title: 'Consulta rápida · IncluAI' };
 
 export default async function RapidaPage() {
   const plan = await checkPlanLimits();

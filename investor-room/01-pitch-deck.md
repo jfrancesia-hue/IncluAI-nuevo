@@ -1,4 +1,4 @@
-# Pitch Deck — IncluIA
+# Pitch Deck — IncluAI
 
 **15 slides · Formato narrativo · Lectura autónoma**
 **Versión:** 2026-04-22 · v1.0
@@ -7,7 +7,7 @@
 
 ## Slide 1 — Portada
 
-# IncluIA
+# IncluAI
 ### La IA que convierte a cada docente en un especialista en educación inclusiva
 
 **Nativos Consultora Digital** — Buenos Aires, Argentina
@@ -49,9 +49,9 @@ Tailwind regulatorio:
 
 ## Slide 4 — Solución
 
-### IncluIA: el copiloto del docente inclusivo
+### IncluAI: el copiloto del docente inclusivo
 
-En 30 segundos, a partir del objetivo pedagógico y el perfil del alumno, IncluIA genera:
+En 30 segundos, a partir del objetivo pedagógico y el perfil del alumno, IncluAI genera:
 
 1. **Planificación adaptada** con ajustes razonables (DUA — Diseño Universal para el Aprendizaje).
 2. **Material didáctico descargable** en PDF, con pictogramas ARASAAC, lectura fácil y versión en lengua de señas cuando aplica.
@@ -122,7 +122,7 @@ Todo en español rioplatense, con marco pedagógico argentino y respaldo de Clau
 2. **Partnerships con sindicatos docentes y profesorados (meses 6–24):** UTE, CTERA, ISFD provinciales. Webinars mensuales + licencias demo gratis para alumnos de terciario. CAC: USD 12.
 3. **B2G licitaciones provinciales (meses 12+):** equipo de ventas dedicado, un PM por cuenta. Ticket promedio proyectado USD 180k/año, ciclo 6–12 meses. CAC: USD 9.500 por contrato.
 
-**Moat comercial:** el contrato provincial vuelve a IncluIA la herramienta estándar en aulas públicas → lock-in de 3+ años y barrera de entrada para competidores.
+**Moat comercial:** el contrato provincial vuelve a IncluAI la herramienta estándar en aulas públicas → lock-in de 3+ años y barrera de entrada para competidores.
 
 ---
 
@@ -147,7 +147,7 @@ Todo en español rioplatense, con marco pedagógico argentino y respaldo de Clau
 | Google for Education | Infra + Gemini | Sí | Sí | No específica | USD 3–5/alumno |
 | Magic School AI | Planificación docente EEUU | No | Sí (GPT-4) | Parcial | USD 10/mes |
 | Educabot (AR) | Robótica educativa | Sí | No | No | USD 15+ |
-| **IncluIA** | **Planificación inclusiva IA** | **Nativo AR** | **Claude 4.7 + RAG propio** | **Core** | **USD 2,5–8/mes** |
+| **IncluAI** | **Planificación inclusiva IA** | **Nativo AR** | **Claude 4.7 + RAG propio** | **Core** | **USD 2,5–8/mes** |
 
 Detalle completo en `06-competidores-analisis.md`.
 

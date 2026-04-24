@@ -3,7 +3,7 @@ import { PASOS_CUD } from '@/data/cud-pasos';
 import { Card, CardContent } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 
-export const metadata = { title: 'Trámite CUD · IncluIA' };
+export const metadata = { title: 'Trámite CUD · IncluAI' };
 
 export default function CUDPage() {
   return (

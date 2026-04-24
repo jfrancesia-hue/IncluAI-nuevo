@@ -1,5 +1,5 @@
 // ============================================
-// IncluIA — Schema de guía estructurada (v2)
+// IncluAI — Schema de guía estructurada (v2)
 // Salida tipada que Claude devuelve vía tool use
 // después de generar la guía en markdown.
 // ============================================

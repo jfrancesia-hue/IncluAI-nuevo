@@ -3,7 +3,7 @@ import { checkPlanLimits } from '@/lib/plan';
 import { Alert } from '@/components/ui/alert';
 import { FamiliaWizard } from '@/components/wizards/familia-wizard';
 
-export const metadata = { title: 'Nueva guía (Familia) · IncluIA' };
+export const metadata = { title: 'Nueva guía (Familia) · IncluAI' };
 
 export default async function NuevaConsultaFamiliaPage() {
   const plan = await checkPlanLimits();

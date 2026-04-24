@@ -1,5 +1,5 @@
 // ============================================
-// IncluIA — Tipos Fase 8 "Gobierno & Compra Estatal"
+// IncluAI — Tipos Fase 8 "Gobierno & Compra Estatal"
 // Separado de lib/types.ts para no romper imports existentes.
 // ============================================
 

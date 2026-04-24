@@ -1,12 +1,12 @@
 # Informe de Auditoría de Accesibilidad WCAG 2.1 Nivel AA
 
-**Producto:** IncluIA — https://incluia.com.ar
+**Producto:** IncluAI — https://incluai.com.ar
 **Responsable de la auditoría:** Equipo de Calidad de Accesibilidad, Nativos Consultora Digital S.A.S.
 **Herramientas utilizadas:** axe-core 4.10, Lighthouse 12, WAVE, NVDA 2025.1 (Windows), VoiceOver (macOS 15), inspección manual con usuarios reales.
-**Alcance:** Todas las rutas públicas y autenticadas de la plataforma IncluIA, incluyendo flujos de registro de docente, generación de guías pedagógicas, dashboard, editor de contenidos y área de suscripción (Mercado Pago).
+**Alcance:** Todas las rutas públicas y autenticadas de la plataforma IncluAI, incluyendo flujos de registro de docente, generación de guías pedagógicas, dashboard, editor de contenidos y área de suscripción (Mercado Pago).
 **Fecha de la auditoría:** del 1 al 15 de abril de 2026
 **Estándar evaluado:** W3C Web Content Accessibility Guidelines (WCAG) 2.1, nivel de conformidad AA (incluye los 30 criterios de nivel A y los 20 adicionales de nivel AA, total 50 criterios).
-**Versión de IncluIA evaluada:** v0.18.2 en producción, Next.js 16, React 19.
+**Versión de IncluAI evaluada:** v0.18.2 en producción, Next.js 16, React 19.
 
 ---
 
@@ -38,7 +38,7 @@
 | Criterio | Nivel | Estado | Evidencia | Acción |
 |----------|-------|--------|-----------|--------|
 | 1.1.1 Contenido no textual | A | Conforme | Todas las imágenes decorativas tienen `alt=""`; las informativas tienen descripción. Iconos `lucide-react` con `aria-hidden` cuando son decorativos. | Mantener política en code review. |
-| 1.2.1 Solo audio y solo video (grabado) | A | No aplica | IncluIA no incluye contenido multimedia grabado en su interfaz. | N/A |
+| 1.2.1 Solo audio y solo video (grabado) | A | No aplica | IncluAI no incluye contenido multimedia grabado en su interfaz. | N/A |
 | 1.2.2 Subtítulos (grabado) | A | Conforme | Los videos tutoriales de onboarding tienen subtítulos en español (archivo .vtt). | Mantener para videos futuros. |
 | 1.2.3 Audiodescripción o alternativa de medios | A | Conforme | Los videos tutoriales tienen transcripción textual disponible debajo del player. | Mantener. |
 | 1.2.4 Subtítulos (en directo) | AA | No aplica | No hay contenido en vivo actualmente. | N/A |
@@ -109,7 +109,7 @@
 
 ### Incumplimientos (2)
 
-- **RM-05 (crítico):** Selector de discapacidad en el formulario de creación de guía pedagógica no es operable con lectores de pantalla. Dado que IncluIA está destinada a la inclusión, este hallazgo debe priorizarse al máximo.
+- **RM-05 (crítico):** Selector de discapacidad en el formulario de creación de guía pedagógica no es operable con lectores de pantalla. Dado que IncluAI está destinada a la inclusión, este hallazgo debe priorizarse al máximo.
 - **RM-06 (alto):** Mensajes de estado (toasts) no anunciados a tecnologías asistivas.
 
 ### Conformidad parcial (4)
@@ -131,16 +131,16 @@
 
 ## Declaración
 
-Declaramos que IncluIA v0.18.2 **cumple parcialmente** con WCAG 2.1 nivel AA al 22 de abril de 2026. Los incumplimientos y conformidades parciales identificados cuentan con plan de remediación con fechas comprometidas (ver documento adjunto). La conformidad total está prevista para el **15 de julio de 2026**, fecha en la cual se emitirá una nueva declaración.
+Declaramos que IncluAI v0.18.2 **cumple parcialmente** con WCAG 2.1 nivel AA al 22 de abril de 2026. Los incumplimientos y conformidades parciales identificados cuentan con plan de remediación con fechas comprometidas (ver documento adjunto). La conformidad total está prevista para el **15 de julio de 2026**, fecha en la cual se emitirá una nueva declaración.
 
 Firmado digitalmente:
 
 **Mariana Pérez**
 Responsable de Accesibilidad
 Nativos Consultora Digital S.A.S.
-accesibilidad@incluia.com.ar
+accesibilidad@incluai.com.ar
 
 **Sebastián Martínez**
 CTO
 Nativos Consultora Digital S.A.S.
-cto@incluia.com.ar
+cto@incluai.com.ar

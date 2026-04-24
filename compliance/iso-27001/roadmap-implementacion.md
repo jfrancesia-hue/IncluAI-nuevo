@@ -1,10 +1,10 @@
 # Hoja de ruta de implementación ISO/IEC 27001:2022
 
-**Producto:** IncluIA
+**Producto:** IncluAI
 **Empresa titular:** Nativos Consultora Digital S.A.S.
 **Horizonte:** 12 meses (Abril 2026 – Abril 2027)
 **Responsable del programa:** Sebastián Martínez (CTO) con asesoría de CISO externo (Mgter. Ricardo Bianchi, Staff Augmentation).
-**Objetivo final:** auditoría de certificación Etapa 2 para obtener la certificación ISO/IEC 27001:2022 en abril de 2027, con alcance al Sistema de Gestión de Seguridad de la Información (SGSI) que soporta la plataforma IncluIA.
+**Objetivo final:** auditoría de certificación Etapa 2 para obtener la certificación ISO/IEC 27001:2022 en abril de 2027, con alcance al Sistema de Gestión de Seguridad de la Información (SGSI) que soporta la plataforma IncluAI.
 
 ---
 
@@ -21,12 +21,12 @@ Somos una startup de 14 personas al 22/04/2026. Por lo tanto:
 
 ## 2. Alcance del SGSI
 
-- **Servicios en alcance:** la plataforma IncluIA (front Next.js 16 en Vercel, backend en Supabase, integración con Anthropic Claude, pagos Mercado Pago).
+- **Servicios en alcance:** la plataforma IncluAI (front Next.js 16 en Vercel, backend en Supabase, integración con Anthropic Claude, pagos Mercado Pago).
 - **Procesos en alcance:** gestión de cuentas, generación y almacenamiento de guías pedagógicas, facturación, soporte.
 - **Datos en alcance:** datos personales de docentes, contenido de guías, datos de uso, datos agregados para Gobierno.
 - **Personal en alcance:** todos los empleados y contratados de Nativos Consultora Digital.
 - **Instalaciones en alcance:** oficina central en Córdoba (Argentina) + teletrabajo documentado.
-- **Fuera de alcance:** otros productos o proyectos de Nativos Consultora Digital no relacionados con IncluIA.
+- **Fuera de alcance:** otros productos o proyectos de Nativos Consultora Digital no relacionados con IncluAI.
 
 ---
 
@@ -112,7 +112,7 @@ Somos una startup de 14 personas al 22/04/2026. Por lo tanto:
 - [ ] Capacitación obligatoria en seguridad de la información para todo el personal (programa en Coursera o equivalente + examen).
 - [ ] Phishing simulation: primera campaña interna.
 - [ ] Onboarding de seguridad documentado para nuevas incorporaciones.
-- [ ] Canal confidencial para reportar incidentes (seguridad@incluia.com.ar + buzón anónimo).
+- [ ] Canal confidencial para reportar incidentes (seguridad@incluai.com.ar + buzón anónimo).
 
 **Diciembre 2026 (Mes 9) — Auditoría Interna**
 - [ ] Auditoría interna completa del SGSI por auditor/a líder ISO 27001 externo.

@@ -1,5 +1,5 @@
 // ============================================
-// IncluIA — Tipos TypeScript principales
+// IncluAI — Tipos TypeScript principales
 // ============================================
 
 // --- Niveles y Modalidades ---

@@ -1,5 +1,5 @@
 // ============================================
-// IncluIA — Catálogo de Discapacidades
+// IncluAI — Catálogo de Discapacidades
 // Con descripciones y estrategias clave para el prompt de IA
 // ============================================
 

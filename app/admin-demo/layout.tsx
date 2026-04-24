@@ -4,7 +4,7 @@ import type { ReactNode } from 'react'
 import '../(gobierno)/globals-gov.css'
 
 export const metadata = {
-  title: 'IncluIA · Admin (DEMO)',
+  title: 'IncluAI · Admin (DEMO)',
   robots: { index: false, follow: false },
 }
 
@@ -19,7 +19,7 @@ export default function AdminDemoLayout({ children }: { children: ReactNode }) {
           <div className="gov-cobranding">
             <div className="gov-cobranding__prov" aria-hidden="true">IA</div>
             <div className="gov-cobranding__app">
-              IncluIA<span className="gov-cobranding__sep">·</span>Admin
+              IncluAI<span className="gov-cobranding__sep">·</span>Admin
             </div>
           </div>
           <nav className="gov-nav">

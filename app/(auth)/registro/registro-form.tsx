@@ -65,7 +65,7 @@ export function RegistroForm() {
       <input type="hidden" name="tipo_usuario" value={tipo} />
 
       <fieldset className="flex flex-col gap-2">
-        <Label>¿Cómo vas a usar IncluIA?</Label>
+        <Label>¿Cómo vas a usar IncluAI?</Label>
         <div className="grid grid-cols-1 gap-2 sm:grid-cols-3">
           {TIPOS.map((t) => (
             <button

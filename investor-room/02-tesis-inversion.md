@@ -1,7 +1,7 @@
-# Tesis de Inversión — IncluIA
+# Tesis de Inversión — IncluAI
 
 **Audiencia:** inversores pre-seed / seed LATAM · Tickets USD 100k–1M
-**Pregunta que responde este documento:** *¿Por qué debería un inversor racional poner capital en IncluIA hoy, y no en otra EdTech LATAM?*
+**Pregunta que responde este documento:** *¿Por qué debería un inversor racional poner capital en IncluAI hoy, y no en otra EdTech LATAM?*
 
 ---
 
@@ -10,7 +10,7 @@
 1. **El mercado existe y paga:** 1M+ docentes en Argentina ya gastan horas semanales haciendo un trabajo para el que no están entrenados, en un sistema que los obliga por ley a incluir alumnos con CUD. El dolor es legal, emocional y diario.
 2. **El momento técnico es ahora:** hasta 2023 no existía una IA lo suficientemente buena como para generar material pedagógico adaptado en español argentino. Claude 4.7 + RAG propietario cambian eso. La ventana de 12–18 meses para consolidar marca antes de que Google/OpenAI miren hacia acá es real.
 3. **El founder ya construyó y cobró 12 SaaS:** Jorge Francesia tiene track record verificable de llevar productos a producción, cobrarlos (Mercado Pago, Stripe) y mantenerlos. No es "idea en PowerPoint".
-4. **El path a contrato provincial es el moat:** con USD 750k se llega a 1 contrato público cobrado → eso hace que IncluIA sea la opción default en aulas públicas de esa provincia → barrera regulatoria y de referencia social muy difícil de replicar.
+4. **El path a contrato provincial es el moat:** con USD 750k se llega a 1 contrato público cobrado → eso hace que IncluAI sea la opción default en aulas públicas de esa provincia → barrera regulatoria y de referencia social muy difícil de replicar.
 
 ---
 
@@ -53,7 +53,7 @@ Replicar esto desde cero requiere ~9 meses y un equipo pedagógico dedicado.
 ### 2.3 Disciplina de costos
 - Burn mensual proyectado en ronda seed: USD 38–52k.
 - Benchmark EdTech LATAM pre-seed: USD 70–100k/mes con equivalente headcount.
-- IncluIA opera desde Argentina (costos ARS), lo que extiende runway ~30% vs. una EdTech mexicana/brasilera con costos en USD/BRL.
+- IncluAI opera desde Argentina (costos ARS), lo que extiende runway ~30% vs. una EdTech mexicana/brasilera con costos en USD/BRL.
 
 ---
 
@@ -89,12 +89,12 @@ Cada planificación generada y valorada por el docente mejora el modelo de ranki
 
 ---
 
-## 5. Qué busca IncluIA en un inversor
+## 5. Qué busca IncluAI en un inversor
 
 - **Lead con experiencia en EdTech o SaaS B2G LATAM.** Ideales: Kaszek, Cometa, NXTP, Jaguar, Reach Capital, Rethink Education (via fondo LATAM).
 - **Acceso a redes de ministerios de educación provinciales/nacionales** en al menos un país LATAM fuera de Argentina.
 - **Paciencia con ciclo B2G** (12 meses es normal, no es fracaso).
-- **Comfort con founder técnico operando múltiples proyectos** en paralelo durante los primeros 6 meses, con compromiso de full-time a IncluIA tras el cierre de la ronda.
+- **Comfort con founder técnico operando múltiples proyectos** en paralelo durante los primeros 6 meses, con compromiso de full-time a IncluAI tras el cierre de la ronda.
 
 ---
 

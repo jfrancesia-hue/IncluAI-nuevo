@@ -32,7 +32,7 @@ Comparables EdTech seed LATAM 2024–2025:
 | [Comparable 2] | Seed | USD 800k | USD 5,5M | USD 90k | 61x |
 | [Comparable 3] | Pre-seed+ | USD 500k | USD 4M | USD 40k | 100x |
 | MagicSchool AI (US) | Seed | USD 5M | USD 30M | USD 500k | 60x |
-| **IncluIA target** | **Seed** | **USD 750k** | **USD 6M** | **USD [COMPLETAR] actual** | **[calcular]** |
+| **IncluAI target** | **Seed** | **USD 750k** | **USD 6M** | **USD [COMPLETAR] actual** | **[calcular]** |
 
 Cap USD 6M se justifica por:
 - IA generativa como moat + timing (Claude 4.7).
@@ -188,7 +188,7 @@ Abiertos a discutir: board composition, protective provisions razonables, report
 
 - Jorge Francesia deja de prestar servicios externos mayoristas al cierre de la ronda (Nativos Consultora Digital pasa a modo mantenimiento, no expansión).
 - Jorge aporta USD [COMPLETAR: capital propio si corresponde] en la ronda o lo capitalizó pre-ronda.
-- Nativos Consultora Digital como vehículo LEGAL de IncluIA S.A. (o transición a SAU/S.R.L. según recomendación de estudio jurídico en el closing).
+- Nativos Consultora Digital como vehículo LEGAL de IncluAI S.A. (o transición a SAU/S.R.L. según recomendación de estudio jurídico en el closing).
 
 ---
 

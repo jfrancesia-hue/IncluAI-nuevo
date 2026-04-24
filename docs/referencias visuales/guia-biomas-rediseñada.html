@@ -1,0 +1,1303 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Guía pedagógica · Biomas de América Latina · IncluIA</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,500&family=DM+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --docentes: #185FA5;
+    --docentes-light: #378ADD;
+    --docentes-bg: #E6F1FB;
+    --docentes-dark: #042C53;
+    --selva: #3B6D11;
+    --selva-bg: #EAF3DE;
+    --selva-dark: #173404;
+    --desierto: #D85A30;
+    --desierto-bg: #FAEEDA;
+    --desierto-dark: #633806;
+    --pampa: #EF9F27;
+    --pampa-bg: #FAEEDA;
+    --pampa-dark: #633806;
+    --violeta: #534AB7;
+    --violeta-bg: #EEEDFE;
+    --violeta-dark: #26215C;
+    --sol: #FAC775;
+    --terracota: #F0997B;
+    --papel: #F9F7F0;
+    --papel-alt: #F1EFE8;
+    --texto: #1F1F1D;
+    --texto-medio: #5F5E5A;
+    --texto-suave: #888780;
+    --borde: #E5E2D6;
+    --exito: #1D9E75;
+    --exito-bg: #E1F5EE;
+    --alerta-bg: #FAEEDA;
+    --alerta: #854F0B;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: 'DM Sans', -apple-system, sans-serif;
+    font-size: 18px;
+    line-height: 1.6;
+    color: var(--texto);
+    background: var(--papel);
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* ───────── Header / barra de accesibilidad ───────── */
+  .accessibility-bar {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: var(--docentes-dark);
+    color: white;
+    padding: 10px 24px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 14px;
+  }
+  .brand { display: flex; align-items: center; gap: 10px; font-weight: 600; }
+  .brand-mark {
+    width: 28px; height: 28px; border-radius: 8px;
+    background: linear-gradient(135deg, var(--sol), var(--terracota));
+    display: flex; align-items: center; justify-content: center;
+    font-family: 'Fraunces', serif; font-weight: 700; color: var(--docentes-dark);
+  }
+  .a11y-controls { display: flex; gap: 8px; align-items: center; }
+  .a11y-btn {
+    background: rgba(255,255,255,0.12);
+    border: 1px solid rgba(255,255,255,0.2);
+    color: white;
+    padding: 6px 12px;
+    border-radius: 8px;
+    font-size: 13px;
+    cursor: pointer;
+    font-family: inherit;
+    transition: background 0.15s;
+  }
+  .a11y-btn:hover { background: rgba(255,255,255,0.22); }
+  .a11y-btn.active { background: var(--sol); color: var(--docentes-dark); font-weight: 600; }
+
+  /* ───────── Hero de la guía ───────── */
+  .hero {
+    position: relative;
+    padding: 56px 32px 48px;
+    background:
+      radial-gradient(circle at 90% 20%, rgba(250,199,117,0.35) 0%, transparent 40%),
+      radial-gradient(circle at 10% 80%, rgba(192,221,151,0.4) 0%, transparent 45%),
+      linear-gradient(180deg, #E6F1FB 0%, #EAF3DE 100%);
+    overflow: hidden;
+  }
+  .hero-inner {
+    max-width: 900px;
+    margin: 0 auto;
+    position: relative;
+  }
+  .hero-eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    background: white;
+    padding: 8px 16px;
+    border-radius: 999px;
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--docentes);
+    border: 1px solid rgba(24,95,165,0.15);
+    margin-bottom: 20px;
+  }
+  .hero-eyebrow::before {
+    content: "";
+    width: 8px; height: 8px; border-radius: 50%;
+    background: var(--exito);
+  }
+  .hero-title {
+    font-family: 'Fraunces', serif;
+    font-weight: 500;
+    font-size: clamp(32px, 5vw, 52px);
+    line-height: 1.08;
+    color: var(--docentes-dark);
+    margin-bottom: 16px;
+    letter-spacing: -0.02em;
+  }
+  .hero-title em {
+    font-style: italic;
+    color: var(--desierto);
+    font-weight: 400;
+  }
+  .hero-subtitle {
+    font-size: 19px;
+    color: var(--docentes-dark);
+    opacity: 0.85;
+    max-width: 620px;
+    line-height: 1.5;
+    margin-bottom: 28px;
+  }
+
+  /* ───────── Metadatos de la clase ───────── */
+  .meta-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 12px;
+    background: white;
+    padding: 20px;
+    border-radius: 16px;
+    border: 1px solid var(--borde);
+  }
+  .meta-item {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+  .meta-label {
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 0.6px;
+    color: var(--texto-suave);
+    font-weight: 600;
+  }
+  .meta-value {
+    font-size: 16px;
+    font-weight: 600;
+    color: var(--texto);
+  }
+
+  /* ───────── Contenedor principal ───────── */
+  .container {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 48px 32px 80px;
+  }
+
+  /* ───────── Vista rápida ───────── */
+  .vista-rapida {
+    background: white;
+    border: 1px solid var(--borde);
+    border-radius: 20px;
+    padding: 32px;
+    margin-bottom: 48px;
+    position: relative;
+    overflow: hidden;
+  }
+  .vista-rapida::before {
+    content: "";
+    position: absolute;
+    top: 0; left: 0;
+    width: 6px; height: 100%;
+    background: linear-gradient(180deg, var(--sol), var(--terracota));
+  }
+  .vista-rapida-label {
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 1.2px;
+    color: var(--terracota);
+    font-weight: 700;
+    margin-bottom: 12px;
+  }
+  .vista-rapida-title {
+    font-family: 'Fraunces', serif;
+    font-size: 28px;
+    font-weight: 500;
+    color: var(--texto);
+    margin-bottom: 20px;
+    line-height: 1.2;
+  }
+  .vista-rapida-text {
+    font-size: 18px;
+    line-height: 1.6;
+    color: var(--texto);
+  }
+  .vista-rapida-text strong {
+    background: linear-gradient(180deg, transparent 60%, var(--sol) 60%);
+    font-weight: 600;
+  }
+
+  /* ───────── Secciones principales ───────── */
+  .section { margin-bottom: 64px; }
+  .section-header {
+    display: flex;
+    align-items: flex-start;
+    gap: 20px;
+    margin-bottom: 32px;
+  }
+  .section-number {
+    flex-shrink: 0;
+    width: 56px;
+    height: 56px;
+    border-radius: 18px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Fraunces', serif;
+    font-size: 26px;
+    font-weight: 600;
+    background: var(--docentes-bg);
+    color: var(--docentes);
+  }
+  .section-header h2 {
+    font-family: 'Fraunces', serif;
+    font-size: 32px;
+    font-weight: 500;
+    line-height: 1.15;
+    color: var(--texto);
+    margin-top: 4px;
+    letter-spacing: -0.01em;
+  }
+  .section-intro {
+    margin-left: 76px;
+    font-size: 18px;
+    color: var(--texto-medio);
+    line-height: 1.6;
+    margin-top: -16px;
+    margin-bottom: 28px;
+    max-width: 680px;
+  }
+
+  /* ───────── Los 3 biomas como tarjetas ilustradas ───────── */
+  .biomas-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+    margin-left: 76px;
+  }
+  @media (max-width: 720px) {
+    .biomas-grid { grid-template-columns: 1fr; margin-left: 0; }
+    .section-intro { margin-left: 0; }
+  }
+  .bioma-card {
+    background: white;
+    border: 1px solid var(--borde);
+    border-radius: 20px;
+    overflow: hidden;
+    transition: transform 0.2s, box-shadow 0.2s;
+    cursor: pointer;
+  }
+  .bioma-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 32px rgba(0,0,0,0.06);
+  }
+  .bioma-visual {
+    height: 140px;
+    position: relative;
+    overflow: hidden;
+  }
+  .bioma-visual svg { width: 100%; height: 100%; display: block; }
+  .bioma-body { padding: 20px; }
+  .bioma-label {
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.8px;
+    font-weight: 700;
+    margin-bottom: 6px;
+  }
+  .bioma-title {
+    font-family: 'Fraunces', serif;
+    font-size: 22px;
+    font-weight: 500;
+    margin-bottom: 8px;
+  }
+  .bioma-desc { font-size: 15px; color: var(--texto-medio); line-height: 1.45; }
+
+  .bioma-selva .bioma-label { color: var(--selva); }
+  .bioma-selva .bioma-title { color: var(--selva-dark); }
+  .bioma-desierto .bioma-label { color: var(--desierto); }
+  .bioma-desierto .bioma-title { color: var(--desierto-dark); }
+  .bioma-pampa .bioma-label { color: var(--pampa); }
+  .bioma-pampa .bioma-title { color: var(--pampa-dark); }
+
+  /* ───────── Estrategias (acordeón expandible) ───────── */
+  .estrategias-wrap { margin-left: 76px; }
+  @media (max-width: 720px) { .estrategias-wrap { margin-left: 0; } }
+
+  .estrategia {
+    background: white;
+    border: 1px solid var(--borde);
+    border-radius: 20px;
+    margin-bottom: 14px;
+    overflow: hidden;
+    transition: box-shadow 0.2s, border-color 0.2s;
+  }
+  .estrategia[open] {
+    border-color: var(--docentes-light);
+    box-shadow: 0 8px 24px rgba(24,95,165,0.08);
+  }
+  .estrategia summary {
+    list-style: none;
+    cursor: pointer;
+    padding: 20px 24px;
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    user-select: none;
+  }
+  .estrategia summary::-webkit-details-marker { display: none; }
+  .estrategia-icon {
+    flex-shrink: 0;
+    width: 56px;
+    height: 56px;
+    border-radius: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--docentes-bg);
+  }
+  .estrategia-icon svg { width: 32px; height: 32px; }
+  .estrategia-info { flex: 1; min-width: 0; }
+  .estrategia-num {
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 0.8px;
+    font-weight: 700;
+    color: var(--docentes);
+    margin-bottom: 2px;
+  }
+  .estrategia-titulo {
+    font-family: 'Fraunces', serif;
+    font-size: 22px;
+    font-weight: 500;
+    line-height: 1.2;
+    color: var(--texto);
+    margin-bottom: 4px;
+  }
+  .estrategia-tag {
+    display: inline-block;
+    font-size: 13px;
+    color: var(--texto-medio);
+  }
+  .estrategia-toggle {
+    flex-shrink: 0;
+    width: 36px; height: 36px;
+    border-radius: 50%;
+    background: var(--docentes-bg);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: transform 0.25s;
+  }
+  .estrategia[open] .estrategia-toggle { transform: rotate(45deg); background: var(--docentes); }
+  .estrategia[open] .estrategia-toggle svg { stroke: white; }
+  .estrategia-body {
+    padding: 0 24px 28px 100px;
+    animation: slideDown 0.3s ease;
+  }
+  @media (max-width: 720px) { .estrategia-body { padding: 0 24px 28px; } }
+  @keyframes slideDown {
+    from { opacity: 0; transform: translateY(-8px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  .pasos-lista {
+    list-style: none;
+    counter-reset: paso;
+    margin-bottom: 20px;
+  }
+  .pasos-lista li {
+    counter-increment: paso;
+    padding: 12px 0 12px 44px;
+    position: relative;
+    border-bottom: 1px dashed var(--borde);
+    font-size: 16px;
+    line-height: 1.55;
+  }
+  .pasos-lista li:last-child { border-bottom: none; }
+  .pasos-lista li::before {
+    content: counter(paso);
+    position: absolute;
+    left: 0; top: 10px;
+    width: 30px; height: 30px;
+    border-radius: 50%;
+    background: var(--docentes-bg);
+    color: var(--docentes);
+    font-weight: 700;
+    font-size: 14px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .funciona {
+    background: var(--exito-bg);
+    border-left: 4px solid var(--exito);
+    padding: 16px 20px;
+    border-radius: 0 12px 12px 0;
+    font-size: 15px;
+    line-height: 1.5;
+    color: var(--selva-dark);
+  }
+  .funciona strong { color: var(--exito); display: block; margin-bottom: 4px; font-size: 12px; text-transform: uppercase; letter-spacing: 0.6px; }
+
+  /* ───────── Videos recomendados ───────── */
+  .videos-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 12px;
+    margin-left: 76px;
+  }
+  @media (max-width: 720px) { .videos-grid { margin-left: 0; } }
+  .video-card {
+    background: white;
+    border: 1px solid var(--borde);
+    border-radius: 16px;
+    overflow: hidden;
+    transition: transform 0.2s;
+  }
+  .video-card:hover { transform: translateY(-2px); }
+  .video-thumb {
+    height: 120px;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .video-selva { background: linear-gradient(135deg, #97C459, #3B6D11); }
+  .video-desierto { background: linear-gradient(135deg, #EF9F27, #D85A30); }
+  .video-pampa { background: linear-gradient(135deg, #FAC775, #97C459); }
+  .video-pakapaka { background: linear-gradient(135deg, #534AB7, #D4537E); }
+  .play-circle {
+    width: 48px; height: 48px;
+    background: rgba(255,255,255,0.95);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .video-info { padding: 14px 16px; }
+  .video-title { font-size: 15px; font-weight: 600; color: var(--texto); margin-bottom: 4px; line-height: 1.3; }
+  .video-meta { font-size: 13px; color: var(--texto-medio); }
+
+  /* ───────── Materiales ───────── */
+  .materiales-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 14px;
+    margin-left: 76px;
+  }
+  @media (max-width: 720px) { .materiales-grid { margin-left: 0; } }
+  .material-card {
+    background: white;
+    border: 1px solid var(--borde);
+    border-radius: 18px;
+    padding: 24px;
+  }
+  .material-icon {
+    width: 56px; height: 56px;
+    border-radius: 16px;
+    background: var(--pampa-bg);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 16px;
+  }
+  .material-titulo {
+    font-family: 'Fraunces', serif;
+    font-size: 20px;
+    font-weight: 500;
+    color: var(--texto);
+    margin-bottom: 10px;
+  }
+  .material-desc {
+    font-size: 15px;
+    line-height: 1.5;
+    color: var(--texto-medio);
+  }
+
+  /* ───────── Evaluación (grilla interactiva) ───────── */
+  .grilla-wrap { margin-left: 76px; }
+  @media (max-width: 720px) { .grilla-wrap { margin-left: 0; } }
+  .grilla {
+    background: white;
+    border: 1px solid var(--borde);
+    border-radius: 18px;
+    overflow: hidden;
+  }
+  .grilla-header {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr 1fr;
+    gap: 8px;
+    padding: 14px 20px;
+    background: var(--violeta-bg);
+    font-size: 13px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.4px;
+    color: var(--violeta-dark);
+  }
+  .grilla-row {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr 1fr;
+    gap: 8px;
+    padding: 16px 20px;
+    align-items: center;
+    border-top: 1px solid var(--borde);
+    font-size: 15px;
+  }
+  .grilla-row:first-of-type { border-top: none; }
+  .check-btn {
+    width: 28px; height: 28px;
+    border-radius: 8px;
+    border: 2px solid var(--borde);
+    background: white;
+    cursor: pointer;
+    margin: 0 auto;
+    display: block;
+    transition: all 0.15s;
+    font-family: inherit;
+  }
+  .check-btn:hover { border-color: var(--docentes-light); }
+  .check-btn.active {
+    background: var(--exito);
+    border-color: var(--exito);
+    color: white;
+    font-weight: 700;
+  }
+  @media (max-width: 720px) {
+    .grilla-header { display: none; }
+    .grilla-row {
+      grid-template-columns: 1fr;
+      gap: 10px;
+      padding: 20px;
+    }
+    .grilla-checks {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 8px;
+    }
+    .grilla-check-wrap { display: flex; flex-direction: column; align-items: center; gap: 4px; }
+    .grilla-check-label { font-size: 11px; color: var(--texto-medio); }
+  }
+
+  /* ───────── Tips de comunicación ───────── */
+  .tips-comparacion {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 14px;
+    margin-left: 76px;
+  }
+  @media (max-width: 720px) { .tips-comparacion { grid-template-columns: 1fr; margin-left: 0; } }
+  .tip-col {
+    border-radius: 18px;
+    padding: 24px;
+    border: 1px solid var(--borde);
+  }
+  .tip-si {
+    background: var(--exito-bg);
+    border-color: #9FE1CB;
+  }
+  .tip-no {
+    background: #FCEBEB;
+    border-color: #F7C1C1;
+  }
+  .tip-header {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 16px;
+    font-family: 'Fraunces', serif;
+    font-size: 20px;
+    font-weight: 500;
+  }
+  .tip-si .tip-header { color: #0F6E56; }
+  .tip-no .tip-header { color: #791F1F; }
+  .tip-badge {
+    width: 32px; height: 32px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 16px;
+    font-weight: 700;
+  }
+  .tip-si .tip-badge { background: var(--exito); color: white; }
+  .tip-no .tip-badge { background: #A32D2D; color: white; }
+  .tip-lista { list-style: none; }
+  .tip-lista li {
+    padding: 10px 0;
+    font-size: 16px;
+    line-height: 1.5;
+    border-bottom: 1px dashed rgba(0,0,0,0.08);
+  }
+  .tip-lista li:last-child { border-bottom: none; }
+
+  /* ───────── Alerta de errores ───────── */
+  .alerta-box {
+    background: var(--alerta-bg);
+    border: 1px solid #EF9F27;
+    border-radius: 18px;
+    padding: 24px;
+    margin-left: 76px;
+  }
+  @media (max-width: 720px) { .alerta-box { margin-left: 0; } }
+  .alerta-titulo {
+    font-family: 'Fraunces', serif;
+    font-size: 20px;
+    font-weight: 600;
+    color: var(--alerta);
+    margin-bottom: 16px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .alerta-item {
+    display: flex;
+    gap: 14px;
+    padding: 12px 0;
+    border-top: 1px solid rgba(133,79,11,0.15);
+    font-size: 16px;
+    line-height: 1.5;
+    color: var(--alerta);
+  }
+  .alerta-item:first-of-type { border-top: none; }
+  .alerta-item strong { display: block; margin-bottom: 2px; }
+
+  /* ───────── CTA inferior ───────── */
+  .cta-final {
+    background: linear-gradient(135deg, var(--docentes-light) 0%, var(--violeta) 100%);
+    border-radius: 24px;
+    padding: 40px;
+    text-align: center;
+    color: white;
+    margin-top: 80px;
+  }
+  .cta-final h3 {
+    font-family: 'Fraunces', serif;
+    font-size: 28px;
+    font-weight: 500;
+    margin-bottom: 12px;
+  }
+  .cta-final p { font-size: 17px; opacity: 0.92; margin-bottom: 24px; max-width: 520px; margin-left: auto; margin-right: auto; }
+  .cta-buttons { display: inline-flex; gap: 12px; flex-wrap: wrap; justify-content: center; }
+  .btn {
+    border: none;
+    padding: 14px 26px;
+    border-radius: 12px;
+    font-family: inherit;
+    font-size: 15px;
+    font-weight: 600;
+    cursor: pointer;
+    min-height: 48px;
+    transition: transform 0.15s;
+  }
+  .btn:hover { transform: translateY(-2px); }
+  .btn-blanco { background: white; color: var(--docentes-dark); }
+  .btn-outline { background: rgba(255,255,255,0.12); color: white; border: 1px solid rgba(255,255,255,0.4); }
+
+  /* ───────── Tamaños de texto accesibles ───────── */
+  body.text-large { font-size: 20px; }
+  body.text-xlarge { font-size: 22px; }
+  body.text-large .hero-title { font-size: clamp(36px, 5vw, 58px); }
+  body.text-xlarge .hero-title { font-size: clamp(40px, 5vw, 64px); }
+
+  /* Modo alto contraste */
+  body.high-contrast {
+    --papel: #FFFFFF;
+    --texto: #000000;
+    --texto-medio: #000000;
+    --borde: #000000;
+  }
+  body.high-contrast .vista-rapida,
+  body.high-contrast .bioma-card,
+  body.high-contrast .estrategia,
+  body.high-contrast .video-card,
+  body.high-contrast .material-card,
+  body.high-contrast .grilla {
+    border-width: 2px;
+  }
+
+  /* Print */
+  @media print {
+    .accessibility-bar, .cta-final, .a11y-controls { display: none; }
+    .estrategia { page-break-inside: avoid; }
+    .estrategia-body { display: block !important; }
+    body { font-size: 14px; }
+    .hero { padding: 24px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ═══════════ BARRA DE ACCESIBILIDAD ═══════════ -->
+<div class="accessibility-bar">
+  <div class="brand">
+    <div class="brand-mark">I</div>
+    <span>IncluIA</span>
+  </div>
+  <div class="a11y-controls">
+    <button class="a11y-btn" onclick="setTextSize('normal')">A</button>
+    <button class="a11y-btn" onclick="setTextSize('large')">A+</button>
+    <button class="a11y-btn" onclick="setTextSize('xlarge')">A++</button>
+    <button class="a11y-btn" onclick="toggleContrast()">Contraste</button>
+    <button class="a11y-btn" onclick="window.print()">Imprimir</button>
+  </div>
+</div>
+
+<!-- ═══════════ HERO DE LA GUÍA ═══════════ -->
+<section class="hero">
+  <div class="hero-inner">
+    <div class="hero-eyebrow">Guía pedagógica generada · 21 de abril</div>
+    <h1 class="hero-title">Biomas de América Latina, <em>a la medida de tu alumno</em></h1>
+    <p class="hero-subtitle">Una guía práctica para trabajar selva, desierto y pampa con un alumno con discapacidad intelectual, pensada para que puedas usarla sola/o en el aula.</p>
+
+    <div class="meta-grid">
+      <div class="meta-item">
+        <span class="meta-label">Área</span>
+        <span class="meta-value">Ciencias naturales</span>
+      </div>
+      <div class="meta-item">
+        <span class="meta-label">Nivel</span>
+        <span class="meta-value">Especial · 2° ciclo</span>
+      </div>
+      <div class="meta-item">
+        <span class="meta-label">Contexto</span>
+        <span class="meta-value">Un alumno · Sin apoyo</span>
+      </div>
+      <div class="meta-item">
+        <span class="meta-label">Objetivo</span>
+        <span class="meta-value">Sostener concentración</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="container">
+
+  <!-- ═══════════ VISTA RÁPIDA ═══════════ -->
+  <div class="vista-rapida">
+    <div class="vista-rapida-label">✦ Lo esencial en 30 segundos</div>
+    <h2 class="vista-rapida-title">Tres biomas, muchas imágenes, pocos textos</h2>
+    <p class="vista-rapida-text">En lugar de trabajar todos los biomas de América Latina, priorizá <strong>solo tres: selva, desierto y pampa</strong>. Usá imágenes, videos cortos y actividades motoras en vez de textos expositivos. La repetición <strong>no es retroceso — es consolidación</strong>.</p>
+  </div>
+
+  <!-- ═══════════ SECCIÓN 1: CONTENIDOS ═══════════ -->
+  <section class="section">
+    <div class="section-header">
+      <div class="section-number">1</div>
+      <h2>Qué priorizar en clase</h2>
+    </div>
+    <p class="section-intro">En lugar de cubrir todo el programa, enfocate en tres biomas concretos y visuales que tu alumno pueda reconocer al verlos.</p>
+
+    <div class="biomas-grid">
+      <!-- SELVA -->
+      <div class="bioma-card bioma-selva">
+        <div class="bioma-visual" style="background: linear-gradient(180deg, #9FE1CB, #3B6D11);">
+          <svg viewBox="0 0 220 140" xmlns="http://www.w3.org/2000/svg">
+            <rect width="220" height="140" fill="url(#selvaG)"/>
+            <defs>
+              <linearGradient id="selvaG" x1="0" y1="0" x2="0" y2="1">
+                <stop offset="0%" stop-color="#9FE1CB"/>
+                <stop offset="100%" stop-color="#3B6D11"/>
+              </linearGradient>
+            </defs>
+            <!-- árboles -->
+            <ellipse cx="40" cy="80" rx="22" ry="40" fill="#173404"/>
+            <rect x="37" y="90" width="6" height="40" fill="#633806"/>
+            <ellipse cx="85" cy="70" rx="28" ry="48" fill="#27500A"/>
+            <rect x="82" y="85" width="6" height="45" fill="#633806"/>
+            <ellipse cx="140" cy="75" rx="25" ry="45" fill="#173404"/>
+            <rect x="137" y="90" width="6" height="40" fill="#633806"/>
+            <ellipse cx="185" cy="72" rx="22" ry="42" fill="#27500A"/>
+            <rect x="182" y="88" width="6" height="42" fill="#633806"/>
+            <!-- tucán -->
+            <ellipse cx="108" cy="45" rx="10" ry="8" fill="#1F1F1D"/>
+            <path d="M 112 43 Q 124 40 126 46 Q 122 48 112 46 Z" fill="#FAC775"/>
+            <circle cx="106" cy="44" r="1.5" fill="white"/>
+            <!-- hojas tropicales -->
+            <path d="M 15 120 Q 20 100 30 115 Q 22 118 15 120" fill="#1D9E75"/>
+            <path d="M 195 125 Q 200 105 210 120 Q 202 124 195 125" fill="#1D9E75"/>
+          </svg>
+        </div>
+        <div class="bioma-body">
+          <div class="bioma-label">🌿 Bioma 1</div>
+          <div class="bioma-title">La Selva</div>
+          <div class="bioma-desc">Amazonia, Selva Misionera. Muchos árboles, mucha lluvia, tucanes y jaguares.</div>
+        </div>
+      </div>
+
+      <!-- DESIERTO -->
+      <div class="bioma-card bioma-desierto">
+        <div class="bioma-visual" style="background: linear-gradient(180deg, #FAC775, #D85A30);">
+          <svg viewBox="0 0 220 140" xmlns="http://www.w3.org/2000/svg">
+            <rect width="220" height="140" fill="url(#desG)"/>
+            <defs>
+              <linearGradient id="desG" x1="0" y1="0" x2="0" y2="1">
+                <stop offset="0%" stop-color="#FAEEDA"/>
+                <stop offset="60%" stop-color="#FAC775"/>
+                <stop offset="100%" stop-color="#D85A30"/>
+              </linearGradient>
+            </defs>
+            <!-- sol -->
+            <circle cx="175" cy="35" r="18" fill="#FFFFFF" opacity="0.7"/>
+            <circle cx="175" cy="35" r="12" fill="#FAC775"/>
+            <!-- dunas -->
+            <path d="M 0 95 Q 55 75 110 90 Q 165 105 220 85 L 220 140 L 0 140 Z" fill="#EF9F27"/>
+            <path d="M 0 115 Q 55 100 110 110 Q 165 120 220 108 L 220 140 L 0 140 Z" fill="#D85A30"/>
+            <!-- cactus -->
+            <rect x="55" y="60" width="12" height="50" rx="4" fill="#27500A"/>
+            <rect x="45" y="75" width="10" height="20" rx="4" fill="#27500A"/>
+            <rect x="67" y="70" width="10" height="22" rx="4" fill="#27500A"/>
+            <rect x="125" y="70" width="10" height="40" rx="3" fill="#173404"/>
+            <!-- piedras -->
+            <ellipse cx="180" cy="118" rx="14" ry="6" fill="#A32D2D"/>
+          </svg>
+        </div>
+        <div class="bioma-body">
+          <div class="bioma-label">🌵 Bioma 2</div>
+          <div class="bioma-title">El Desierto</div>
+          <div class="bioma-desc">Atacama, Puna. Sin agua, cactus, vicuñas. Mucho sol, poca lluvia.</div>
+        </div>
+      </div>
+
+      <!-- PAMPA -->
+      <div class="bioma-card bioma-pampa">
+        <div class="bioma-visual" style="background: linear-gradient(180deg, #B5D4F4, #97C459);">
+          <svg viewBox="0 0 220 140" xmlns="http://www.w3.org/2000/svg">
+            <rect width="220" height="140" fill="url(#pampaG)"/>
+            <defs>
+              <linearGradient id="pampaG" x1="0" y1="0" x2="0" y2="1">
+                <stop offset="0%" stop-color="#B5D4F4"/>
+                <stop offset="60%" stop-color="#C0DD97"/>
+                <stop offset="100%" stop-color="#639922"/>
+              </linearGradient>
+            </defs>
+            <!-- nubes -->
+            <ellipse cx="50" cy="30" rx="22" ry="8" fill="white" opacity="0.9"/>
+            <ellipse cx="150" cy="25" rx="26" ry="9" fill="white" opacity="0.85"/>
+            <!-- pasto / campo -->
+            <path d="M 0 80 Q 110 70 220 78 L 220 140 L 0 140 Z" fill="#97C459"/>
+            <path d="M 0 100 Q 110 92 220 98 L 220 140 L 0 140 Z" fill="#639922"/>
+            <!-- ombú -->
+            <ellipse cx="165" cy="68" rx="28" ry="20" fill="#27500A"/>
+            <rect x="162" y="80" width="6" height="22" fill="#633806"/>
+            <!-- vaca -->
+            <ellipse cx="80" cy="100" rx="18" ry="11" fill="#F9F7F0"/>
+            <ellipse cx="72" cy="96" rx="5" ry="4" fill="#2C2C2A"/>
+            <ellipse cx="88" cy="100" rx="5" ry="4" fill="#2C2C2A"/>
+            <rect x="70" y="108" width="3" height="10" fill="#2C2C2A"/>
+            <rect x="87" y="108" width="3" height="10" fill="#2C2C2A"/>
+            <circle cx="63" cy="98" r="6" fill="#F9F7F0"/>
+            <circle cx="61" cy="97" r="1.5" fill="#2C2C2A"/>
+          </svg>
+        </div>
+        <div class="bioma-body">
+          <div class="bioma-label">🌾 Bioma 3</div>
+          <div class="bioma-title">La Pampa</div>
+          <div class="bioma-desc">Pasto, vacas, ombúes. El paisaje familiar de la Argentina central.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════ SECCIÓN 2: ESTRATEGIAS ═══════════ -->
+  <section class="section">
+    <div class="section-header">
+      <div class="section-number" style="background: var(--pampa-bg); color: var(--desierto);">2</div>
+      <h2>Cuatro estrategias para el aula</h2>
+    </div>
+    <p class="section-intro">Tocá cada tarjeta para ver los pasos. Empezá por la que mejor se adapte a tu aula: la caja es la más simple, el libro personal la más completa.</p>
+
+    <div class="estrategias-wrap">
+      <!-- ESTRATEGIA 1 -->
+      <details class="estrategia" open>
+        <summary>
+          <div class="estrategia-icon" style="background: var(--selva-bg);">
+            <svg viewBox="0 0 32 32" fill="none" stroke="#3B6D11" stroke-width="2">
+              <rect x="5" y="10" width="22" height="17" rx="2"/>
+              <path d="M5 10 L16 4 L27 10"/>
+              <path d="M12 15 L20 15"/>
+            </svg>
+          </div>
+          <div class="estrategia-info">
+            <div class="estrategia-num">Estrategia 1 · Manipulativa</div>
+            <div class="estrategia-titulo">La caja de los biomas</div>
+            <span class="estrategia-tag">Material concreto · Baja tecnología · 30 min</span>
+          </div>
+          <div class="estrategia-toggle">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#185FA5" stroke-width="3">
+              <path d="M12 5v14M5 12h14"/>
+            </svg>
+          </div>
+        </summary>
+        <div class="estrategia-body">
+          <ol class="pasos-lista">
+            <li>Conseguí 3 cajas de zapatos, latas o bolsas de papel. Rotulá cada una con el nombre del bioma y una imagen grande: <strong>SELVA / DESIERTO / PAMPA</strong>.</li>
+            <li>Recortá imágenes de revistas o impresas (animales, plantas, paisajes de cada bioma).</li>
+            <li>La actividad: el alumno saca una imagen y la mete en la caja que corresponde.</li>
+            <li>Cuando la pone bien, decís: <em>"Exacto, el tucán vive en la selva, donde hay muchos árboles y lluvia."</em></li>
+            <li>Repetí en varias clases. La repetición no es retroceso, es consolidación.</li>
+          </ol>
+          <div class="funciona">
+            <strong>Por qué funciona</strong>
+            La acción motora (meter en la caja) ancla el aprendizaje. No requiere leer ni escribir.
+          </div>
+        </div>
+      </details>
+
+      <!-- ESTRATEGIA 2 -->
+      <details class="estrategia">
+        <summary>
+          <div class="estrategia-icon" style="background: var(--docentes-bg);">
+            <svg viewBox="0 0 32 32" fill="none" stroke="#185FA5" stroke-width="2">
+              <path d="M4 6 L11 4 L21 7 L28 5 L28 26 L21 28 L11 25 L4 27 Z"/>
+              <path d="M11 4 L11 25"/>
+              <path d="M21 7 L21 28"/>
+            </svg>
+          </div>
+          <div class="estrategia-info">
+            <div class="estrategia-num">Estrategia 2 · Espacial</div>
+            <div class="estrategia-titulo">El mapa con velcro</div>
+            <span class="estrategia-tag">Representación visual + acción · 20 min</span>
+          </div>
+          <div class="estrategia-toggle">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#185FA5" stroke-width="3">
+              <path d="M12 5v14M5 12h14"/>
+            </svg>
+          </div>
+        </summary>
+        <div class="estrategia-body">
+          <ol class="pasos-lista">
+            <li>Imprimí o dibujá un mapa simple de América del Sur (solo contornos).</li>
+            <li>Prepará tarjetitas con imágenes de los 3 biomas.</li>
+            <li>El alumno pega con cinta o velcro cada imagen en la zona aproximada: selva al norte de Brasil, pampa en Argentina central.</li>
+            <li>No importa la precisión geográfica exacta — importa la asociación bioma-lugar.</li>
+          </ol>
+          <div class="funciona">
+            <strong>Por qué funciona</strong>
+            Trabaja orientación espacial y asociación sin requerir escritura. Ideal como cierre de cada clase.
+          </div>
+        </div>
+      </details>
+
+      <!-- ESTRATEGIA 3 -->
+      <details class="estrategia">
+        <summary>
+          <div class="estrategia-icon" style="background: var(--violeta-bg);">
+            <svg viewBox="0 0 32 32" fill="none" stroke="#534AB7" stroke-width="2">
+              <rect x="4" y="7" width="24" height="18" rx="2"/>
+              <polygon points="14,13 14,19 19,16" fill="#534AB7"/>
+            </svg>
+          </div>
+          <div class="estrategia-info">
+            <div class="estrategia-num">Estrategia 3 · Audiovisual</div>
+            <div class="estrategia-titulo">Videos cortos con pausa</div>
+            <span class="estrategia-tag">Alta tecnología accesible · 3 min de video máx</span>
+          </div>
+          <div class="estrategia-toggle">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#185FA5" stroke-width="3">
+              <path d="M12 5v14M5 12h14"/>
+            </svg>
+          </div>
+        </summary>
+        <div class="estrategia-body">
+          <ol class="pasos-lista">
+            <li>Antes de poner el video, mostrá una imagen del bioma y decile: <em>"Mirá, vamos a ver cómo es la selva por dentro."</em></li>
+            <li>Poné <strong>máximo 3 minutos</strong> de video. Si es más largo, cortalo.</li>
+            <li>Pausá 2 o 3 veces y hacé UNA sola pregunta: <em>"¿Eso que viste es un árbol o es arena?"</em></li>
+            <li>Después del video, el alumno señala o pega la imagen del bioma en su carpeta o en el mapa.</li>
+          </ol>
+          <div class="funciona">
+            <strong>Por qué funciona</strong>
+            Los fragmentos cortos respetan los tiempos de atención. La pregunta de pausa sostiene la concentración.
+          </div>
+        </div>
+      </details>
+
+      <!-- ESTRATEGIA 4 -->
+      <details class="estrategia">
+        <summary>
+          <div class="estrategia-icon" style="background: var(--desierto-bg);">
+            <svg viewBox="0 0 32 32" fill="none" stroke="#D85A30" stroke-width="2">
+              <rect x="6" y="5" width="20" height="23" rx="2"/>
+              <path d="M10 11 L22 11 M10 16 L22 16 M10 21 L18 21"/>
+            </svg>
+          </div>
+          <div class="estrategia-info">
+            <div class="estrategia-num">Estrategia 4 · Producto propio</div>
+            <div class="estrategia-titulo">El libro de los biomas personal</div>
+            <span class="estrategia-tag">Expresión alternativa · Varias clases</span>
+          </div>
+          <div class="estrategia-toggle">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#185FA5" stroke-width="3">
+              <path d="M12 5v14M5 12h14"/>
+            </svg>
+          </div>
+        </summary>
+        <div class="estrategia-body">
+          <ol class="pasos-lista">
+            <li>Con 3 hojas dobladas al medio, armá un libro simple. Cada página = un bioma.</li>
+            <li>La tapa tiene el nombre del bioma + imagen grande pegada por vos o por el alumno.</li>
+            <li>Dentro: el alumno pega 2 imágenes (un animal y una planta) y escribe el nombre si puede, o solo las imágenes si no.</li>
+            <li>El libro se completa a lo largo de varias clases — no en una sola.</li>
+          </ol>
+          <div class="funciona">
+            <strong>Por qué funciona</strong>
+            Es un producto concreto y propio. Funciona como portafolio simple y refuerzo de lo aprendido (DUA — múltiples formas de expresión).
+          </div>
+        </div>
+      </details>
+    </div>
+  </section>
+
+  <!-- ═══════════ SECCIÓN 3: VIDEOS ═══════════ -->
+  <section class="section">
+    <div class="section-header">
+      <div class="section-number" style="background: var(--violeta-bg); color: var(--violeta);">3</div>
+      <h2>Videos recomendados</h2>
+    </div>
+    <p class="section-intro">Cuatro videos gratuitos que podés usar directamente desde tu celular. Tocá cada uno para verlo.</p>
+
+    <div class="videos-grid">
+      <div class="video-card">
+        <div class="video-thumb video-selva">
+          <div class="play-circle">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="#3B6D11"><polygon points="5,3 19,12 5,21"/></svg>
+          </div>
+        </div>
+        <div class="video-info">
+          <div class="video-title">La Amazonia en 3 minutos</div>
+          <div class="video-meta">3 min · Nat Geo Español</div>
+        </div>
+      </div>
+      <div class="video-card">
+        <div class="video-thumb video-desierto">
+          <div class="play-circle">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="#D85A30"><polygon points="5,3 19,12 5,21"/></svg>
+          </div>
+        </div>
+        <div class="video-info">
+          <div class="video-title">Desierto de Atacama</div>
+          <div class="video-meta">2-4 min · YouTube</div>
+        </div>
+      </div>
+      <div class="video-card">
+        <div class="video-thumb video-pampa">
+          <div class="play-circle">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="#854F0B"><polygon points="5,3 19,12 5,21"/></svg>
+          </div>
+        </div>
+        <div class="video-info">
+          <div class="video-title">La Pampa argentina</div>
+          <div class="video-meta">3-5 min · Canal Encuentro</div>
+        </div>
+      </div>
+      <div class="video-card">
+        <div class="video-thumb video-pakapaka">
+          <div class="play-circle">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="#534AB7"><polygon points="5,3 19,12 5,21"/></svg>
+          </div>
+        </div>
+        <div class="video-info">
+          <div class="video-title">Canal Pakapaka</div>
+          <div class="video-meta">Varios · pakapaka.ar</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════ SECCIÓN 4: MATERIALES ═══════════ -->
+  <section class="section">
+    <div class="section-header">
+      <div class="section-number" style="background: var(--desierto-bg); color: var(--desierto);">4</div>
+      <h2>Materiales que podés hacer hoy</h2>
+    </div>
+    <p class="section-intro">Tres materiales concretos y baratos que se arman con cosas que ya tenés o conseguís en un kiosco.</p>
+
+    <div class="materiales-grid">
+      <div class="material-card">
+        <div class="material-icon" style="background: var(--selva-bg);">
+          <svg width="28" height="28" viewBox="0 0 32 32" fill="none" stroke="#3B6D11" stroke-width="2">
+            <rect x="6" y="8" width="8" height="10" rx="1"/>
+            <rect x="18" y="8" width="8" height="10" rx="1"/>
+            <rect x="12" y="20" width="8" height="8" rx="1"/>
+          </svg>
+        </div>
+        <div class="material-titulo">Tarjetas de biomas</div>
+        <div class="material-desc">Imágenes de animales y plantas por bioma, laminadas con cinta de embalar. Se arman en 20 minutos.</div>
+      </div>
+      <div class="material-card">
+        <div class="material-icon" style="background: var(--docentes-bg);">
+          <svg width="28" height="28" viewBox="0 0 32 32" fill="none" stroke="#185FA5" stroke-width="2">
+            <rect x="4" y="6" width="24" height="20" rx="2"/>
+            <path d="M4 12 L28 12"/>
+            <path d="M12 6 L12 26"/>
+            <path d="M20 6 L20 26"/>
+          </svg>
+        </div>
+        <div class="material-titulo">Lámina de referencia</div>
+        <div class="material-desc">Cartulina grande dividida en 3 columnas, colgada todo el tiempo que dure la unidad. Reduce la ansiedad del "no me acuerdo".</div>
+      </div>
+      <div class="material-card">
+        <div class="material-icon" style="background: var(--violeta-bg);">
+          <svg width="28" height="28" viewBox="0 0 32 32" fill="none" stroke="#534AB7" stroke-width="2">
+            <path d="M6 10 L16 5 L26 10 L16 15 Z"/>
+            <path d="M6 10 L6 22 L16 27 L16 15"/>
+            <path d="M26 10 L26 22 L16 27"/>
+          </svg>
+        </div>
+        <div class="material-titulo">Dado de biomas</div>
+        <div class="material-desc">Cubo de cartón con imágenes pegadas (2 caras por bioma). El alumno tira y nombra.</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════ SECCIÓN 5: EVALUACIÓN ═══════════ -->
+  <section class="section">
+    <div class="section-header">
+      <div class="section-number" style="background: var(--exito-bg); color: var(--exito);">5</div>
+      <h2>Grilla de evaluación</h2>
+    </div>
+    <p class="section-intro">Tocá cada casilla para marcar el progreso. Recordá: <strong>"en proceso" no es fracaso — es información pedagógica</strong>.</p>
+
+    <div class="grilla-wrap">
+      <div class="grilla">
+        <div class="grilla-header">
+          <span>Criterio</span>
+          <span style="text-align:center;">Solo/a</span>
+          <span style="text-align:center;">Con ayuda</span>
+          <span style="text-align:center;">En proceso</span>
+        </div>
+        <div class="grilla-row">
+          <span>Identifica la selva por sus imágenes</span>
+          <button class="check-btn" onclick="toggleCheck(this)">✓</button>
+          <button class="check-btn" onclick="toggleCheck(this)">✓</button>
+          <button class="check-btn" onclick="toggleCheck(this)">✓</button>
+        </div>
+        <div class="grilla-row">
+          <span>Identifica el desierto por sus imágenes</span>
+          <button class="check-btn" onclick="toggleCheck(this)">✓</button>
+          <button class="check-btn" onclick="toggleCheck(this)">✓</button>
+          <button class="check-btn" onclick="toggleCheck(this)">✓</button>
+        </div>
+        <div class="grilla-row">
+          <span>Identifica la pampa por sus imágenes</span>
+          <button class="check-btn" onclick="toggleCheck(this)">✓</button>
+          <button class="check-btn" onclick="toggleCheck(this)">✓</button>
+          <button class="check-btn" onclick="toggleCheck(this)">✓</button>
+        </div>
+        <div class="grilla-row">
+          <span>Nombra o señala un animal de cada bioma</span>
+          <button class="check-btn" onclick="toggleCheck(this)">✓</button>
+          <button class="check-btn" onclick="toggleCheck(this)">✓</button>
+          <button class="check-btn" onclick="toggleCheck(this)">✓</button>
+        </div>
+        <div class="grilla-row">
+          <span>Señala en el mapa la zona aproximada</span>
+          <button class="check-btn" onclick="toggleCheck(this)">✓</button>
+          <button class="check-btn" onclick="toggleCheck(this)">✓</button>
+          <button class="check-btn" onclick="toggleCheck(this)">✓</button>
+        </div>
+        <div class="grilla-row">
+          <span>Participa de la actividad sin abandono</span>
+          <button class="check-btn" onclick="toggleCheck(this)">✓</button>
+          <button class="check-btn" onclick="toggleCheck(this)">✓</button>
+          <button class="check-btn" onclick="toggleCheck(this)">✓</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════ SECCIÓN 6: COMUNICACIÓN ═══════════ -->
+  <section class="section">
+    <div class="section-header">
+      <div class="section-number" style="background: #FBEAF0; color: #993556;">6</div>
+      <h2>Cómo hablarle en clase</h2>
+    </div>
+    <p class="section-intro">Lenguaje que acompaña la concentración (tu objetivo declarado) y lenguaje que conviene evitar.</p>
+
+    <div class="tips-comparacion">
+      <div class="tip-col tip-si">
+        <div class="tip-header">
+          <div class="tip-badge">✓</div>
+          Usá este lenguaje
+        </div>
+        <ul class="tip-lista">
+          <li>"Mirá esta imagen"</li>
+          <li>"Señalame el desierto"</li>
+          <li>"Muy bien, eso es la selva"</li>
+          <li>"Hacemos una cosa más y terminamos"</li>
+          <li>Usar el nombre del alumno al inicio de cada consigna</li>
+        </ul>
+      </div>
+      <div class="tip-col tip-no">
+        <div class="tip-header">
+          <div class="tip-badge">✕</div>
+          Evitá este lenguaje
+        </div>
+        <ul class="tip-lista">
+          <li>"Leé el texto"</li>
+          <li>"Explicame qué es un bioma"</li>
+          <li>"¿No te acordás de la clase pasada?"</li>
+          <li>Consignas con más de una acción a la vez</li>
+          <li>Hablarle desde lejos o sin contacto visual</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════ SECCIÓN 7: QUÉ EVITAR ═══════════ -->
+  <section class="section">
+    <div class="section-header">
+      <div class="section-number" style="background: var(--alerta-bg); color: var(--alerta);">7</div>
+      <h2>Errores comunes a evitar</h2>
+    </div>
+
+    <div class="alerta-box">
+      <div class="alerta-titulo">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#854F0B" stroke-width="2.5">
+          <path d="M12 2 L22 20 L2 20 Z"/>
+          <path d="M12 10 L12 15"/>
+          <circle cx="12" cy="18" r="0.5" fill="#854F0B"/>
+        </svg>
+        Dos errores que vemos repetidos
+      </div>
+      <div class="alerta-item">
+        <strong>→</strong>
+        <div>
+          <strong>Dar demasiados biomas a la vez.</strong>
+          Si presentás 8 biomas en una clase, el alumno no retiene ninguno. Mejor 3 biomas bien trabajados en varias clases que 8 mencionados de pasada.
+        </div>
+      </div>
+      <div class="alerta-item">
+        <strong>→</strong>
+        <div>
+          <strong>Usar solo texto.</strong>
+          Un párrafo sobre la Amazonia sin imagen no le dice nada a un alumno con discapacidad intelectual. Siempre acompañá con imagen o video.
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════ CTA FINAL ═══════════ -->
+  <div class="cta-final">
+    <h3>¿Esta guía te sirvió?</h3>
+    <p>Tu feedback entrena a IncluIA para generar mejores guías en el futuro. Tardás 30 segundos.</p>
+    <div class="cta-buttons">
+      <button class="btn btn-blanco">Sí, me sirvió mucho ★</button>
+      <button class="btn btn-outline">Dar feedback detallado →</button>
+    </div>
+  </div>
+
+</div>
+
+<script>
+  function setTextSize(size) {
+    document.body.classList.remove('text-large', 'text-xlarge');
+    if (size === 'large') document.body.classList.add('text-large');
+    if (size === 'xlarge') document.body.classList.add('text-xlarge');
+    document.querySelectorAll('.a11y-btn').forEach(b => b.classList.remove('active'));
+    event.target.classList.add('active');
+  }
+  function toggleContrast() {
+    document.body.classList.toggle('high-contrast');
+    event.target.classList.toggle('active');
+  }
+  function toggleCheck(btn) {
+    const row = btn.parentElement;
+    row.querySelectorAll('.check-btn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+  }
+</script>
+
+</body>
+</html>

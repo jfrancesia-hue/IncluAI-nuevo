@@ -6,7 +6,7 @@ import { ProfesionalWizard } from '@/components/wizards/profesional-wizard';
 import type { EspecialidadProfesional } from '@/lib/types';
 import { ESPECIALIDADES } from '@/data/especialidades';
 
-export const metadata = { title: 'Nueva guía (Profesional) · IncluIA' };
+export const metadata = { title: 'Nueva guía (Profesional) · IncluAI' };
 
 export default async function NuevaConsultaProfesionalPage() {
   const [plan, perfil] = await Promise.all([checkPlanLimits(), getPerfil()]);

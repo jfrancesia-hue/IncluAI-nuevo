@@ -9,8 +9,8 @@
 
 - **Razón social:** Nativos Consultora Digital S.A.S.
 - **CUIT:** 30-71234567-8
-- **Producto declarado:** IncluIA — https://incluia.com.ar
-- **Responsable de Accesibilidad:** Mariana Pérez — accesibilidad@incluia.com.ar
+- **Producto declarado:** IncluAI — https://incluai.com.ar
+- **Responsable de Accesibilidad:** Mariana Pérez — accesibilidad@incluai.com.ar
 - **Fecha de emisión:** 22 de abril de 2026
 - **Vigencia:** 12 meses desde la fecha de emisión, sujeta a revisiones en caso de cambios sustantivos.
 
@@ -46,10 +46,10 @@ Los incumplimientos y conformidades parciales cuentan con un plan de remediació
 
 Esta declaración aplica a:
 
-- La totalidad de las páginas públicas del dominio https://incluia.com.ar
-- La aplicación autenticada bajo https://incluia.com.ar/app
-- Los correos electrónicos transaccionales enviados por IncluIA (en formato HTML accesible y alternativa de texto plano).
-- La documentación de soporte en https://incluia.com.ar/ayuda.
+- La totalidad de las páginas públicas del dominio https://incluai.com.ar
+- La aplicación autenticada bajo https://incluai.com.ar/app
+- Los correos electrónicos transaccionales enviados por IncluAI (en formato HTML accesible y alternativa de texto plano).
+- La documentación de soporte en https://incluai.com.ar/ayuda.
 
 Se excluye de esta declaración:
 
@@ -73,7 +73,7 @@ Detalles en [audit-report.md](../wcag-2.1-aa/audit-report.md).
 
 ## 6. Características de accesibilidad implementadas
 
-IncluIA implementa, entre otras, las siguientes características:
+IncluAI implementa, entre otras, las siguientes características:
 
 - **Navegación completa por teclado** en todos los flujos, incluyendo el editor de guías pedagógicas.
 - **Foco visible** con indicador de 2px de alto contraste en todos los elementos interactivos.
@@ -111,8 +111,8 @@ A la fecha de emisión de esta declaración persisten las siguientes limitacione
 
 Los usuarios pueden reportar problemas de accesibilidad y solicitar contenido en formatos alternativos a través de:
 
-- **Correo electrónico:** accesibilidad@incluia.com.ar
-- **Formulario web:** https://incluia.com.ar/accesibilidad/contacto
+- **Correo electrónico:** accesibilidad@incluai.com.ar
+- **Formulario web:** https://incluai.com.ar/accesibilidad/contacto
 - **Teléfono:** +54 351 456 7890 (horario laboral Argentina)
 
 Nos comprometemos a responder toda solicitud dentro de las 48 horas hábiles y a emitir una respuesta sustantiva en un plazo máximo de 10 días hábiles.
@@ -123,7 +123,7 @@ Nos comprometemos a responder toda solicitud dentro de las 48 horas hábiles y a
 
 Nativos Consultora Digital S.A.S. se compromete a:
 
-1. Mantener y mejorar la accesibilidad de IncluIA de forma continua.
+1. Mantener y mejorar la accesibilidad de IncluAI de forma continua.
 2. Realizar auditorías anuales internas y externas.
 3. Capacitar al equipo de desarrollo y diseño en WCAG y buenas prácticas de accesibilidad.
 4. Integrar pruebas de accesibilidad automatizadas en el pipeline de CI.
@@ -134,7 +134,7 @@ Nativos Consultora Digital S.A.S. se compromete a:
 
 ## 10. Procedimiento ante incumplimientos
 
-Si un usuario considera que IncluIA no cumple con los requisitos de accesibilidad de la Ley 26.653 y el reclamo al canal interno no obtiene respuesta satisfactoria, puede presentar denuncia ante:
+Si un usuario considera que IncluAI no cumple con los requisitos de accesibilidad de la Ley 26.653 y el reclamo al canal interno no obtiene respuesta satisfactoria, puede presentar denuncia ante:
 
 - **Oficina Nacional de Tecnologías de Información (ONTI):** Av. Roque Sáenz Peña 511, Ciudad Autónoma de Buenos Aires.
 - **Autoridad de Aplicación de la Ley 26.653** (actualmente la Secretaría de Innovación Pública, según Decreto 50/2019).
@@ -143,7 +143,7 @@ Si un usuario considera que IncluIA no cumple con los requisitos de accesibilida
 
 ## 11. Publicación
 
-Esta declaración está publicada en https://incluia.com.ar/accesibilidad y se actualiza al menos anualmente o ante cambios sustantivos.
+Esta declaración está publicada en https://incluai.com.ar/accesibilidad y se actualiza al menos anualmente o ante cambios sustantivos.
 
 Versión vigente: 1.0
 Próxima revisión prevista: 22 de abril de 2027 (o antes ante cambios sustantivos).
@@ -155,16 +155,16 @@ Próxima revisión prevista: 22 de abril de 2027 (o antes ante cambios sustantiv
 **Mariana Pérez**
 Responsable de Accesibilidad
 Nativos Consultora Digital S.A.S.
-accesibilidad@incluia.com.ar
+accesibilidad@incluai.com.ar
 
 **Sebastián Martínez**
 Director de Tecnología (CTO)
 Nativos Consultora Digital S.A.S.
-cto@incluia.com.ar
+cto@incluai.com.ar
 
 **Lucía Fernández**
 Directora Ejecutiva (CEO) y representante legal
 Nativos Consultora Digital S.A.S.
-ceo@incluia.com.ar
+ceo@incluai.com.ar
 
 Córdoba, 22 de abril de 2026.

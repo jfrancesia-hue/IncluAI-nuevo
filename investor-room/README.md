@@ -1,9 +1,9 @@
-# IncluIA — Data Room para Inversores y M&A
+# IncluAI — Data Room para Inversores y M&A
 
 **Última actualización:** 2026-04-22
 **Dueño:** Jorge Eduardo Francesia — Nativos Consultora Digital
 **Contacto:** jfrancesia@gmail.com
-**Producto:** IncluIA — SaaS de planificación de clases con IA para educación inclusiva (LATAM, foco Argentina)
+**Producto:** IncluAI — SaaS de planificación de clases con IA para educación inclusiva (LATAM, foco Argentina)
 
 ---
 
@@ -11,7 +11,7 @@
 
 Este repositorio contiene toda la información estructurada necesaria para:
 
-1. **Inversores early-stage LATAM** (pre-seed / seed, tickets USD 100k–1M) evaluando participación en la ronda seed de IncluIA.
+1. **Inversores early-stage LATAM** (pre-seed / seed, tickets USD 100k–1M) evaluando participación en la ronda seed de IncluAI.
 2. **Áreas de M&A de ONGs o corporativos EdTech/HealthTech/CSR** evaluando una adquisición estratégica.
 
 Está diseñado para ser **leído sin presentador**, en orden secuencial o por módulo individual.
@@ -67,4 +67,4 @@ El contenido de este data room es **confidencial**. Los datos financieros proyec
 
 ---
 
-*Nativos Consultora Digital — IncluIA. Buenos Aires, Argentina. 2026.*
+*Nativos Consultora Digital — IncluAI. Buenos Aires, Argentina. 2026.*

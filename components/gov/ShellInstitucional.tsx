@@ -38,7 +38,7 @@ export function ShellInstitucional({
               <div className="gov-cobranding__app">
                 {jurisdictionName}
                 <span className="gov-cobranding__sep">·</span>
-                IncluIA
+                IncluAI
               </div>
             </div>
           </div>

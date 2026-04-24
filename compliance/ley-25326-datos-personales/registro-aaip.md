@@ -3,7 +3,7 @@
 **Empresa titular:** Nativos Consultora Digital S.A.S.
 **CUIT:** 30-71234567-8
 **Domicilio legal:** Av. Rafael Núñez 4680, Ciudad de Córdoba, Provincia de Córdoba, Argentina.
-**Responsable de Protección de Datos (DPO):** Dr. Martín Castagnino — dpo@incluia.com.ar
+**Responsable de Protección de Datos (DPO):** Dr. Martín Castagnino — dpo@incluai.com.ar
 **Organismo de control:** Agencia de Acceso a la Información Pública (AAIP), Av. Pte. Julio A. Roca 710, C.A.B.A.
 **Norma de referencia:** Ley 25.326 de Protección de Datos Personales, Decreto Reglamentario 1558/2001, Resolución AAIP 132/2018 (Registro Nacional de Bases de Datos).
 
@@ -11,7 +11,7 @@
 
 ## Propósito de este documento
 
-Este documento describe el procedimiento operativo para mantener registradas ante la AAIP (Agencia de Acceso a la Información Pública) todas las bases de datos de IncluIA que contienen datos personales, tal como exige el Art. 3 de la Ley 25.326 y su reglamentación.
+Este documento describe el procedimiento operativo para mantener registradas ante la AAIP (Agencia de Acceso a la Información Pública) todas las bases de datos de IncluAI que contienen datos personales, tal como exige el Art. 3 de la Ley 25.326 y su reglamentación.
 
 El incumplimiento puede derivar en sanciones conforme el Art. 31 de la Ley 25.326: apercibimiento, suspensión, multa (de 1.000 a 100.000 pesos ajustables), clausura o cancelación de la base.
 
@@ -19,11 +19,11 @@ El incumplimiento puede derivar en sanciones conforme el Art. 31 de la Ley 25.32
 
 ## Bases de datos a registrar
 
-IncluIA mantiene las siguientes bases que contienen datos personales y deben registrarse:
+IncluAI mantiene las siguientes bases que contienen datos personales y deben registrarse:
 
 ### Base 1 — Usuarios Docentes (BD-DOCENTES)
 
-- **Nombre:** IncluIA — Usuarios Docentes
+- **Nombre:** IncluAI — Usuarios Docentes
 - **Finalidad:** Gestión de cuentas de docentes que utilizan la plataforma para generar guías pedagógicas inclusivas.
 - **Naturaleza de datos:** Identificatorios (nombre, apellido, email, CUIL, teléfono), laborales (escuela, cargo, provincia, nivel educativo), de uso (logs de acceso).
 - **Categoría:** Datos personales comunes. No incluye datos sensibles según Art. 7 Ley 25.326.
@@ -38,7 +38,7 @@ IncluIA mantiene las siguientes bases que contienen datos personales y deben reg
 
 ### Base 2 — Guías Pedagógicas Generadas (BD-GUIAS)
 
-- **Nombre:** IncluIA — Guías Pedagógicas
+- **Nombre:** IncluAI — Guías Pedagógicas
 - **Finalidad:** Almacenamiento de guías pedagógicas generadas por docentes. Las guías mencionan contextos de discapacidad a nivel descriptivo pedagógico, NO contienen datos personales de estudiantes identificados (ver [consentimiento-menores.md](./consentimiento-menores.md)).
 - **Naturaleza de datos:** Datos asociados al docente autor; contenido pedagógico. No se identifican alumnos.
 - **Categoría:** Datos personales comunes asociados al docente. NO se tratan datos sensibles de menores dado el diseño de la plataforma.
@@ -51,7 +51,7 @@ IncluIA mantiene las siguientes bases que contienen datos personales y deben reg
 
 ### Base 3 — Suscripciones y Pagos (BD-BILLING)
 
-- **Nombre:** IncluIA — Suscripciones
+- **Nombre:** IncluAI — Suscripciones
 - **Finalidad:** Gestión de suscripciones pagas vía Mercado Pago.
 - **Naturaleza de datos:** Identificatorios (asociados al docente), comerciales (plan, estado de suscripción, fecha de renovación). NO se almacenan datos de tarjeta (tokenizados en Mercado Pago).
 - **Categoría:** Datos personales comunes.
@@ -64,7 +64,7 @@ IncluIA mantiene las siguientes bases que contienen datos personales y deben reg
 
 ### Base 4 — Datos Agregados Gobierno (BD-GOV) — Fase 8
 
-- **Nombre:** IncluIA — Módulo Gobierno (agregados)
+- **Nombre:** IncluAI — Módulo Gobierno (agregados)
 - **Finalidad:** Dashboards con estadísticas agregadas y anonimizadas sobre adopción docente de prácticas inclusivas por jurisdicción. Para Ministerios contratantes.
 - **Naturaleza de datos:** Datos estadísticos agregados. Umbral mínimo k=15 para evitar re-identificación (ninguna métrica se muestra si N<15).
 - **Categoría:** Datos disociados conforme Art. 2 Ley 25.326 — NO constituyen datos personales al estar anonimizados de forma irreversible.
@@ -121,7 +121,7 @@ Luego de la aprobación de la AAIP (plazo promedio 15 días hábiles), se recibe
 
 La Resolución AAIP 132/2018 establece que **las declaraciones deben renovarse anualmente** o ante cualquier modificación sustancial.
 
-Calendario interno de IncluIA:
+Calendario interno de IncluAI:
 - **Abril de cada año:** DPO inicia revisión de declaraciones.
 - **Mayo:** actualiza formularios en el sistema AAIP.
 - **Junio:** obtiene constancias actualizadas.
@@ -167,7 +167,7 @@ Si ocurre un incidente de seguridad que afecte datos personales:
 
 **Dr. Martín Castagnino**
 Responsable de Protección de Datos (DPO)
-dpo@incluia.com.ar
+dpo@incluai.com.ar
 +54 351 456 7890
 
 Suplente en caso de ausencia: Legal externo del estudio Bruchou & Funes de Rioja.

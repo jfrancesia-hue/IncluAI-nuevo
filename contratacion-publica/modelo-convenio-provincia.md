@@ -2,7 +2,7 @@
 
 **Entre** el **MINISTERIO DE EDUCACIÓN DE LA PROVINCIA DE [PROVINCIA]**, representado en este acto por [NOMBRE Y CARGO], con domicilio en [DOMICILIO LEGAL], CUIT [CUIT], en adelante "EL MINISTERIO",
 
-**y** **NATIVOS CONSULTORA DIGITAL**, representada por su titular el Sr. **Jorge Eduardo Francesia**, DNI [DNI], CUIT [CUIT], con domicilio en [DOMICILIO], correo electrónico constituido en jfrancesia@gmail.com, titular de la plataforma **IncluIA** (incluia.com.ar), en adelante "EL PROVEEDOR",
+**y** **NATIVOS CONSULTORA DIGITAL**, representada por su titular el Sr. **Jorge Eduardo Francesia**, DNI [DNI], CUIT [CUIT], con domicilio en [DOMICILIO], correo electrónico constituido en jfrancesia@gmail.com, titular de la plataforma **IncluAI** (incluai.com.ar), en adelante "EL PROVEEDOR",
 
 conjuntamente denominadas **LAS PARTES**, convienen en celebrar el presente CONVENIO MARCO sujeto a las siguientes cláusulas:
 
@@ -10,7 +10,7 @@ conjuntamente denominadas **LAS PARTES**, convienen en celebrar el presente CONV
 
 ## Cláusula Primera — Objeto
 
-EL PROVEEDOR pone a disposición de EL MINISTERIO la plataforma IncluIA, solución digital de apoyo a docentes para la planificación de clases inclusivas con inteligencia artificial generativa, bajo modalidad de licenciamiento por suscripción (Software as a Service), conforme a las especificaciones del Pliego Técnico anexo.
+EL PROVEEDOR pone a disposición de EL MINISTERIO la plataforma IncluAI, solución digital de apoyo a docentes para la planificación de clases inclusivas con inteligencia artificial generativa, bajo modalidad de licenciamiento por suscripción (Software as a Service), conforme a las especificaciones del Pliego Técnico anexo.
 
 ## Cláusula Segunda — Marco normativo
 
@@ -67,7 +67,7 @@ Los montos se actualizarán semestralmente el 1 de enero y el 1 de julio de cada
 
 ## Cláusula Octava — Propiedad intelectual
 
-1. La plataforma IncluIA, su código fuente, su diseño y sus algoritmos son propiedad exclusiva de EL PROVEEDOR.
+1. La plataforma IncluAI, su código fuente, su diseño y sus algoritmos son propiedad exclusiva de EL PROVEEDOR.
 2. Los datos que EL MINISTERIO, docentes y estudiantes incorporen a la plataforma son propiedad exclusiva de EL MINISTERIO y sus titulares.
 3. Las planificaciones, PPI y recursos elaborados por docentes utilizando la plataforma son obras propias del docente y del sistema educativo provincial.
 4. Los contenidos generados con asistencia de IA no pretenden tener autoría propia del sistema: son asistentes del docente, quien decide y firma su uso pedagógico.

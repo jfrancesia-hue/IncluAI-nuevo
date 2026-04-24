@@ -1,5 +1,5 @@
 // ============================================
-// IncluIA — Niveles y Modalidades del Sistema Educativo Argentino
+// IncluAI — Niveles y Modalidades del Sistema Educativo Argentino
 // Basado en la Ley de Educación Nacional N° 26.206
 // ============================================
 

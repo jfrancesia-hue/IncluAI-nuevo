@@ -11,10 +11,10 @@
 ## PROMPT 8 — Registro multi-tipo (Docente / Familia / Profesional)
 
 ```
-Design a registration screen for "IncluIA" — a SaaS for Argentine teachers, families and healthcare professionals.
+Design a registration screen for "IncluAI" — a SaaS for Argentine teachers, families and healthcare professionals.
 
 AT THE TOP of the form:
-- Logo "🧩 IncluIA" (serif Fraunces)
+- Logo "🧩 IncluAI" (serif Fraunces)
 - Title: "Creá tu cuenta gratuita"
 - Subtitle: "2 guías inclusivas por mes, sin costo"
 
@@ -40,7 +40,7 @@ Bottom: "¿Ya tenés cuenta? Iniciá sesión" link.
 
 Include a "Continuar con Google" button above the email field, with the official 4-color Google icon. Border: gray, white background.
 
-Style: institutional-but-modern, same palette as existing IncluIA (navy #1e3a5f headings, green #16a34a accents, orange #ea580c CTA, Fraunces serif headings, DM Sans body). Mobile-first: the 3 type cards stack vertically on small screens.
+Style: institutional-but-modern, same palette as existing IncluAI (navy #1e3a5f headings, green #16a34a accents, orange #ea580c CTA, Fraunces serif headings, DM Sans body). Mobile-first: the 3 type cards stack vertically on small screens.
 ```
 
 ---
@@ -48,7 +48,7 @@ Style: institutional-but-modern, same palette as existing IncluIA (navy #1e3a5f 
 ## PROMPT 9 — Selector de módulo (post-login hero)
 
 ```
-Design the top hero section of the IncluIA dashboard home page, AFTER a user logs in. Replace the single "Nueva consulta" card with a MODULE SELECTOR showing 3 large cards side-by-side.
+Design the top hero section of the IncluAI dashboard home page, AFTER a user logs in. Replace the single "Nueva consulta" card with a MODULE SELECTOR showing 3 large cards side-by-side.
 
 LAYOUT:
 - Greeting: "¡Hola, [nombre]!" in Fraunces serif (48px desktop)
@@ -73,7 +73,7 @@ BELOW THE SELECTOR:
 - "Tus últimas consultas" section with 3 recent guides (each showing module icon 📚/🏠/⚕️ + materia/contenido + tags of discapacidades + date)
 - "Tip del día" card with light-blue background and normativa citation
 
-Same navbar as before (🧩 IncluIA logo left, badge of active module + avatar + theme toggle right). Mobile responsive.
+Same navbar as before (🧩 IncluAI logo left, badge of active module + avatar + theme toggle right). Mobile responsive.
 ```
 
 ---
@@ -81,7 +81,7 @@ Same navbar as before (🧩 IncluIA logo left, badge of active module + avatar +
 ## PROMPT 10 — Wizard Familia (3 pasos)
 
 ```
-Design a 3-step form wizard for the "Familias" module of IncluIA. This is for parents/caregivers asking for guidance on raising their child with a disability.
+Design a 3-step form wizard for the "Familias" module of IncluAI. This is for parents/caregivers asking for guidance on raising their child with a disability.
 
 TONE: warmer than the teacher module — more empathetic, conversational.
 
@@ -128,7 +128,7 @@ The overall feel: warm, approachable, not clinical. Same palette as the teacher 
 ## PROMPT 11 — Wizard Profesional (3 pasos)
 
 ```
-Design a 3-step form wizard for the "Profesionales" module of IncluIA — for psychologists, OT, speech therapists, dentists, pediatricians, etc.
+Design a 3-step form wizard for the "Profesionales" module of IncluAI — for psychologists, OT, speech therapists, dentists, pediatricians, etc.
 
 TONE: professional, clinical but not cold — same palette as the rest.
 
@@ -175,7 +175,7 @@ The feel: slightly more sober than Familias — clean, structured, something a c
 ## PROMPT 12 — Modo Rápido (Profesional)
 
 ```
-Design a MINIMAL emergency screen for the IncluIA "Consulta rápida" feature — for healthcare professionals who have a patient in front of them and need orientation RIGHT NOW.
+Design a MINIMAL emergency screen for the IncluAI "Consulta rápida" feature — for healthcare professionals who have a patient in front of them and need orientation RIGHT NOW.
 
 VISUAL PRIORITY: single-screen, no scroll, focus on 1 textarea + 1 button. Feel urgent but calm.
 
@@ -204,7 +204,7 @@ Minimal, focused, NO other distractions. This is for a 10-second interaction.
 ## PROMPT 13 — Biblioteca de recursos (/recursos)
 
 ```
-Design a RESOURCES LIBRARY page for IncluIA showing curated official Argentine resources (portals, laws, procedures, tools) filtered by public (teacher/family/professional) and type.
+Design a RESOURCES LIBRARY page for IncluAI showing curated official Argentine resources (portals, laws, procedures, tools) filtered by public (teacher/family/professional) and type.
 
 HEADER:
 - Title serif: "Biblioteca de recursos"
@@ -310,7 +310,7 @@ CONTENT (centered):
 
 3 SLIDES:
 Slide 1:
-  👋 "Bienvenido/a a IncluIA"
+  👋 "Bienvenido/a a IncluAI"
   "Una plataforma para docentes, familias y profesionales de salud que trabajan con personas con discapacidad en Argentina."
 
 Slide 2:

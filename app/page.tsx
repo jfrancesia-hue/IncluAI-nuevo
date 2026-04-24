@@ -7,7 +7,7 @@ import { LIMITES_PLAN } from '@/lib/types';
 import { PHOTOS } from '@/lib/photos';
 
 export const metadata = {
-  title: 'IncluIA — Cada alumno merece una clase pensada para él',
+  title: 'IncluAI — Cada alumno merece una clase pensada para él',
 };
 
 export default async function LandingPage() {
@@ -55,7 +55,7 @@ function Hero() {
       <nav aria-label="Barra superior" className="relative mx-auto flex max-w-7xl items-center justify-between px-5 py-5 sm:px-8">
         <div className="flex items-center gap-2">
           <span aria-hidden className="text-2xl">🧩</span>
-          <span className="font-serif text-xl font-bold text-white">IncluIA</span>
+          <span className="font-serif text-xl font-bold text-white">IncluAI</span>
         </div>
         <Link
           href="/login"
@@ -139,7 +139,7 @@ function SocialProof() {
       <div className="mx-auto flex max-w-6xl flex-col items-center gap-4 text-center">
         <p className="font-serif text-base font-semibold text-[#1e3a5f] sm:text-lg">
           Más de <span className="text-[#15803d]">500 docentes</span> ya crean
-          guías inclusivas con IncluIA
+          guías inclusivas con IncluAI
         </p>
         <div className="flex flex-wrap items-center justify-center gap-x-6 gap-y-2 text-xs text-[#5c6b7f]">
           {provincias.map((p) => (
@@ -293,7 +293,7 @@ function ExampleOutput() {
       <div className="mx-auto max-w-6xl">
         <div className="mx-auto max-w-2xl text-center">
           <h2 className="font-serif text-3xl font-bold text-[#1e3a5f] sm:text-4xl">
-            Mirá una guía real generada por IncluIA
+            Mirá una guía real generada por IncluAI
           </h2>
           <p className="mt-4 text-base text-[#5c6b7f]">
             Contenido concreto, usable mañana en tu aula.
@@ -524,7 +524,7 @@ function Footer() {
           <div className="lg:col-span-2">
             <div className="flex items-center gap-2">
               <span aria-hidden className="text-3xl">🧩</span>
-              <span className="font-serif text-2xl font-bold">IncluIA</span>
+              <span className="font-serif text-2xl font-bold">IncluAI</span>
             </div>
             <p className="mt-4 max-w-sm text-sm leading-relaxed text-white/75">
               Inteligencia artificial especializada en educación inclusiva. Guías
@@ -563,7 +563,7 @@ function Footer() {
           </FooterColumn>
 
           <FooterColumn title="Nosotros">
-            <FooterLink href="/sobre-nosotros">Sobre IncluIA</FooterLink>
+            <FooterLink href="/sobre-nosotros">Sobre IncluAI</FooterLink>
             <FooterLink href="/mision">Nuestra misión</FooterLink>
             <FooterLink href="/blog">Blog educativo</FooterLink>
             <FooterLink href="/prensa">Prensa</FooterLink>
@@ -572,18 +572,18 @@ function Footer() {
           <FooterColumn title="Contacto">
             <li className="text-sm text-white/75">
               <a
-                href="mailto:hola@inclua.com.ar"
+                href="mailto:hola@incluai.com.ar"
                 className="hover:text-[#86efac]"
               >
-                hola@inclua.com.ar
+                hola@incluai.com.ar
               </a>
             </li>
             <li className="text-sm text-white/75">
               <a
-                href="mailto:soporte@inclua.com.ar"
+                href="mailto:soporte@incluai.com.ar"
                 className="hover:text-[#86efac]"
               >
-                soporte@inclua.com.ar
+                soporte@incluai.com.ar
               </a>
             </li>
             <li className="text-sm text-white/75">
@@ -600,7 +600,7 @@ function Footer() {
         <div className="mt-10 border-t border-white/10 pt-5">
           <div className="flex flex-col gap-4 text-xs text-white/60 sm:flex-row sm:items-center sm:justify-between">
             <div className="flex flex-col gap-1 sm:flex-row sm:gap-5">
-              <span>© 2026 IncluIA. Todos los derechos reservados.</span>
+              <span>© 2026 IncluAI. Todos los derechos reservados.</span>
               <span className="hidden sm:inline" aria-hidden>·</span>
               <span>
                 Hecho con <span className="text-[#f87171]">❤️</span> en Argentina{' '}
@@ -620,7 +620,7 @@ function Footer() {
             </nav>
           </div>
           <p className="mt-4 text-[11px] text-white/75">
-            IncluIA es un producto de <strong>Nativos Consultora Digital</strong>{' '}
+            IncluAI es un producto de <strong>Nativos Consultora Digital</strong>{' '}
             · Catamarca, Argentina
           </p>
         </div>

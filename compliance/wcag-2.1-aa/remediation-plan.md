@@ -1,6 +1,6 @@
 # Plan de Remediación WCAG 2.1 AA
 
-**Producto:** IncluIA
+**Producto:** IncluAI
 **Plan derivado de:** [audit-report.md](./audit-report.md)
 **Fecha de plan:** 22 de abril de 2026
 **Fecha objetivo de conformidad total:** 15 de julio de 2026

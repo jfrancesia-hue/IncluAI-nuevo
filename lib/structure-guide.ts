@@ -1,5 +1,5 @@
 // ============================================
-// IncluIA — Enricher de guías
+// IncluAI — Enricher de guías
 // Convierte el markdown generado por Claude en un JSON estructurado
 // que nuestros componentes React rendericen como UI rica.
 //

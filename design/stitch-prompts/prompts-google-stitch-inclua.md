@@ -1,4 +1,4 @@
-# PROMPTS PARA GOOGLE STITCH — IncluIA
+# PROMPTS PARA GOOGLE STITCH — IncluAI
 ## Generar el diseño UI completo de la aplicación
 ## Usar en stitch.withgoogle.com
 
@@ -18,10 +18,10 @@
 ## DESIGN.md (Pegar en la configuración de Design System de Stitch)
 
 ```
-# IncluIA Design System
+# IncluAI Design System
 
 ## Brand
-- Name: IncluIA
+- Name: IncluAI
 - Tagline: "Planificá clases inclusivas en minutos"
 - Tone: Professional, trustworthy, warm, accessible
 - Industry: EdTech / Education / SaaS
@@ -66,14 +66,14 @@
 ## PROMPT 1 — Landing Page (Hero + Features)
 
 ```
-Design a landing page for "IncluIA", an AI-powered SaaS platform that helps teachers in Argentina plan inclusive classes for students with disabilities.
+Design a landing page for "IncluAI", an AI-powered SaaS platform that helps teachers in Argentina plan inclusive classes for students with disabilities.
 
 The landing page needs these sections:
 
 HERO SECTION:
 - Dark gradient background (deep navy #1e3a5f to dark teal)
 - Subtle dot pattern overlay on the background
-- Top navbar: logo "🧩 IncluIA" on the left, "Iniciar sesión" button on the right
+- Top navbar: logo "🧩 IncluAI" on the left, "Iniciar sesión" button on the right
 - Green badge above the title: "🇦🇷 Para docentes de toda Argentina"
 - Main headline in serif font (Fraunces): "Planificá clases inclusivas en minutos"
 - Subtitle: "Inteligencia artificial especializada en educación inclusiva. Guías concretas y personalizadas para cada alumno, cada discapacidad, cada contenido."
@@ -105,7 +105,7 @@ PRICING SECTION:
   - PRO card: dark blue background (#1e3a5f), orange badge "Más elegido", "$9.900/mes", "Profesional", features list (40 guías/mes, historial, exportar PDF, favoritos, soporte), green solid button "Suscribirme con Mercado Pago"
 
 FOOTER:
-- Simple centered text: "IncluIA — Hecho en Argentina 🇦🇷"
+- Simple centered text: "IncluAI — Hecho en Argentina 🇦🇷"
 
 The design should feel professional and trustworthy — like a government education tool but with modern SaaS aesthetics. Mobile responsive. Spanish language throughout.
 ```
@@ -115,11 +115,11 @@ The design should feel professional and trustworthy — like a government educat
 ## PROMPT 2 — Auth Screens (Login + Registro)
 
 ```
-Design 2 authentication screens for "IncluIA", an education SaaS for Argentine teachers.
+Design 2 authentication screens for "IncluAI", an education SaaS for Argentine teachers.
 
 SCREEN 1 — LOGIN:
 - Clean centered card on light gray background (#f5f7fa)
-- Logo at top: "🧩 IncluIA" in serif font
+- Logo at top: "🧩 IncluAI" in serif font
 - Title: "Iniciá sesión"
 - Email input with label
 - Password input with label and show/hide toggle
@@ -131,7 +131,7 @@ SCREEN 1 — LOGIN:
 
 SCREEN 2 — REGISTRO:
 - Same centered card style
-- Logo at top: "🧩 IncluIA"
+- Logo at top: "🧩 IncluAI"
 - Title: "Creá tu cuenta gratuita"
 - Subtitle: "2 guías inclusivas por mes, sin costo"
 - Form fields in 2 columns where possible:
@@ -155,11 +155,11 @@ Both screens should have the same visual style, feel institutional but modern.
 ## PROMPT 3 — Dashboard Home (Post-login)
 
 ```
-Design the main dashboard home screen for "IncluIA", shown after a teacher logs in.
+Design the main dashboard home screen for "IncluAI", shown after a teacher logs in.
 
 TOP NAVBAR (sticky):
 - White background with subtle bottom border
-- Left: "🧩 IncluIA" logo
+- Left: "🧩 IncluAI" logo
 - Right: gray badge "Gratuito" (or green "Pro ✓"), user avatar with name "María García ▾"
 
 MAIN CONTENT (max-width 900px, centered):
@@ -200,7 +200,7 @@ Mobile responsive. Content should stack vertically on small screens.
 ## PROMPT 4 — Formulario 3 Pasos
 
 ```
-Design a 3-step form wizard for "IncluIA". This is the core user flow where teachers describe their class to get an AI-generated inclusive teaching guide.
+Design a 3-step form wizard for "IncluAI". This is the core user flow where teachers describe their class to get an AI-generated inclusive teaching guide.
 
 All 3 steps share:
 - Same navbar as dashboard
@@ -254,7 +254,7 @@ Mobile responsive. The disability cards grid should be 2 columns on mobile.
 ## PROMPT 5 — Resultado (Guía generada por IA)
 
 ```
-Design the result screen for "IncluIA" showing an AI-generated inclusive teaching guide.
+Design the result screen for "IncluAI" showing an AI-generated inclusive teaching guide.
 
 NAVBAR: Same as dashboard with "+ Nueva consulta" green button on right
 
@@ -294,7 +294,7 @@ The guide content should look rich and well-formatted, like a professional educa
 ## PROMPT 6 — Historial + Perfil + Planes
 
 ```
-Design 3 screens for "IncluIA" SaaS dashboard:
+Design 3 screens for "IncluAI" SaaS dashboard:
 
 SCREEN 1 — HISTORIAL (query history):
 - Same dashboard navbar
@@ -327,7 +327,7 @@ SCREEN 3 — PLANES (pricing page, in-app version):
 - Free card and Pro card ($9.900/mes)
 - Pro card CTA: "Suscribirme con Mercado Pago" (green button with MP logo)
 - If already Pro: Pro card shows "Plan actual ✓" instead of button
-- Below cards: "¿Tenés dudas? Escribinos a soporte@inclua.com.ar"
+- Below cards: "¿Tenés dudas? Escribinos a soporte@incluai.com.ar"
 
 All screens share the same navbar. Mobile responsive.
 ```
@@ -337,7 +337,7 @@ All screens share the same navbar. Mobile responsive.
 ## PROMPT 7 — Paywall Modal + Estados de carga
 
 ```
-Design 3 overlay/modal states for "IncluIA":
+Design 3 overlay/modal states for "IncluAI":
 
 MODAL 1 — PAYWALL:
 - Dark semi-transparent overlay

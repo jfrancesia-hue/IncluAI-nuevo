@@ -1,6 +1,6 @@
 <div align="center">
 
-# 🧩 IncluIA
+# 🧩 IncluAI
 
 ### **Planificá clases inclusivas en minutos**
 
@@ -23,7 +23,7 @@ Guías pedagógicas y clínicas concretas, personalizadas para cada alumno/pacie
 
 ## ✨ Qué hace
 
-IncluIA genera **guías pedagógicas inclusivas en vivo** usando la API de Claude (Anthropic) con **streaming SSE**. Un docente, una familia o un/a profesional completa un formulario de 3 pasos y recibe en segundos una guía con estrategias concretas, materiales adaptados, protocolos de atención y coordinación interdisciplinaria — todo ajustado al marco legal argentino (Ley 26.206, Ley 24.901, Resolución CFE 311/16).
+IncluAI genera **guías pedagógicas inclusivas en vivo** usando la API de Claude (Anthropic) con **streaming SSE**. Un docente, una familia o un/a profesional completa un formulario de 3 pasos y recibe en segundos una guía con estrategias concretas, materiales adaptados, protocolos de atención y coordinación interdisciplinaria — todo ajustado al marco legal argentino (Ley 26.206, Ley 24.901, Resolución CFE 311/16).
 
 ### 3 módulos, una plataforma
 
@@ -42,7 +42,7 @@ Los 3 módulos comparten autenticación, planes, pagos, catálogo de discapacida
 <div align="center">
 
 ### Landing + Hero
-<img src="docs/screenshots/01-landing.png" alt="Landing page de IncluIA" width="100%" />
+<img src="docs/screenshots/01-landing.png" alt="Landing page de IncluAI" width="100%" />
 
 ### Dashboard del docente
 <img src="docs/screenshots/02-dashboard.png" alt="Dashboard de inicio post-login" width="100%" />
@@ -311,6 +311,6 @@ Privado.
 
 <div align="center">
 
-**IncluIA** — Hecho en Argentina 🇦🇷 con 💛
+**IncluAI** — Hecho en Argentina 🇦🇷 con 💛
 
 </div>

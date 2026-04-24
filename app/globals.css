@@ -1,55 +1,58 @@
 @import "tailwindcss";
 
 :root {
-  --background: #f5f7fa;
-  --foreground: #1a2332;
+  /* Paleta "esperanza" (IncluAI 2026) — Poppins + Nunito
+     azul #2E86C1 · verde #27AE60 · amarillo #F1C40F · lavanda #A569BD · terracota #E67E22
+     Mapeo módulos: Docentes=azul · Familias=verde · Profesionales=lavanda */
+  --background: #FBF8F2;
+  --foreground: #1F2E3D;
 
-  --primary: #1e3a5f;
-  --primary-light: #2a5a8f;
-  --primary-bg: #e8f0fe;
-  --accent: #15803d;
-  --accent-light: #dcfce7;
-  --cta: #c2410c;
+  --primary: #2E86C1;
+  --primary-light: #5DA9D8;
+  --primary-bg: #D7EAF6;
+  --accent: #27AE60;
+  --accent-light: #D6F0E0;
+  --cta: #E67E22;
   --card: #ffffff;
-  --text-muted: #5c6b7f;
-  --border: #e2e8f0;
+  --text-muted: #4A5968;
+  --border: rgba(31, 46, 61, 0.12);
 
-  /* v2.1 — paleta "esperanza" para el renderer de guías estructuradas */
-  --color-docentes-primary: #185FA5;
-  --color-docentes-light: #378ADD;
-  --color-docentes-bg: #E6F1FB;
-  --color-docentes-dark: #042C53;
+  /* v2.1 — tokens del renderer estructurado de guías */
+  --color-docentes-primary: #2E86C1;
+  --color-docentes-light: #5DA9D8;
+  --color-docentes-bg: #D7EAF6;
+  --color-docentes-dark: #1F5F8A;
 
-  --color-selva: #3B6D11;
-  --color-selva-bg: #EAF3DE;
-  --color-selva-dark: #173404;
-  --color-desierto: #D85A30;
-  --color-desierto-bg: #FAEEDA;
-  --color-desierto-dark: #633806;
-  --color-pampa: #EF9F27;
-  --color-oceano: #378ADD;
-  --color-montana: #888780;
+  --color-selva: #27AE60;
+  --color-selva-bg: #D6F0E0;
+  --color-selva-dark: #1E8449;
+  --color-desierto: #E67E22;
+  --color-desierto-bg: #FBE3CF;
+  --color-desierto-dark: #AF601A;
+  --color-pampa: #F1C40F;
+  --color-oceano: #2E86C1;
+  --color-montana: #8395A7;
 
-  --color-familias-primary: #3B6D11;
-  --color-profesionales-primary: #534AB7;
+  --color-familias-primary: #27AE60;
+  --color-profesionales-primary: #A569BD;
 
-  --color-sol: #FAC775;
-  --color-terracota: #F0997B;
-  --color-coral: #D85A30;
+  --color-sol: #F1C40F;
+  --color-terracota: #E67E22;
+  --color-coral: #E67E22;
 
-  --color-papel: #F9F7F0;
-  --color-papel-alt: #F1EFE8;
-  --color-texto: #1F1F1D;
-  --color-texto-medio: #5F5E5A;
-  --color-borde: #E5E2D6;
+  --color-papel: #FBF8F2;
+  --color-papel-alt: #F2ECE0;
+  --color-texto: #1F2E3D;
+  --color-texto-medio: #4A5968;
+  --color-borde: rgba(31, 46, 61, 0.12);
 
-  --color-exito: #1D9E75;
-  --color-exito-bg: #E1F5EE;
-  --color-alerta: #854F0B;
-  --color-alerta-bg: #FAEEDA;
+  --color-exito: #27AE60;
+  --color-exito-bg: #D6F0E0;
+  --color-alerta: #AF601A;
+  --color-alerta-bg: #FBE3CF;
 
-  --font-display: var(--font-fraunces), Georgia, serif;
-  --font-body: var(--font-dm-sans), -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-display: var(--font-fraunces), 'Poppins', system-ui, sans-serif;
+  --font-body: var(--font-dm-sans), 'Nunito', system-ui, sans-serif;
 
   --radius-sm: 8px;
   --radius-md: 12px;

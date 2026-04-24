@@ -8,8 +8,8 @@ const KEY = 'inclua-onboarding-seen-v1';
 const SLIDES = [
   {
     icon: '👋',
-    title: 'Bienvenido/a a IncluIA',
-    body: 'Tu nueva herramienta educativa para potenciar la inclusión en el aula. Descubrí cómo IncluIA puede ayudarte a crear experiencias de aprendizaje adaptativas y significativas para todos tus estudiantes. ¡Comencemos!',
+    title: 'Bienvenido/a a IncluAI',
+    body: 'Tu nueva herramienta educativa para potenciar la inclusión en el aula. Descubrí cómo IncluAI puede ayudarte a crear experiencias de aprendizaje adaptativas y significativas para todos tus estudiantes. ¡Comencemos!',
   },
   {
     icon: '🧩',

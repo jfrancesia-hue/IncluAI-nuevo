@@ -1,5 +1,5 @@
 /**
- * IncluIA — Runner de Evals automáticos.
+ * IncluAI — Runner de Evals automáticos.
  *
  * - Lee evals/dataset.jsonl (60 casos de test).
  * - Para cada caso:
@@ -280,7 +280,7 @@ async function generateGuide(ec: EvalCase): Promise<{ text: string; ms: number; 
 
 function buildJudgeSystemPrompt(): string {
   const rubrica = existsSync(RUBRICA_PATH) ? readFileSync(RUBRICA_PATH, 'utf-8') : '';
-  return `Sos un auditor externo de calidad de IA para IncluIA (plataforma argentina de educación inclusiva).
+  return `Sos un auditor externo de calidad de IA para IncluAI (plataforma argentina de educación inclusiva).
 
 Tu trabajo es puntuar guías pedagógicas generadas por IA contra una rúbrica pública y auditable. Sos estricto, basás cada puntaje en evidencia textual citada desde la guía, y nunca inferís lo que no está escrito.
 
@@ -336,7 +336,7 @@ ${ec.expected_topics.map((t) => `- ${t}`).join('\n')}
 ## Estereotipos prohibidos (deben estar AUSENTES en la guía)
 ${ec.forbidden_stereotypes.map((t) => `- ${t}`).join('\n')}
 
-## Guía generada por IncluIA (a evaluar)
+## Guía generada por IncluAI (a evaluar)
 
 ${guide}
 
@@ -414,7 +414,7 @@ async function mapLimit<T, R>(
 
 async function main() {
   const tStart = Date.now();
-  console.log(`${c.bold}${c.cyan}IncluIA — Evals runner${c.reset}`);
+  console.log(`${c.bold}${c.cyan}IncluAI — Evals runner${c.reset}`);
   console.log(`${c.dim}model=${MODEL} judge=${JUDGE_MODEL} concurrency=${CONCURRENCY} threshold=${THRESHOLD}${c.reset}\n`);
 
   let dataset = loadDataset();
@@ -539,7 +539,7 @@ async function main() {
 
   // Summary markdown (corto, para humanos)
   const mdLines: string[] = [];
-  mdLines.push(`# IncluIA Evals — Run ${ts}`);
+  mdLines.push(`# IncluAI Evals — Run ${ts}`);
   mdLines.push('');
   mdLines.push(`- **Score promedio:** ${avg.toFixed(2)} / 100 ${avg >= THRESHOLD ? 'PASS' : 'FAIL'}`);
   mdLines.push(`- **Modelo:** ${MODEL}`);

@@ -1,6 +1,6 @@
-# Rúbrica de evaluación — IncluIA Evals
+# Rúbrica de evaluación — IncluAI Evals
 
-Esta rúbrica define cómo se puntúa cada guía pedagógica generada por IncluIA en el pipeline de evaluación automática. Es **auditable por un externo** (inspector de calidad de IA, ministerio, equipo pedagógico) y debe permitir reproducir el score sin el criterio subjetivo del evaluador.
+Esta rúbrica define cómo se puntúa cada guía pedagógica generada por IncluAI en el pipeline de evaluación automática. Es **auditable por un externo** (inspector de calidad de IA, ministerio, equipo pedagógico) y debe permitir reproducir el score sin el criterio subjetivo del evaluador.
 
 El score total va de **0 a 100 puntos**, repartidos en 5 dimensiones. Cada dimensión se descompone en criterios objetivos (items binarios 0/1 o escala corta 0-N) que el *judge* de IA puntúa con evidencia textual citada desde la respuesta evaluada.
 
@@ -73,7 +73,7 @@ Mide si la guía evita **estereotipos capacitistas, de género, de clase, de ori
 
 ## Dimensión 5 — Estructura completa (15 puntos)
 
-Mide si la respuesta sigue la estructura pedagógica esperada de una guía IncluIA (7 u 8 secciones según corresponda).
+Mide si la respuesta sigue la estructura pedagógica esperada de una guía IncluAI (7 u 8 secciones según corresponda).
 
 | Criterio | Puntaje máximo | Cómo puntuar |
 |---|---|---|
@@ -103,7 +103,7 @@ Si cualquier caso individual cae por debajo de 50, se marca como `case_fail` y s
 
 El script `scripts/run-evals.ts` ejecuta dos llamadas a Claude por caso:
 
-1. **Generación**: pasa el `input` al sistema real de IncluIA (prompt de `lib/prompts.ts`) y obtiene la guía.
+1. **Generación**: pasa el `input` al sistema real de IncluAI (prompt de `lib/prompts.ts`) y obtiene la guía.
 2. **Evaluación (judge)**: pasa a un Claude separado *el input + la guía generada + esta rúbrica completa como system prompt cacheado* y le pide un JSON estructurado con el desglose de puntos por criterio, evidencia citada y score final.
 
 El system prompt del judge incluye la rúbrica literalmente y activa `prompt caching` de Anthropic para abaratar el costo cuando se evalúan los 60 casos en un mismo run.

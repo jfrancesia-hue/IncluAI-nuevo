@@ -1,4 +1,4 @@
-# Due Diligence Checklist — IncluIA
+# Due Diligence Checklist — IncluAI
 
 **Propósito:** inventario completo de materiales que puede requerir un inversor institucional o un comprador estratégico (M&A) en un proceso de due diligence técnico, legal, financiero, comercial y regulatorio.
 
@@ -55,7 +55,7 @@
 ## B. Due Diligence Legal
 
 ### B.1 Constitución societaria
-- [ ] Acta constitutiva de Nativos Consultora Digital (o IncluIA S.A./S.R.L. post closing) — `[🟡 Se formaliza IncluIA al cierre]`
+- [ ] Acta constitutiva de Nativos Consultora Digital (o IncluAI S.A./S.R.L. post closing) — `[🟡 Se formaliza IncluAI al cierre]`
 - [ ] CUIT y alta en AFIP — `[✅]`
 - [ ] Habilitación de actividad comercial — `[✅]`
 - [ ] Inscripción Ingresos Brutos (CABA + jurisdicciones donde corresponde) — `[✅]`
@@ -64,7 +64,7 @@
 
 ### B.2 Propiedad intelectual
 - [ ] Titularidad del código: cesión formal del founder a la sociedad — `[🟡 al cierre]`
-- [ ] Registro de marca "IncluIA" en INPI (clase 41, 42 y 9) — `[🟡 En trámite]`
+- [ ] Registro de marca "IncluAI" en INPI (clase 41, 42 y 9) — `[🟡 En trámite]`
 - [ ] Registro de software en DNDA — `[🟡]`
 - [ ] Licencias de contenido de terceros (ARASAAC, tipografías, ilustraciones) — `[✅]`
 - [ ] Contratos con freelancers incluyendo cesión de IP — `[✅]`
@@ -219,7 +219,7 @@
 
 Para transparencia desde el día uno:
 
-1. **Falta formalización societaria dedicada.** Hoy IncluIA opera bajo el paraguas de Nativos Consultora Digital. Se constituye IncluIA S.A. (o S.R.L.) como parte del cierre.
+1. **Falta formalización societaria dedicada.** Hoy IncluAI opera bajo el paraguas de Nativos Consultora Digital. Se constituye IncluAI S.A. (o S.R.L.) como parte del cierre.
 2. **Equipo chico.** Single point of failure = Jorge. CTO co-founder es hire #1.
 3. **Registro AAIP en trámite, no concluido.** Se prioriza para cierre del trámite en 60 días post-seed.
 4. **Auditoría de seguridad externa no realizada aún.** Presupuestada en uso de fondos (USD 10k).

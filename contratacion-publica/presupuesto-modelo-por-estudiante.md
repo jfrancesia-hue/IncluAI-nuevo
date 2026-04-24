@@ -6,7 +6,7 @@ Anexo II del Pliego Técnico Modelo. Expresado en **pesos argentinos (ARS)** al 
 
 ## 1. Lógica de precio
 
-IncluIA factura al Estado por **estudiante beneficiado por mes**, no por licencia de docente. Se considera "estudiante beneficiado" a aquel con al menos una PPI activa o un plan de clase adaptado generado en el mes.
+IncluAI factura al Estado por **estudiante beneficiado por mes**, no por licencia de docente. Se considera "estudiante beneficiado" a aquel con al menos una PPI activa o un plan de clase adaptado generado en el mes.
 
 Esta lógica es intencional: evita cobrar por docentes que no usan la plataforma y alinea el precio con el impacto real.
 
@@ -130,10 +130,10 @@ Promedio por estudiante/año: **ARS 1.441**.
 |---|---|
 | Contratar 1 equipo inter-disciplinario dedicado (profesional especializado tiempo parcial) | ARS 15.000 – 40.000 |
 | Licencias de software educativo extranjero no adaptado | ARS 5.000 – 12.000 |
-| **IncluIA (Escenario D, provincia grande)** | **ARS 1.441** |
-| **IncluIA (Escenario A, piloto)** | **ARS 2.880** |
+| **IncluAI (Escenario D, provincia grande)** | **ARS 1.441** |
+| **IncluAI (Escenario A, piloto)** | **ARS 2.880** |
 
-El diferencial es de al menos **5x a 10x** a favor de IncluIA frente a las alternativas del mercado, con la ventaja adicional de estar hecho en Argentina, en español rioplatense y con cumplimiento de Res. CFE 311/16.
+El diferencial es de al menos **5x a 10x** a favor de IncluAI frente a las alternativas del mercado, con la ventaja adicional de estar hecho en Argentina, en español rioplatense y con cumplimiento de Res. CFE 311/16.
 
 ---
 

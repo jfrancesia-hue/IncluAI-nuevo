@@ -122,7 +122,7 @@ export default async function PPIListadoPage() {
           </p>
           <p style={{ fontSize: 14, margin: 0 }}>
             El PPI es el documento formal que presentás a la institución por cada alumno con
-            discapacidad. IncluIA lo arma en base a tus observaciones en pocos minutos.
+            discapacidad. IncluAI lo arma en base a tus observaciones en pocos minutos.
           </p>
         </div>
       ) : (
@@ -205,7 +205,7 @@ export default async function PPIListadoPage() {
           las configuraciones de apoyo, contenidos priorizados, adaptaciones metodológicas y
           criterios de evaluación para un estudiante con discapacidad. Es obligatorio según la{' '}
           <strong>Resolución CFE 311/16</strong> y lo presentás a la dirección de la escuela al
-          comienzo del ciclo. IncluIA lo redacta en base a tus observaciones y el perfil del
+          comienzo del ciclo. IncluAI lo redacta en base a tus observaciones y el perfil del
           alumno — vos lo revisás, editás lo que quieras, y lo imprimís para firma.
         </p>
       </section>

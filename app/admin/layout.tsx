@@ -4,7 +4,7 @@ import { createClient } from '@/lib/supabase/server'
 import type { ReactNode } from 'react'
 
 export const metadata = {
-  title: 'IncluIA · Admin métricas',
+  title: 'IncluAI · Admin métricas',
   robots: { index: false, follow: false },
 }
 
@@ -33,7 +33,7 @@ export default async function AdminLayout({ children }: { children: ReactNode })
               IA
             </div>
             <div className="gov-cobranding__app">
-              IncluIA<span className="gov-cobranding__sep">·</span>Admin
+              IncluAI<span className="gov-cobranding__sep">·</span>Admin
             </div>
           </div>
           <nav className="gov-nav">

@@ -15,11 +15,11 @@ export default function AuthLayout({ children }: { children: React.ReactNode }) 
         href="/"
         className="relative mb-6 inline-flex items-center gap-2 font-serif text-2xl font-bold text-[#1e3a5f]"
       >
-        <span aria-hidden>🧩</span> IncluIA
+        <span aria-hidden>🧩</span> IncluAI
       </Link>
       <div className="relative w-full max-w-[480px]">{children}</div>
       <p className="relative mt-8 text-xs text-[#5c6b7f]">
-        IncluIA — Hecho con ❤️ en Argentina 🇦🇷
+        IncluAI — Hecho con ❤️ en Argentina 🇦🇷
       </p>
     </div>
   );

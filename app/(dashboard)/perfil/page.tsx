@@ -4,7 +4,7 @@ import { LIMITES_PLAN } from '@/lib/types';
 import { signOutAction } from '@/app/(dashboard)/actions';
 import { PerfilForm } from './perfil-form';
 
-export const metadata = { title: 'Mi perfil · IncluIA' };
+export const metadata = { title: 'Mi perfil · IncluAI' };
 
 export default async function PerfilPage() {
   const perfil = await getPerfil();

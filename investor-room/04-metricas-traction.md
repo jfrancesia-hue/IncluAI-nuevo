@@ -1,4 +1,4 @@
-# Métricas y Tracción — IncluIA
+# Métricas y Tracción — IncluAI
 
 **Plantilla viva.** Se actualiza el día 5 de cada mes con corte al último día del mes anterior.
 **Última actualización:** [COMPLETAR: fecha del próximo corte]

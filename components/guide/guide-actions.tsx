@@ -24,7 +24,7 @@ export function GuideActions({ markdown, titulo }: Props) {
   function compartirWhatsApp() {
     const url = typeof window !== 'undefined' ? window.location.href : '';
     const text = encodeURIComponent(
-      `${titulo}\n\nGuía inclusiva generada con IncluIA 🧩\n${url}`
+      `${titulo}\n\nGuía inclusiva generada con IncluAI 🧩\n${url}`
     );
     window.open(`https://wa.me/?text=${text}`, '_blank');
   }
@@ -34,7 +34,7 @@ export function GuideActions({ markdown, titulo }: Props) {
       try {
         await navigator.share({
           title: titulo,
-          text: 'Guía inclusiva de IncluIA',
+          text: 'Guía inclusiva de IncluAI',
           url: window.location.href,
         });
       } catch {

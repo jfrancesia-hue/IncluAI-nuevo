@@ -1,25 +1,25 @@
-# Política de Privacidad de IncluIA
+# Política de Privacidad de IncluAI
 
 **Última actualización:** 22 de abril de 2026
 **Versión:** 1.0
-**URL pública:** https://incluia.com.ar/privacidad
+**URL pública:** https://incluai.com.ar/privacidad
 
 ---
 
 ## 1. Identidad del Responsable del Tratamiento
 
-La presente Política de Privacidad regula el tratamiento de los datos personales recolectados a través de la plataforma **IncluIA** (https://incluia.com.ar), cuyo responsable es:
+La presente Política de Privacidad regula el tratamiento de los datos personales recolectados a través de la plataforma **IncluAI** (https://incluai.com.ar), cuyo responsable es:
 
 - **Razón social:** Nativos Consultora Digital S.A.S.
 - **CUIT:** 30-71234567-8
 - **Domicilio legal:** Av. Rafael Núñez 4680, Ciudad de Córdoba, Provincia de Córdoba, República Argentina.
 - **Teléfono:** +54 351 456 7890
-- **Correo electrónico de contacto general:** hola@incluia.com.ar
+- **Correo electrónico de contacto general:** hola@incluai.com.ar
 
 Nuestro **Responsable de Protección de Datos (DPO / Data Protection Officer)** es:
 
 - **Dr. Martín Castagnino**
-- **Correo exclusivo para derechos y consultas de privacidad:** dpo@incluia.com.ar
+- **Correo exclusivo para derechos y consultas de privacidad:** dpo@incluai.com.ar
 - **Dirección postal:** Av. Rafael Núñez 4680, Córdoba Capital, Argentina.
 
 ---
@@ -35,7 +35,7 @@ Esta política se redacta en cumplimiento de:
 - Resolución 132/2018 AAIP (Registro Nacional de Bases de Datos).
 - Resolución CFE 311/16 sobre educación inclusiva.
 
-IncluIA está inscripta (o en proceso de inscripción, según la base) en el Registro Nacional de Bases de Datos Personales de la Agencia de Acceso a la Información Pública (AAIP).
+IncluAI está inscripta (o en proceso de inscripción, según la base) en el Registro Nacional de Bases de Datos Personales de la Agencia de Acceso a la Información Pública (AAIP).
 
 ---
 
@@ -64,7 +64,7 @@ IncluIA está inscripta (o en proceso de inscripción, según la base) en el Reg
 
 ### 3.4. Datos que NO recolectamos
 
-IncluIA **no recolecta ni procesa datos personales identificatorios de estudiantes (menores de edad)**. Ver en detalle en [consentimiento-menores.md](./consentimiento-menores.md) y sección 5.
+IncluAI **no recolecta ni procesa datos personales identificatorios de estudiantes (menores de edad)**. Ver en detalle en [consentimiento-menores.md](./consentimiento-menores.md) y sección 5.
 
 ---
 
@@ -86,7 +86,7 @@ Tratamos los datos personales exclusivamente para:
 
 ## 5. Tratamiento de datos de menores de edad
 
-IncluIA está diseñada expresamente para **NO tratar datos personales identificatorios de estudiantes (menores de edad)**. Esto constituye una decisión de diseño estructural de la plataforma.
+IncluAI está diseñada expresamente para **NO tratar datos personales identificatorios de estudiantes (menores de edad)**. Esto constituye una decisión de diseño estructural de la plataforma.
 
 - El docente **no puede cargar** nombres, apellidos, DNI, fotografías, historias clínicas, diagnósticos individualizados ni ningún otro identificador de sus alumnos.
 - Las guías pedagógicas generadas se refieren a **contextos genéricos** ("estudiante de 4° grado con TEA nivel 1") sin datos que permitan identificar a una persona concreta.
@@ -118,7 +118,7 @@ Conforme a los artículos 13 al 20 de la Ley 25.326, el titular puede ejercer si
 
 ### Cómo ejercer estos derechos
 
-Enviar solicitud a **dpo@incluia.com.ar** con:
+Enviar solicitud a **dpo@incluai.com.ar** con:
 - Nombre completo y CUIL.
 - Copia de DNI (frente y dorso).
 - Derecho que se ejerce y, en su caso, detalle de la solicitud.
@@ -133,7 +133,7 @@ El titular puede interponer denuncia o reclamo ante la **Agencia de Acceso a la 
 
 ## 8. Destinatarios de los datos y encargados del tratamiento
 
-Para operar el servicio, IncluIA comparte datos con los siguientes terceros, bajo acuerdos de tratamiento:
+Para operar el servicio, IncluAI comparte datos con los siguientes terceros, bajo acuerdos de tratamiento:
 
 | Destinatario | Finalidad | Categoría de datos | País |
 |--------------|-----------|---------------------|------|
@@ -154,9 +154,9 @@ Algunos de nuestros proveedores (Supabase, Vercel, Anthropic, Resend) tratan dat
 **Marco legal aplicable:**
 - Art. 12 Ley 25.326 y Disposición DNPDP 60/2016 (modelo de cláusulas contractuales para transferencias internacionales con países sin nivel adecuado).
 - Incluimos cláusulas contractuales específicas (Data Processing Agreements) con cada encargado que replican las obligaciones y estándares locales.
-- En el caso de Anthropic, el plan Enterprise contratado por IncluIA establece: no entrenamiento de modelos con los datos de IncluIA, retención cero (zero retention), y cumplimiento de SOC 2 Tipo II e ISO 27001.
+- En el caso de Anthropic, el plan Enterprise contratado por IncluAI establece: no entrenamiento de modelos con los datos de IncluAI, retención cero (zero retention), y cumplimiento de SOC 2 Tipo II e ISO 27001.
 
-El titular podrá consultar el texto completo de las cláusulas de transferencia solicitándolas a dpo@incluia.com.ar.
+El titular podrá consultar el texto completo de las cláusulas de transferencia solicitándolas a dpo@incluai.com.ar.
 
 ---
 
@@ -191,7 +191,7 @@ Aplicamos medidas de seguridad de **nivel crítico** conforme la Disposición DN
 
 ## 12. Cookies y tecnologías similares
 
-IncluIA utiliza únicamente cookies estrictamente necesarias para el funcionamiento de la plataforma:
+IncluAI utiliza únicamente cookies estrictamente necesarias para el funcionamiento de la plataforma:
 
 - `incluia_session`: cookie de sesión autenticada. HTTP Only, Secure, SameSite=Lax.
 - `incluia_csrf`: protección contra ataques CSRF.
@@ -203,21 +203,21 @@ IncluIA utiliza únicamente cookies estrictamente necesarias para el funcionamie
 
 ## 13. Menores de edad que usan la plataforma
 
-El servicio IncluIA está dirigido exclusivamente a docentes mayores de 18 años. No se aceptan registros de menores de edad como usuarios docentes. Si detectamos un registro de un menor, eliminamos la cuenta inmediatamente.
+El servicio IncluAI está dirigido exclusivamente a docentes mayores de 18 años. No se aceptan registros de menores de edad como usuarios docentes. Si detectamos un registro de un menor, eliminamos la cuenta inmediatamente.
 
 ---
 
 ## 14. Modificaciones a esta política
 
-Podemos modificar esta política para reflejar cambios normativos o de producto. Toda modificación sustantiva será comunicada a los usuarios por correo electrónico con al menos 30 días de anticipación y publicada con historial de versiones en https://incluia.com.ar/privacidad.
+Podemos modificar esta política para reflejar cambios normativos o de producto. Toda modificación sustantiva será comunicada a los usuarios por correo electrónico con al menos 30 días de anticipación y publicada con historial de versiones en https://incluai.com.ar/privacidad.
 
 ---
 
 ## 15. Contacto y consultas
 
-- **Consultas de privacidad:** dpo@incluia.com.ar
-- **Soporte general:** hola@incluia.com.ar
-- **Reportes de seguridad:** seguridad@incluia.com.ar
+- **Consultas de privacidad:** dpo@incluai.com.ar
+- **Soporte general:** hola@incluai.com.ar
+- **Reportes de seguridad:** seguridad@incluai.com.ar
 - **Denuncia a la AAIP:** https://www.argentina.gob.ar/aaip
 
 ---

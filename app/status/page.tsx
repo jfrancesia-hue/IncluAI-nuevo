@@ -10,8 +10,8 @@ type HealthResponse = {
 }
 
 export const metadata = {
-  title: 'IncluIA · Estado del servicio',
-  description: 'Estado operativo de IncluIA en tiempo real. Latencia y disponibilidad por componente.',
+  title: 'IncluAI · Estado del servicio',
+  description: 'Estado operativo de IncluAI en tiempo real. Latencia y disponibilidad por componente.',
 }
 
 async function fetchHealth(): Promise<HealthResponse | null> {
@@ -121,7 +121,7 @@ export default async function StatusPage() {
       )}
 
       <p style={{ fontSize: 12, color: '#5c6b7f', marginTop: 48 }}>
-        SLO: 99.5% uptime mensual · p95 latencia &lt; 800 ms · IncluIA · Nativos Consultora Digital
+        SLO: 99.5% uptime mensual · p95 latencia &lt; 800 ms · IncluAI · Nativos Consultora Digital
       </p>
     </main>
   )

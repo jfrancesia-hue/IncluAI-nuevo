@@ -12,8 +12,8 @@ const bodySchema = z.object({
 });
 
 const ITEM_TITULOS: Record<'pro' | 'institucional', string> = {
-  pro: 'IncluIA Plan Profesional',
-  institucional: 'IncluIA Plan Institucional',
+  pro: 'IncluAI Plan Profesional',
+  institucional: 'IncluAI Plan Institucional',
 };
 
 export async function POST(request: NextRequest) {

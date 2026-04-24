@@ -1,4 +1,4 @@
-# IncluIA
+# IncluAI
 ## La inteligencia artificial argentina al servicio de la educación inclusiva
 
 ---
@@ -9,7 +9,7 @@ En Argentina hay más de **200.000 estudiantes** con una Propuesta Pedagógica p
 
 ### La respuesta
 
-**IncluIA** es una plataforma argentina con inteligencia artificial que asiste al docente a:
+**IncluAI** es una plataforma argentina con inteligencia artificial que asiste al docente a:
 - **Generar planificaciones** adaptadas en minutos para estudiantes con discapacidad visual, auditiva, intelectual, motora, TEA, TDAH y otras configuraciones.
 - **Cumplir la Resolución CFE 311/16** con plantillas PPI prearmadas.
 - **Adaptar materiales**: lectura fácil, subtítulos, descripción de imágenes, audio a texto.
@@ -20,7 +20,7 @@ Hecha en Argentina, en español rioplatense neutro, con cumplimiento de Ley 25.3
 
 ### Qué gana la provincia que contrata
 
-| Indicador | Antes | Con IncluIA |
+| Indicador | Antes | Con IncluAI |
 |---|---|---|
 | Tiempo docente en planificación inclusiva | 3 horas/clase | 30 minutos/clase |
 | Tasa de cumplimiento Res. CFE 311/16 | Dispersa, difícil de medir | Medible desde día 1 |
@@ -58,7 +58,7 @@ Hecha en Argentina, en español rioplatense neutro, con cumplimiento de Ley 25.3
 
 **Jorge Eduardo Francesia**
 jfrancesia@gmail.com
-[incluia.com.ar](https://incluia.com.ar)
+[incluai.com.ar](https://incluai.com.ar)
 
 Respuesta garantizada en menos de 24 horas hábiles. Demo y sandbox de evaluación sin costo.
 

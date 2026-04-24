@@ -13,7 +13,7 @@
 - **Empresa:** Nativos Consultora Digital
 - **Contacto:** jfrancesia@gmail.com
 - **LinkedIn:** [COMPLETAR: URL]
-- **Rol en IncluIA:** Producto + IA + Ventas B2G + decisiones estratégicas
+- **Rol en IncluAI:** Producto + IA + Ventas B2G + decisiones estratégicas
 
 **Background:**
 - [COMPLETAR: formación académica — título y universidad]
@@ -30,8 +30,8 @@
 - Stack técnico dominado: Next.js 16, React Native, NestJS, Prisma, Supabase, Claude API, Mercado Pago, AFIP SDK.
 - Experiencia directa con: compliance AFIP, AAIP, auditorías Hostinger/Vercel/Render/Supabase, contratos B2B y B2G.
 
-**Compromiso con IncluIA post-ronda:**
-- Full-time sobre IncluIA a partir del cierre de la ronda seed.
+**Compromiso con IncluAI post-ronda:**
+- Full-time sobre IncluAI a partir del cierre de la ronda seed.
 - Retención de equity founder pre-ronda: [COMPLETAR: %].
 - Cliff 12 meses · vesting 48 meses lineal sobre equity remanente (estándar).
 
@@ -146,7 +146,7 @@
 
 ## 6. Diversidad y representación
 
-Target explícito para IncluIA: **>50% del equipo con identidades subrepresentadas en tech**, y al menos 2 personas con vínculo directo (personal o familiar) con discapacidad. Es coherente con nuestra misión y mejora el producto.
+Target explícito para IncluAI: **>50% del equipo con identidades subrepresentadas en tech**, y al menos 2 personas con vínculo directo (personal o familiar) con discapacidad. Es coherente con nuestra misión y mejora el producto.
 
 **Compromisos:**
 - Búsquedas activas en redes de mujeres en tech (MET, Wimlatam), comunidad LGBTIQ+, espacios de inclusión.

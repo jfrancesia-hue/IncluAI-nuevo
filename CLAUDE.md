@@ -1,4 +1,4 @@
-# CLAUDE.md — IncluIA (proyecto IncluAinuevo)
+# CLAUDE.md — IncluAI (proyecto IncluAinuevo)
 
 ## Proyecto
 SaaS de educación inclusiva con IA para docentes, familias y profesionales argentinos.
@@ -154,11 +154,11 @@ Ver `.env.local.example`. Todo lo marcado "opcional" degrada graciosamente si fa
 
 ## Módulo PPI — Proyecto Pedagógico Individual (docentes)
 El PPI es el documento formal obligatorio por Res. CFE 311/16 para cada
-alumno con discapacidad. IncluIA lo genera en base a las observaciones
+alumno con discapacidad. IncluAI lo genera en base a las observaciones
 del docente (Claude produce 10 secciones estructuradas) y el docente
 edita/regenera sección por sección antes de imprimirlo para firma.
 
-Principio de privacidad no negociable: IncluIA NUNCA almacena el nombre
+Principio de privacidad no negociable: IncluAI NUNCA almacena el nombre
 completo del alumno. El docente usa iniciales o pseudónimo ("M.G.",
 "Alumno A"), y cuando imprime el PPI lo completa a mano fuera del sistema.
 Esto mantiene coherencia con la política de `/compliance/`.

@@ -1,19 +1,21 @@
 import type { Metadata, Viewport } from "next";
-import { Fraunces, DM_Sans } from "next/font/google";
+import { Poppins, Nunito } from "next/font/google";
 import { Analytics } from "@vercel/analytics/react";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import { ThemeProvider } from "@/components/theme-provider";
 import { AxeA11y } from "@/components/axe-a11y";
 import "./globals.css";
 
-const fraunces = Fraunces({
+// Mantengo los nombres de CSS variables (--font-fraunces, --font-dm-sans) para no
+// romper referencias en estilos inline y CSS; solo cambian las fuentes que carga.
+const fraunces = Poppins({
   variable: "--font-fraunces",
   subsets: ["latin"],
   weight: ["600", "700", "800"],
   display: "swap",
 });
 
-const dmSans = DM_Sans({
+const dmSans = Nunito({
   variable: "--font-dm-sans",
   subsets: ["latin"],
   weight: ["400", "500", "600", "700"],
@@ -21,14 +23,14 @@ const dmSans = DM_Sans({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL(process.env.NEXT_PUBLIC_APP_URL ?? 'https://inclua.com.ar'),
+  metadataBase: new URL(process.env.NEXT_PUBLIC_APP_URL ?? 'https://www.incluai.com.ar'),
   title: {
-    default: 'IncluIA — Planificá clases inclusivas en minutos',
-    template: '%s · IncluIA',
+    default: 'IncluAI — Planificá clases inclusivas en minutos',
+    template: '%s · IncluAI',
   },
   description:
     'Inteligencia artificial especializada en educación inclusiva para docentes, familias y profesionales de salud en Argentina. Guías concretas y personalizadas para cada alumno, cada discapacidad, cada contenido.',
-  applicationName: 'IncluIA',
+  applicationName: 'IncluAI',
   keywords: [
     'educación inclusiva',
     'DUA',
@@ -39,9 +41,9 @@ export const metadata: Metadata = {
     'IA',
     'Claude',
   ],
-  authors: [{ name: 'IncluIA' }],
+  authors: [{ name: 'IncluAI' }],
   openGraph: {
-    title: 'IncluIA — Educación inclusiva con IA',
+    title: 'IncluAI — Educación inclusiva con IA',
     description: 'Guías pedagógicas y clínicas para docentes, familias y profesionales de salud.',
     type: 'website',
     locale: 'es_AR',
@@ -50,7 +52,7 @@ export const metadata: Metadata = {
 };
 
 export const viewport: Viewport = {
-  themeColor: '#1e3a5f',
+  themeColor: '#2E86C1',
   width: 'device-width',
   initialScale: 1,
 };

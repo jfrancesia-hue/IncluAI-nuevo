@@ -3,7 +3,7 @@ import Link from 'next/link';
 import { createClient } from '@/lib/supabase/server';
 import { PHOTOS } from '@/lib/photos';
 
-export const metadata = { title: '¡Pago exitoso! · IncluIA' };
+export const metadata = { title: '¡Pago exitoso! · IncluAI' };
 
 type SearchParams = Promise<{
   payment_id?: string;

@@ -1,6 +1,6 @@
 # Análisis de Competidores
 
-**Objetivo:** matriz honesta de competidores directos e indirectos, con evaluación de dónde IncluIA gana, dónde pierde, y dónde hay que invertir para cerrar gaps.
+**Objetivo:** matriz honesta de competidores directos e indirectos, con evaluación de dónde IncluAI gana, dónde pierde, y dónde hay que invertir para cerrar gaps.
 **Regla del documento:** cero bullshit. Si un competidor es mejor en algo, se reconoce explícitamente.
 
 ---
@@ -20,7 +20,7 @@ Dividimos competidores en cuatro grupos, por foco:
 
 | # | Competidor | Grupo | Foco | Mercado | IA generativa | Idioma | Inclusión | Precio | Fundado |
 |---|------------|-------|------|---------|---------------|--------|-----------|--------|---------|
-| 1 | **IncluIA** | — | Planificación inclusiva IA | LATAM/AR | Claude 4.7 + RAG propio | ES AR nativo | **Core** | USD 2,5–8/mes | 2025 |
+| 1 | **IncluAI** | — | Planificación inclusiva IA | LATAM/AR | Claude 4.7 + RAG propio | ES AR nativo | **Core** | USD 2,5–8/mes | 2025 |
 | 2 | Diffit | A | Adaptación de lecturas | Global (EN) | GPT-4 | Inglés + 50 idiomas (traducción simple) | Parcial (nivelación) | USD 12/mes | 2023 |
 | 3 | MagicSchool AI | B | Planificación docente general | US + EU | GPT-4 | Inglés principal | Parcial | USD 10–15/mes | 2023 |
 | 4 | Eduaide.ai | B | Generación de materiales | Global | GPT-4 | Multilingüe | Módulo IEP (limitado) | USD 9/mes | 2023 |
@@ -64,20 +64,20 @@ Dividimos competidores en cuatro grupos, por foco:
 - **Fortalezas:** contratos con 9 provincias ya firmados, equipo comercial B2G instalado, reconocimiento de marca en educación pública AR.
 - **Debilidades:** NO tiene IA generativa; producto principal es contenido estático + gestión de aula; sin foco inclusión; percepción docente de "pesado y aburrido".
 - **Cuándo nos gana:** cuando una provincia ya tiene contrato con ellos y licitación por exclusividad.
-- **Nuestra respuesta:** coexistir. Ticmas es LMS, IncluIA es copiloto IA. Buscamos partnership antes que enfrentamiento.
+- **Nuestra respuesta:** coexistir. Ticmas es LMS, IncluAI es copiloto IA. Buscamos partnership antes que enfrentamiento.
 
 ### 3.5 El status quo — ChatGPT + WhatsApp docente
 
 - **Fortalezas:** costo marginal cero si el docente ya paga ChatGPT Plus, flexibilidad total.
 - **Debilidades:** requiere saber prompt engineering (la mayoría no sabe), sin alineación curricular AR, sin rúbricas, sin trazabilidad, sin compliance.
 - **Cuándo nos gana:** docente técnicamente sofisticado que disfruta armar prompts. ~5% del mercado estimado.
-- **Nuestra respuesta:** para el 95% restante, IncluIA es la diferencia entre "puedo hacerlo si tengo 40 min" y "lo tengo listo en 30 segundos". Tiempo + certeza pedagógica son el valor.
+- **Nuestra respuesta:** para el 95% restante, IncluAI es la diferencia entre "puedo hacerlo si tengo 40 min" y "lo tengo listo en 30 segundos". Tiempo + certeza pedagógica son el valor.
 
 ---
 
 ## 4. Matriz estratégica — dónde ganamos y dónde no
 
-| Dimensión | IncluIA | MagicSchool | Google/Gemini | Diffit | Status quo (ChatGPT) |
+| Dimensión | IncluAI | MagicSchool | Google/Gemini | Diffit | Status quo (ChatGPT) |
 |-----------|---------|-------------|---------------|--------|----------------------|
 | IA generativa de calidad | 4 | 5 | 4 | 3 | 4 |
 | Idioma ES AR nativo | **5** | 1 | 4 | 2 | 3 |
@@ -92,7 +92,7 @@ Dividimos competidores en cuatro grupos, por foco:
 
 **Escala:** 1 (muy débil) — 5 (excelente).
 
-**Conclusión:** IncluIA domina en 6 de 10 dimensiones relevantes para el mercado argentino de educación inclusiva. Pierde en brand recognition (tiempo + marketing lo resuelve) e integración ecosistema (roadmap Q4 2026).
+**Conclusión:** IncluAI domina en 6 de 10 dimensiones relevantes para el mercado argentino de educación inclusiva. Pierde en brand recognition (tiempo + marketing lo resuelve) e integración ecosistema (roadmap Q4 2026).
 
 ---
 
@@ -129,7 +129,7 @@ Dividimos competidores en cuatro grupos, por foco:
 ### Escenario C: Un jugador local AR (Ticmas, Educabot) suma IA generativa vía partnership con OpenAI
 - **Probabilidad:** 55%.
 - **Impacto:** medio — tienen distribución, no producto pedagógico IA propio.
-- **Respuesta:** ofrecer IncluIA como white-label para ellos (partnership), o consolidar el nicho inclusión antes de que sumen feature.
+- **Respuesta:** ofrecer IncluAI como white-label para ellos (partnership), o consolidar el nicho inclusión antes de que sumen feature.
 
 ### Escenario D: Un ministerio provincial arma solución interna con equipo propio
 - **Probabilidad:** 15%.
@@ -154,7 +154,7 @@ Dividimos competidores en cuatro grupos, por foco:
 
 ## 8. Síntesis
 
-**IncluIA no es el único player en el mapa, pero es el único que combina:**
+**IncluAI no es el único player en el mapa, pero es el único que combina:**
 1. IA generativa state-of-the-art (Claude 4.7)
 2. Foco quirúrgico en inclusión educativa
 3. Contenido curricular argentino nativo

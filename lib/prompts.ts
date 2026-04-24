@@ -1,5 +1,5 @@
 // ============================================
-// IncluIA — Constructor de Prompts para Claude
+// IncluAI — Constructor de Prompts para Claude
 // Este archivo es el CORAZÓN del sistema.
 // Cada modificación aquí impacta directamente la calidad de las guías.
 // ============================================
@@ -456,7 +456,7 @@ Ejemplo de video bien generado:
 
 ## REGLA CRÍTICA
 
-Si no estás seguro de que un recurso existe, NO LO INCLUYAS. Es preferible devolver 2 videos verificables que 5 inventados. El docente pierde confianza en IncluIA si encuentra un solo link roto.
+Si no estás seguro de que un recurso existe, NO LO INCLUYAS. Es preferible devolver 2 videos verificables que 5 inventados. El docente pierde confianza en IncluAI si encuentra un solo link roto.
 `
 
 // JSON Schema generado desde el Zod schema. Se expone para usar como
@@ -479,7 +479,7 @@ export function buildPromptDocentesV2(form: FormularioConsulta): string {
     otro: 'Otra situación de apoyo',
   }
 
-  return `Sos IncluIA, experto argentino en educación inclusiva.
+  return `Sos IncluAI, experto argentino en educación inclusiva.
 Conocés DUA, Resolución CFE 311/16 y los diseños curriculares provinciales.
 Respondés siempre de forma concreta, práctica y aplicable al aula argentino.
 Usás español rioplatense (vos, planificá, tenés).

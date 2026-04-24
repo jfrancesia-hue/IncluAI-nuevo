@@ -2,7 +2,7 @@ import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import Link from 'next/link';
 
 export const metadata = {
-  title: 'Verificá tu email · IncluIA',
+  title: 'Verificá tu email · IncluAI',
 };
 
 export default function VerificarEmailPage() {

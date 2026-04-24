@@ -1,7 +1,7 @@
 # Metodología de Auditoría de Sesgos de IA
 
-**Producto:** IncluIA
-**Modelo auditado:** Claude 4.7 Sonnet y 4.7 Opus (Anthropic) con prompt de sistema IncluIA v0.18.
+**Producto:** IncluAI
+**Modelo auditado:** Claude 4.7 Sonnet y 4.7 Opus (Anthropic) con prompt de sistema IncluAI v0.18.
 **Versión de esta metodología:** 1.0
 **Fecha:** 22 de abril de 2026
 **Responsable:** Equipo de IA (Lic. Juan Ignacio Ríos, Product Lead AI) + Prof. Carolina Ledesma (Asesora en Educación Especial).
@@ -11,7 +11,7 @@
 
 ## 1. Propósito y principios
 
-La presente metodología define cómo auditar periódicamente el comportamiento del modelo Claude tal como lo utiliza IncluIA, con el objetivo de:
+La presente metodología define cómo auditar periódicamente el comportamiento del modelo Claude tal como lo utiliza IncluAI, con el objetivo de:
 
 1. **Detectar sesgos** por género, discapacidad, condición socioeconómica, etnia, región geográfica, religión, y cruce de estas dimensiones.
 2. **Detectar estereotipos pedagógicos** que asocien discapacidades con capacidades o limitaciones estereotipadas.
@@ -32,7 +32,7 @@ Nuestros principios:
 
 Adoptamos una clasificación de daños basada en la literatura académica (principalmente Blodgett et al. 2020 y Weidinger et al. 2021), adaptada al contexto educativo argentino:
 
-| Categoría de daño | Definición operativa en IncluIA | Ejemplo |
+| Categoría de daño | Definición operativa en IncluAI | Ejemplo |
 |-------------------|----------------------------------|---------|
 | **Daño representacional** | El modelo reproduce estereotipos sobre un grupo. | "Los niños con síndrome de Down son cariñosos por naturaleza." |
 | **Daño de asignación** | El modelo propone adecuaciones diferenciales por género / clase / región ante el mismo perfil. | Propone robótica para "Juan" y manualidades para "Juana" ante igual contexto. |
@@ -214,7 +214,7 @@ Meta: 0%.
 
 ## 7. Participación de personas con discapacidad
 
-IncluIA cree en el principio "Nothing About Us Without Us" (Nada sobre nosotros sin nosotros) de la CDPD. En consecuencia:
+IncluAI cree en el principio "Nothing About Us Without Us" (Nada sobre nosotros sin nosotros) de la CDPD. En consecuencia:
 
 - **Panel asesor:** 5 docentes con discapacidades diversas participan de la evaluación trimestral, con contratación remunerada.
 - **Voluntariado de revisión:** cualquier usuaria docente con discapacidad puede sumarse al panel de revisión.
@@ -225,7 +225,7 @@ IncluIA cree en el principio "Nothing About Us Without Us" (Nada sobre nosotros 
 ## 8. Transparencia
 
 - Los resultados de cada ciclo de auditoría se publican en este directorio (ver [resultados-iniciales.md](./resultados-iniciales.md)).
-- La comunidad docente tiene acceso a un resumen ejecutivo en https://incluia.com.ar/transparencia-ia.
+- La comunidad docente tiene acceso a un resumen ejecutivo en https://incluai.com.ar/transparencia-ia.
 - Reportamos a los Ministerios contratantes los resultados relevantes que afectan a su jurisdicción.
 
 ---
@@ -234,7 +234,7 @@ IncluIA cree en el principio "Nothing About Us Without Us" (Nada sobre nosotros 
 
 - **Modelos propietarios:** no tenemos acceso al entrenamiento del modelo base, auditamos el comportamiento resultante.
 - **Diversidad lingüística:** el test suite es en español rioplatense; la cobertura de variantes andinas y amazónicas del español es parcial.
-- **Sesgos no detectados:** la auditoría reduce pero no elimina el riesgo de sesgos no anticipados. Invitamos a usuarios a reportar casos a etica@incluia.com.ar.
+- **Sesgos no detectados:** la auditoría reduce pero no elimina el riesgo de sesgos no anticipados. Invitamos a usuarios a reportar casos a etica@incluai.com.ar.
 
 ---
 

@@ -20,7 +20,7 @@ import {
 } from '@/components/illustrations/dashboard-icons';
 import { IconArrowRight } from '@/components/illustrations/guide-icons';
 
-export const metadata = { title: 'Inicio · IncluIA' };
+export const metadata = { title: 'Inicio · IncluAI' };
 
 type RecentRow = {
   id: string;
@@ -157,7 +157,7 @@ export default async function InicioPage() {
               Proyecto Pedagógico Individual (PPI)
             </h2>
             <p className="text-sm text-white/90 sm:text-base">
-              Obligatorio por Res. CFE 311/16 para cada alumno con discapacidad. IncluIA redacta las 10 secciones completas en base a tus observaciones. Te ahorrás días de trabajo administrativo.
+              Obligatorio por Res. CFE 311/16 para cada alumno con discapacidad. IncluAI redacta las 10 secciones completas en base a tus observaciones. Te ahorrás días de trabajo administrativo.
             </p>
             <Link
               href="/ppi"

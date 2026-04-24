@@ -1,6 +1,6 @@
 # Mercado — TAM / SAM / SOM
 
-**Objetivo:** dimensionar con rigor el mercado direccionable por IncluIA en LATAM, con foco en Argentina como beachhead.
+**Objetivo:** dimensionar con rigor el mercado direccionable por IncluAI en LATAM, con foco en Argentina como beachhead.
 **Metodología:** bottom-up desde fuentes públicas (INDEC, CEPAL, UNESCO, Banco Mundial, Ministerio de Educación AR) y cross-check top-down contra inversión EdTech LATAM.
 
 ---
@@ -9,7 +9,7 @@
 
 | Nivel | Definición | Tamaño anual (USD) | Horizonte |
 |-------|------------|---------------------|-----------|
-| **TAM** | Todos los docentes LATAM pagando ARPU IncluIA | **720M** | 5–10 años |
+| **TAM** | Todos los docentes LATAM pagando ARPU IncluAI | **720M** | 5–10 años |
 | **SAM** | Docentes en escuelas argentinas con ≥1 alumno con CUD | **96M** | 3–5 años |
 | **SOM** | 8% del SAM al año 3 + exportación a UY/CL | **7,7M ARR** | 2028–2029 |
 
@@ -20,7 +20,7 @@
 ### 2.1 Números base
 - Docentes en LATAM (educación formal, todos los niveles): **7,5M** (UNESCO UIS, 2023).
 - Estudiantes con alguna discapacidad en el sistema educativo LATAM: ~**12M** (UNESCO, 2023). Aprox 8% de la matrícula total.
-- Penetración actual de software educativo inclusivo específico: **<2%** (estimación IncluIA; no hay data pública robusta, lo cual es señal de mercado green-field).
+- Penetración actual de software educativo inclusivo específico: **<2%** (estimación IncluAI; no hay data pública robusta, lo cual es señal de mercado green-field).
 
 ### 2.2 Cálculo TAM
 `7.500.000 docentes × USD 96 ARPU anual promedio blended = USD 720M/año`
@@ -76,7 +76,7 @@ ARPU blend AR:
 
 ### 3.4 Desglose SAM por jurisdicción
 
-| Provincia | Docentes (miles) | Presupuesto educación (USD M/año) | Prioridad IncluIA |
+| Provincia | Docentes (miles) | Presupuesto educación (USD M/año) | Prioridad IncluAI |
 |-----------|-------------------|------------------------------------|-------------------|
 | Buenos Aires | 340 | 5.800 | Alta |
 | CABA | 58 | 1.200 | Alta (piloto) |
@@ -114,7 +114,7 @@ Bottom-up por segmento y canal, con supuestos explícitos de penetración y tasa
 Con upside realista +10%: **USD 7,7M ARR al cierre del año 3**.
 
 ### 4.3 Comparación vs. SAM
-SOM 2028 = 7,7% del SAM Argentina. Benchmark EdTech LATAM: Crehana llegó a ~5% de su SAM en año 3; Platzi a ~8%. IncluIA **7,7% es agresivo pero alcanzable** dado:
+SOM 2028 = 7,7% del SAM Argentina. Benchmark EdTech LATAM: Crehana llegó a ~5% de su SAM en año 3; Platzi a ~8%. IncluAI **7,7% es agresivo pero alcanzable** dado:
 - Canal B2G (lock-in) representa 33% del revenue.
 - Mercado de nicho con baja competencia directa.
 - Dolor ya existente (no hay que educar al docente sobre el problema).
@@ -128,7 +128,7 @@ SOM 2028 = 7,7% del SAM Argentina. Benchmark EdTech LATAM: Crehana llegó a ~5% 
 - Exits relevantes: Crehana (adquirida por Hotmart 2023, múltiplo ~4x ARR), Ubits (Emeritus 2022, ~5,5x), Platzi (no exit aún, valuación Serie B USD 480M, ~6x ARR).
 - Empresas EdTech LATAM con ARR >USD 10M a los 4 años: Crehana, Platzi, Rappi Education, Aulapp, Ubits, Bedu. = ~6 empresas.
 
-### 5.2 IncluIA como % de inversión EdTech LATAM
+### 5.2 IncluAI como % de inversión EdTech LATAM
 - Ronda seed USD 750k = 0,25% del VC anual LATAM EdTech. **Ticket razonable**.
 - Si alcanza USD 10M ARR en año 4 (entre escenario base y optimista), entra en el top 10% EdTech LATAM.
 
@@ -137,7 +137,7 @@ SOM 2028 = 7,7% del SAM Argentina. Benchmark EdTech LATAM: Crehana llegó a ~5% 
 - **Diffit** (US): USD 8M ARR en 2 años, adaptaciones para lectores con dificultades.
 - **Twee** (PL): USD 6M ARR en 18 meses, planificación docente EFL.
 
-IncluIA con wedge más específico (inclusión) y mercado más chico pero pagado (B2G AR) puede alcanzar USD 10–15M ARR en 4 años con 10x menos capital.
+IncluAI con wedge más específico (inclusión) y mercado más chico pero pagado (B2G AR) puede alcanzar USD 10–15M ARR en 4 años con 10x menos capital.
 
 ---
 

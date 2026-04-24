@@ -3,7 +3,7 @@ import { PHOTOS } from '@/lib/photos';
 import { RegistroForm } from './registro-form';
 
 export const metadata = {
-  title: 'Unite a la comunidad · IncluIA',
+  title: 'Unite a la comunidad · IncluAI',
 };
 
 export default function RegistroPage() {

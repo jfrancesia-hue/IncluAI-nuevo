@@ -1,4 +1,4 @@
-# Modelo Financiero — IncluIA
+# Modelo Financiero — IncluAI
 
 **Versión:** 2026-04-22 · v1.0
 **Moneda base:** USD (equivalente oficial BCRA al último día del período).

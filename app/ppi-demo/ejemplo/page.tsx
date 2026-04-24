@@ -301,7 +301,7 @@ export default function PPIEjemploPage() {
         </div>
 
         <footer className="ppi-footer">
-          Documento generado con asistencia de IncluIA ({new Date().toLocaleDateString('es-AR')}).
+          Documento generado con asistencia de IncluAI ({new Date().toLocaleDateString('es-AR')}).
           Requiere revisión, edición y firma del equipo docente y directivo.
           <br />
           <strong>Marco normativo nacional:</strong> Resolución CFE 311/16 (ejes prioritarios

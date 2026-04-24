@@ -1,10 +1,10 @@
-# Compliance IncluIA
+# Compliance IncluAI
 
 **Empresa titular:** Nativos Consultora Digital S.A.S.
-**Producto:** IncluIA — Plataforma SaaS de educación inclusiva con Inteligencia Artificial
-**Dominio:** https://incluia.com.ar
-**Contacto Compliance:** compliance@incluia.com.ar
-**Responsable de Protección de Datos (DPO):** dpo@incluia.com.ar
+**Producto:** IncluAI — Plataforma SaaS de educación inclusiva con Inteligencia Artificial
+**Dominio:** https://incluai.com.ar
+**Contacto Compliance:** compliance@incluai.com.ar
+**Responsable de Protección de Datos (DPO):** dpo@incluai.com.ar
 **Fecha de última revisión general:** 22 de abril de 2026
 **Versión del dossier:** 1.0
 
@@ -12,7 +12,7 @@
 
 ## Propósito
 
-Este directorio concentra toda la documentación de cumplimiento normativo, accesibilidad, privacidad, seguridad de la información y ética de IA de IncluIA. Está diseñado para ser presentado ante:
+Este directorio concentra toda la documentación de cumplimiento normativo, accesibilidad, privacidad, seguridad de la información y ética de IA de IncluAI. Está diseñado para ser presentado ante:
 
 - Áreas de Compliance de Ministerios de Educación provinciales (en particular Córdoba, como primera jurisdicción objetivo).
 - Auditores externos de seguridad y privacidad.
@@ -25,7 +25,7 @@ Cada documento está redactado para ser interpretable de forma autónoma, aunque
 
 ## Normativa de referencia
 
-IncluIA se diseña y opera cumpliendo con el siguiente marco normativo argentino e internacional:
+IncluAI se diseña y opera cumpliendo con el siguiente marco normativo argentino e internacional:
 
 | Norma | Ámbito | Aplicabilidad |
 |-------|--------|---------------|
@@ -61,7 +61,7 @@ IncluIA se diseña y opera cumpliendo con el siguiente marco normativo argentino
 │   └── declaracion-conformidad.md              Declaración de conformidad nivel AA
 │
 ├── cfe-311-16/                                 Resolución CFE 311/16
-│   └── mapeo-funcionalidad-normativa.md        Mapeo de funcionalidades IncluIA a artículos CFE 311/16
+│   └── mapeo-funcionalidad-normativa.md        Mapeo de funcionalidades IncluAI a artículos CFE 311/16
 │
 ├── iso-27001/                                  Seguridad de la información
 │   └── roadmap-implementacion.md               Hoja de ruta 12 meses a certificación
@@ -81,14 +81,14 @@ IncluIA se diseña y opera cumpliendo con el siguiente marco normativo argentino
 
 ### 2. Protección de Datos Personales — Ley 25.326
 - [Procedimiento de registro de bases de datos ante la AAIP](./ley-25326-datos-personales/registro-aaip.md)
-- [Política de Privacidad de IncluIA](./ley-25326-datos-personales/politica-privacidad.md)
+- [Política de Privacidad de IncluAI](./ley-25326-datos-personales/politica-privacidad.md)
 - [Consentimiento informado y tratamiento de datos de menores](./ley-25326-datos-personales/consentimiento-menores.md)
 
 ### 3. Accesibilidad de la Información — Ley 26.653
 - [Declaración de Conformidad de Accesibilidad nivel AA](./ley-26653-accesibilidad/declaracion-conformidad.md)
 
 ### 4. Educación Inclusiva — Resolución CFE 311/16
-- [Mapeo de funcionalidades de IncluIA a artículos de la Resolución CFE 311/16](./cfe-311-16/mapeo-funcionalidad-normativa.md)
+- [Mapeo de funcionalidades de IncluAI a artículos de la Resolución CFE 311/16](./cfe-311-16/mapeo-funcionalidad-normativa.md)
 
 ### 5. Seguridad de la Información — ISO/IEC 27001
 - [Hoja de ruta de implementación ISO 27001 (12 meses)](./iso-27001/roadmap-implementacion.md)
@@ -116,7 +116,7 @@ IncluIA se diseña y opera cumpliendo con el siguiente marco normativo argentino
 
 - **Comité de Compliance:** se reúne mensualmente. Integrado por CEO, CTO, DPO, Legal externo y Asesora Pedagógica en Educación Especial.
 - **Ciclo de revisión documental:** cada documento de esta carpeta se revisa al menos una vez por año o ante cambios sustantivos del producto o la normativa.
-- **Control de versiones:** todos los documentos de este directorio están versionados en el repositorio principal de IncluIA. Los cambios requieren pull request y aprobación del DPO o CTO según corresponda.
+- **Control de versiones:** todos los documentos de este directorio están versionados en el repositorio principal de IncluAI. Los cambios requieren pull request y aprobación del DPO o CTO según corresponda.
 
 ---
 
@@ -124,8 +124,8 @@ IncluIA se diseña y opera cumpliendo con el siguiente marco normativo argentino
 
 | Rol | Email | Responsabilidad |
 |-----|-------|-----------------|
-| DPO (Responsable de Protección de Datos) | dpo@incluia.com.ar | Ley 25.326, derechos ARCO, AAIP |
-| CISO | seguridad@incluia.com.ar | ISO 27001, incidentes, vulnerabilidades |
-| Accesibilidad | accesibilidad@incluia.com.ar | WCAG, Ley 26.653 |
-| Compliance general | compliance@incluia.com.ar | Coordinación y canal único |
-| Legal | legal@incluia.com.ar | Contratos con organismos públicos |
+| DPO (Responsable de Protección de Datos) | dpo@incluai.com.ar | Ley 25.326, derechos ARCO, AAIP |
+| CISO | seguridad@incluai.com.ar | ISO 27001, incidentes, vulnerabilidades |
+| Accesibilidad | accesibilidad@incluai.com.ar | WCAG, Ley 26.653 |
+| Compliance general | compliance@incluai.com.ar | Coordinación y canal único |
+| Legal | legal@incluai.com.ar | Contratos con organismos públicos |

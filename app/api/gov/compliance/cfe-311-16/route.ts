@@ -23,7 +23,7 @@ export async function GET(req: NextRequest) {
       descripcion: 'Trayectorias educativas integrales',
       cumplimiento: 'Conforme',
       evidencia:
-        'IncluIA genera planes pedagógicos respetando la trayectoria individual del estudiante.',
+        'IncluAI genera planes pedagógicos respetando la trayectoria individual del estudiante.',
     },
     {
       articulo: 'Art. 3-4',

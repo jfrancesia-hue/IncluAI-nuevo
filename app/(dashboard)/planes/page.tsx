@@ -6,7 +6,7 @@ import { UpgradeButton } from '@/components/module/upgrade-button';
 import { PHOTOS } from '@/lib/photos';
 import { cn } from '@/lib/utils';
 
-export const metadata = { title: 'Elegí tu plan · IncluIA' };
+export const metadata = { title: 'Elegí tu plan · IncluAI' };
 
 type SearchParams = Promise<{ status?: string }>;
 
@@ -127,10 +127,10 @@ export default async function PlanesPage({
         <div className="rounded-[12px] bg-white p-3 shadow-[0_2px_6px_rgba(15,34,64,0.04)]">
           💬{' '}
           <a
-            href="mailto:hola@inclua.com.ar"
+            href="mailto:hola@incluai.com.ar"
             className="hover:text-[#1e3a5f] hover:underline"
           >
-            hola@inclua.com.ar
+            hola@incluai.com.ar
           </a>
         </div>
       </div>
@@ -148,7 +148,7 @@ export default async function PlanesPage({
           </div>
         </div>
         <blockquote className="mt-4 font-serif text-lg leading-snug text-[#1a2332] sm:text-xl">
-          &ldquo;Desde que uso IncluIA, planificar para Joaquín dejó de ser un
+          &ldquo;Desde que uso IncluAI, planificar para Joaquín dejó de ser un
           problema. Ahora es mi parte favorita de la semana.&rdquo;
         </blockquote>
       </figure>

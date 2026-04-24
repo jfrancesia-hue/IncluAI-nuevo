@@ -7,7 +7,7 @@ import { cn } from '@/lib/utils';
 import type { ModuloIncluIA } from '@/lib/types';
 import { PHOTOS } from '@/lib/photos';
 
-export const metadata = { title: 'Tu biblioteca · IncluIA' };
+export const metadata = { title: 'Tu biblioteca · IncluAI' };
 
 type Row = {
   id: string;

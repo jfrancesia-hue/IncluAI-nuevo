@@ -1,8 +1,8 @@
 # Resultados de Auditoría de Sesgos — Primer Ciclo
 
-**Producto:** IncluIA
+**Producto:** IncluAI
 **Período auditado:** 5 al 18 de abril de 2026
-**Modelo:** Claude 4.7 Sonnet (temperatura 0.4) + prompt de sistema IncluIA v0.18
+**Modelo:** Claude 4.7 Sonnet (temperatura 0.4) + prompt de sistema IncluAI v0.18
 **Versión del test suite:** 1.0 (280 prompts)
 **Ciclos de ejecución:** 3 por prompt → 840 respuestas totales
 **Evaluadoras humanas:** 3 (1 ingeniera, 1 docente de educación especial, 1 docente con discapacidad auditiva)
@@ -228,7 +228,7 @@ Tras BIAS-003 y remediación, objetivo:
 
 ## 12. Publicación
 
-Un resumen ejecutivo de este informe (sin datos comerciales sensibles) se publica en https://incluia.com.ar/transparencia-ia. Los Ministerios contratantes reciben versión completa a través del canal compliance@incluia.com.ar.
+Un resumen ejecutivo de este informe (sin datos comerciales sensibles) se publica en https://incluai.com.ar/transparencia-ia. Los Ministerios contratantes reciben versión completa a través del canal compliance@incluai.com.ar.
 
 ---
 

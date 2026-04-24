@@ -90,7 +90,7 @@ Esta carpeta contiene los recursos visuales del data room. Completar antes de ma
 
 ## Uso y licencia
 
-Todos los assets de IncluIA son propiedad intelectual de Nativos Consultora Digital (y futura IncluIA S.A.).
+Todos los assets de IncluAI son propiedad intelectual de Nativos Consultora Digital (y futura IncluAI S.A.).
 
 Assets con personas (docentes, alumnos, etc.) requieren autorización firmada para uso comercial. Template de autorización disponible en `docs/legal/autorizacion-uso-imagen.md`.
 

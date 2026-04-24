@@ -1,8 +1,8 @@
-# Mapeo de funcionalidades de IncluIA a la Resolución CFE 311/16
+# Mapeo de funcionalidades de IncluAI a la Resolución CFE 311/16
 
 **Resolución CFE 311/16** del Consejo Federal de Educación de la República Argentina: "Promoción, Acreditación, Certificación y Titulación de los estudiantes con discapacidad".
 **Documento complementario:** Resolución CFE 174/12 (Unidad Pedagógica primer ciclo) y anexos específicos de cada jurisdicción.
-**Producto:** IncluIA
+**Producto:** IncluAI
 **Fecha:** 22 de abril de 2026
 **Responsable del mapeo:** Prof. Carolina Ledesma (Asesora Pedagógica en Educación Especial) + Mgter. Diego Ávila (Producto)
 
@@ -10,9 +10,9 @@
 
 ## 1. Propósito
 
-La Resolución CFE 311/16 es el marco federal vigente que regula la educación inclusiva en la Argentina: el proceso de enseñanza, aprendizaje, acompañamiento, acreditación y certificación de los estudiantes con discapacidad. Este documento mapea cada funcionalidad de IncluIA a los artículos específicos de la Resolución 311/16 que operacionaliza, demostrando de forma concreta cómo la plataforma es un **instrumento de cumplimiento normativo** para las instituciones y jurisdicciones educativas.
+La Resolución CFE 311/16 es el marco federal vigente que regula la educación inclusiva en la Argentina: el proceso de enseñanza, aprendizaje, acompañamiento, acreditación y certificación de los estudiantes con discapacidad. Este documento mapea cada funcionalidad de IncluAI a los artículos específicos de la Resolución 311/16 que operacionaliza, demostrando de forma concreta cómo la plataforma es un **instrumento de cumplimiento normativo** para las instituciones y jurisdicciones educativas.
 
-Este mapeo es esencial para la presentación de IncluIA a áreas técnicas de Ministerios provinciales de Educación.
+Este mapeo es esencial para la presentación de IncluAI a áreas técnicas de Ministerios provinciales de Educación.
 
 ---
 
@@ -32,7 +32,7 @@ Para facilitar la lectura, sintetizamos los artículos más relevantes:
 
 ## 3. Tabla de mapeo funcionalidad → artículo
 
-| Funcionalidad de IncluIA | Descripción | Artículos CFE 311/16 | Cómo contribuye al cumplimiento |
+| Funcionalidad de IncluAI | Descripción | Artículos CFE 311/16 | Cómo contribuye al cumplimiento |
 |---------------------------|-------------|----------------------|------------------------------------|
 | **Generador de guías pedagógicas inclusivas** | El docente describe un contexto (nivel, área, discapacidad sin datos personales) y la IA genera una propuesta didáctica adaptada. | Art. 11, 12, 18 | Operacionaliza las **configuraciones de apoyo** del Art. 18 proveyendo adecuaciones curriculares concretas, material sugerido y propuestas de evaluación adaptada. |
 | **Plantillas de Proyecto Pedagógico Individual (PPI)** | Estructura pre-cargada con los campos que exige la Resolución para elaborar un PPI. El docente completa con la información pedagógica sin cargar datos identificatorios del estudiante. | Art. 21, 22, 23, 24, 25 | Provee un **formato estándar** alineado a los contenidos mínimos del PPI exigidos por la norma. |
@@ -49,7 +49,7 @@ Para facilitar la lectura, sintetizamos los artículos más relevantes:
 
 ## 4. Tabla inversa: artículo → funcionalidad
 
-| Artículo CFE 311/16 | Funcionalidad de IncluIA que lo apoya |
+| Artículo CFE 311/16 | Funcionalidad de IncluAI que lo apoya |
 |---------------------|---------------------------------------|
 | Art. 11 (derecho a educación inclusiva) | Toda la plataforma |
 | Art. 12 (trayectoria integral) | Generador de guías, módulo de seguimiento, articulación entre niveles |
@@ -69,10 +69,10 @@ Para facilitar la lectura, sintetizamos los artículos más relevantes:
 ## 5. Alineación con estándares complementarios
 
 ### 5.1. Ley 26.206 de Educación Nacional
-IncluIA respeta los principios de educación inclusiva (Art. 11), garantiza el acceso al conocimiento (Art. 2) y se alinea con la definición de sujetos de derecho educativo del Art. 4.
+IncluAI respeta los principios de educación inclusiva (Art. 11), garantiza el acceso al conocimiento (Art. 2) y se alinea con la definición de sujetos de derecho educativo del Art. 4.
 
 ### 5.2. Ley 26.378 (Convención sobre los Derechos de las Personas con Discapacidad)
-- **Art. 24 de la CDPD:** derecho a la educación inclusiva. IncluIA es una herramienta directa de soporte a este artículo.
+- **Art. 24 de la CDPD:** derecho a la educación inclusiva. IncluAI es una herramienta directa de soporte a este artículo.
 - **Art. 2 (ajustes razonables):** las configuraciones de apoyo generadas son expresión concreta de ajustes razonables.
 
 ### 5.3. Resoluciones provinciales
@@ -94,8 +94,8 @@ Las tres validaciones están documentadas con actas firmadas en el archivo inter
 
 ## 7. Limitaciones del mapeo
 
-- Este mapeo describe cómo IncluIA **apoya** el cumplimiento de la Resolución CFE 311/16. **No reemplaza** las obligaciones institucionales ni docentes respecto del PPI individual de cada estudiante, que debe construirse con los datos reales del alumno dentro de los sistemas oficiales de cada escuela/jurisdicción.
-- IncluIA es una herramienta de **apoyo pedagógico al docente**, no un sistema de registro educativo oficial (SINIDE, SIGAE provinciales u otros).
+- Este mapeo describe cómo IncluAI **apoya** el cumplimiento de la Resolución CFE 311/16. **No reemplaza** las obligaciones institucionales ni docentes respecto del PPI individual de cada estudiante, que debe construirse con los datos reales del alumno dentro de los sistemas oficiales de cada escuela/jurisdicción.
+- IncluAI es una herramienta de **apoyo pedagógico al docente**, no un sistema de registro educativo oficial (SINIDE, SIGAE provinciales u otros).
 - Las configuraciones de apoyo sugeridas por la IA son **propuestas orientativas** que requieren la validación y adaptación profesional del docente y del equipo interdisciplinario de la institución.
 
 ---
@@ -105,7 +105,7 @@ Las tres validaciones están documentadas con actas firmadas en el archivo inter
 Este documento se revisa al menos una vez al año o ante cualquier modificación de:
 
 - La Resolución CFE 311/16 o resoluciones complementarias del CFE.
-- La normativa provincial de la jurisdicción en la que opere IncluIA.
+- La normativa provincial de la jurisdicción en la que opere IncluAI.
 - Nuevas funcionalidades de la plataforma.
 
 Próxima revisión prevista: 22 de abril de 2027.

@@ -3,7 +3,7 @@ import { checkPlanLimits } from '@/lib/plan';
 import { Alert } from '@/components/ui/alert';
 import Link from 'next/link';
 
-export const metadata = { title: 'Nueva consulta · IncluIA' };
+export const metadata = { title: 'Nueva consulta · IncluAI' };
 
 export default async function NuevaConsultaPage() {
   const plan = await checkPlanLimits();

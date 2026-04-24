@@ -122,12 +122,12 @@
 ## Q2 2027 (abril–junio) — Plataforma
 
 ### Producto
-- [ ] API pública para que ministerios integren IncluIA en sus plataformas.
+- [ ] API pública para que ministerios integren IncluAI en sus plataformas.
 - [ ] **Módulo Familia/Hogar (B2C2C)**: primer producto para padres de alumnos con CUD.
 - [ ] Marketplace de plantillas curadas (docente crea → otros compran/descargan).
 
 ### IA / Datos
-- [ ] Multimodal: análisis de imágenes (un docente sube una hoja del alumno, IncluIA sugiere adaptaciones).
+- [ ] Multimodal: análisis de imágenes (un docente sube una hoja del alumno, IncluAI sugiere adaptaciones).
 - [ ] Assistant longitudinal: memoria por alumno para dar continuidad pedagógica entre clases.
 
 ### B2G / Comercial
@@ -151,7 +151,7 @@
 - [ ] Accesibilidad WCAG 2.2 AAA completa en toda la app.
 
 ### IA / Datos
-- [ ] Modelo propio fine-tuned sobre datos propietarios (primer modelo IncluIA nativo).
+- [ ] Modelo propio fine-tuned sobre datos propietarios (primer modelo IncluAI nativo).
 - [ ] Investigación académica publicada con universidad argentina (paper sobre efectividad pedagógica).
 
 ### B2G / Comercial

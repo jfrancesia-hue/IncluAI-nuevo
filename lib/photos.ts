@@ -1,5 +1,5 @@
 /**
- * Fotos curadas para IncluIA — Pexels tiene mejor cobertura que Unsplash
+ * Fotos curadas para IncluAI — Pexels tiene mejor cobertura que Unsplash
  * en fotos reales de niños con discapacidad en contextos educativos,
  * terapéuticos y de inclusión. Todas con licencia Pexels (uso libre).
  *

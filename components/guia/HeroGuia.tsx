@@ -49,7 +49,7 @@ export function HeroGuia({ vistaRapida, metadata }: Props) {
             marginBottom: 10,
           }}
         >
-          🧩 Guía IncluIA
+          🧩 Guía IncluAI
         </div>
         <h1
           style={{

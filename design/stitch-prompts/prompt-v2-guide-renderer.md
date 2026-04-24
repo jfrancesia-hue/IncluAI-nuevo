@@ -1,4 +1,4 @@
-# PROMPT STITCH V2 — Renderer de guía generada (IncluIA)
+# PROMPT STITCH V2 — Renderer de guía generada (IncluAI)
 
 **Fecha:** 2026-04-20
 **Objetivo:** Rediseñar la pantalla de resultado de guía pedagógica para que deje de parecer un muro de texto markdown y se sienta como un producto premium, ilustrativo y navegable.
@@ -9,7 +9,7 @@
 ## DESIGN SYSTEM (pegá esto en Stitch Design Config)
 
 ```
-# IncluIA — Guide Renderer v2
+# IncluAI — Guide Renderer v2
 
 ## Palette (role-based)
 - Primary (inclusive green, success, progress): #15803d
@@ -46,7 +46,7 @@ Each section must look DIFFERENT — no repeated card layouts.
 ## SCREEN PROMPT — Guide Result (primary)
 
 ```
-Design a results screen for IncluIA — teachers in Argentina receive AI-generated inclusive teaching guides.
+Design a results screen for IncluAI — teachers in Argentina receive AI-generated inclusive teaching guides.
 
 Context of this specific guide:
 - Topic: "Fracciones equivalentes" (Equivalent fractions)
@@ -123,7 +123,7 @@ SECTION 9 — Footer of the guide (dark gradient bg #1e3a5f → #0e4f68):
 Two columns:
   - LEFT: Fraunces "¿Esta guía te sirvió?" + 5 interactive star ratings (large) + hint text
   - RIGHT: 3 stacked buttons — amber "Refinar guía · más actividades" / white-glass "Compartir con colegas" / outlined "Guardar en favoritas"
-Below in small muted text: "Generado con Claude Opus 4.7 · Basado en Res. CFE 311/16 y Ley 26.206 · IncluIA no reemplaza el juicio profesional docente."
+Below in small muted text: "Generado con Claude Opus 4.7 · Basado en Res. CFE 311/16 y Ley 26.206 · IncluAI no reemplaza el juicio profesional docente."
 
 CRITICAL DESIGN PRINCIPLES:
 1. Each section must feel visually distinct — different background tint, different component pattern, different illustration style.

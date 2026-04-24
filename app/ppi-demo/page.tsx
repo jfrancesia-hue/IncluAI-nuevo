@@ -42,7 +42,7 @@ export default function PPIDemoPage() {
             Nuevo PPI
           </h1>
           <p style={{ color: '#5c6b7f', fontSize: 14, margin: 0 }}>
-            Completá los 4 pasos. IncluIA genera el documento en unos minutos — después lo revisás
+            Completá los 4 pasos. IncluAI genera el documento en unos minutos — después lo revisás
             y editás sección por sección.
           </p>
         </header>

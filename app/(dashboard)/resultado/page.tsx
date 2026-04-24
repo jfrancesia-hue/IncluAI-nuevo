@@ -18,7 +18,7 @@ import { getAreaFamiliaById } from '@/data/areas-familia';
 import { RANGOS_EDAD } from '@/data/rangos-edad';
 import { PHOTOS } from '@/lib/photos';
 
-export const metadata = { title: 'Resultado · IncluIA' };
+export const metadata = { title: 'Resultado · IncluAI' };
 
 type SearchParams = Promise<{ id?: string }>;
 

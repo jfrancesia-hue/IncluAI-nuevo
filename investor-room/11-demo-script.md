@@ -1,4 +1,4 @@
-# Demo Script — IncluIA en vivo
+# Demo Script — IncluAI en vivo
 
 **Duración total:** 5 minutos cronometrados de demo + 10 minutos Q&A
 **Formato:** screen-share + narración del founder/Head of Sales
@@ -26,7 +26,7 @@
 > "Antes de mostrarte el producto, una cosa: lo que vas a ver no es un mock. Es el producto real que usan [COMPLETAR: X] docentes argentinos hoy. Te voy a mostrar un caso típico: una maestra de cuarto grado que tiene en su aula a Martín, un alumno con TEA nivel 1, y a Lucía, con TDAH. Mañana tiene que dar Ciencias Sociales — tema: organización territorial de Argentina. Y tiene 7 minutos antes de que empiece la clase."
 
 **Lo que se muestra:**
-- Home de IncluIA logueada
+- Home de IncluAI logueada
 - Se destaca el botón "Nueva planificación" centrado
 
 **Por qué este minuto importa:** situás el dolor concreto. El inversor no proyecta abstractamente, ve a una persona real.
@@ -73,7 +73,7 @@
 
 **Lo que se dice durante el scroll:**
 
-> "Fijate que no es genérico. Lo que IncluIA hace es buscar el diseño curricular de cuarto grado de Provincia de Buenos Aires, ver qué dice sobre organización territorial, cruzar con el manual de adaptaciones para TEA del Ministerio, y generar algo defendible ante una inspección."
+> "Fijate que no es genérico. Lo que IncluAI hace es buscar el diseño curricular de cuarto grado de Provincia de Buenos Aires, ver qué dice sobre organización territorial, cruzar con el manual de adaptaciones para TEA del Ministerio, y generar algo defendible ante una inspección."
 
 > "Esto — esto acá abajo — es el reporte automático para el Equipo de Orientación Escolar. Es literalmente el documento que la docente iba a tener que escribir a mano y pegar en el legajo del alumno. Se lo estamos ahorrando."
 
@@ -90,7 +90,7 @@
 
 **Lo que se dice:**
 
-> "Esto es lo que hoy no existe en el mercado. Los productos que conocés son asistentes individuales. IncluIA piensa como el equipo de una escuela: docente, director, equipo de orientación, familia cuando corresponde. Ese es el moat: nadie más está construyendo para el flujo real de una escuela inclusiva."
+> "Esto es lo que hoy no existe en el mercado. Los productos que conocés son asistentes individuales. IncluAI piensa como el equipo de una escuela: docente, director, equipo de orientación, familia cuando corresponde. Ese es el moat: nadie más está construyendo para el flujo real de una escuela inclusiva."
 
 ---
 
@@ -136,10 +136,10 @@
 > "Tres palancas. LOI ya firmada con [COMPLETAR], pilotos gratuitos con 2 provincias más para generar tracción, y Head of Sales B2G hire que tiene network en 5 ministerios. Ciclo típico es 9 meses. Con la ronda, cerramos 1 contrato cobrado en Q3 2026."
 
 ### "¿Y si no cierran ningún contrato provincial?"
-> "El modelo no depende de B2G para sobrevivir. B2C + B2B alcanzan para USD 450k ARR al cierre de año 2 en escenario pesimista. B2G es la palanca para la Serie A — si no cierra, no hay Serie A ambiciosa, pero IncluIA sigue funcionando y puede ser adquirida por un player educativo más grande."
+> "El modelo no depende de B2G para sobrevivir. B2C + B2B alcanzan para USD 450k ARR al cierre de año 2 en escenario pesimista. B2G es la palanca para la Serie A — si no cierra, no hay Serie A ambiciosa, pero IncluAI sigue funcionando y puede ser adquirida por un player educativo más grande."
 
 ### "¿Cuánto equity tiene Jorge hoy y cuánto después?"
-> "Hoy 100% (Nativos Consultora Digital). Post-seed, IncluIA S.A. se constituye con founders 78%, ESOP 10%, advisors 1,5%, inversores seed 10,5%. Post-Serie A proyectado: founders 55–58%."
+> "Hoy 100% (Nativos Consultora Digital). Post-seed, IncluAI S.A. se constituye con founders 78%, ESOP 10%, advisors 1,5%, inversores seed 10,5%. Post-Serie A proyectado: founders 55–58%."
 
 ### "¿Por qué no haces esto en EEUU, donde el mercado es 10x?"
 > "Porque MagicSchool y Eduaide ya levantaron USD 30M+ cada uno. Competir con ellos en inglés con USD 750k es suicidio. Argentina es el beachhead defensible: idioma, contexto cultural, compliance, ticket gubernamental. Desde acá expandimos a Brasil en año 4, no al revés."
@@ -148,7 +148,7 @@
 > "Tres cosas importantes. Secundaria superior — viene Q3 2026. App móvil — Q4 2026. Integración SIGE — Q1 2027. Son gaps conocidos y presupuestados. No los escondo."
 
 ### "¿Qué hace Jorge con sus otros 11 proyectos?"
-> "Post-cierre seed, Nativos Consultora Digital pasa a modo mantenimiento para los clientes existentes. IncluIA es mi única prioridad desarrollo. Los otros SaaS generan revenue recurrente pero no demandan tiempo full-time. Esto está escrito en el term sheet como compromiso."
+> "Post-cierre seed, Nativos Consultora Digital pasa a modo mantenimiento para los clientes existentes. IncluAI es mi única prioridad desarrollo. Los otros SaaS generan revenue recurrente pero no demandan tiempo full-time. Esto está escrito en el term sheet como compromiso."
 
 ---
 

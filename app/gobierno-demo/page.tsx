@@ -51,7 +51,7 @@ export default function GovDemoDashboard() {
           Resumen ejecutivo
         </h2>
         <p style={{ color: 'var(--gov-text-muted)', lineHeight: 1.6 }}>
-          IncluIA está generando impacto pedagógico documentable en{' '}
+          IncluAI está generando impacto pedagógico documentable en{' '}
           <strong>{coverage.schoolsActive} escuelas activas</strong> de Córdoba. En los últimos
           30 días se produjeron <strong>{impact.adaptationsGenerated.toLocaleString('es-AR')} adaptaciones
           curriculares</strong>, ahorrando aproximadamente{' '}

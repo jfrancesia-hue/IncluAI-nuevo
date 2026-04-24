@@ -4,7 +4,7 @@ import { PHOTOS } from '@/lib/photos';
 import { LoginForm } from './login-form';
 
 export const metadata = {
-  title: 'Iniciá sesión · IncluIA',
+  title: 'Iniciá sesión · IncluAI',
 };
 
 export default function LoginPage() {

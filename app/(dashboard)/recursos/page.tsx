@@ -5,7 +5,7 @@ import { Card, CardContent } from '@/components/ui/card';
 import { cn } from '@/lib/utils';
 import { PHOTOS } from '@/lib/photos';
 
-export const metadata = { title: 'Biblioteca · IncluIA' };
+export const metadata = { title: 'Biblioteca · IncluAI' };
 
 type SP = Promise<{ publico?: string; tipo?: string }>;
 
