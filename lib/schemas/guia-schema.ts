@@ -57,17 +57,22 @@ export const VideoRefSchema = z.object({
 // ESTRUCTURA DE LA GUÍA PEDAGÓGICA
 // ─────────────────────────────────────────────────────────
 
+// Límites ampliados ~40% respecto al diseño original para dar margen al
+// variar entre Sonnet (plan Free/Básico/Profesional) y Opus (Premium).
+// Sonnet a veces excede los límites estrictos que Opus sí respeta.
+// La UI truncará visualmente si algún string llega al tope.
+
 export const VistaRapidaSchema = z.object({
-  titulo: z.string().max(80),
+  titulo: z.string().max(120),
   resumen: z
     .string()
-    .max(280)
+    .max(400)
     .describe('Lo esencial que el docente lee en 30 segundos'),
 });
 
 export const ConceptoClaveSchema = z.object({
   nombre: z.string(),
-  descripcionCorta: z.string().max(140),
+  descripcionCorta: z.string().max(200),
   imagen: ImagenRefSchema,
   color: z
     .enum(['selva', 'desierto', 'pampa', 'oceano', 'montana', 'neutro'])
@@ -92,26 +97,26 @@ export const EstrategiaSchema = z.object({
     'corporal',
     'social',
   ]),
-  titulo: z.string().max(60),
+  titulo: z.string().max(100),
   subtitulo: z
     .string()
-    .max(100)
+    .max(160)
     .describe("Tags tipo 'Material concreto · 30 min'"),
   pasos: z.array(PasoEstrategiaSchema).min(3).max(8),
-  porQueFunciona: z.string().max(240),
+  porQueFunciona: z.string().max(360),
   imagenApoyo: ImagenRefSchema.optional(),
   videoApoyo: VideoRefSchema.optional(),
 });
 
 export const MaterialSchema = z.object({
-  nombre: z.string().max(60),
-  descripcion: z.string().max(200),
+  nombre: z.string().max(100),
+  descripcion: z.string().max(300),
   tiempoPreparacion: z.string().describe("Ej: '20 minutos', '1 hora'"),
   imagenReferencia: ImagenRefSchema.optional(),
 });
 
 export const CriterioEvaluacionSchema = z.object({
-  criterio: z.string().max(120),
+  criterio: z.string().max(200),
   nivelEsperado: z.enum(['inicial', 'en_proceso', 'consolidado']),
 });
 
@@ -121,8 +126,8 @@ export const TipComunicacionSchema = z.object({
 });
 
 export const ErrorComunSchema = z.object({
-  titulo: z.string().max(60),
-  descripcion: z.string().max(220),
+  titulo: z.string().max(100),
+  descripcion: z.string().max(340),
 });
 
 // ─────────────────────────────────────────────────────────
