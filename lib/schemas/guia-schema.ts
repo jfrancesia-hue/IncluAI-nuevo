@@ -1,6 +1,31 @@
 import { z } from 'zod';
 
 // ─────────────────────────────────────────────────────────
+// HELPERS
+// ─────────────────────────────────────────────────────────
+
+// String con longitud máxima que NO falla si el LLM se pasa — lo trunca.
+// Sonnet ocasionalmente excede los maxLength del tool-use schema por 10-50
+// chars. En vez de abortar la guía entera, preferimos truncar con elipsis
+// y conservar el 99% del contenido. El JSON Schema exportado sigue
+// diciendo maxLength: N para que Claude intente respetarlo.
+function boundedString(max: number) {
+  return z.preprocess(
+    (val) => {
+      if (typeof val !== 'string') return val;
+      if (val.length <= max) return val;
+      // Truncar en el último espacio antes del límite (si hay), sino cortar
+      // duro. Agregamos elipsis solo si hay lugar.
+      const hardCut = val.slice(0, max);
+      const lastSpace = hardCut.lastIndexOf(' ');
+      const cutAt = lastSpace > max * 0.8 ? lastSpace : max - 1;
+      return val.slice(0, cutAt).trimEnd() + '…';
+    },
+    z.string().max(max)
+  );
+}
+
+// ─────────────────────────────────────────────────────────
 // TIPOS DE RECURSOS MULTIMEDIA
 // ─────────────────────────────────────────────────────────
 
@@ -57,22 +82,20 @@ export const VideoRefSchema = z.object({
 // ESTRUCTURA DE LA GUÍA PEDAGÓGICA
 // ─────────────────────────────────────────────────────────
 
-// Límites ampliados ~40% respecto al diseño original para dar margen al
-// variar entre Sonnet (plan Free/Básico/Profesional) y Opus (Premium).
-// Sonnet a veces excede los límites estrictos que Opus sí respeta.
-// La UI truncará visualmente si algún string llega al tope.
+// Todos los strings con tope usan boundedString(N): si Sonnet se pasa, se
+// trunca con elipsis en vez de abortar la guía. El maxLength se sigue
+// exportando al LLM vía z.toJSONSchema() para que Claude intente respetarlo.
 
 export const VistaRapidaSchema = z.object({
-  titulo: z.string().max(120),
-  resumen: z
-    .string()
-    .max(400)
-    .describe('Lo esencial que el docente lee en 30 segundos'),
+  titulo: boundedString(120),
+  resumen: boundedString(400).describe(
+    'Lo esencial que el docente lee en 30 segundos'
+  ),
 });
 
 export const ConceptoClaveSchema = z.object({
   nombre: z.string(),
-  descripcionCorta: z.string().max(200),
+  descripcionCorta: boundedString(200),
   imagen: ImagenRefSchema,
   color: z
     .enum(['selva', 'desierto', 'pampa', 'oceano', 'montana', 'neutro'])
@@ -97,26 +120,25 @@ export const EstrategiaSchema = z.object({
     'corporal',
     'social',
   ]),
-  titulo: z.string().max(100),
-  subtitulo: z
-    .string()
-    .max(160)
-    .describe("Tags tipo 'Material concreto · 30 min'"),
+  titulo: boundedString(100),
+  subtitulo: boundedString(160).describe(
+    "Tags tipo 'Material concreto · 30 min'"
+  ),
   pasos: z.array(PasoEstrategiaSchema).min(3).max(8),
-  porQueFunciona: z.string().max(360),
+  porQueFunciona: boundedString(360),
   imagenApoyo: ImagenRefSchema.optional(),
   videoApoyo: VideoRefSchema.optional(),
 });
 
 export const MaterialSchema = z.object({
-  nombre: z.string().max(100),
-  descripcion: z.string().max(300),
+  nombre: boundedString(100),
+  descripcion: boundedString(300),
   tiempoPreparacion: z.string().describe("Ej: '20 minutos', '1 hora'"),
   imagenReferencia: ImagenRefSchema.optional(),
 });
 
 export const CriterioEvaluacionSchema = z.object({
-  criterio: z.string().max(200),
+  criterio: boundedString(200),
   nivelEsperado: z.enum(['inicial', 'en_proceso', 'consolidado']),
 });
 
@@ -126,8 +148,8 @@ export const TipComunicacionSchema = z.object({
 });
 
 export const ErrorComunSchema = z.object({
-  titulo: z.string().max(100),
-  descripcion: z.string().max(340),
+  titulo: boundedString(100),
+  descripcion: boundedString(340),
 });
 
 // ─────────────────────────────────────────────────────────
