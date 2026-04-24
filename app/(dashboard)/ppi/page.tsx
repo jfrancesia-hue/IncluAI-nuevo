@@ -42,7 +42,7 @@ export default async function PPIListadoPage() {
         <h1 style={{ fontSize: 28, fontWeight: 700, margin: '0 0 4px', color: '#042C53' }}>
           Proyectos Pedagógicos Individuales
         </h1>
-        <p style={{ color: '#5c6b7f', fontSize: 14, margin: 0 }}>
+        <p style={{ color: '#4A5968', fontSize: 14, margin: 0 }}>
           Generá un PPI completo conforme a la Resolución CFE 311/16 en minutos. Ciclo lectivo{' '}
           <strong>{ciclo}</strong>.
         </p>
@@ -114,7 +114,7 @@ export default async function PPIListadoPage() {
             background: '#f9f7f0',
             borderRadius: 12,
             textAlign: 'center',
-            color: '#5c6b7f',
+            color: '#4A5968',
           }}
         >
           <p style={{ fontSize: 16, margin: '0 0 12px' }}>
@@ -145,7 +145,7 @@ export default async function PPIListadoPage() {
                 <div style={{ fontSize: 16, fontWeight: 600, color: '#042C53' }}>
                   {p.alumno_identificador}
                 </div>
-                <div style={{ fontSize: 13, color: '#5c6b7f', marginTop: 2 }}>
+                <div style={{ fontSize: 13, color: '#4A5968', marginTop: 2 }}>
                   {p.alumno_edad} años · {p.alumno_nivel}
                   {p.alumno_anio_grado ? ` · ${p.alumno_anio_grado}` : ''} · {p.institucion}
                 </div>
@@ -200,7 +200,7 @@ export default async function PPIListadoPage() {
         <h2 style={{ fontSize: 16, fontWeight: 600, margin: '0 0 8px', color: '#042C53' }}>
           ¿Qué es un PPI y por qué lo necesitás?
         </h2>
-        <p style={{ fontSize: 13, lineHeight: 1.6, color: '#5c6b7f', margin: 0 }}>
+        <p style={{ fontSize: 13, lineHeight: 1.6, color: '#4A5968', margin: 0 }}>
           El <strong>Proyecto Pedagógico Individual</strong> es el documento formal que establece
           las configuraciones de apoyo, contenidos priorizados, adaptaciones metodológicas y
           criterios de evaluación para un estudiante con discapacidad. Es obligatorio según la{' '}

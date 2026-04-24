@@ -26,8 +26,8 @@ export async function enviarBienvenida({ to, nombre }: BienvenidaInput) {
     to,
     subject: '¡Bienvenida a IncluAI! 🧩',
     html: `
-      <div style="font-family: system-ui, -apple-system, sans-serif; max-width: 560px; margin: 0 auto; color: #1a2332;">
-        <h1 style="color: #1e3a5f; font-family: Georgia, serif;">¡Hola, ${escapeHtml(nombre)}!</h1>
+      <div style="font-family: system-ui, -apple-system, sans-serif; max-width: 560px; margin: 0 auto; color: #1F2E3D;">
+        <h1 style="color: #2E86C1; font-family: Georgia, serif;">¡Hola, ${escapeHtml(nombre)}!</h1>
         <p>Gracias por sumarte a <strong>IncluAI</strong>.</p>
         <p>Con tu cuenta Gratuita podés generar <strong>2 guías inclusivas por mes</strong>, cubriendo todos los niveles educativos y discapacidades del sistema argentino.</p>
         <p style="margin-top: 24px;">

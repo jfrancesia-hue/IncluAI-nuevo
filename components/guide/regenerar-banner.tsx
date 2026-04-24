@@ -60,7 +60,7 @@ export function RegenerarBanner({ consultaId }: { consultaId: string }) {
           Esto puede tardar hasta 40 segundos. No cierres la pestaña.
         </p>
         {streamText && (
-          <pre className="mt-4 max-h-60 overflow-auto whitespace-pre-wrap rounded-[12px] bg-white p-4 text-xs text-[#1a2332]">
+          <pre className="mt-4 max-h-60 overflow-auto whitespace-pre-wrap rounded-[12px] bg-white p-4 text-xs text-[#1F2E3D]">
             {streamText}
           </pre>
         )}

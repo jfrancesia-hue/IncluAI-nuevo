@@ -13,7 +13,7 @@ export function GuideFeedbackFooter({
 }) {
   return (
     <section id="refinar" data-section="refinar" className="flex flex-col gap-6">
-      <div className="rounded-[22px] bg-gradient-to-br from-[#1e3a5f] to-[#0e4f68] p-8 text-white shadow-[0_12px_40px_rgba(15,34,64,0.2)]">
+      <div className="rounded-[22px] bg-gradient-to-br from-[#2E86C1] to-[#0e4f68] p-8 text-white shadow-[0_12px_40px_rgba(15,34,64,0.2)]">
         <div className="grid grid-cols-1 items-center gap-8 md:grid-cols-[1fr_1fr]">
           <div>
             <p className="font-serif text-2xl font-bold">¿Esta guía te sirvió?</p>
@@ -30,7 +30,7 @@ export function GuideFeedbackFooter({
         </div>
       </div>
       {legalFooter && (
-        <p className="text-center text-xs text-[#5c6b7f]">{legalFooter}</p>
+        <p className="text-center text-xs text-[#4A5968]">{legalFooter}</p>
       )}
     </section>
   );

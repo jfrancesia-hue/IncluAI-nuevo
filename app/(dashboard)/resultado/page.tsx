@@ -57,10 +57,10 @@ export default async function ResultadoPage({
   if (!id) {
     return (
       <div className="flex flex-col gap-3">
-        <h1 className="font-serif text-3xl text-[#1e3a5f]">Resultado</h1>
-        <p className="text-[#5c6b7f]">
+        <h1 className="font-serif text-3xl text-[#2E86C1]">Resultado</h1>
+        <p className="text-[#4A5968]">
           Falta el parámetro <code>?id=</code>. Volvé al{' '}
-          <Link href="/historial" className="text-[#15803d] underline">
+          <Link href="/historial" className="text-[#27AE60] underline">
             historial
           </Link>
           .
@@ -144,13 +144,13 @@ export default async function ResultadoPage({
     <div className="flex flex-col gap-6">
       <div
         data-no-print
-        className="sticky top-14 z-10 -mx-4 rounded-[14px] border-b border-[#e2e8f0] bg-[#e8f0fe]/95 px-4 py-3 text-xs text-[#1e3a5f] backdrop-blur sm:-mx-6 sm:px-6"
+        className="sticky top-14 z-10 -mx-4 rounded-[14px] border-b border-[#e2e8f0] bg-[#D7EAF6]/95 px-4 py-3 text-xs text-[#2E86C1] backdrop-blur sm:-mx-6 sm:px-6"
       >
         <div className="mx-auto flex max-w-5xl flex-wrap items-center gap-x-3 gap-y-1">
           <span className="font-bold">
             {meta.icon} {meta.label}
           </span>
-          <span aria-hidden className="text-[#5c6b7f]">·</span>
+          <span aria-hidden className="text-[#4A5968]">·</span>
           <SummaryBar row={data} />
           {tags.map((t) => (
             <span
@@ -174,12 +174,12 @@ export default async function ResultadoPage({
           />
         </div>
         <div>
-          <h1 className="font-serif text-2xl font-bold text-[#1e3a5f] sm:text-3xl">
+          <h1 className="font-serif text-2xl font-bold text-[#2E86C1] sm:text-3xl">
             {incompleta ? 'Tu guía quedó incompleta' : 'Tu guía inclusiva está lista ✨'}
           </h1>
-          <p className="mt-1 text-sm text-[#5c6b7f]">
+          <p className="mt-1 text-sm text-[#4A5968]">
             {incompleta ? 'Generada parcialmente para' : 'Generada especialmente para'}{' '}
-            <strong className="text-[#1e3a5f]">
+            <strong className="text-[#2E86C1]">
               {data.materia ? `${data.materia} · ${data.contenido}` : data.contenido}
             </strong>
           </p>
@@ -194,7 +194,7 @@ export default async function ResultadoPage({
         </div>
       ) : (
         !incompleta && (
-          <p className="text-[#5c6b7f]">
+          <p className="text-[#4A5968]">
             Esta consulta aún no tiene respuesta generada.
           </p>
         )
@@ -211,10 +211,10 @@ export default async function ResultadoPage({
 
       {!incompleta && (
         <aside aria-label="Feedback de la guía" className="rounded-[20px] bg-[#fff7ed] p-6 text-center">
-          <p className="font-serif text-lg font-bold text-[#1e3a5f]">
+          <p className="font-serif text-lg font-bold text-[#2E86C1]">
             ¿Esta guía te resultó útil para tu clase?
           </p>
-          <p className="mt-1 text-xs text-[#5c6b7f]">
+          <p className="mt-1 text-xs text-[#4A5968]">
             Tu feedback nos ayuda a mejorar las guías
           </p>
           <div className="mt-4 flex justify-center">
@@ -226,19 +226,19 @@ export default async function ResultadoPage({
       {!incompleta && (
         <div
           data-no-print
-          className="flex flex-col gap-3 rounded-[20px] border-2 border-[#15803d] bg-[#f0fdf4] p-6 sm:flex-row sm:items-center sm:justify-between"
+          className="flex flex-col gap-3 rounded-[20px] border-2 border-[#27AE60] bg-[#D6F0E0] p-6 sm:flex-row sm:items-center sm:justify-between"
         >
           <div>
-            <p className="font-serif text-lg font-bold text-[#1e3a5f]">
+            <p className="font-serif text-lg font-bold text-[#2E86C1]">
               ¿Necesitás otra guía?
             </p>
-            <p className="text-xs text-[#5c6b7f]">
+            <p className="text-xs text-[#4A5968]">
               Otra clase, otro alumno, otro contenido.
             </p>
           </div>
           <Link
             href={meta.nuevaHref}
-            className="inline-flex items-center justify-center rounded-[12px] bg-[#15803d] px-6 py-3 text-sm font-bold text-white transition hover:bg-[#15803d]"
+            className="inline-flex items-center justify-center rounded-[12px] bg-[#27AE60] px-6 py-3 text-sm font-bold text-white transition hover:bg-[#27AE60]"
           >
             Nueva consulta →
           </Link>
@@ -248,7 +248,7 @@ export default async function ResultadoPage({
       <div data-no-print className="text-center">
         <Link
           href="/historial"
-          className="text-xs text-[#5c6b7f] hover:text-[#1e3a5f] hover:underline"
+          className="text-xs text-[#4A5968] hover:text-[#2E86C1] hover:underline"
         >
           ← Volver al historial
         </Link>
@@ -262,7 +262,7 @@ function SummaryBar({ row }: { row: ConsultaRow }) {
     return (
       <>
         {row.materia && <span>📚 {row.materia}</span>}
-        {row.materia && <span aria-hidden className="text-[#5c6b7f]">·</span>}
+        {row.materia && <span aria-hidden className="text-[#4A5968]">·</span>}
         <span>📝 {row.contenido}</span>
       </>
     );
@@ -282,7 +282,7 @@ function SummaryBar({ row }: { row: ConsultaRow }) {
     return (
       <>
         {edadLabel && <span>👶 {edadLabel}</span>}
-        {areas && <span aria-hidden className="text-[#5c6b7f]">·</span>}
+        {areas && <span aria-hidden className="text-[#4A5968]">·</span>}
         {areas && <span>{areas}</span>}
       </>
     );
@@ -302,7 +302,7 @@ function SummaryBar({ row }: { row: ConsultaRow }) {
             {esp.icon} {esp.label}
           </span>
         )}
-        {edadLabel && <span aria-hidden className="text-[#5c6b7f]">·</span>}
+        {edadLabel && <span aria-hidden className="text-[#4A5968]">·</span>}
         {edadLabel && <span>paciente {edadLabel}</span>}
       </>
     );

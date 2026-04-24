@@ -20,7 +20,7 @@ export default async function NuevoPPIPage() {
         <h1 style={{ fontSize: 26, fontWeight: 700, margin: '0 0 4px', color: '#042C53' }}>
           Nuevo PPI
         </h1>
-        <p style={{ color: '#5c6b7f', fontSize: 14, margin: 0 }}>
+        <p style={{ color: '#4A5968', fontSize: 14, margin: 0 }}>
           Completá los 4 pasos. IncluAI genera el documento en unos minutos — después lo revisás y
           editás sección por sección.
         </p>

@@ -4,10 +4,10 @@ const TONE: Record<
   Stakeholder['color'],
   { fill: string; stroke: string; text: string; sub: string }
 > = {
-  amber: { fill: '#fef3c7', stroke: '#c2410c', text: '#78350f', sub: '#92400e' },
-  blue: { fill: '#dbeafe', stroke: '#1e3a5f', text: '#1e3a5f', sub: '#1e40af' },
+  amber: { fill: '#fef3c7', stroke: '#E67E22', text: '#78350f', sub: '#92400e' },
+  blue: { fill: '#dbeafe', stroke: '#2E86C1', text: '#2E86C1', sub: '#1e40af' },
   pink: { fill: '#fce7f3', stroke: '#be185d', text: '#9f1239', sub: '#9f1239' },
-  green: { fill: '#dcfce7', stroke: '#15803d', text: '#14532d', sub: '#166534' },
+  green: { fill: '#D6F0E0', stroke: '#27AE60', text: '#14532d', sub: '#166534' },
 };
 
 const POSITIONS: { x: number; y: number }[] = [
@@ -33,20 +33,20 @@ export function StakeholderMap({
       className="h-auto w-full"
       aria-label="Mapa de actores de coordinación"
     >
-      <g stroke="#15803d" strokeWidth="2" strokeDasharray="4 4" opacity=".5">
+      <g stroke="#27AE60" strokeWidth="2" strokeDasharray="4 4" opacity=".5">
         {items.map((_, i) => {
           const p = POSITIONS[i];
           return <line key={i} x1="360" y1="220" x2={p.x} y2={p.y} />;
         })}
       </g>
       <g>
-        <circle cx="360" cy="220" r="80" fill="none" stroke="#15803d" strokeWidth="2" strokeDasharray="3 3" opacity=".4" />
-        <circle cx="360" cy="220" r="70" fill="#15803d" />
+        <circle cx="360" cy="220" r="80" fill="none" stroke="#27AE60" strokeWidth="2" strokeDasharray="3 3" opacity=".4" />
+        <circle cx="360" cy="220" r="70" fill="#27AE60" />
         <text x="360" y="210" fontSize="13" fill="white" textAnchor="middle" fontFamily="DM Sans" fontWeight="700">
           {centerLabel}
         </text>
         {centerSublabel && (
-          <text x="360" y="232" fontSize="10" fill="#bbf7d0" textAnchor="middle">
+          <text x="360" y="232" fontSize="10" fill="#D6F0E0" textAnchor="middle">
             {centerSublabel}
           </text>
         )}

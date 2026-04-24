@@ -25,10 +25,10 @@ export default function LoginPage() {
         />
       </div>
       <div className="px-6 pb-7 pt-5 sm:px-8">
-        <h1 className="font-serif text-2xl font-bold text-[#1e3a5f] sm:text-3xl">
+        <h1 className="font-serif text-2xl font-bold text-[#2E86C1] sm:text-3xl">
           ¡Qué bueno verte de nuevo!
         </h1>
-        <p className="mt-1 text-sm text-[#5c6b7f]">
+        <p className="mt-1 text-sm text-[#4A5968]">
           Ingresá para seguir planificando clases inclusivas.
         </p>
         <div className="mt-6">

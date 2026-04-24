@@ -155,14 +155,14 @@ export function ProfesionalWizard({
             />
           </div>
           <div className="px-6 py-5">
-            <h2 className="font-serif text-2xl font-bold text-[#1e3a5f] sm:text-3xl">
+            <h2 className="font-serif text-2xl font-bold text-[#2E86C1] sm:text-3xl">
               {currentBanner.title}
             </h2>
-            <p className="mt-1 text-sm text-[#5c6b7f]">
+            <p className="mt-1 text-sm text-[#4A5968]">
               {currentBanner.subtitle}
             </p>
             {currentBanner.tip && (
-              <div className="mt-3 inline-flex items-start gap-2 rounded-[10px] bg-[#fef3c7] px-3 py-2 text-xs text-[#1a2332]">
+              <div className="mt-3 inline-flex items-start gap-2 rounded-[10px] bg-[#fef3c7] px-3 py-2 text-xs text-[#1F2E3D]">
                 {currentBanner.tip}
               </div>
             )}
@@ -376,8 +376,8 @@ export function ProfesionalWizard({
           marginTop: '16px',
           padding: '20px',
           borderRadius: '16px',
-          border: '3px solid #15803d',
-          backgroundColor: '#f0fdf4',
+          border: '3px solid #27AE60',
+          backgroundColor: '#D6F0E0',
         }}
       >
         {step > 1 ? (
@@ -392,10 +392,10 @@ export function ProfesionalWizard({
               padding: '14px 24px',
               fontSize: '16px',
               fontWeight: 600,
-              border: '2px solid #1e3a5f',
+              border: '2px solid #2E86C1',
               borderRadius: '10px',
               backgroundColor: 'white',
-              color: '#1e3a5f',
+              color: '#2E86C1',
               cursor: 'pointer',
             }}
           >
@@ -424,7 +424,7 @@ export function ProfesionalWizard({
               fontWeight: 700,
               border: 'none',
               borderRadius: '10px',
-              backgroundColor: '#15803d',
+              backgroundColor: '#27AE60',
               color: 'white',
               cursor: 'pointer',
               boxShadow: '0 4px 12px rgba(22,163,74,0.35)',
@@ -446,7 +446,7 @@ export function ProfesionalWizard({
               fontWeight: 700,
               border: 'none',
               borderRadius: '10px',
-              backgroundColor: '#15803d',
+              backgroundColor: '#27AE60',
               color: 'white',
               cursor: 'pointer',
               boxShadow: '0 4px 12px rgba(22,163,74,0.35)',
@@ -483,9 +483,9 @@ function Progress({ step }: { step: Step }) {
               <div
                 className={cn(
                   'flex h-9 w-9 shrink-0 items-center justify-center rounded-full text-xs font-bold transition sm:h-10 sm:w-10 sm:text-sm',
-                  done && 'bg-[#15803d] text-white shadow-[0_2px_8px_rgba(22,163,74,0.3)]',
-                  active && 'bg-[#15803d] text-white ring-4 ring-[#dcfce7]',
-                  !done && !active && 'border-2 border-[#e2e8f0] bg-white text-[#5c6b7f]'
+                  done && 'bg-[#27AE60] text-white shadow-[0_2px_8px_rgba(22,163,74,0.3)]',
+                  active && 'bg-[#27AE60] text-white ring-4 ring-[#D6F0E0]',
+                  !done && !active && 'border-2 border-[#e2e8f0] bg-white text-[#4A5968]'
                 )}
               >
                 {done ? '✓' : i}
@@ -493,7 +493,7 @@ function Progress({ step }: { step: Step }) {
               <span
                 className={cn(
                   'text-[10px] font-semibold sm:text-xs',
-                  active || done ? 'text-[#1e3a5f]' : 'text-[#5c6b7f]'
+                  active || done ? 'text-[#2E86C1]' : 'text-[#4A5968]'
                 )}
               >
                 {labels[idx]}
@@ -503,7 +503,7 @@ function Progress({ step }: { step: Step }) {
               <div
                 className={cn(
                   'mb-5 h-0.5 flex-1 rounded-full transition',
-                  done ? 'bg-[#15803d]' : 'bg-[#e2e8f0]'
+                  done ? 'bg-[#27AE60]' : 'bg-[#e2e8f0]'
                 )}
               />
             )}

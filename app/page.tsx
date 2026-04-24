@@ -18,7 +18,7 @@ export default async function LandingPage() {
   if (user) redirect('/inicio');
 
   return (
-    <div className="min-h-screen bg-[#fbf7f0] text-[#1a2332]">
+    <div className="min-h-screen bg-[#FBF8F2] text-[#1F2E3D]">
       <main>
         <Hero />
         <SocialProof />
@@ -41,7 +41,7 @@ function Hero() {
         className="absolute inset-0"
         style={{
           background:
-            'linear-gradient(135deg, #0f2240 0%, #1e3a5f 55%, #0e4f68 100%)',
+            'linear-gradient(135deg, #0f2240 0%, #2E86C1 55%, #0e4f68 100%)',
         }}
       />
       <div
@@ -67,12 +67,12 @@ function Hero() {
 
       <div className="relative mx-auto grid max-w-7xl grid-cols-1 items-center gap-10 px-5 pb-20 pt-8 sm:px-8 lg:grid-cols-[1.05fr_1fr] lg:gap-14 lg:pb-24 lg:pt-12">
         <div className="flex flex-col gap-5 text-white">
-          <span className="inline-flex w-fit items-center gap-2 rounded-full bg-[#15803d]/25 px-3 py-1 text-xs font-semibold text-[#bbf7d0] backdrop-blur">
+          <span className="inline-flex w-fit items-center gap-2 rounded-full bg-[#27AE60]/25 px-3 py-1 text-xs font-semibold text-[#D6F0E0] backdrop-blur">
             🇦🇷 Para docentes de toda Argentina
           </span>
           <h1 className="font-serif text-4xl font-extrabold leading-[1.1] sm:text-5xl lg:text-6xl">
             Cada alumno merece una clase{' '}
-            <span className="text-[#86efac]">pensada para él</span>
+            <span className="text-[#27AE60]">pensada para él</span>
           </h1>
           <p className="max-w-xl text-base text-white/85 sm:text-lg">
             Inteligencia artificial que te ayuda a planificar clases concretas e
@@ -82,7 +82,7 @@ function Hero() {
           <div className="mt-2 flex flex-col gap-3 sm:flex-row sm:items-center">
             <Link
               href="/registro"
-              className="inline-flex items-center justify-center rounded-[12px] bg-[#15803d] px-7 py-4 text-base font-bold text-white shadow-[0_6px_20px_rgba(22,163,74,0.45)] transition hover:bg-[#15803d] hover:shadow-[0_8px_24px_rgba(22,163,74,0.6)]"
+              className="inline-flex items-center justify-center rounded-[12px] bg-[#27AE60] px-7 py-4 text-base font-bold text-white shadow-[0_6px_20px_rgba(22,163,74,0.45)] transition hover:bg-[#27AE60] hover:shadow-[0_8px_24px_rgba(22,163,74,0.6)]"
             >
               Crear mi primera guía — gratis
             </Link>
@@ -105,14 +105,14 @@ function Hero() {
             />
             <div
               aria-hidden
-              className="absolute inset-0 bg-gradient-to-tr from-[#1e3a5f]/30 via-transparent to-transparent"
+              className="absolute inset-0 bg-gradient-to-tr from-[#2E86C1]/30 via-transparent to-transparent"
             />
           </div>
           <div className="absolute -bottom-5 -left-4 hidden rounded-[16px] bg-white px-4 py-3 shadow-lg sm:flex sm:items-center sm:gap-3 lg:-left-6">
             <span aria-hidden className="text-2xl">💚</span>
             <div>
-              <p className="text-xs text-[#5c6b7f]">Cada guía</p>
-              <p className="font-serif text-sm font-bold text-[#1e3a5f]">
+              <p className="text-xs text-[#4A5968]">Cada guía</p>
+              <p className="font-serif text-sm font-bold text-[#2E86C1]">
                 Pensada, no genérica
               </p>
             </div>
@@ -137,11 +137,11 @@ function SocialProof() {
   return (
     <section className="border-y border-[#e2e8f0] bg-white px-5 py-8 sm:px-8">
       <div className="mx-auto flex max-w-6xl flex-col items-center gap-4 text-center">
-        <p className="font-serif text-base font-semibold text-[#1e3a5f] sm:text-lg">
-          Más de <span className="text-[#15803d]">500 docentes</span> ya crean
+        <p className="font-serif text-base font-semibold text-[#2E86C1] sm:text-lg">
+          Más de <span className="text-[#27AE60]">500 docentes</span> ya crean
           guías inclusivas con IncluAI
         </p>
-        <div className="flex flex-wrap items-center justify-center gap-x-6 gap-y-2 text-xs text-[#5c6b7f]">
+        <div className="flex flex-wrap items-center justify-center gap-x-6 gap-y-2 text-xs text-[#4A5968]">
           {provincias.map((p) => (
             <span key={p} className="inline-flex items-center gap-1">
               <span aria-hidden>📍</span> {p}
@@ -178,13 +178,13 @@ function HowItWorks() {
     },
   ];
   return (
-    <section className="bg-gradient-to-b from-[#fbf7f0] to-white px-5 py-20 sm:px-8">
+    <section className="bg-gradient-to-b from-[#FBF8F2] to-white px-5 py-20 sm:px-8">
       <div className="mx-auto max-w-6xl">
         <div className="mx-auto max-w-2xl text-center">
-          <h2 className="font-serif text-3xl font-bold text-[#1e3a5f] sm:text-4xl">
+          <h2 className="font-serif text-3xl font-bold text-[#2E86C1] sm:text-4xl">
             Así de simple: de tu aula a una guía inclusiva
           </h2>
-          <p className="mt-4 text-base text-[#5c6b7f]">
+          <p className="mt-4 text-base text-[#4A5968]">
             Tres pasos pensados para una docente con tiempo limitado y ganas
             reales de incluir.
           </p>
@@ -194,7 +194,7 @@ function HowItWorks() {
           {pasos.map((p) => (
             <article
               key={p.num}
-              className="group relative flex flex-col overflow-hidden rounded-[20px] border-t-[3px] border-[#15803d] bg-white shadow-[0_4px_20px_rgba(15,34,64,0.06)] transition hover:shadow-[0_8px_28px_rgba(15,34,64,0.1)]"
+              className="group relative flex flex-col overflow-hidden rounded-[20px] border-t-[3px] border-[#27AE60] bg-white shadow-[0_4px_20px_rgba(15,34,64,0.06)] transition hover:shadow-[0_8px_28px_rgba(15,34,64,0.1)]"
             >
               <div className="relative h-44 overflow-hidden">
                 <Image
@@ -212,13 +212,13 @@ function HowItWorks() {
                 </span>
               </div>
               <div className="flex flex-col gap-3 p-6">
-                <p className="font-serif text-3xl font-extrabold text-[#15803d]">
+                <p className="font-serif text-3xl font-extrabold text-[#27AE60]">
                   {p.num}
                 </p>
-                <h3 className="font-serif text-xl font-bold text-[#1e3a5f]">
+                <h3 className="font-serif text-xl font-bold text-[#2E86C1]">
                   {p.titulo}
                 </h3>
-                <p className="text-sm leading-relaxed text-[#5c6b7f]">
+                <p className="text-sm leading-relaxed text-[#4A5968]">
                   {p.desc}
                 </p>
               </div>
@@ -232,7 +232,7 @@ function HowItWorks() {
 
 function DisabilitiesSection() {
   return (
-    <section className="relative overflow-hidden bg-[#e8f0fe] px-5 py-20 sm:px-8">
+    <section className="relative overflow-hidden bg-[#D7EAF6] px-5 py-20 sm:px-8">
       <div
         aria-hidden
         className="absolute inset-0 opacity-40"
@@ -243,10 +243,10 @@ function DisabilitiesSection() {
       />
       <div className="relative mx-auto max-w-6xl">
         <div className="mx-auto max-w-2xl text-center">
-          <h2 className="font-serif text-3xl font-bold text-[#1e3a5f] sm:text-4xl">
+          <h2 className="font-serif text-3xl font-bold text-[#2E86C1] sm:text-4xl">
             Guías especializadas para cada necesidad
           </h2>
-          <p className="mt-4 text-base text-[#5c6b7f]">
+          <p className="mt-4 text-base text-[#4A5968]">
             Estrategias basadas en evidencia, adaptadas al contenido que vos
             elegís.
           </p>
@@ -268,15 +268,15 @@ function DisabilitiesSection() {
           {DISCAPACIDADES.slice(0, 12).map((d) => (
             <article
               key={d.id}
-              className="group flex min-h-[128px] flex-col gap-2 rounded-[16px] border border-transparent bg-white p-4 shadow-[0_2px_8px_rgba(15,34,64,0.05)] transition hover:-translate-y-1 hover:border-[#15803d] hover:shadow-[0_8px_20px_rgba(22,163,74,0.15)]"
+              className="group flex min-h-[128px] flex-col gap-2 rounded-[16px] border border-transparent bg-white p-4 shadow-[0_2px_8px_rgba(15,34,64,0.05)] transition hover:-translate-y-1 hover:border-[#27AE60] hover:shadow-[0_8px_20px_rgba(22,163,74,0.15)]"
             >
               <span aria-hidden className="text-3xl">
                 {d.icon}
               </span>
-              <p className="text-sm font-bold leading-tight text-[#1e3a5f]">
+              <p className="text-sm font-bold leading-tight text-[#2E86C1]">
                 {d.label}
               </p>
-              <p className="text-[11px] leading-snug text-[#5c6b7f]">
+              <p className="text-[11px] leading-snug text-[#4A5968]">
                 {d.estrategias_clave?.slice(0, 2).join(' · ')}
               </p>
             </article>
@@ -292,27 +292,27 @@ function ExampleOutput() {
     <section className="bg-white px-5 py-20 sm:px-8">
       <div className="mx-auto max-w-6xl">
         <div className="mx-auto max-w-2xl text-center">
-          <h2 className="font-serif text-3xl font-bold text-[#1e3a5f] sm:text-4xl">
+          <h2 className="font-serif text-3xl font-bold text-[#2E86C1] sm:text-4xl">
             Mirá una guía real generada por IncluAI
           </h2>
-          <p className="mt-4 text-base text-[#5c6b7f]">
+          <p className="mt-4 text-base text-[#4A5968]">
             Contenido concreto, usable mañana en tu aula.
           </p>
         </div>
 
         <div className="mt-12 grid grid-cols-1 gap-8 lg:grid-cols-[1.3fr_1fr] lg:items-center">
-          <div className="overflow-hidden rounded-[20px] border border-[#e2e8f0] bg-[#fbf7f0] p-6 shadow-[0_6px_24px_rgba(15,34,64,0.08)] sm:p-8">
-            <p className="mb-1 text-xs font-semibold uppercase tracking-wider text-[#15803d]">
+          <div className="overflow-hidden rounded-[20px] border border-[#e2e8f0] bg-[#FBF8F2] p-6 shadow-[0_6px_24px_rgba(15,34,64,0.08)] sm:p-8">
+            <p className="mb-1 text-xs font-semibold uppercase tracking-wider text-[#27AE60]">
               Guía generada
             </p>
-            <h3 className="font-serif text-xl font-bold text-[#1e3a5f]">
+            <h3 className="font-serif text-xl font-bold text-[#2E86C1]">
               Fracciones equivalentes — Matemática, 4° grado
             </h3>
-            <p className="text-xs text-[#5c6b7f]">🧩 TEA · ♿ Disc. Motriz</p>
+            <p className="text-xs text-[#4A5968]">🧩 TEA · ♿ Disc. Motriz</p>
 
-            <div className="mt-5 space-y-5 text-sm text-[#1a2332]">
+            <div className="mt-5 space-y-5 text-sm text-[#1F2E3D]">
               <div className="rounded-[12px] bg-white p-4">
-                <p className="font-semibold text-[#1e3a5f]">
+                <p className="font-semibold text-[#2E86C1]">
                   📚 Contenidos prioritarios
                 </p>
                 <ul className="mt-2 space-y-1.5 text-xs">
@@ -327,8 +327,8 @@ function ExampleOutput() {
                 </ul>
               </div>
 
-              <div className="rounded-[12px] border-l-[3px] border-[#15803d] bg-white p-4">
-                <p className="font-semibold text-[#1e3a5f]">
+              <div className="rounded-[12px] border-l-[3px] border-[#27AE60] bg-white p-4">
+                <p className="font-semibold text-[#2E86C1]">
                   🎯 Estrategias de enseñanza
                 </p>
                 <ul className="mt-2 space-y-1.5 text-xs">
@@ -344,10 +344,10 @@ function ExampleOutput() {
               </div>
 
               <div className="rounded-[12px] bg-[#fef3c7] p-4 text-xs">
-                <p className="font-semibold text-[#1e3a5f]">
+                <p className="font-semibold text-[#2E86C1]">
                   💡 Material listo para usar
                 </p>
-                <p className="mt-1 text-[#5c6b7f]">
+                <p className="mt-1 text-[#4A5968]">
                   Tiras de fracciones imprimibles con velcro — adaptadas para
                   manipulación con baja motricidad fina.
                 </p>
@@ -355,23 +355,23 @@ function ExampleOutput() {
             </div>
           </div>
 
-          <figure className="flex flex-col gap-4 rounded-[20px] bg-[#fef3c7] p-8 text-[#1a2332]">
+          <figure className="flex flex-col gap-4 rounded-[20px] bg-[#fef3c7] p-8 text-[#1F2E3D]">
             <div className="flex items-center gap-3">
-              <div className="flex h-12 w-12 items-center justify-center rounded-full bg-[#1e3a5f] font-serif text-xl font-bold text-white">
+              <div className="flex h-12 w-12 items-center justify-center rounded-full bg-[#2E86C1] font-serif text-xl font-bold text-white">
                 M
               </div>
               <div>
-                <p className="font-serif font-bold text-[#1e3a5f]">María L.</p>
-                <p className="text-xs text-[#5c6b7f]">
+                <p className="font-serif font-bold text-[#2E86C1]">María L.</p>
+                <p className="text-xs text-[#4A5968]">
                   Docente de primaria · Tucumán
                 </p>
               </div>
             </div>
-            <blockquote className="font-serif text-lg leading-snug text-[#1a2332] sm:text-xl">
+            <blockquote className="font-serif text-lg leading-snug text-[#1F2E3D] sm:text-xl">
               &ldquo;En 3 minutos tuve la guía que me hubiera llevado toda una
               tarde armar. Y encima, pensada para Joaquín específicamente.&rdquo;
             </blockquote>
-            <div className="flex gap-1 text-[#c2410c]">⭐⭐⭐⭐⭐</div>
+            <div className="flex gap-1 text-[#E67E22]">⭐⭐⭐⭐⭐</div>
           </figure>
         </div>
       </div>
@@ -381,26 +381,26 @@ function ExampleOutput() {
 
 function Pricing() {
   return (
-    <section className="bg-[#fbf7f0] px-5 py-20 sm:px-8">
+    <section className="bg-[#FBF8F2] px-5 py-20 sm:px-8">
       <div className="mx-auto max-w-5xl">
         <div className="mx-auto max-w-2xl text-center">
-          <h2 className="font-serif text-3xl font-bold text-[#1e3a5f] sm:text-4xl">
+          <h2 className="font-serif text-3xl font-bold text-[#2E86C1] sm:text-4xl">
             Un plan para cada docente
           </h2>
-          <p className="mt-4 text-base text-[#5c6b7f]">
+          <p className="mt-4 text-base text-[#4A5968]">
             Empezá gratis. Mejorá cuando quieras.
           </p>
         </div>
 
         <div className="mt-12 grid grid-cols-1 gap-5 md:grid-cols-2">
           <article className="flex flex-col rounded-[20px] border border-[#e2e8f0] bg-white p-7 shadow-[0_2px_12px_rgba(15,34,64,0.05)]">
-            <p className="text-xs font-semibold uppercase tracking-wider text-[#5c6b7f]">
+            <p className="text-xs font-semibold uppercase tracking-wider text-[#4A5968]">
               Para empezar
             </p>
-            <p className="mt-3 font-serif text-5xl font-extrabold text-[#1e3a5f]">
+            <p className="mt-3 font-serif text-5xl font-extrabold text-[#2E86C1]">
               $0
             </p>
-            <p className="text-sm text-[#5c6b7f]">Gratuito, siempre</p>
+            <p className="text-sm text-[#4A5968]">Gratuito, siempre</p>
             <ul className="mt-6 space-y-2.5 text-sm">
               <Check>2 guías por mes</Check>
               <Check>Todos los niveles educativos</Check>
@@ -409,17 +409,17 @@ function Pricing() {
             </ul>
             <Link
               href="/registro"
-              className="mt-7 inline-flex items-center justify-center rounded-[12px] border-2 border-[#1e3a5f] bg-white py-3 text-sm font-bold text-[#1e3a5f] transition hover:bg-[#1e3a5f] hover:text-white"
+              className="mt-7 inline-flex items-center justify-center rounded-[12px] border-2 border-[#2E86C1] bg-white py-3 text-sm font-bold text-[#2E86C1] transition hover:bg-[#2E86C1] hover:text-white"
             >
               Empezar gratis
             </Link>
           </article>
 
-          <article className="relative flex flex-col rounded-[20px] border-2 border-[#1e3a5f] bg-[#1e3a5f] p-7 text-white shadow-[0_8px_32px_rgba(15,34,64,0.2)]">
-            <span className="absolute -top-3 right-6 rounded-full bg-[#c2410c] px-3 py-1 text-xs font-bold uppercase tracking-wider text-white">
+          <article className="relative flex flex-col rounded-[20px] border-2 border-[#2E86C1] bg-[#2E86C1] p-7 text-white shadow-[0_8px_32px_rgba(15,34,64,0.2)]">
+            <span className="absolute -top-3 right-6 rounded-full bg-[#E67E22] px-3 py-1 text-xs font-bold uppercase tracking-wider text-white">
               Más elegido
             </span>
-            <p className="text-xs font-semibold uppercase tracking-wider text-[#bbf7d0]">
+            <p className="text-xs font-semibold uppercase tracking-wider text-[#D6F0E0]">
               Para docentes comprometidos
             </p>
             <p className="mt-3 font-serif text-5xl font-extrabold">
@@ -438,7 +438,7 @@ function Pricing() {
             </ul>
             <Link
               href="/registro"
-              className="mt-7 inline-flex items-center justify-center gap-2 rounded-[12px] bg-[#15803d] py-3 text-sm font-bold text-white shadow-[0_4px_14px_rgba(22,163,74,0.4)] transition hover:bg-[#15803d]"
+              className="mt-7 inline-flex items-center justify-center gap-2 rounded-[12px] bg-[#27AE60] py-3 text-sm font-bold text-white shadow-[0_4px_14px_rgba(22,163,74,0.4)] transition hover:bg-[#27AE60]"
             >
               <span aria-hidden>🧩</span> Suscribirme con Mercado Pago
             </Link>
@@ -461,12 +461,12 @@ function Check({
       <span
         aria-hidden
         className={`mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-full text-xs font-bold ${
-          light ? 'bg-[#15803d] text-white' : 'bg-[#dcfce7] text-[#15803d]'
+          light ? 'bg-[#27AE60] text-white' : 'bg-[#D6F0E0] text-[#27AE60]'
         }`}
       >
         ✓
       </span>
-      <span className={light ? 'text-white/95' : 'text-[#1a2332]'}>
+      <span className={light ? 'text-white/95' : 'text-[#1F2E3D]'}>
         {children}
       </span>
     </li>
@@ -490,12 +490,12 @@ function EmotionalClose() {
         className="absolute inset-0 bg-gradient-to-b from-[#0f2240]/80 via-[#0f2240]/85 to-[#0f2240]/95"
       />
       <div className="relative mx-auto flex max-w-4xl flex-col items-center gap-7 px-5 py-24 text-center text-white sm:px-8 sm:py-32">
-        <span className="inline-flex items-center gap-2 rounded-full bg-white/10 px-4 py-1.5 text-xs font-semibold text-[#bbf7d0] backdrop-blur">
+        <span className="inline-flex items-center gap-2 rounded-full bg-white/10 px-4 py-1.5 text-xs font-semibold text-[#D6F0E0] backdrop-blur">
           Nuestra convicción
         </span>
         <h2 className="font-serif text-4xl font-extrabold leading-[1.15] drop-shadow sm:text-5xl lg:text-6xl">
           Porque incluir no es un extra.{' '}
-          <span className="text-[#86efac]">Es el punto de partida.</span>
+          <span className="text-[#27AE60]">Es el punto de partida.</span>
         </h2>
         <p className="max-w-2xl text-base text-white/85 sm:text-lg">
           Cada docente que planifica pensando en todos sus alumnos transforma un
@@ -504,7 +504,7 @@ function EmotionalClose() {
         </p>
         <Link
           href="/registro"
-          className="inline-flex items-center justify-center gap-2 rounded-[12px] bg-[#15803d] px-8 py-4 text-base font-bold text-white shadow-[0_6px_20px_rgba(22,163,74,0.5)] transition hover:bg-[#15803d]"
+          className="inline-flex items-center justify-center gap-2 rounded-[12px] bg-[#27AE60] px-8 py-4 text-base font-bold text-white shadow-[0_6px_20px_rgba(22,163,74,0.5)] transition hover:bg-[#27AE60]"
         >
           Empezar gratis ahora <span aria-hidden>→</span>
         </Link>
@@ -573,7 +573,7 @@ function Footer() {
             <li className="text-sm text-white/75">
               <a
                 href="mailto:hola@incluai.com.ar"
-                className="hover:text-[#86efac]"
+                className="hover:text-[#27AE60]"
               >
                 hola@incluai.com.ar
               </a>
@@ -581,13 +581,13 @@ function Footer() {
             <li className="text-sm text-white/75">
               <a
                 href="mailto:soporte@incluai.com.ar"
-                className="hover:text-[#86efac]"
+                className="hover:text-[#27AE60]"
               >
                 soporte@incluai.com.ar
               </a>
             </li>
             <li className="text-sm text-white/75">
-              <a href="tel:+543834000000" className="hover:text-[#86efac]">
+              <a href="tel:+543834000000" className="hover:text-[#27AE60]">
                 +54 383 400 0000
               </a>
             </li>
@@ -657,7 +657,7 @@ function FooterLink({
     <li>
       <Link
         href={href}
-        className="text-sm text-white/75 transition hover:text-[#86efac]"
+        className="text-sm text-white/75 transition hover:text-[#27AE60]"
       >
         {children}
       </Link>
@@ -680,7 +680,7 @@ function SocialLink({
       target="_blank"
       rel="noopener noreferrer"
       aria-label={label}
-      className="flex h-10 w-10 items-center justify-center rounded-full bg-white/10 text-sm text-white transition hover:bg-[#15803d]"
+      className="flex h-10 w-10 items-center justify-center rounded-full bg-white/10 text-sm text-white transition hover:bg-[#27AE60]"
     >
       <span aria-hidden>{icon}</span>
     </a>

@@ -85,30 +85,30 @@ export default async function HistorialPage({ searchParams }: { searchParams: SP
           <div aria-hidden className="absolute inset-0 bg-gradient-to-t from-white/80 via-white/30 to-transparent" />
         </div>
         <div className="px-6 pb-5 pt-3">
-          <h1 className="font-serif text-3xl font-bold text-[#1e3a5f] sm:text-4xl">
+          <h1 className="font-serif text-3xl font-bold text-[#2E86C1] sm:text-4xl">
             Tu biblioteca de guías
           </h1>
-          <p className="mt-1 text-sm text-[#5c6b7f]">
+          <p className="mt-1 text-sm text-[#4A5968]">
             Todas las guías que generaste en los 3 módulos.
           </p>
         </div>
       </header>
 
       {!esPro && (
-        <div className="flex items-start gap-3 rounded-[16px] border border-[#fcd34d]/50 bg-[#fef3c7] p-4 text-sm text-[#1a2332]">
+        <div className="flex items-start gap-3 rounded-[16px] border border-[#fcd34d]/50 bg-[#fef3c7] p-4 text-sm text-[#1F2E3D]">
           <span aria-hidden className="text-xl">🔒</span>
           <div className="flex-1">
-            <p className="font-semibold text-[#1e3a5f]">
+            <p className="font-semibold text-[#2E86C1]">
               El historial completo está en el Plan Pro
             </p>
-            <p className="mt-0.5 text-xs text-[#5c6b7f]">
+            <p className="mt-0.5 text-xs text-[#4A5968]">
               Accedé a todas tus guías guardadas, marcá favoritas y consultá
               cuando necesites.
             </p>
           </div>
           <Link
             href="/planes"
-            className="shrink-0 rounded-[10px] bg-[#1e3a5f] px-4 py-2 text-xs font-bold text-white transition hover:bg-[#2a5a8f]"
+            className="shrink-0 rounded-[10px] bg-[#2E86C1] px-4 py-2 text-xs font-bold text-white transition hover:bg-[#2a5a8f]"
           >
             Ver Pro →
           </Link>
@@ -122,7 +122,7 @@ export default async function HistorialPage({ searchParams }: { searchParams: SP
         <div className="relative flex-1">
           <span
             aria-hidden
-            className="pointer-events-none absolute left-3 top-1/2 -translate-y-1/2 text-[#5c6b7f]"
+            className="pointer-events-none absolute left-3 top-1/2 -translate-y-1/2 text-[#4A5968]"
           >
             🔎
           </span>
@@ -130,7 +130,7 @@ export default async function HistorialPage({ searchParams }: { searchParams: SP
             name="q"
             defaultValue={sp.q ?? ''}
             placeholder="Buscar por contenido..."
-            className="w-full rounded-[10px] border border-[#e2e8f0] bg-[#fbf7f0] py-2.5 pl-10 pr-3 text-sm text-[#1a2332] placeholder:text-[#5c6b7f] focus:border-[#15803d] focus:outline-none focus:ring-2 focus:ring-[#dcfce7]"
+            className="w-full rounded-[10px] border border-[#e2e8f0] bg-[#FBF8F2] py-2.5 pl-10 pr-3 text-sm text-[#1F2E3D] placeholder:text-[#4A5968] focus:border-[#27AE60] focus:outline-none focus:ring-2 focus:ring-[#D6F0E0]"
           />
         </div>
         {filtroModulo && <input type="hidden" name="modulo" value={filtroModulo} />}
@@ -139,7 +139,7 @@ export default async function HistorialPage({ searchParams }: { searchParams: SP
         )}
         <button
           type="submit"
-          className="rounded-[10px] bg-[#1e3a5f] px-5 py-2.5 text-sm font-bold text-white transition hover:bg-[#2a5a8f]"
+          className="rounded-[10px] bg-[#2E86C1] px-5 py-2.5 text-sm font-bold text-white transition hover:bg-[#2a5a8f]"
         >
           Buscar
         </button>
@@ -168,7 +168,7 @@ export default async function HistorialPage({ searchParams }: { searchParams: SP
       </div>
 
       {totalResultados > 0 && (
-        <p className="text-xs text-[#5c6b7f]">
+        <p className="text-xs text-[#4A5968]">
           {totalResultados}{' '}
           {totalResultados === 1 ? 'guía encontrada' : 'guías encontradas'}
         </p>
@@ -177,18 +177,18 @@ export default async function HistorialPage({ searchParams }: { searchParams: SP
       {!consultas || consultas.length === 0 ? (
         <div className="flex min-h-[220px] flex-col items-center justify-center gap-3 rounded-[20px] border-2 border-dashed border-[#e2e8f0] bg-white p-10 text-center">
           <span aria-hidden className="text-5xl">📖</span>
-          <p className="font-serif text-lg font-bold text-[#1e3a5f]">
+          <p className="font-serif text-lg font-bold text-[#2E86C1]">
             {filtroModulo || sp.discapacidad || sp.q
               ? 'No hay guías con esos filtros'
               : 'Todavía no guardaste ninguna guía'}
           </p>
-          <p className="max-w-xs text-sm text-[#5c6b7f]">
+          <p className="max-w-xs text-sm text-[#4A5968]">
             Las guías que generes aparecerán acá para consultarlas cuando quieras.
           </p>
           {!filtroModulo && !sp.discapacidad && !sp.q && (
             <Link
               href="/nueva-consulta"
-              className="mt-2 inline-flex items-center rounded-[10px] bg-[#15803d] px-5 py-2.5 text-sm font-bold text-white transition hover:bg-[#15803d]"
+              className="mt-2 inline-flex items-center rounded-[10px] bg-[#27AE60] px-5 py-2.5 text-sm font-bold text-white transition hover:bg-[#27AE60]"
             >
               Generar mi primera guía →
             </Link>
@@ -224,8 +224,8 @@ function Tab({
       className={cn(
         'inline-flex items-center gap-1.5 rounded-full border px-4 py-2 text-sm font-semibold transition',
         active
-          ? 'border-[#15803d] bg-[#dcfce7] text-[#15803d]'
-          : 'border-[#e2e8f0] bg-white text-[#1e3a5f] hover:border-[#15803d] hover:bg-[#fbf7f0]'
+          ? 'border-[#27AE60] bg-[#D6F0E0] text-[#27AE60]'
+          : 'border-[#e2e8f0] bg-white text-[#2E86C1] hover:border-[#27AE60] hover:bg-[#FBF8F2]'
       )}
     >
       <span aria-hidden>{icon}</span>
@@ -250,32 +250,32 @@ function ConsultaItem({ row, locked }: { row: Row; locked: boolean }) {
   const titulo = row.materia ?? row.contenido.slice(0, 60);
 
   const inner = (
-    <article className="flex flex-col gap-2 rounded-[16px] border border-[#e2e8f0] bg-white p-5 transition hover:-translate-y-0.5 hover:border-[#15803d] hover:shadow-[0_6px_20px_rgba(22,163,74,0.12)]">
+    <article className="flex flex-col gap-2 rounded-[16px] border border-[#e2e8f0] bg-white p-5 transition hover:-translate-y-0.5 hover:border-[#27AE60] hover:shadow-[0_6px_20px_rgba(22,163,74,0.12)]">
       <div className="flex items-start justify-between gap-3">
         <div className="flex items-center gap-2">
           <span aria-hidden className="text-2xl">
             {moduloIcon}
           </span>
-          <p className="font-serif text-lg font-bold text-[#1e3a5f]">{titulo}</p>
+          <p className="font-serif text-lg font-bold text-[#2E86C1]">{titulo}</p>
         </div>
-        <span className="shrink-0 text-xs text-[#5c6b7f]">{fecha}</span>
+        <span className="shrink-0 text-xs text-[#4A5968]">{fecha}</span>
       </div>
-      <p className="line-clamp-2 text-sm text-[#1a2332]">{row.contenido}</p>
+      <p className="line-clamp-2 text-sm text-[#1F2E3D]">{row.contenido}</p>
       <div className="mt-1 flex flex-wrap gap-1.5">
-        <span className="rounded-full bg-[#e8f0fe] px-2 py-0.5 text-[11px] font-semibold text-[#1e3a5f]">
+        <span className="rounded-full bg-[#D7EAF6] px-2 py-0.5 text-[11px] font-semibold text-[#2E86C1]">
           {moduloLabel}
         </span>
         {tags.map((t) => (
           <span
             key={t.id}
-            className="rounded-full bg-[#dcfce7] px-2 py-0.5 text-[11px] font-semibold text-[#15803d]"
+            className="rounded-full bg-[#D6F0E0] px-2 py-0.5 text-[11px] font-semibold text-[#27AE60]"
           >
             {t.icon} {t.label}
           </span>
         ))}
       </div>
       {row.feedback_estrellas && (
-        <p className="text-sm tracking-wider text-[#c2410c]">
+        <p className="text-sm tracking-wider text-[#E67E22]">
           {'★'.repeat(row.feedback_estrellas)}
           <span className="text-[#e2e8f0]">
             {'★'.repeat(5 - row.feedback_estrellas)}
@@ -292,7 +292,7 @@ function ConsultaItem({ row, locked }: { row: Row; locked: boolean }) {
         <div className="absolute inset-0 flex items-center justify-center rounded-[16px] bg-white/40 backdrop-blur-[2px]">
           <Link
             href="/planes"
-            className="rounded-[10px] bg-[#c2410c] px-4 py-2 text-xs font-bold text-white shadow-[0_4px_12px_rgba(234,88,12,0.3)] transition hover:bg-[#c2410c]"
+            className="rounded-[10px] bg-[#E67E22] px-4 py-2 text-xs font-bold text-white shadow-[0_4px_12px_rgba(234,88,12,0.3)] transition hover:bg-[#E67E22]"
           >
             🔒 Upgrade a Pro para ver
           </Link>

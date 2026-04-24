@@ -18,7 +18,7 @@ export function AvoidSection({
         <span className="inline-flex h-7 w-7 items-center justify-center rounded-full bg-[#fecaca] font-serif text-sm font-bold text-[#991b1b]">
           {String(index).padStart(2, '0')}
         </span>
-        <h2 className="font-serif text-2xl font-bold text-[#1e3a5f] sm:text-3xl">
+        <h2 className="font-serif text-2xl font-bold text-[#2E86C1] sm:text-3xl">
           {section.title}
         </h2>
       </div>

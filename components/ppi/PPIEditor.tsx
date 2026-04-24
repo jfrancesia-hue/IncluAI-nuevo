@@ -147,7 +147,7 @@ export function PPIEditor({ ppi }: { ppi: PPIDocumento }) {
           flexWrap: 'wrap',
         }}
       >
-        <div style={{ fontSize: 13, color: '#5c6b7f' }}>
+        <div style={{ fontSize: 13, color: '#4A5968' }}>
           {estado === 'presentado' ? (
             <>
               <strong style={{ color: '#1d9e75' }}>✓ Presentado.</strong> Este PPI ya fue marcado

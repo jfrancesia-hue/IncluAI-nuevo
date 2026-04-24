@@ -16,7 +16,7 @@ export default function PPIDemoPage() {
     <main
       style={{
         minHeight: '100vh',
-        background: 'linear-gradient(135deg, #e8f0fe, #f9f7f0)',
+        background: 'linear-gradient(135deg, #D7EAF6, #f9f7f0)',
         padding: '32px 24px',
       }}
     >
@@ -41,7 +41,7 @@ export default function PPIDemoPage() {
           <h1 style={{ fontSize: 26, fontWeight: 700, margin: '0 0 4px', color: '#042C53' }}>
             Nuevo PPI
           </h1>
-          <p style={{ color: '#5c6b7f', fontSize: 14, margin: 0 }}>
+          <p style={{ color: '#4A5968', fontSize: 14, margin: 0 }}>
             Completá los 4 pasos. IncluAI genera el documento en unos minutos — después lo revisás
             y editás sección por sección.
           </p>

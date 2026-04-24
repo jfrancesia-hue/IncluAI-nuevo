@@ -7,8 +7,8 @@ import { GuideHeroActions } from './guide-hero-actions';
 const TONE_STYLES: Record<GuideChip['tone'], string> = {
   neutral: 'border-white/20 bg-white/5 text-white/90',
   info: 'border-white/20 bg-white/10 text-[#bfdbfe]',
-  success: 'border-[#86efac]/40 bg-[#15803d]/25 text-[#bbf7d0]',
-  warn: 'border-[#fed7aa]/40 bg-[#c2410c]/25 text-[#fed7aa]',
+  success: 'border-[#27AE60]/40 bg-[#27AE60]/25 text-[#D6F0E0]',
+  warn: 'border-[#fed7aa]/40 bg-[#E67E22]/25 text-[#fed7aa]',
   danger: 'border-[#fecaca]/40 bg-[#b91c1c]/25 text-[#fecaca]',
 };
 
@@ -24,7 +24,7 @@ export function GuideHeroCard({
   const relativeTime = getRelativeTime(createdAtIso);
 
   return (
-    <article className="relative overflow-hidden rounded-[28px] bg-gradient-to-br from-[#0f2240] via-[#1e3a5f] to-[#0e4f68] p-8 text-white shadow-[0_12px_40px_rgba(15,34,64,0.25)] sm:p-12">
+    <article className="relative overflow-hidden rounded-[28px] bg-gradient-to-br from-[#0f2240] via-[#2E86C1] to-[#0e4f68] p-8 text-white shadow-[0_12px_40px_rgba(15,34,64,0.25)] sm:p-12">
       <div aria-hidden className="absolute inset-0 opacity-20 mix-blend-luminosity">
         <Image
           src={PHOTOS.guideHeroBackdrop}
@@ -51,9 +51,9 @@ export function GuideHeroCard({
       <div className="relative grid grid-cols-1 items-center gap-10 lg:grid-cols-[1.2fr_1fr]">
         <div className="flex flex-col gap-5">
           <div className="flex flex-wrap items-center gap-2">
-            <span className="inline-flex items-center gap-1.5 rounded-full bg-[#15803d]/30 px-3 py-1 text-xs font-semibold text-[#bbf7d0]">
+            <span className="inline-flex items-center gap-1.5 rounded-full bg-[#27AE60]/30 px-3 py-1 text-xs font-semibold text-[#D6F0E0]">
               <svg width="14" height="14" viewBox="0 0 24 24" fill="none">
-                <path d="M5 13l4 4L19 7" stroke="#86efac" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" />
+                <path d="M5 13l4 4L19 7" stroke="#27AE60" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" />
               </svg>
               Guía generada · {relativeTime}
             </span>

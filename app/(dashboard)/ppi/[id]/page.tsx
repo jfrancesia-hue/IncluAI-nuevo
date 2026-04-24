@@ -61,7 +61,7 @@ export default async function PPIDetallePage({
           <h1 style={{ margin: '0 0 4px', fontSize: 22, color: '#042C53', fontWeight: 700 }}>
             PPI — {ppi.alumno_identificador}
           </h1>
-          <div style={{ fontSize: 13, color: '#5c6b7f' }}>
+          <div style={{ fontSize: 13, color: '#4A5968' }}>
             {ppi.alumno_edad} años · {ppi.alumno_nivel}
             {ppi.alumno_anio_grado ? ` · ${ppi.alumno_anio_grado}` : ''} · {ppi.institucion} · Ciclo{' '}
             {ppi.ciclo_lectivo}

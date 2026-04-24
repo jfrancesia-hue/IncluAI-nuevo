@@ -41,10 +41,10 @@ export default async function PlanesPage({
   return (
     <div className="flex flex-col gap-8">
       <header className="text-center">
-        <h1 className="font-serif text-3xl font-bold text-[#1e3a5f] sm:text-4xl">
+        <h1 className="font-serif text-3xl font-bold text-[#2E86C1] sm:text-4xl">
           Elegí el plan que se adapta a vos
         </h1>
-        <p className="mt-2 text-base text-[#5c6b7f]">
+        <p className="mt-2 text-base text-[#4A5968]">
           Invertí en tu práctica docente inclusiva.
         </p>
       </header>
@@ -80,13 +80,13 @@ export default async function PlanesPage({
           current={perfil.plan === 'free'}
           cta={
             perfil.plan === 'free' ? (
-              <span className="text-sm font-semibold text-[#15803d]">
+              <span className="text-sm font-semibold text-[#27AE60]">
                 Tu plan actual ✓
               </span>
             ) : (
               <Link
                 href="/inicio"
-                className="text-sm font-semibold text-[#15803d] hover:underline"
+                className="text-sm font-semibold text-[#27AE60] hover:underline"
               >
                 Seguir generando →
               </Link>
@@ -105,7 +105,7 @@ export default async function PlanesPage({
           current={perfil.plan === 'pro'}
           cta={
             perfil.plan === 'pro' ? (
-              <span className="inline-flex items-center gap-2 text-sm font-bold text-[#86efac]">
+              <span className="inline-flex items-center gap-2 text-sm font-bold text-[#27AE60]">
                 Tu plan actual ✓
               </span>
             ) : (
@@ -117,7 +117,7 @@ export default async function PlanesPage({
         />
       </div>
 
-      <div className="grid grid-cols-1 gap-3 text-center text-xs text-[#5c6b7f] sm:grid-cols-3">
+      <div className="grid grid-cols-1 gap-3 text-center text-xs text-[#4A5968] sm:grid-cols-3">
         <div className="rounded-[12px] bg-white p-3 shadow-[0_2px_6px_rgba(15,34,64,0.04)]">
           🔒 Pago seguro con Mercado Pago
         </div>
@@ -128,7 +128,7 @@ export default async function PlanesPage({
           💬{' '}
           <a
             href="mailto:hola@incluai.com.ar"
-            className="hover:text-[#1e3a5f] hover:underline"
+            className="hover:text-[#2E86C1] hover:underline"
           >
             hola@incluai.com.ar
           </a>
@@ -137,26 +137,26 @@ export default async function PlanesPage({
 
       <figure className="rounded-[20px] bg-[#fef3c7] p-6 sm:p-8">
         <div className="flex items-center gap-3">
-          <div className="flex h-12 w-12 items-center justify-center rounded-full bg-[#1e3a5f] font-serif text-lg font-bold text-white">
+          <div className="flex h-12 w-12 items-center justify-center rounded-full bg-[#2E86C1] font-serif text-lg font-bold text-white">
             C
           </div>
           <div>
-            <p className="font-serif font-bold text-[#1e3a5f]">Carlos M.</p>
-            <p className="text-xs text-[#5c6b7f]">
+            <p className="font-serif font-bold text-[#2E86C1]">Carlos M.</p>
+            <p className="text-xs text-[#4A5968]">
               Maestro integrador · Buenos Aires
             </p>
           </div>
         </div>
-        <blockquote className="mt-4 font-serif text-lg leading-snug text-[#1a2332] sm:text-xl">
+        <blockquote className="mt-4 font-serif text-lg leading-snug text-[#1F2E3D] sm:text-xl">
           &ldquo;Desde que uso IncluAI, planificar para Joaquín dejó de ser un
           problema. Ahora es mi parte favorita de la semana.&rdquo;
         </blockquote>
       </figure>
 
       {esPro && perfil.plan_activo_hasta && (
-        <p className="text-center text-sm text-[#5c6b7f]">
+        <p className="text-center text-sm text-[#4A5968]">
           Tu plan Pro está activo hasta el{' '}
-          <strong className="text-[#1e3a5f]">
+          <strong className="text-[#2E86C1]">
             {new Date(perfil.plan_activo_hasta).toLocaleDateString('es-AR', {
               day: '2-digit',
               month: 'long',
@@ -195,19 +195,19 @@ function PlanCard({
       className={cn(
         'relative flex flex-col rounded-[20px] border p-7 transition',
         highlighted
-          ? 'border-2 border-[#1e3a5f] bg-[#1e3a5f] text-white shadow-[0_10px_40px_rgba(15,34,64,0.2)]'
+          ? 'border-2 border-[#2E86C1] bg-[#2E86C1] text-white shadow-[0_10px_40px_rgba(15,34,64,0.2)]'
           : 'border-[#e2e8f0] bg-white shadow-[0_2px_12px_rgba(15,34,64,0.05)]'
       )}
     >
       {badge && (
-        <span className="absolute -top-3 right-6 rounded-full bg-[#c2410c] px-3 py-1 text-xs font-bold uppercase tracking-wider text-white">
+        <span className="absolute -top-3 right-6 rounded-full bg-[#E67E22] px-3 py-1 text-xs font-bold uppercase tracking-wider text-white">
           {badge}
         </span>
       )}
       <p
         className={cn(
           'text-xs font-semibold uppercase tracking-wider',
-          highlighted ? 'text-[#bbf7d0]' : 'text-[#5c6b7f]'
+          highlighted ? 'text-[#D6F0E0]' : 'text-[#4A5968]'
         )}
       >
         {title}
@@ -215,14 +215,14 @@ function PlanCard({
       <p
         className={cn(
           'mt-3 font-serif text-5xl font-extrabold',
-          highlighted ? 'text-white' : 'text-[#1e3a5f]'
+          highlighted ? 'text-white' : 'text-[#2E86C1]'
         )}
       >
         {price}
         <span
           className={cn(
             'ml-1 text-base font-normal',
-            highlighted ? 'text-white/75' : 'text-[#5c6b7f]'
+            highlighted ? 'text-white/75' : 'text-[#4A5968]'
           )}
         >
           /{period.includes('mes') ? 'mes' : 'siempre'}
@@ -231,7 +231,7 @@ function PlanCard({
       <p
         className={cn(
           'mt-1 text-sm',
-          highlighted ? 'text-white/75' : 'text-[#5c6b7f]'
+          highlighted ? 'text-white/75' : 'text-[#4A5968]'
         )}
       >
         {subtitle ?? period}
@@ -245,13 +245,13 @@ function PlanCard({
               className={cn(
                 'mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-full text-xs font-bold',
                 highlighted
-                  ? 'bg-[#15803d] text-white'
-                  : 'bg-[#dcfce7] text-[#15803d]'
+                  ? 'bg-[#27AE60] text-white'
+                  : 'bg-[#D6F0E0] text-[#27AE60]'
               )}
             >
               ✓
             </span>
-            <span className={highlighted ? 'text-white/95' : 'text-[#1a2332]'}>
+            <span className={highlighted ? 'text-white/95' : 'text-[#1F2E3D]'}>
               {f}
             </span>
           </li>
@@ -260,7 +260,7 @@ function PlanCard({
 
       <div className="mt-7">{cta}</div>
       {current && !highlighted && (
-        <p className="mt-3 text-center text-xs font-semibold text-[#15803d]">
+        <p className="mt-3 text-center text-xs font-semibold text-[#27AE60]">
           Plan actual ✓
         </p>
       )}

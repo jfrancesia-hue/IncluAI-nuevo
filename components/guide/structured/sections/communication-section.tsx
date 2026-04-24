@@ -17,17 +17,17 @@ export function CommunicationSection({
         <span className="inline-flex h-7 w-7 items-center justify-center rounded-full bg-[#fde68a] font-serif text-sm font-bold text-[#78350f]">
           {String(index).padStart(2, '0')}
         </span>
-        <h2 className="font-serif text-2xl font-bold text-[#1e3a5f] sm:text-3xl">
+        <h2 className="font-serif text-2xl font-bold text-[#2E86C1] sm:text-3xl">
           {section.title}
         </h2>
       </div>
       {section.intro && (
-        <p className="mb-8 max-w-2xl text-sm text-[#5c6b7f]">{section.intro}</p>
+        <p className="mb-8 max-w-2xl text-sm text-[#4A5968]">{section.intro}</p>
       )}
 
       <div className="grid grid-cols-1 gap-5 md:grid-cols-2">
         <div>
-          <p className="mb-3 inline-flex items-center gap-2 rounded-full bg-[#dcfce7] px-3 py-1 text-xs font-bold uppercase tracking-wider text-[#15803d]">
+          <p className="mb-3 inline-flex items-center gap-2 rounded-full bg-[#D6F0E0] px-3 py-1 text-xs font-bold uppercase tracking-wider text-[#27AE60]">
             ✓ Sí decí
           </p>
           <div className="flex flex-col gap-3">
@@ -54,10 +54,10 @@ export function CommunicationSection({
 function QuoteCard({ quote, tone }: { quote: Quote; tone: 'good' | 'bad' }) {
   if (tone === 'good') {
     return (
-      <blockquote className="relative rounded-[14px] border-l-[3px] border-[#15803d] bg-white p-4 shadow-[0_2px_12px_rgba(15,34,64,0.06)]">
-        <p className="text-sm italic leading-relaxed text-[#1e3a5f]">“{quote.text}”</p>
+      <blockquote className="relative rounded-[14px] border-l-[3px] border-[#27AE60] bg-white p-4 shadow-[0_2px_12px_rgba(15,34,64,0.06)]">
+        <p className="text-sm italic leading-relaxed text-[#2E86C1]">“{quote.text}”</p>
         {quote.tag && (
-          <p className="mt-2 text-[11px] font-semibold uppercase tracking-wider text-[#15803d]">
+          <p className="mt-2 text-[11px] font-semibold uppercase tracking-wider text-[#27AE60]">
             {quote.tag}
           </p>
         )}

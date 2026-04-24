@@ -48,7 +48,7 @@ export function GuideHeroActions({ markdown, onRefinar, onFavorita }: Props) {
       <button
         type="button"
         onClick={handlePrint}
-        className="inline-flex items-center gap-2 rounded-[12px] bg-[#15803d] px-5 py-3 text-sm font-bold shadow-[0_6px_18px_rgba(22,163,74,.45)] transition hover:bg-[#16a34a]"
+        className="inline-flex items-center gap-2 rounded-[12px] bg-[#27AE60] px-5 py-3 text-sm font-bold shadow-[0_6px_18px_rgba(22,163,74,.45)] transition hover:bg-[#16a34a]"
       >
         <IconDownload width={16} height={16} stroke="white" />
         Descargar PDF
@@ -64,7 +64,7 @@ export function GuideHeroActions({ markdown, onRefinar, onFavorita }: Props) {
       <button
         type="button"
         onClick={handleRefinar}
-        className="inline-flex items-center gap-2 rounded-[12px] bg-[#c2410c] px-5 py-3 text-sm font-bold shadow-[0_6px_18px_rgba(194,65,12,.45)] transition hover:bg-[#9a3412]"
+        className="inline-flex items-center gap-2 rounded-[12px] bg-[#E67E22] px-5 py-3 text-sm font-bold shadow-[0_6px_18px_rgba(194,65,12,.45)] transition hover:bg-[#9a3412]"
       >
         <IconSparkle width={16} height={16} stroke="white" />
         Refinar con IA

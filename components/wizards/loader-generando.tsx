@@ -61,7 +61,7 @@ export function LoaderGenerando({
         <button
           type="button"
           onClick={onVolver}
-          className="inline-flex items-center justify-center self-start rounded-[10px] bg-[#1e3a5f] px-5 py-3 text-sm font-semibold text-white"
+          className="inline-flex items-center justify-center self-start rounded-[10px] bg-[#2E86C1] px-5 py-3 text-sm font-semibold text-white"
         >
           ← Volver al formulario
         </button>
@@ -78,16 +78,16 @@ export function LoaderGenerando({
     >
       <div
         aria-hidden
-        className="relative flex h-20 w-20 items-center justify-center rounded-full bg-gradient-to-br from-[#15803d] to-[#0d9448] text-4xl text-white shadow-[0_8px_24px_rgba(22,163,74,0.3)]"
+        className="relative flex h-20 w-20 items-center justify-center rounded-full bg-gradient-to-br from-[#27AE60] to-[#0d9448] text-4xl text-white shadow-[0_8px_24px_rgba(22,163,74,0.3)]"
       >
         <span className="animate-pulse">{PASOS_LOADER[pasoActual].emoji}</span>
       </div>
 
       <div className="flex flex-col gap-2">
-        <h1 className="font-serif text-2xl font-bold text-[#1e3a5f] sm:text-3xl">
+        <h1 className="font-serif text-2xl font-bold text-[#2E86C1] sm:text-3xl">
           {PASOS_LOADER[pasoActual].titulo}…
         </h1>
-        <p className="text-sm text-[#5c6b7f]">
+        <p className="text-sm text-[#4A5968]">
           {PASOS_LOADER[pasoActual].sub}
         </p>
       </div>
@@ -95,11 +95,11 @@ export function LoaderGenerando({
       <div className="w-full max-w-md">
         <div className="h-2 w-full overflow-hidden rounded-full bg-[#e2e8f0]">
           <div
-            className="h-full rounded-full bg-gradient-to-r from-[#15803d] to-[#0d9448] transition-all duration-500"
+            className="h-full rounded-full bg-gradient-to-r from-[#27AE60] to-[#0d9448] transition-all duration-500"
             style={{ width: `${progreso}%` }}
           />
         </div>
-        <div className="mt-2 flex justify-between text-[11px] text-[#5c6b7f]">
+        <div className="mt-2 flex justify-between text-[11px] text-[#4A5968]">
           <span>
             Paso {pasoActual + 1} de {PASOS_LOADER.length}
           </span>
@@ -107,7 +107,7 @@ export function LoaderGenerando({
         </div>
       </div>
 
-      <p className="text-xs text-[#5c6b7f]">
+      <p className="text-xs text-[#4A5968]">
         Tu guía se está personalizando con imágenes reales y referencias específicas. No cierres la pestaña.
       </p>
     </div>

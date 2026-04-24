@@ -10,21 +10,21 @@ const KIND_META: Record<
 > = {
   imprimible: {
     tagLabel: 'Imprimible',
-    tagClass: 'bg-[#fef3c7] text-[#c2410c]',
+    tagClass: 'bg-[#fef3c7] text-[#E67E22]',
     bg: 'bg-[#fef3c7]',
-    iconColor: '#c2410c',
+    iconColor: '#E67E22',
   },
   digital: {
     tagLabel: 'Digital gratuito',
-    tagClass: 'bg-[#dbeafe] text-[#1e3a5f]',
+    tagClass: 'bg-[#dbeafe] text-[#2E86C1]',
     bg: 'bg-[#dbeafe]',
-    iconColor: '#1e3a5f',
+    iconColor: '#2E86C1',
   },
   casa: {
     tagLabel: 'De la casa',
-    tagClass: 'bg-[#dcfce7] text-[#15803d]',
-    bg: 'bg-[#dcfce7]',
-    iconColor: '#15803d',
+    tagClass: 'bg-[#D6F0E0] text-[#27AE60]',
+    bg: 'bg-[#D6F0E0]',
+    iconColor: '#27AE60',
   },
 };
 
@@ -40,15 +40,15 @@ export function ResourcesSection({
   return (
     <section id={anchorId}>
       <div className="mb-6 flex items-center gap-3">
-        <span className="inline-flex h-7 w-7 items-center justify-center rounded-full bg-[#c2410c] font-serif text-sm font-bold text-white">
+        <span className="inline-flex h-7 w-7 items-center justify-center rounded-full bg-[#E67E22] font-serif text-sm font-bold text-white">
           {String(index).padStart(2, '0')}
         </span>
-        <h2 className="font-serif text-2xl font-bold text-[#1e3a5f] sm:text-3xl">
+        <h2 className="font-serif text-2xl font-bold text-[#2E86C1] sm:text-3xl">
           {section.title}
         </h2>
       </div>
       {section.intro && (
-        <p className="mb-8 max-w-2xl text-sm text-[#5c6b7f]">{section.intro}</p>
+        <p className="mb-8 max-w-2xl text-sm text-[#4A5968]">{section.intro}</p>
       )}
 
       <div className="grid grid-cols-1 gap-5 md:grid-cols-3">
@@ -75,18 +75,18 @@ export function ResourcesSection({
                     {meta.tagLabel}
                   </span>
                   {r.extraTag && (
-                    <span className="rounded-md bg-[#dcfce7] px-2 py-0.5 text-[10px] font-bold uppercase text-[#15803d]">
+                    <span className="rounded-md bg-[#D6F0E0] px-2 py-0.5 text-[10px] font-bold uppercase text-[#27AE60]">
                       {r.extraTag}
                     </span>
                   )}
                 </div>
-                <p className="font-serif text-base font-bold text-[#1e3a5f]">{r.title}</p>
-                <p className="text-xs text-[#5c6b7f]">{r.description}</p>
+                <p className="font-serif text-base font-bold text-[#2E86C1]">{r.title}</p>
+                <p className="text-xs text-[#4A5968]">{r.description}</p>
                 <a
                   href={r.href ?? '#'}
                   target={r.href ? '_blank' : undefined}
                   rel={r.href ? 'noopener noreferrer' : undefined}
-                  className="mt-auto inline-flex items-center gap-1 text-sm font-semibold text-[#15803d] hover:underline"
+                  className="mt-auto inline-flex items-center gap-1 text-sm font-semibold text-[#27AE60] hover:underline"
                 >
                   {r.ctaLabel} <span>→</span>
                 </a>

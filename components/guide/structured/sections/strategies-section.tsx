@@ -7,14 +7,14 @@ import { RevealOnScroll } from '../reveal-on-scroll';
 type StrategiesSectionData = Extract<GuideSection, { kind: 'strategies' }>;
 
 const DUA_LABEL: Record<Strategy['dua'], { label: string; bg: string; text: string }> = {
-  representacion: { label: 'DUA · Representación', bg: 'bg-white/90', text: 'text-[#15803d]' },
-  accion: { label: 'DUA · Acción', bg: 'bg-white/90', text: 'text-[#c2410c]' },
-  motivacion: { label: 'DUA · Motivación', bg: 'bg-white/90', text: 'text-[#1e3a5f]' },
+  representacion: { label: 'DUA · Representación', bg: 'bg-white/90', text: 'text-[#27AE60]' },
+  accion: { label: 'DUA · Acción', bg: 'bg-white/90', text: 'text-[#E67E22]' },
+  motivacion: { label: 'DUA · Motivación', bg: 'bg-white/90', text: 'text-[#2E86C1]' },
   colaboracion: { label: 'DUA · Colaboración', bg: 'bg-white/90', text: 'text-[#9f1239]' },
 };
 
 const HEADER_BG: Record<Strategy['dua'], string> = {
-  representacion: 'bg-gradient-to-br from-[#dcfce7] to-[#bbf7d0]',
+  representacion: 'bg-gradient-to-br from-[#D6F0E0] to-[#D6F0E0]',
   accion: 'bg-gradient-to-br from-[#fef3c7] to-[#fde68a]',
   motivacion: 'bg-gradient-to-br from-[#bfdbfe] to-[#c4b5fd]',
   colaboracion: 'bg-gradient-to-br from-[#fecaca] to-[#fca5a5]',
@@ -46,15 +46,15 @@ export function StrategiesSection({
   return (
     <section id={anchorId}>
       <div className="mb-6 flex items-center gap-3">
-        <span className="inline-flex h-7 w-7 items-center justify-center rounded-full bg-[#1e3a5f] font-serif text-sm font-bold text-white">
+        <span className="inline-flex h-7 w-7 items-center justify-center rounded-full bg-[#2E86C1] font-serif text-sm font-bold text-white">
           {String(index).padStart(2, '0')}
         </span>
-        <h2 className="font-serif text-2xl font-bold text-[#1e3a5f] sm:text-3xl">
+        <h2 className="font-serif text-2xl font-bold text-[#2E86C1] sm:text-3xl">
           {section.title}
         </h2>
       </div>
       {section.intro && (
-        <p className="mb-8 max-w-2xl text-sm text-[#5c6b7f]">{section.intro}</p>
+        <p className="mb-8 max-w-2xl text-sm text-[#4A5968]">{section.intro}</p>
       )}
 
       <div className="grid grid-cols-1 gap-5 sm:grid-cols-2">
@@ -69,8 +69,8 @@ export function StrategiesSection({
       </div>
 
       {section.tip && (
-        <div className="mt-6 flex items-start gap-4 rounded-[16px] border-l-[4px] border-[#15803d] bg-[#dcfce7]/40 p-5">
-          <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-[#15803d] text-white">
+        <div className="mt-6 flex items-start gap-4 rounded-[16px] border-l-[4px] border-[#27AE60] bg-[#D6F0E0]/40 p-5">
+          <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-[#27AE60] text-white">
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
               <path
                 d="M12 2v2m0 16v2M4 12H2m20 0h-2M6 6L4.5 4.5M19.5 19.5L18 18M6 18l-1.5 1.5M19.5 4.5L18 6"
@@ -82,8 +82,8 @@ export function StrategiesSection({
             </svg>
           </div>
           <div>
-            <p className="font-serif text-base font-bold text-[#1e3a5f]">Tip de docente</p>
-            <p className="mt-1 text-sm text-[#1a2332]">{section.tip}</p>
+            <p className="font-serif text-base font-bold text-[#2E86C1]">Tip de docente</p>
+            <p className="mt-1 text-sm text-[#1F2E3D]">{section.tip}</p>
           </div>
         </div>
       )}
@@ -121,21 +121,21 @@ function StrategyCard({ strategy }: { strategy: Strategy }) {
       </div>
       <div className="flex flex-1 flex-col gap-3 p-5">
         <div className="flex items-start justify-between gap-2">
-          <p className="font-serif text-lg font-bold text-[#1e3a5f]">{strategy.title}</p>
+          <p className="font-serif text-lg font-bold text-[#2E86C1]">{strategy.title}</p>
           {strategy.disabilityTag && (
-            <span className="shrink-0 rounded-md bg-[#dcfce7] px-2 py-0.5 text-[11px] font-bold text-[#15803d]">
+            <span className="shrink-0 rounded-md bg-[#D6F0E0] px-2 py-0.5 text-[11px] font-bold text-[#27AE60]">
               {strategy.disabilityTag}
             </span>
           )}
         </div>
-        <p className="text-sm leading-relaxed text-[#5c6b7f]">{strategy.body}</p>
+        <p className="text-sm leading-relaxed text-[#4A5968]">{strategy.body}</p>
         {(strategy.prepTime || strategy.externalLink) && (
           <div className="mt-auto flex items-center justify-between border-t border-[#e2e8f0] pt-3 text-xs">
-            <span className="text-[#5c6b7f]">{strategy.prepTime ?? ''}</span>
+            <span className="text-[#4A5968]">{strategy.prepTime ?? ''}</span>
             {strategy.externalLink && (
               <a
                 href={strategy.externalLink.href ?? '#'}
-                className="font-semibold text-[#15803d] hover:underline"
+                className="font-semibold text-[#27AE60] hover:underline"
                 target={strategy.externalLink.href ? '_blank' : undefined}
                 rel={strategy.externalLink.href ? 'noopener noreferrer' : undefined}
               >

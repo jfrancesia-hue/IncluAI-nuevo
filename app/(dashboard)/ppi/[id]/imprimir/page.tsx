@@ -92,7 +92,7 @@ export default async function PPIImprimirPage({
         }
         .ppi-header .sub {
           font-size: 10pt;
-          color: #5c6b7f;
+          color: #4A5968;
           margin-top: 4px;
         }
         .ppi-datos {
@@ -138,7 +138,7 @@ export default async function PPIImprimirPage({
           padding-top: 12px;
           border-top: 1px solid #ccc;
           font-size: 8.5pt;
-          color: #5c6b7f;
+          color: #4A5968;
           line-height: 1.4;
         }
         .no-print {

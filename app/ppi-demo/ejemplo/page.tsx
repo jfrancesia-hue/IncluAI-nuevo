@@ -175,7 +175,7 @@ export default function PPIEjemploPage() {
           padding-bottom: 12px;
           border-bottom: 2px solid #042C53;
         }
-        .ppi-header .sub { font-size: 10pt; color: #5c6b7f; margin-top: 4px; }
+        .ppi-header .sub { font-size: 10pt; color: #4A5968; margin-top: 4px; }
         .ppi-datos {
           display: grid;
           grid-template-columns: repeat(2, 1fr);
@@ -204,7 +204,7 @@ export default function PPIEjemploPage() {
           padding-top: 12px;
           border-top: 1px solid #ccc;
           font-size: 8.5pt;
-          color: #5c6b7f;
+          color: #4A5968;
           line-height: 1.4;
         }
         .no-print {

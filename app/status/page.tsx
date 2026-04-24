@@ -30,12 +30,12 @@ async function fetchHealth(): Promise<HealthResponse | null> {
 export default async function StatusPage() {
   const data = await fetchHealth()
   const statusColor = (s: string) =>
-    s === 'ok' ? '#15803d' : s === 'degraded' ? '#854f0b' : '#b42318'
+    s === 'ok' ? '#27AE60' : s === 'degraded' ? '#854f0b' : '#b42318'
 
   return (
     <main style={{ maxWidth: 680, margin: '0 auto', padding: '48px 24px', fontFamily: 'Inter, system-ui, sans-serif' }}>
       <h1 style={{ fontSize: 32, fontWeight: 700, margin: '0 0 8px' }}>Estado del servicio</h1>
-      <p style={{ color: '#5c6b7f', margin: '0 0 32px' }}>
+      <p style={{ color: '#4A5968', margin: '0 0 32px' }}>
         Última verificación: {data ? new Date(data.timestamp).toLocaleString('es-AR') : '—'}
       </p>
 
@@ -75,7 +75,7 @@ export default async function StatusPage() {
                     : 'Incidente en curso'}
               </strong>
             </div>
-            <div style={{ color: '#5c6b7f', marginTop: 8, fontSize: 13 }}>
+            <div style={{ color: '#4A5968', marginTop: 8, fontSize: 13 }}>
               Versión {data.version}
             </div>
           </div>
@@ -99,7 +99,7 @@ export default async function StatusPage() {
                 <div>
                   <div style={{ fontWeight: 500 }}>{c.name}</div>
                   {c.detail && (
-                    <div style={{ fontSize: 12, color: '#5c6b7f', marginTop: 2 }}>{c.detail}</div>
+                    <div style={{ fontSize: 12, color: '#4A5968', marginTop: 2 }}>{c.detail}</div>
                   )}
                 </div>
                 <div style={{ textAlign: 'right' }}>
@@ -112,7 +112,7 @@ export default async function StatusPage() {
                   >
                     {c.status.toUpperCase()}
                   </span>
-                  <div style={{ fontSize: 12, color: '#5c6b7f' }}>{c.latency_ms} ms</div>
+                  <div style={{ fontSize: 12, color: '#4A5968' }}>{c.latency_ms} ms</div>
                 </div>
               </li>
             ))}
@@ -120,7 +120,7 @@ export default async function StatusPage() {
         </>
       )}
 
-      <p style={{ fontSize: 12, color: '#5c6b7f', marginTop: 48 }}>
+      <p style={{ fontSize: 12, color: '#4A5968', marginTop: 48 }}>
         SLO: 99.5% uptime mensual · p95 latencia &lt; 800 ms · IncluAI · Nativos Consultora Digital
       </p>
     </main>

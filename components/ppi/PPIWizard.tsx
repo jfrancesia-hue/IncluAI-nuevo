@@ -302,7 +302,7 @@ export function PPIWizard({
               <span>
                 <strong>Requiere intérprete de Lengua de Señas Argentina (LSA)</strong>
                 <br />
-                <span style={{ fontWeight: 400, color: '#5c6b7f' }}>
+                <span style={{ fontWeight: 400, color: '#4A5968' }}>
                   Obligatorio según el Anexo II de la Res. CFE 311/16 cuando aplica.
                 </span>
               </span>
@@ -553,7 +553,7 @@ const chip: React.CSSProperties = {
   cursor: 'pointer',
   transition: 'background 120ms ease',
 }
-const help: React.CSSProperties = { fontSize: 13, color: '#5c6b7f', margin: 0 }
+const help: React.CSSProperties = { fontSize: 13, color: '#4A5968', margin: 0 }
 const warn: React.CSSProperties = {
   background: '#faeeda',
   color: '#854f0b',

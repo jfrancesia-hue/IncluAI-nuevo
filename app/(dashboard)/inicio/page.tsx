@@ -41,9 +41,9 @@ const MODULO_ICON: Record<
 };
 
 const MODULO_TINT: Record<RecentRow['modulo'], string> = {
-  docentes: 'bg-[#dcfce7] text-[#15803d]',
-  familias: 'bg-[#fef3c7] text-[#c2410c]',
-  profesionales: 'bg-[#dbeafe] text-[#1e3a5f]',
+  docentes: 'bg-[#D6F0E0] text-[#27AE60]',
+  familias: 'bg-[#fef3c7] text-[#E67E22]',
+  profesionales: 'bg-[#dbeafe] text-[#2E86C1]',
 };
 
 function getGreeting(): string {
@@ -78,43 +78,43 @@ export default async function InicioPage() {
     <div className="flex flex-col gap-8">
       <Onboarding />
 
-      <header className="relative overflow-hidden rounded-[20px] border border-[#e2e8f0] bg-gradient-to-br from-[#e8f0fe] via-white to-[#fef3c7] p-6 sm:p-8">
+      <header className="relative overflow-hidden rounded-[20px] border border-[#e2e8f0] bg-gradient-to-br from-[#D7EAF6] via-white to-[#fef3c7] p-6 sm:p-8">
         <div
           aria-hidden
           className="absolute inset-y-0 right-0 w-1/2 opacity-[0.08]"
           style={{
             backgroundImage:
-              'radial-gradient(circle at 80% 50%, #15803d, transparent 60%)',
+              'radial-gradient(circle at 80% 50%, #27AE60, transparent 60%)',
           }}
         />
         <div className="relative flex items-start justify-between gap-4">
           <div>
-            <p className="mb-1 inline-flex items-center gap-1.5 text-xs font-semibold uppercase tracking-wider text-[#15803d]">
-              <IconWave width={14} height={14} stroke="#15803d" />
+            <p className="mb-1 inline-flex items-center gap-1.5 text-xs font-semibold uppercase tracking-wider text-[#27AE60]">
+              <IconWave width={14} height={14} stroke="#27AE60" />
               {getGreeting()}
             </p>
-            <h1 className="font-serif text-3xl font-bold text-[#1e3a5f] sm:text-4xl">
+            <h1 className="font-serif text-3xl font-bold text-[#2E86C1] sm:text-4xl">
               Hola, {perfil.nombre}
             </h1>
-            <p className="mt-2 max-w-xl text-base text-[#5c6b7f]">
+            <p className="mt-2 max-w-xl text-base text-[#4A5968]">
               ¿Qué clase inclusiva vas a planificar hoy? Tenés{' '}
-              <strong className="text-[#15803d]">{restantes}</strong>{' '}
+              <strong className="text-[#27AE60]">{restantes}</strong>{' '}
               {restantes === 1 ? 'guía disponible' : 'guías disponibles'} este mes.
             </p>
           </div>
           <div className="hidden shrink-0 sm:block">
             <svg viewBox="0 0 120 90" className="h-20 w-auto" aria-hidden>
               <circle cx="30" cy="45" r="18" fill="#fde68a" />
-              <rect x="17" y="60" width="26" height="28" rx="6" fill="#c2410c" />
+              <rect x="17" y="60" width="26" height="28" rx="6" fill="#E67E22" />
               <circle cx="75" cy="45" r="18" fill="#c4b5fd" />
-              <rect x="62" y="60" width="26" height="28" rx="6" fill="#15803d" />
-              <path d="M95 30 l4 9 9 3 -9 3 -4 9 -4 -9 -9 -3 9 -3z" fill="#86efac" opacity=".9" />
+              <rect x="62" y="60" width="26" height="28" rx="6" fill="#27AE60" />
+              <path d="M95 30 l4 9 9 3 -9 3 -4 9 -4 -9 -9 -3 9 -3z" fill="#27AE60" opacity=".9" />
             </svg>
           </div>
         </div>
       </header>
 
-      <article className="relative overflow-hidden rounded-[20px] bg-gradient-to-br from-[#15803d] to-[#0d9448] p-6 text-white shadow-[0_8px_24px_rgba(22,163,74,0.25)] sm:p-8">
+      <article className="relative overflow-hidden rounded-[20px] bg-gradient-to-br from-[#27AE60] to-[#0d9448] p-6 text-white shadow-[0_8px_24px_rgba(22,163,74,0.25)] sm:p-8">
         <div
           aria-hidden
           className="absolute -right-4 -top-4 h-56 w-56 overflow-hidden rounded-full opacity-30 sm:opacity-40"
@@ -140,7 +140,7 @@ export default async function InicioPage() {
           </p>
           <Link
             href="/nueva-consulta"
-            className="mt-2 inline-flex w-fit items-center gap-2 rounded-[12px] bg-white px-6 py-3 text-sm font-bold text-[#15803d] shadow-[0_4px_12px_rgba(0,0,0,0.15)] transition hover:bg-[#fbf7f0]"
+            className="mt-2 inline-flex w-fit items-center gap-2 rounded-[12px] bg-white px-6 py-3 text-sm font-bold text-[#27AE60] shadow-[0_4px_12px_rgba(0,0,0,0.15)] transition hover:bg-[#FBF8F2]"
           >
             Comenzar <span aria-hidden>→</span>
           </Link>
@@ -174,15 +174,15 @@ export default async function InicioPage() {
       <section className="grid grid-cols-1 gap-4 sm:grid-cols-3">
         <StatCard
           Icon={IconBars}
-          iconBg="bg-[#dcfce7]"
-          iconStroke="#15803d"
+          iconBg="bg-[#D6F0E0]"
+          iconStroke="#27AE60"
           label="Guías este mes"
           value={`${perfil.consultas_mes} de ${limite}`}
           caption="usadas"
         >
-          <div className="mt-3 h-2 overflow-hidden rounded-full bg-[#e8f0fe]">
+          <div className="mt-3 h-2 overflow-hidden rounded-full bg-[#D7EAF6]">
             <div
-              className="h-full bg-gradient-to-r from-[#15803d] to-[#0d9448] transition-all"
+              className="h-full bg-gradient-to-r from-[#27AE60] to-[#0d9448] transition-all"
               style={{ width: `${pct}%` }}
             />
           </div>
@@ -191,12 +191,12 @@ export default async function InicioPage() {
         <StatCard
           Icon={IconBook}
           iconBg="bg-[#fef3c7]"
-          iconStroke="#c2410c"
+          iconStroke="#E67E22"
           label="Restantes"
           value={String(restantes)}
           caption={restantes === 1 ? 'guía disponible' : 'guías disponibles'}
         >
-          <p className="mt-3 text-xs text-[#5c6b7f]">
+          <p className="mt-3 text-xs text-[#4A5968]">
             {totalGuias > 0 ? 'Ya estás planificando' : 'Empezá cuando quieras'}
           </p>
         </StatCard>
@@ -204,7 +204,7 @@ export default async function InicioPage() {
         <StatCard
           Icon={IconStar}
           iconBg="bg-[#dbeafe]"
-          iconStroke="#1e3a5f"
+          iconStroke="#2E86C1"
           label="Tu plan"
           value={
             perfil.plan === 'free'
@@ -218,9 +218,9 @@ export default async function InicioPage() {
           {perfil.plan === 'free' && (
             <Link
               href="/planes"
-              className="mt-3 inline-flex items-center gap-1 text-xs font-semibold text-[#c2410c] hover:underline"
+              className="mt-3 inline-flex items-center gap-1 text-xs font-semibold text-[#E67E22] hover:underline"
             >
-              Mejorar plan <IconArrowRight width={12} height={12} stroke="#c2410c" />
+              Mejorar plan <IconArrowRight width={12} height={12} stroke="#E67E22" />
             </Link>
           )}
         </StatCard>
@@ -228,13 +228,13 @@ export default async function InicioPage() {
 
       <section>
         <div className="mb-4 flex items-center justify-between">
-          <h3 className="font-serif text-xl font-bold text-[#1e3a5f]">
+          <h3 className="font-serif text-xl font-bold text-[#2E86C1]">
             Tus últimas guías
           </h3>
           {recientes && recientes.length > 0 && (
             <Link
               href="/historial"
-              className="text-sm font-semibold text-[#15803d] hover:underline"
+              className="text-sm font-semibold text-[#27AE60] hover:underline"
             >
               Ver todo →
             </Link>
@@ -258,15 +258,15 @@ export default async function InicioPage() {
                 className="h-full w-full object-cover"
               />
             </div>
-            <p className="font-serif text-base font-bold text-[#1e3a5f]">
+            <p className="font-serif text-base font-bold text-[#2E86C1]">
               Todavía no generaste ninguna guía
             </p>
-            <p className="max-w-xs text-sm text-[#5c6b7f]">
+            <p className="max-w-xs text-sm text-[#4A5968]">
               Tu primera clase inclusiva está a unos clics. Vamos juntos.
             </p>
             <Link
               href="/nueva-consulta"
-              className="mt-2 inline-flex items-center rounded-[10px] bg-[#15803d] px-5 py-2.5 text-sm font-bold text-white transition hover:bg-[#15803d]"
+              className="mt-2 inline-flex items-center rounded-[10px] bg-[#27AE60] px-5 py-2.5 text-sm font-bold text-white transition hover:bg-[#27AE60]"
             >
               Empezá ahora →
             </Link>
@@ -274,15 +274,15 @@ export default async function InicioPage() {
         )}
       </section>
 
-      <aside className="flex items-start gap-4 rounded-[16px] border border-[#fcd34d]/40 bg-[#fef3c7] p-5 text-sm text-[#1a2332]">
-        <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-[#c2410c] text-white">
+      <aside className="flex items-start gap-4 rounded-[16px] border border-[#fcd34d]/40 bg-[#fef3c7] p-5 text-sm text-[#1F2E3D]">
+        <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-[#E67E22] text-white">
           <IconLightbulb width={18} height={18} stroke="white" />
         </span>
         <div>
           <p>
-            <strong className="text-[#1e3a5f]">Tip del día.</strong> {tip.texto}
+            <strong className="text-[#2E86C1]">Tip del día.</strong> {tip.texto}
           </p>
-          <p className="mt-1 text-xs text-[#5c6b7f]">— {tip.fuente}</p>
+          <p className="mt-1 text-xs text-[#4A5968]">— {tip.fuente}</p>
         </div>
       </aside>
     </div>
@@ -312,14 +312,14 @@ function StatCard({
         <span className={`flex h-8 w-8 items-center justify-center rounded-full ${iconBg}`}>
           <Icon width={16} height={16} stroke={iconStroke} />
         </span>
-        <p className="text-xs font-semibold uppercase tracking-wide text-[#5c6b7f]">
+        <p className="text-xs font-semibold uppercase tracking-wide text-[#4A5968]">
           {label}
         </p>
       </div>
-      <p className="mt-2 font-serif text-2xl font-bold text-[#1e3a5f]">
+      <p className="mt-2 font-serif text-2xl font-bold text-[#2E86C1]">
         {value}
         {caption && (
-          <span className="ml-1 text-sm font-normal text-[#5c6b7f]">{caption}</span>
+          <span className="ml-1 text-sm font-normal text-[#4A5968]">{caption}</span>
         )}
       </p>
       {children}
@@ -335,7 +335,7 @@ function RecentCard({ row }: { row: RecentRow }) {
   const tint = MODULO_TINT[row.modulo];
   return (
     <Link href={`/resultado?id=${row.id}`}>
-      <article className="flex items-center gap-4 rounded-[16px] border border-[#e2e8f0] bg-white p-4 transition hover:border-[#15803d] hover:shadow-[0_4px_16px_rgba(22,163,74,0.12)]">
+      <article className="flex items-center gap-4 rounded-[16px] border border-[#e2e8f0] bg-white p-4 transition hover:border-[#27AE60] hover:shadow-[0_4px_16px_rgba(22,163,74,0.12)]">
         <div
           className={`flex h-12 w-12 shrink-0 items-center justify-center rounded-full ${tint}`}
         >
@@ -347,16 +347,16 @@ function RecentCard({ row }: { row: RecentRow }) {
           />
         </div>
         <div className="min-w-0 flex-1">
-          <p className="truncate text-sm font-bold text-[#1e3a5f]">
+          <p className="truncate text-sm font-bold text-[#2E86C1]">
             {row.materia ?? row.modulo}
           </p>
-          <p className="truncate text-xs text-[#5c6b7f]">{row.contenido}</p>
+          <p className="truncate text-xs text-[#4A5968]">{row.contenido}</p>
           {tags.length > 0 && (
             <div className="mt-1.5 flex flex-wrap gap-1">
               {tags.slice(0, 3).map((t) => (
                 <span
                   key={t.id}
-                  className="rounded-full bg-[#dcfce7] px-2 py-0.5 text-[10px] font-semibold text-[#15803d]"
+                  className="rounded-full bg-[#D6F0E0] px-2 py-0.5 text-[10px] font-semibold text-[#27AE60]"
                 >
                   {t.label}
                 </span>
@@ -365,14 +365,14 @@ function RecentCard({ row }: { row: RecentRow }) {
           )}
         </div>
         <div className="shrink-0 text-right">
-          <p className="text-xs text-[#5c6b7f]">
+          <p className="text-xs text-[#4A5968]">
             {new Date(row.created_at).toLocaleDateString('es-AR', {
               day: '2-digit',
               month: 'short',
             })}
           </p>
-          <span className="mt-1 inline-flex text-[#5c6b7f]">
-            <IconArrowRight width={14} height={14} stroke="#5c6b7f" />
+          <span className="mt-1 inline-flex text-[#4A5968]">
+            <IconArrowRight width={14} height={14} stroke="#4A5968" />
           </span>
         </div>
       </article>
