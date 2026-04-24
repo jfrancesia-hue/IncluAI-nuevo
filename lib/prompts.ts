@@ -465,7 +465,9 @@ Si no estás seguro de que un recurso existe, NO LO INCLUYAS. Es preferible devo
 // como metadata de la tool y el SDK fuerza adherencia al schema.
 export const GUIA_JSON_SCHEMA = z.toJSONSchema(GuiaPedagogicaSchema)
 
-export function buildPromptDocentesV2(form: FormularioConsulta): string {
+export type PromptV2 = { system: string; user: string }
+
+export function buildPromptDocentesV2(form: FormularioConsulta): PromptV2 {
   const discapacidades = getDiscapacidadesByIds(form.discapacidades)
   const bloqueDiscapacidades = discapacidades
     .map(d => `- **${d.label}**: ${d.descripcion}`)
@@ -479,23 +481,10 @@ export function buildPromptDocentesV2(form: FormularioConsulta): string {
     otro: 'Otra situación de apoyo',
   }
 
-  return `Sos IncluAI, experto argentino en educación inclusiva.
+  const system = `Sos IncluAI, experto argentino en educación inclusiva.
 Conocés DUA, Resolución CFE 311/16 y los diseños curriculares provinciales.
 Respondés siempre de forma concreta, práctica y aplicable al aula argentino.
 Usás español rioplatense (vos, planificá, tenés).
-
-## CONTEXTO DEL ALUMNO Y DEL AULA
-
-- Contenido a enseñar: ${form.contenido}
-- Nivel: ${form.nivel_id}${form.subnivel_id ? ` · ${form.subnivel_id}` : ''}
-- Año/Grado: ${form.anio_grado}
-- Área/Materia: ${form.materia}
-- Cantidad de alumnos: ${form.cantidad_alumnos}
-- Discapacidades presentes:
-${bloqueDiscapacidades}${form.discapacidad_otra ? `\n- Otra condición: ${form.discapacidad_otra}` : ''}
-- Situación de apoyo: ${apoyoTexto[form.situacion_apoyo] ?? form.situacion_apoyo_otra ?? 'No especificada'}
-- Objetivo declarado: ${form.objetivo_clase ?? '—'}
-- Contexto del aula: ${form.contexto_aula ?? '—'}
 
 ${MULTIMEDIA_RULES}
 
@@ -508,21 +497,36 @@ El schema de la herramienta define los campos exactos esperados.
 
 1. Priorizá siempre lo concreto sobre lo teórico.
 2. Adecuaciones según Res. CFE 311/16: no simplifiques el contenido, adaptá el acceso.
-3. Si el docente está solo/a sin apoyo, todas las estrategias deben ser ejecutables por una sola persona con ${form.cantidad_alumnos > 1 ? form.cantidad_alumnos + ' alumnos' : 'la cantidad de alumnos del aula'}.
+3. Si el docente está solo/a sin apoyo, todas las estrategias deben ser ejecutables por una sola persona con la cantidad de alumnos indicada en el contexto.
 4. Incluí referencias normativas argentinas cuando corresponda (CFE 311/16, Ley 26.206, Ley 26.378) en el campo fuentesNormativas.
 5. Nunca asumas recursos tecnológicos avanzados. Priorizá lo que se hace con papel, cartón, celular.
 6. El tono hacia el docente es de colega experto, nunca de superior ni de manual.
 7. Los queries de imágenes en inglés; los textos visibles en español rioplatense.
-8. version = "2.1", generadaEn = ISO 8601 timestamp actual.
+8. version = "2.1", generadaEn = ISO 8601 timestamp actual.`
+
+  const user = `## CONTEXTO DEL ALUMNO Y DEL AULA
+
+- Contenido a enseñar: ${form.contenido}
+- Nivel: ${form.nivel_id}${form.subnivel_id ? ` · ${form.subnivel_id}` : ''}
+- Año/Grado: ${form.anio_grado}
+- Área/Materia: ${form.materia}
+- Cantidad de alumnos: ${form.cantidad_alumnos}
+- Discapacidades presentes:
+${bloqueDiscapacidades}${form.discapacidad_otra ? `\n- Otra condición: ${form.discapacidad_otra}` : ''}
+- Situación de apoyo: ${apoyoTexto[form.situacion_apoyo] ?? form.situacion_apoyo_otra ?? 'No especificada'}
+- Objetivo declarado: ${form.objetivo_clase ?? '—'}
+- Contexto del aula: ${form.contexto_aula ?? '—'}
 
 Invocá la tool ahora con la guía.`
+
+  return { system, user }
 }
 
 // ============================================
 // BUILDER v2.1 — FAMILIAS
 // ============================================
 
-export function buildPromptFamiliasV2(form: FormularioFamilia): string {
+export function buildPromptFamiliasV2(form: FormularioFamilia): PromptV2 {
   const discapacidades = getDiscapacidadesByIds(form.discapacidades)
   const bloqueDisc = discapacidades
     .map((d) => `- **${d.label}**: ${d.descripcion}`)
@@ -538,19 +542,7 @@ export function buildPromptFamiliasV2(form: FormularioFamilia): string {
     otro: 'Otra situación familiar',
   }
 
-  return `${SYSTEM_PROMPT_FAMILIAS}
-
-## CONTEXTO DEL HIJO/A Y DE LA FAMILIA
-
-- Edad: ${form.edad_rango} años${form.nombre_hijo ? ` · Nombre: ${form.nombre_hijo}` : ''}
-- Discapacidades presentes:
-${bloqueDisc}${form.discapacidad_otra ? `\n- Otra condición: ${form.discapacidad_otra}` : ''}
-${form.diagnostico_detalle ? `- Detalle diagnóstico: ${form.diagnostico_detalle}` : ''}
-- Áreas donde la familia pide ayuda: ${areasLabels}
-- Situación específica: ${form.situacion_especifica}
-- Estructura familiar: ${situacionTexto[form.situacion_familiar] ?? form.situacion_familiar}
-- Terapias actuales: ${form.tiene_terapias ? form.terapias_detalle ?? 'Sí' : 'Ninguna'}
-${form.contexto_adicional ? `- Contexto adicional: ${form.contexto_adicional}` : ''}
+  const system = `${SYSTEM_PROMPT_FAMILIAS}
 
 ${MULTIMEDIA_RULES}
 
@@ -579,16 +571,30 @@ El schema fue diseñado pensando en aula, pero aplica también para familias:
 3. Incluí al menos 1 opción "de baja energía" (cuando están exhaustos).
 4. Normalizá la situación — "esto es esperable, tiene solución, no estás fallando".
 5. Las imágenes deben mostrar interacciones familiares cálidas, no entornos clínicos estériles.
-6. version = "2.1", generadaEn = ISO 8601 timestamp actual.
+6. version = "2.1", generadaEn = ISO 8601 timestamp actual.`
+
+  const user = `## CONTEXTO DEL HIJO/A Y DE LA FAMILIA
+
+- Edad: ${form.edad_rango} años${form.nombre_hijo ? ` · Nombre: ${form.nombre_hijo}` : ''}
+- Discapacidades presentes:
+${bloqueDisc}${form.discapacidad_otra ? `\n- Otra condición: ${form.discapacidad_otra}` : ''}
+${form.diagnostico_detalle ? `- Detalle diagnóstico: ${form.diagnostico_detalle}` : ''}
+- Áreas donde la familia pide ayuda: ${areasLabels}
+- Situación específica: ${form.situacion_especifica}
+- Estructura familiar: ${situacionTexto[form.situacion_familiar] ?? form.situacion_familiar}
+- Terapias actuales: ${form.tiene_terapias ? form.terapias_detalle ?? 'Sí' : 'Ninguna'}
+${form.contexto_adicional ? `- Contexto adicional: ${form.contexto_adicional}` : ''}
 
 Invocá la tool ahora con la guía.`
+
+  return { system, user }
 }
 
 // ============================================
 // BUILDER v2.1 — PROFESIONALES
 // ============================================
 
-export function buildPromptProfesionalesV2(form: FormularioProfesional): string {
+export function buildPromptProfesionalesV2(form: FormularioProfesional): PromptV2 {
   const discapacidades = getDiscapacidadesByIds(form.discapacidades)
   const bloqueDisc = discapacidades
     .map((d) => `- **${d.label}**: ${d.descripcion}`)
@@ -606,21 +612,7 @@ export function buildPromptProfesionalesV2(form: FormularioProfesional): string 
     otro: 'Otro contexto de atención',
   }
 
-  return `${SYSTEM_PROMPT_PROFESIONALES}
-
-## CONTEXTO DEL/A PROFESIONAL Y PACIENTE
-
-- Especialidad: ${esp?.label ?? form.especialidad}${form.especialidad_otra ? ` (${form.especialidad_otra})` : ''}
-- Contexto de atención: ${contextoTexto[form.contexto_atencion] ?? form.contexto_atencion}
-- Lugar específico: ${form.lugar_atencion}
-- Edad del paciente: ${form.edad_paciente}
-- Discapacidades del paciente:
-${bloqueDisc}${form.discapacidad_otra ? `\n- Otra condición: ${form.discapacidad_otra}` : ''}
-${form.diagnostico_detalle ? `- Detalle diagnóstico: ${form.diagnostico_detalle}` : ''}
-- Comunicación del paciente: ${form.comunicacion_paciente}
-- Objetivos de la consulta: ${objetivosLabels}
-- Situación específica: ${form.situacion_especifica}
-${form.contexto_adicional ? `- Contexto adicional: ${form.contexto_adicional}` : ''}
+  const system = `${SYSTEM_PROMPT_PROFESIONALES}
 
 ${MULTIMEDIA_RULES}
 
@@ -648,7 +640,23 @@ El schema de la herramienta define los campos exactos esperados.
 3. Incluí al menos 1 estrategia ejecutable sin equipamiento especial.
 4. Las imágenes deben mostrar contextos clínicos/profesionales reales, no forzados.
 5. Citá marco legal y protocolos cuando aplique.
-6. version = "2.1", generadaEn = ISO 8601 timestamp actual.
+6. version = "2.1", generadaEn = ISO 8601 timestamp actual.`
+
+  const user = `## CONTEXTO DEL/A PROFESIONAL Y PACIENTE
+
+- Especialidad: ${esp?.label ?? form.especialidad}${form.especialidad_otra ? ` (${form.especialidad_otra})` : ''}
+- Contexto de atención: ${contextoTexto[form.contexto_atencion] ?? form.contexto_atencion}
+- Lugar específico: ${form.lugar_atencion}
+- Edad del paciente: ${form.edad_paciente}
+- Discapacidades del paciente:
+${bloqueDisc}${form.discapacidad_otra ? `\n- Otra condición: ${form.discapacidad_otra}` : ''}
+${form.diagnostico_detalle ? `- Detalle diagnóstico: ${form.diagnostico_detalle}` : ''}
+- Comunicación del paciente: ${form.comunicacion_paciente}
+- Objetivos de la consulta: ${objetivosLabels}
+- Situación específica: ${form.situacion_especifica}
+${form.contexto_adicional ? `- Contexto adicional: ${form.contexto_adicional}` : ''}
 
 Invocá la tool ahora con la guía.`
+
+  return { system, user }
 }

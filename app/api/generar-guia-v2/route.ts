@@ -7,6 +7,7 @@ import {
   buildPromptDocentesV2,
   buildPromptFamiliasV2,
   buildPromptProfesionalesV2,
+  type PromptV2,
 } from '@/lib/prompts';
 import {
   GuiaPedagogicaSchema,
@@ -58,16 +59,29 @@ export async function POST(request: NextRequest) {
   // ocasionalmente — es preferible a cobrarle una guia por cada error.
 
   try {
-    const prompt = buildPromptPorModulo(modulo, form);
+    const { system: systemPrompt, user: userPrompt } = buildPromptPorModulo(modulo, form);
 
     // Tool-use: en vez de pedir JSON en texto (fragil, se trunca, Haiku
     // rompe sintaxis), definimos una tool con el schema como input. El SDK
     // fuerza que Claude devuelva un objeto conforme al schema. Ventaja
     // adicional: el prompt ya no necesita embeber el schema (~4k tokens
     // menos de input), bajando latencia.
+    //
+    // Prompt caching: el system prompt (instrucciones + multimedia rules +
+    // formato + reglas) y el tool schema (~4k tokens) son idénticos entre
+    // requests. Marcamos cache_control ephemeral para que Anthropic los
+    // facture a 0.10x (read) en vez de 1.0x (write). TTL 5 min, se renueva
+    // en cada hit. Ahorro esperado: 50-70% del input cost de Opus.
     const response = await anthropic.messages.create({
       model: CLAUDE_MODEL_V2,
       max_tokens: 8000,
+      system: [
+        {
+          type: 'text',
+          text: systemPrompt,
+          cache_control: { type: 'ephemeral' },
+        },
+      ],
       tools: [
         {
           name: 'guardar_guia_pedagogica',
@@ -78,10 +92,11 @@ export async function POST(request: NextRequest) {
             properties?: Record<string, unknown>;
             required?: string[];
           },
+          cache_control: { type: 'ephemeral' },
         },
       ],
       tool_choice: { type: 'tool', name: 'guardar_guia_pedagogica' },
-      messages: [{ role: 'user', content: prompt }],
+      messages: [{ role: 'user', content: userPrompt }],
     });
 
     const toolUse = response.content.find(
@@ -198,7 +213,7 @@ function detectarModulo(body: unknown): Detected | null {
 function buildPromptPorModulo(
   modulo: ModuloIncluIA,
   form: FormDocentes | FormFamilia | FormProfesional
-): string {
+): PromptV2 {
   if (modulo === 'docentes') return buildPromptDocentesV2(form as FormDocentes);
   if (modulo === 'familias') return buildPromptFamiliasV2(form as FormFamilia);
   return buildPromptProfesionalesV2(form as FormProfesional);
