@@ -2,6 +2,8 @@ import { NextResponse, type NextRequest } from 'next/server';
 import crypto from 'node:crypto';
 import { paymentClient, parseExternalReference } from '@/lib/mercadopago';
 import { createAdminClient } from '@/lib/supabase/admin';
+import { logError } from '@/lib/errors';
+import { trackServerEvent } from '@/lib/analytics';
 
 export const runtime = 'nodejs';
 
@@ -70,7 +72,11 @@ export async function POST(request: NextRequest) {
 
     const { userId, plan } = parseExternalReference(payment.external_reference);
     if (!userId || !plan) {
-      console.error('[mp-webhook] external_reference inválida', payment.external_reference);
+      logError(new Error('external_reference inválida'), {
+        source: 'api/mercadopago/webhook',
+        correlationId: String(paymentId),
+        metadata: { external_reference: payment.external_reference },
+      });
       return NextResponse.json({ received: true, reason: 'invalid_reference' });
     }
 
@@ -110,7 +116,12 @@ export async function POST(request: NextRequest) {
       .eq('id', userId);
 
     if (updateError) {
-      console.error('[mp-webhook] update perfil error', updateError);
+      logError(updateError, {
+        source: 'api/mercadopago/webhook/update_perfil',
+        userId,
+        correlationId: String(paymentId),
+        metadata: { plan },
+      });
       return NextResponse.json({ error: 'DB error' }, { status: 500 });
     }
 
@@ -125,9 +136,14 @@ export async function POST(request: NextRequest) {
       periodo_fin: fin.toISOString(),
     });
 
+    await trackServerEvent('plan_upgraded', {
+      plan,
+      monto_ars: payment.transaction_amount ?? 0,
+    });
+
     return NextResponse.json({ received: true, activated: true });
   } catch (err) {
-    console.error('[mp-webhook] error', err);
+    logError(err, { source: 'api/mercadopago/webhook' });
     return NextResponse.json({ error: 'Internal error' }, { status: 500 });
   }
 }

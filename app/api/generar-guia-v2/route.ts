@@ -2,6 +2,8 @@ import { NextResponse, type NextRequest } from 'next/server';
 import { z } from 'zod';
 import { anthropic, CLAUDE_MODEL_V2 } from '@/lib/anthropic';
 import { guardApi } from '@/lib/api-guard';
+import { logError } from '@/lib/errors';
+import { trackServerEvent } from '@/lib/analytics';
 import {
   GUIA_JSON_SCHEMA,
   buildPromptDocentesV2,
@@ -33,7 +35,7 @@ export const maxDuration = 300;
 export async function POST(request: NextRequest) {
   const guard = await guardApi();
   if (!guard.ok) return guard.response;
-  const { user, supabase } = guard;
+  const { user, supabase, plan } = guard;
 
   const rawBody = await request.json().catch(() => null);
   if (!rawBody || typeof rawBody !== 'object') {
@@ -146,7 +148,22 @@ export async function POST(request: NextRequest) {
       p_user_id: user.id,
     });
     if (inc.error) {
-      console.error('[generar-guia-v2] incrementar_consultas fallo:', inc.error);
+      logError(inc.error, {
+        source: 'api/generar-guia-v2/incrementar_consultas',
+        userId: user.id,
+        correlationId: saved.id,
+        metadata: { modulo },
+      });
+    }
+
+    // Conversion funnel: guard.plan.consultasMes es el contador ANTES del
+    // increment de arriba. Si era 0, acabamos de completar la primera
+    // consulta del mes. Útil para medir activación post-registro.
+    if (plan.consultasMes === 0) {
+      await trackServerEvent('first_consulta_completed', {
+        modulo,
+        plan: plan.plan,
+      });
     }
 
     return NextResponse.json({
@@ -157,7 +174,11 @@ export async function POST(request: NextRequest) {
       tokens,
     });
   } catch (err) {
-    console.error('[generar-guia-v2] error:', err);
+    logError(err, {
+      source: 'api/generar-guia-v2',
+      userId: user.id,
+      metadata: { modulo },
+    });
     return NextResponse.json(
       {
         success: false,
