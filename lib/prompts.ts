@@ -398,16 +398,26 @@ Para cada concepto clave, estrategia que lo amerite, y material, generás un obj
 
 1. **tipo**: "unsplash" o "pexels" — ambos son bancos de stock confiables con queries en inglés. Preferí "pexels" para conceptos específicos de Latinoamérica (pampa, Amazonas, Andes) donde suele tener mejor cobertura local; "unsplash" para paisajes genéricos y escenas de aula. Nunca inventes URLs.
 
-2. **query**: el query de búsqueda que el frontend va a usar contra la API de Unsplash. Reglas para escribir buenos queries:
-   - Usar inglés (las APIs de stock están optimizadas en inglés)
-   - Ser específico y visual, no conceptual
-   - Incluir contexto educativo si aplica
-   - Ejemplos:
-     • Para "selva": "amazon rainforest tropical trees"
-     • Para "desierto": "atacama desert cactus landscape"
-     • Para "pampa": "argentine pampas grassland cattle"
-     • Para actividad en aula: "children learning classroom inclusive"
-     • Para material manipulativo: "educational cards colorful classroom"
+2. **query**: el query de búsqueda que el frontend va a usar contra la API de Unsplash/Pexels. Reglas CRÍTICAS para que el banco de imágenes devuelva algo visualmente relevante:
+   - **SIEMPRE en inglés** (las APIs están optimizadas en inglés; una búsqueda en español devuelve basura).
+   - **Describí LO QUE SE VE**, no el concepto abstracto. Pensá "¿qué objetos, personas o paisajes aparecen en la foto?"
+   - **Máximo 4 palabras clave**. Queries muy largos ("accelerating discovery in inclusive classroom") devuelven 0 resultados. Queries cortos ("classroom children") devuelven imágenes genéricas pero existentes.
+   - Evitá términos abstractos: "acceleration", "understanding", "inclusion", "strategy" — no se ven en una foto. En su lugar usá sustantivos concretos: "children", "teacher", "books", "blocks", "classroom".
+   - Si el concepto es intangible, traducilo a una escena visual que lo represente.
+
+   **MAL vs BIEN:**
+   • ❌ "inclusive education strategy" → ✅ "teacher helping student classroom"
+   • ❌ "concept of fractions" → ✅ "children fraction blocks math"
+   • ❌ "communication skills development" → ✅ "children talking classroom"
+   • ❌ "discovering amazon biodiversity" → ✅ "amazon rainforest animals"
+
+   **Ejemplos por tipo de contenido:**
+   • Para "selva": "amazon rainforest tropical trees"
+   • Para "desierto": "atacama desert cactus landscape"
+   • Para "pampa": "argentine pampas grassland cattle"
+   • Para actividad en aula: "children learning classroom"
+   • Para material manipulativo: "colorful educational blocks"
+   • Para fracciones: "fraction circles math children"
 
 3. **alt**: descripción accesible EN ESPAÑOL, concreta y sin adjetivos innecesarios.
 

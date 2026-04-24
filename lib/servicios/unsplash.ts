@@ -20,6 +20,46 @@ function orientacionUnsplash(o: ImagenRef['orientacion']): string {
   return 'landscape';
 }
 
+// Fallback: primeras 2 palabras significativas del query (dropping stopwords).
+// Claude a veces genera queries ultra específicos que no matchean en stock.
+function queryFallback(query: string): string {
+  const stopwords = new Set([
+    'a', 'an', 'the', 'in', 'on', 'at', 'of', 'for', 'with', 'and', 'or',
+    'to', 'from', 'by', 'as', 'into', 'about',
+  ]);
+  const words = query
+    .toLowerCase()
+    .split(/\s+/)
+    .filter((w) => w.length > 2 && !stopwords.has(w));
+  return words.slice(0, 2).join(' ') || query;
+}
+
+async function buscarEnUnsplash(
+  query: string,
+  orientation: string,
+  accessKey: string
+): Promise<UnsplashPhoto | null> {
+  const params = new URLSearchParams({
+    query,
+    per_page: '5',
+    orientation,
+    content_filter: 'high',
+  });
+  const res = await fetch(`${UNSPLASH_ENDPOINT}?${params.toString()}`, {
+    headers: { Authorization: `Client-ID ${accessKey}` },
+    next: { revalidate: 86400 },
+    signal: AbortSignal.timeout(5000),
+  });
+  if (!res.ok) {
+    console.warn(
+      `[unsplash] search failed — status ${res.status} query="${query}"`
+    );
+    return null;
+  }
+  const data = (await res.json()) as UnsplashResponse;
+  return data.results?.[0] ?? null;
+}
+
 export async function enriquecerImagen(
   ref: ImagenRef
 ): Promise<ImagenEnriquecida> {
@@ -35,28 +75,16 @@ export async function enriquecerImagen(
   }
 
   try {
-    const params = new URLSearchParams({
-      query: ref.query,
-      per_page: '1',
-      orientation: orientacionUnsplash(ref.orientacion),
-      content_filter: 'high',
-    });
+    const orientation = orientacionUnsplash(ref.orientacion);
+    let foto = await buscarEnUnsplash(ref.query, orientation, accessKey);
 
-    const res = await fetch(`${UNSPLASH_ENDPOINT}?${params.toString()}`, {
-      headers: { Authorization: `Client-ID ${accessKey}` },
-      next: { revalidate: 86400 }, // caché 24h
-      signal: AbortSignal.timeout(5000),
-    });
-
-    if (!res.ok) {
-      console.warn(
-        `[unsplash] search failed — status ${res.status} query="${ref.query}"`
-      );
-      return ref;
+    // Fallback: si el query específico no devolvió nada, degradar a 2 palabras
+    if (!foto) {
+      const fb = queryFallback(ref.query);
+      if (fb !== ref.query) {
+        foto = await buscarEnUnsplash(fb, orientation, accessKey);
+      }
     }
-
-    const data = (await res.json()) as UnsplashResponse;
-    const foto = data.results?.[0];
     if (!foto) return ref;
 
     return {
