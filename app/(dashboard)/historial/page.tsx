@@ -33,7 +33,6 @@ export default async function HistorialPage({ searchParams }: { searchParams: SP
   const [perfil, sp] = await Promise.all([getPerfil(), searchParams]);
   if (!perfil) return null;
 
-  const esPago = perfil.plan !== 'free';
   const filtroModulo = (['docentes', 'familias', 'profesionales'] as const).includes(
     sp.modulo as ModuloIncluIA
   )
@@ -94,28 +93,7 @@ export default async function HistorialPage({ searchParams }: { searchParams: SP
         </div>
       </header>
 
-      {!esPago && (
-        <div className="flex items-start gap-3 rounded-[16px] border border-[#fcd34d]/50 bg-[#fef3c7] p-4 text-sm text-[#1F2E3D]">
-          <span aria-hidden className="text-xl">🔒</span>
-          <div className="flex-1">
-            <p className="font-semibold text-[#2E86C1]">
-              El historial completo está en los planes pagos
-            </p>
-            <p className="mt-0.5 text-xs text-[#4A5968]">
-              Accedé a todas tus guías guardadas, marcá favoritas y consultá
-              cuando necesites.
-            </p>
-          </div>
-          <Link
-            href="/planes"
-            className="shrink-0 rounded-[10px] bg-[#2E86C1] px-4 py-2 text-xs font-bold text-white transition hover:bg-[#2a5a8f]"
-          >
-            Ver planes →
-          </Link>
-        </div>
-      )}
-
-      <form
+<form
         method="get"
         className="flex flex-col gap-3 rounded-[16px] border border-[#e2e8f0] bg-white p-4 shadow-[0_2px_8px_rgba(15,34,64,0.04)] sm:flex-row sm:items-center"
       >
@@ -198,7 +176,7 @@ export default async function HistorialPage({ searchParams }: { searchParams: SP
         <ul className="flex flex-col gap-3">
           {consultas.map((c) => (
             <li key={c.id}>
-              <ConsultaItem row={c} locked={!esPago} />
+              <ConsultaItem row={c} />
             </li>
           ))}
         </ul>
@@ -234,7 +212,7 @@ function Tab({
   );
 }
 
-function ConsultaItem({ row, locked }: { row: Row; locked: boolean }) {
+function ConsultaItem({ row }: { row: Row }) {
   const tags = row.discapacidades
     .map((id) => DISCAPACIDADES.find((d) => d.id === id))
     .filter((x): x is (typeof DISCAPACIDADES)[number] => Boolean(x));
@@ -284,22 +262,6 @@ function ConsultaItem({ row, locked }: { row: Row; locked: boolean }) {
       )}
     </article>
   );
-
-  if (locked) {
-    return (
-      <div className="relative">
-        <div className="pointer-events-none opacity-60">{inner}</div>
-        <div className="absolute inset-0 flex items-center justify-center rounded-[16px] bg-white/40 backdrop-blur-[2px]">
-          <Link
-            href="/planes"
-            className="rounded-[10px] bg-[#E67E22] px-4 py-2 text-xs font-bold text-white shadow-[0_4px_12px_rgba(234,88,12,0.3)] transition hover:bg-[#E67E22]"
-          >
-            🔒 Upgrade para ver
-          </Link>
-        </div>
-      </div>
-    );
-  }
 
   return <Link href={`/resultado?id=${row.id}`}>{inner}</Link>;
 }
