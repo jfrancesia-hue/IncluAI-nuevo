@@ -75,16 +75,24 @@ export default async function ResultadoPage({
   } = await supabase.auth.getUser();
   if (!user) notFound();
 
-  const { data } = await supabase
-    .from('consultas')
-    .select(
-      'id, modulo, datos_modulo, materia, nivel, anio_grado, cantidad_alumnos, contenido, discapacidades, respuesta_ia, respuesta_ia_estructurada, version_schema, feedback_estrellas, created_at'
-    )
-    .eq('id', id)
-    .eq('user_id', user.id)
-    .single<ConsultaRow>();
+  const [{ data }, { data: perfilRow }] = await Promise.all([
+    supabase
+      .from('consultas')
+      .select(
+        'id, modulo, datos_modulo, materia, nivel, anio_grado, cantidad_alumnos, contenido, discapacidades, respuesta_ia, respuesta_ia_estructurada, version_schema, feedback_estrellas, created_at'
+      )
+      .eq('id', id)
+      .eq('user_id', user.id)
+      .single<ConsultaRow>(),
+    supabase
+      .from('perfiles')
+      .select('plan')
+      .eq('id', user.id)
+      .single<{ plan: 'free' | 'pro' | 'institucional' }>(),
+  ]);
 
   if (!data) notFound();
+  const userPlan = perfilRow?.plan ?? 'free';
 
   const meta = MODULO_META[data.modulo] ?? MODULO_META.docentes;
   const tags = data.discapacidades
@@ -110,6 +118,7 @@ export default async function ResultadoPage({
             discapacidades: data.discapacidades,
             feedback_estrellas: data.feedback_estrellas,
           }}
+          userPlan={userPlan}
         />
       );
     }

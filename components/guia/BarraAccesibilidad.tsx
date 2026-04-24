@@ -1,12 +1,30 @@
 'use client';
 
+import { useRouter } from 'next/navigation';
 import { useAccesibilidad } from '@/hooks/guia/useAccesibilidad';
 import { useImprimir } from '@/hooks/guia/useImprimir';
 
-export function BarraAccesibilidad() {
+type UserPlan = 'free' | 'pro' | 'institucional';
+
+interface Props {
+  /** Si es 'free', el boton PDF redirige a /planes. Pro/institucional imprime. */
+  userPlan?: UserPlan;
+}
+
+export function BarraAccesibilidad({ userPlan = 'free' }: Props) {
+  const router = useRouter();
   const { tamano, setTamano, altoContraste, setAltoContraste } =
     useAccesibilidad();
   const imprimir = useImprimir();
+  const pdfHabilitado = userPlan === 'pro' || userPlan === 'institucional';
+
+  function onClickPdf() {
+    if (pdfHabilitado) {
+      imprimir();
+    } else {
+      router.push('/planes?feature=pdf');
+    }
+  }
 
   return (
     <div
@@ -57,21 +75,33 @@ export function BarraAccesibilidad() {
 
       <button
         type="button"
-        onClick={imprimir}
-        aria-label="Imprimir o guardar como PDF"
+        onClick={onClickPdf}
+        aria-label={
+          pdfHabilitado
+            ? 'Descargar la guía como PDF'
+            : 'Descargar PDF — disponible en plan Pro'
+        }
+        title={
+          pdfHabilitado
+            ? 'En el diálogo, elegí "Guardar como PDF" en destino.'
+            : 'Funcionalidad del plan Pro — click para ver planes'
+        }
         style={{
           minWidth: 44,
           minHeight: 44,
           padding: '0 12px',
           borderRadius: 'var(--radius-md)',
-          border: '1px solid var(--color-borde)',
+          border: pdfHabilitado
+            ? '1px solid var(--color-borde)'
+            : '1px dashed var(--color-borde)',
           background: 'white',
           color: 'var(--color-texto)',
           cursor: 'pointer',
           fontWeight: 600,
+          opacity: pdfHabilitado ? 1 : 0.7,
         }}
       >
-        🖨️ Imprimir
+        📄 Descargar PDF{pdfHabilitado ? '' : ' 🔒'}
       </button>
     </div>
   );

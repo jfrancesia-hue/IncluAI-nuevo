@@ -26,16 +26,18 @@ type Metadata = {
 interface Props {
   guia: GuiaPedagogica;
   metadata: Metadata;
+  /** Plan del usuario — determina si puede usar "Descargar PDF". */
+  userPlan?: 'free' | 'pro' | 'institucional';
 }
 
-export function GuiaLayout({ guia, metadata }: Props) {
+export function GuiaLayout({ guia, metadata, userPlan = 'free' }: Props) {
   // Los videos en runtime vienen enriquecidos (desde la DB ya se guardaron así).
   // Casteo necesario porque el schema Zod persiste solo los campos "fuente" de VideoRef.
   const videos = guia.videos as VideoEnriquecido[];
 
   return (
     <>
-      <BarraAccesibilidad />
+      <BarraAccesibilidad userPlan={userPlan} />
 
       <HeroGuia vistaRapida={guia.vistaRapida} metadata={metadata} />
 
