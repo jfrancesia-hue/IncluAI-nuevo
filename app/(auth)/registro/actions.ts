@@ -109,7 +109,11 @@ export async function registrarUsuario(formData: FormData): Promise<RegistroResu
   // server action responde, `after()` ejecuta la tarea sin bloquear al usuario.
   after(async () => {
     try {
-      await enviarBienvenida({ to: data.email, nombre: data.nombre });
+      await enviarBienvenida({
+        to: data.email,
+        nombre: data.nombre,
+        tipoUsuario: data.tipo_usuario,
+      });
     } catch (err) {
       console.error('[registro] email bienvenida falló', err);
     }
