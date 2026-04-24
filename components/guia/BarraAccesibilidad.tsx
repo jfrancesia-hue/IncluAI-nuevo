@@ -1,5 +1,6 @@
 'use client';
 
+import { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { track } from '@vercel/analytics';
 import { useAccesibilidad } from '@/hooks/guia/useAccesibilidad';
@@ -18,11 +19,18 @@ export function BarraAccesibilidad({ userPlan = 'free' }: Props) {
     useAccesibilidad();
   const imprimir = useImprimir();
   const pdfHabilitado = userPlan !== 'free';
+  const [preparandoPdf, setPreparandoPdf] = useState(false);
 
-  function onClickPdf() {
+  async function onClickPdf() {
     if (pdfHabilitado) {
+      if (preparandoPdf) return; // evitar doble click mientras precarga
       track('pdf_downloaded', { plan: userPlan });
-      imprimir();
+      setPreparandoPdf(true);
+      try {
+        await imprimir();
+      } finally {
+        setPreparandoPdf(false);
+      }
     } else {
       track('pdf_download_blocked', { plan: userPlan });
       router.push('/planes?feature=pdf');
@@ -79,10 +87,13 @@ export function BarraAccesibilidad({ userPlan = 'free' }: Props) {
       <button
         type="button"
         onClick={onClickPdf}
+        disabled={preparandoPdf}
         aria-label={
-          pdfHabilitado
-            ? 'Descargar la guía como PDF'
-            : 'Descargar PDF — disponible en planes pagos'
+          preparandoPdf
+            ? 'Preparando PDF, cargando imágenes…'
+            : pdfHabilitado
+              ? 'Descargar la guía como PDF'
+              : 'Descargar PDF — disponible en planes pagos'
         }
         title={
           pdfHabilitado
@@ -99,12 +110,14 @@ export function BarraAccesibilidad({ userPlan = 'free' }: Props) {
             : '1px dashed var(--color-borde)',
           background: 'white',
           color: 'var(--color-texto)',
-          cursor: 'pointer',
+          cursor: preparandoPdf ? 'wait' : 'pointer',
           fontWeight: 600,
-          opacity: pdfHabilitado ? 1 : 0.7,
+          opacity: pdfHabilitado ? (preparandoPdf ? 0.6 : 1) : 0.7,
         }}
       >
-        📄 Descargar PDF{pdfHabilitado ? '' : ' 🔒'}
+        {preparandoPdf
+          ? '⏳ Preparando…'
+          : `📄 Descargar PDF${pdfHabilitado ? '' : ' 🔒'}`}
       </button>
     </div>
   );

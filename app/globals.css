@@ -242,5 +242,17 @@ body.high-contrast * {
   img {
     max-width: 100%;
     page-break-inside: avoid;
+    /* Forzar visibilidad en PDF: por defecto Chrome puede ocultar imágenes
+       con lazy loading que no terminaron de cargar. useImprimir() ya las
+       pre-carga, pero esto es defensa en profundidad. */
+    print-color-adjust: exact;
+    -webkit-print-color-adjust: exact;
+  }
+
+  /* Permitir que colores de fondo (gradientes fallback, badges, tarjetas)
+     se impriman en vez de quedar blancos. Chrome los omite por defecto. */
+  * {
+    print-color-adjust: exact;
+    -webkit-print-color-adjust: exact;
   }
 }
