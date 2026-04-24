@@ -158,9 +158,10 @@ export function SeccionPlanificacion({ data }: { data: Planificacion }) {
                   <li
                     key={j}
                     style={{
-                      fontSize: 14,
-                      lineHeight: 1.55,
+                      fontSize: 15,
+                      lineHeight: 1.65,
                       color: 'var(--color-texto)',
+                      marginBottom: 4,
                     }}
                   >
                     {p}
@@ -187,8 +188,8 @@ export function SeccionPlanificacion({ data }: { data: Planificacion }) {
                   <p
                     style={{
                       margin: 0,
-                      fontSize: 13,
-                      lineHeight: 1.5,
+                      fontSize: 14,
+                      lineHeight: 1.6,
                       color: 'var(--color-docentes-dark)',
                     }}
                   >

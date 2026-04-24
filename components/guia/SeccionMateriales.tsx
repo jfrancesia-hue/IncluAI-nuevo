@@ -60,8 +60,8 @@ export function SeccionMateriales({
               </h3>
               <p
                 style={{
-                  fontSize: 14,
-                  lineHeight: 1.5,
+                  fontSize: 15,
+                  lineHeight: 1.65,
                   color: 'var(--color-texto-medio)',
                   margin: '0 0 10px',
                 }}

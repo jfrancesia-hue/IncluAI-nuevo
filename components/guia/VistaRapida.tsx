@@ -14,22 +14,24 @@ export function VistaRapida({ data }: { data: VistaRapidaData }) {
     >
       <div
         style={{
-          fontSize: 11,
+          fontFamily: 'var(--font-display)',
+          fontSize: 12,
           textTransform: 'uppercase',
-          letterSpacing: 0.8,
-          fontWeight: 700,
+          letterSpacing: '0.06em',
+          fontWeight: 600,
           color: 'var(--color-docentes-primary)',
-          marginBottom: 6,
+          marginBottom: 8,
         }}
       >
         ⚡ Lo esencial en 30 segundos
       </div>
       <p
         style={{
-          fontSize: 16,
-          lineHeight: 1.6,
+          fontSize: 17,
+          lineHeight: 1.7,
           color: 'var(--color-texto)',
           margin: 0,
+          letterSpacing: '-0.006em',
         }}
       >
         {data.resumen}

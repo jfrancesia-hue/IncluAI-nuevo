@@ -41,10 +41,11 @@ export function HeroGuia({ vistaRapida, metadata }: Props) {
       >
         <div
           style={{
+            fontFamily: 'var(--font-display)',
             fontSize: 12,
             textTransform: 'uppercase',
-            letterSpacing: 0.8,
-            fontWeight: 700,
+            letterSpacing: '0.06em',
+            fontWeight: 600,
             color: 'var(--color-docentes-primary)',
             marginBottom: 10,
           }}
@@ -54,12 +55,12 @@ export function HeroGuia({ vistaRapida, metadata }: Props) {
         <h1
           style={{
             fontFamily: 'var(--font-display)',
-            fontSize: 'clamp(28px, 5vw, 42px)',
-            fontWeight: 700,
-            lineHeight: 1.15,
+            fontSize: 'clamp(30px, 5vw, 44px)',
+            fontWeight: 800,
+            lineHeight: 1.2,
             color: 'var(--color-docentes-dark)',
             marginBottom: 16,
-            letterSpacing: '-0.01em',
+            letterSpacing: '-0.03em',
           }}
         >
           {vistaRapida.titulo}

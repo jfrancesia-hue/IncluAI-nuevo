@@ -1,24 +1,24 @@
 import type { Metadata, Viewport } from "next";
-import { Poppins, Nunito } from "next/font/google";
+import { Inter, Plus_Jakarta_Sans } from "next/font/google";
 import { Analytics } from "@vercel/analytics/react";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import { ThemeProvider } from "@/components/theme-provider";
 import { AxeA11y } from "@/components/axe-a11y";
 import "./globals.css";
 
-// Mantengo los nombres de CSS variables (--font-fraunces, --font-dm-sans) para no
-// romper referencias en estilos inline y CSS; solo cambian las fuentes que carga.
-const fraunces = Poppins({
-  variable: "--font-fraunces",
+// Tipografía 2026: Inter (cuerpo, alta legibilidad on-screen) + Plus Jakarta Sans
+// (display: títulos, badges, labels uppercase). Las CSS variables legacy
+// --font-fraunces y --font-dm-sans se mapean en globals.css → no hace falta
+// tocar los inline styles de los componentes.
+const inter = Inter({
+  variable: "--font-inter",
   subsets: ["latin"],
-  weight: ["600", "700", "800"],
   display: "swap",
 });
 
-const dmSans = Nunito({
-  variable: "--font-dm-sans",
+const jakarta = Plus_Jakarta_Sans({
+  variable: "--font-jakarta",
   subsets: ["latin"],
-  weight: ["400", "500", "600", "700"],
   display: "swap",
 });
 
@@ -66,7 +66,7 @@ export default function RootLayout({
     <html
       lang="es-AR"
       suppressHydrationWarning
-      className={`${fraunces.variable} ${dmSans.variable} antialiased`}
+      className={`${inter.variable} ${jakarta.variable} antialiased`}
     >
       <body className="min-h-screen">
         <ThemeProvider attribute="class" defaultTheme="light" enableSystem>
