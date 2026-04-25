@@ -11,22 +11,22 @@ const px = (id: string, w = 1400) =>
   `https://images.pexels.com/photos/${id}/pexels-photo-${id}.jpeg?auto=compress&cs=tinysrgb&w=${w}&fit=crop`;
 
 export const PHOTOS = {
-  // Hero: terapeuta/docente trabajando con niño con necesidades especiales
-  hero: px('8613307', 1600),
+  // Hero: docente con grupo de niños en aula (no terapia 1-a-1)
+  hero: px('8363102', 1600), // niños jugando con docente en aula
 
   // Niños en sesión de apoyo / inclusión
   action: px('8612995', 1400),
 
-  // Pasos "cómo funciona"
-  step1: px('6146929', 600), // niña completando actividad pedagógica
-  step2: px('8364024', 600), // material adaptado / terapia
-  step3: px('7092343', 600), // profesional con niño aprendiendo
+  // Pasos "cómo funciona" — más alineados al ciclo docente
+  step1: px('5417659', 600), // docente preparando material/planificando
+  step2: px('8363139', 600), // alumno con planificador visual (la guía generada)
+  step3: px('8617553', 600), // dos alumnos colaborando (aplicar en aula)
 
   // Banner discapacidades / aula inclusiva
-  classroom: px('5691627', 1600), // juego sensorial con niño
+  classroom: px('8926887', 1600), // estudiantes diversos leyendo en biblioteca
 
   // Emocional close-up
-  closeup: px('6964359', 1400), // niña con materiales especiales
+  closeup: px('7869083', 1400), // docente y niños aprendiendo electrónica (warm + grupal)
 
   // Celebración / éxito de pago
   celebration: px('8364026', 1400), // niño alegre en sesión
