@@ -8,6 +8,7 @@ import { PHOTOS } from '@/lib/photos';
 import { HeroHeadline } from '@/components/landing/HeroHeadline';
 import { MarqueeProvincias } from '@/components/landing/MarqueeProvincias';
 import { RevealOnScroll } from '@/components/landing/RevealOnScroll';
+import { LogoLockup } from '@/components/branding/LogoLockup';
 
 export const metadata = {
   title: 'IncluAI — Cada alumno merece una clase pensada para él',
@@ -110,18 +111,17 @@ function Hero() {
         aria-label="Barra superior"
         className="relative mx-auto flex max-w-7xl items-center justify-between px-5 py-5 sm:px-8"
       >
-        <div className="flex items-center gap-2">
-          <span aria-hidden className="text-2xl">🧩</span>
-          <span
-            className="font-bold text-white text-xl"
-            style={{ fontFamily: 'var(--font-display)', letterSpacing: '-0.02em' }}
-          >
-            IncluAI
-          </span>
-        </div>
+        <LogoLockup
+          href="/"
+          size="md"
+          tone="dark"
+          logoVariant="white"
+          gradientId="hero-logo"
+        />
         <Link
           href="/login"
           className="rounded-[10px] border border-white/25 bg-white/5 px-4 py-2 text-sm font-medium text-white backdrop-blur transition hover:bg-white/15"
+          style={{ fontFamily: 'var(--font-display)' }}
         >
           Iniciar sesión
         </Link>
@@ -1137,18 +1137,12 @@ function Footer() {
       <div className="mx-auto max-w-7xl px-5 pb-20 pt-14 sm:px-8 sm:pb-16 sm:pt-16">
         <div className="grid grid-cols-1 gap-10 sm:grid-cols-2 lg:grid-cols-5 lg:gap-8">
           <div className="lg:col-span-2">
-            <div className="flex items-center gap-2">
-              <span aria-hidden className="text-3xl">🧩</span>
-              <span
-                className="text-2xl font-bold"
-                style={{
-                  fontFamily: 'var(--font-display)',
-                  letterSpacing: '-0.02em',
-                }}
-              >
-                IncluAI
-              </span>
-            </div>
+            <LogoLockup
+              size="lg"
+              tone="dark"
+              logoVariant="white"
+              gradientId="footer-logo"
+            />
             <p className="mt-4 max-w-sm text-sm leading-relaxed text-white/75">
               Inteligencia artificial especializada en educación inclusiva.
               Guías pedagógicas concretas, estrategias basadas en evidencia y

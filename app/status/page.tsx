@@ -1,5 +1,5 @@
 import { headers } from 'next/headers';
-import Link from 'next/link';
+import { LogoLockup } from '@/components/branding/LogoLockup';
 
 export const dynamic = 'force-dynamic';
 
@@ -80,16 +80,13 @@ export default async function StatusPage() {
 
       <header className="relative border-b border-white/10 bg-white/5 backdrop-blur-xl">
         <div className="mx-auto flex max-w-4xl items-center justify-between px-6 py-5">
-          <Link
+          <LogoLockup
             href="/"
-            className="flex items-center gap-1.5 text-lg font-bold transition hover:opacity-80"
-            style={{
-              fontFamily: 'var(--font-display)',
-              letterSpacing: '-0.02em',
-            }}
-          >
-            <span aria-hidden>🧩</span> IncluAI
-          </Link>
+            size="md"
+            tone="dark"
+            logoVariant="white"
+            gradientId="status-logo"
+          />
           <span className="text-xs text-white/60">Status page</span>
         </div>
       </header>

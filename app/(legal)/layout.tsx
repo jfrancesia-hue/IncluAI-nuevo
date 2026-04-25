@@ -1,21 +1,13 @@
 import Link from 'next/link';
 import type { ReactNode } from 'react';
+import { LogoLockup } from '@/components/branding/LogoLockup';
 
 export default function LegalLayout({ children }: { children: ReactNode }) {
   return (
     <div className="min-h-screen bg-[#FBF8F2] text-[#1F2E3D]">
       <header className="sticky top-0 z-30 border-b border-white/20 bg-white/80 backdrop-blur-xl">
         <div className="mx-auto flex max-w-4xl items-center justify-between px-6 py-4">
-          <Link
-            href="/"
-            className="flex items-center gap-1.5 text-lg font-bold text-[#1F2E3D] transition hover:opacity-80"
-            style={{
-              fontFamily: 'var(--font-display)',
-              letterSpacing: '-0.02em',
-            }}
-          >
-            <span aria-hidden>🧩</span> IncluAI
-          </Link>
+          <LogoLockup href="/" size="md" tone="light" gradientId="legal-logo" />
           <nav className="flex gap-5 text-sm text-[#4A5968]">
             <Link
               href="/terminos"

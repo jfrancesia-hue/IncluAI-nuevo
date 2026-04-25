@@ -1,5 +1,5 @@
-import Link from 'next/link';
 import type { ReactNode } from 'react';
+import { LogoLockup } from '@/components/branding/LogoLockup';
 
 interface Props {
   /** Lado izquierdo: el form */
@@ -28,21 +28,9 @@ export function AuthShell({
       {/* Lado del form */}
       <div className="flex flex-col items-center justify-center bg-[#FBF8F2] px-5 py-12 sm:px-8">
         <div className="w-full max-w-md">
-          <Link
-            href="/"
-            className="mb-8 inline-flex items-center gap-2 text-[#1F2E3D] transition hover:opacity-80"
-          >
-            <span aria-hidden className="text-2xl">🧩</span>
-            <span
-              className="text-xl font-bold"
-              style={{
-                fontFamily: 'var(--font-display)',
-                letterSpacing: '-0.02em',
-              }}
-            >
-              IncluAI
-            </span>
-          </Link>
+          <div className="mb-8">
+            <LogoLockup href="/" size="md" tone="light" />
+          </div>
           {children}
         </div>
       </div>
@@ -89,22 +77,12 @@ export function AuthShell({
           </div>
 
           <div className="relative z-10 px-12 py-16 text-white">
-            <span
-              className="inline-flex w-fit items-center gap-2 rounded-full border border-white/15 bg-white/5 px-3 py-1 text-xs font-semibold uppercase backdrop-blur"
-              style={{ fontFamily: 'var(--font-display)', letterSpacing: '0.08em' }}
-            >
-              <span
-                aria-hidden
-                style={{
-                  width: 6,
-                  height: 6,
-                  borderRadius: 999,
-                  background: '#27AE60',
-                  boxShadow: '0 0 8px rgba(39, 174, 96, 0.7)',
-                }}
-              />
-              IncluAI
-            </span>
+            <LogoLockup
+              size="md"
+              tone="dark"
+              logoVariant="white"
+              gradientId="auth-aside-logo"
+            />
 
             <h2
               className="mt-6 text-4xl font-extrabold lg:text-5xl"
