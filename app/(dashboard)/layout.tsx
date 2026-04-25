@@ -1,6 +1,7 @@
 import { redirect } from 'next/navigation';
 import { getPerfil } from '@/lib/auth';
 import { Navbar } from '@/components/dashboard/navbar';
+import { Footer } from '@/components/landing/Footer';
 
 export default async function DashboardLayout({
   children,
@@ -13,9 +14,8 @@ export default async function DashboardLayout({
   }
 
   return (
-    <div className="relative min-h-screen">
-      {/* Fondo principal: gradient horizontal usando CSS vars para que
-          el dark mode los reemplace automáticamente. */}
+    <div className="relative flex min-h-screen flex-col">
+      {/* Fondo principal: gradient horizontal usando CSS vars */}
       <div
         aria-hidden
         className="pointer-events-none fixed inset-0 -z-20"
@@ -24,7 +24,6 @@ export default async function DashboardLayout({
             'linear-gradient(90deg, var(--dashboard-bg-1) 0%, var(--dashboard-bg-2) 30%, var(--dashboard-bg-3) 55%, var(--dashboard-bg-4) 80%, var(--dashboard-bg-5) 100%)',
         }}
       />
-      {/* Patrón de puntos sutil para textura */}
       <div
         aria-hidden
         className="pointer-events-none fixed inset-0 -z-10 opacity-[0.35]"
@@ -34,7 +33,6 @@ export default async function DashboardLayout({
           backgroundSize: '24px 24px',
         }}
       />
-      {/* Glow sutil arriba-izq */}
       <div
         aria-hidden
         className="pointer-events-none fixed top-0 left-0 -z-10 h-[500px] w-[600px]"
@@ -43,7 +41,6 @@ export default async function DashboardLayout({
             'radial-gradient(circle at 10% 0%, var(--dashboard-glow-1), transparent 65%)',
         }}
       />
-      {/* Glow sutil abajo-der */}
       <div
         aria-hidden
         className="pointer-events-none fixed bottom-0 right-0 -z-10 h-[500px] w-[600px]"
@@ -54,9 +51,10 @@ export default async function DashboardLayout({
       />
 
       <Navbar perfil={perfil} />
-      <main className="relative mx-auto w-full max-w-6xl px-4 pb-32 pt-8 sm:px-6 sm:pb-24">
+      <main className="relative mx-auto w-full max-w-6xl flex-1 px-4 pb-12 pt-8 sm:px-6">
         {children}
       </main>
+      <Footer variant="compact" />
     </div>
   );
 }
