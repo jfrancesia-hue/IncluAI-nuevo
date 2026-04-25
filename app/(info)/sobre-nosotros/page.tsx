@@ -228,11 +228,11 @@ export default function SobreNosotrosPage() {
           </p>
           <div className="mt-6 flex flex-col items-center gap-3 sm:flex-row sm:justify-center">
             <a
-              href="mailto:jorge@nativosconsultora.com.ar"
+              href="mailto:contacto@nativosconsultora.com.ar"
               className="magnetic-btn inline-flex items-center gap-2 rounded-[12px] bg-[#27AE60] px-6 py-3 text-sm font-bold text-white shadow-[0_8px_20px_rgba(39,174,96,0.35)]"
               style={{ fontFamily: 'var(--font-display)' }}
             >
-              ✉️ jorge@nativosconsultora.com.ar
+              ✉️ contacto@nativosconsultora.com.ar
             </a>
             <a
               href="tel:+543813005807"
