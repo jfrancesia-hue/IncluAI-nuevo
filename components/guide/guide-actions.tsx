@@ -1,6 +1,7 @@
 'use client';
 
 import { useState } from 'react';
+import { toast } from 'sonner';
 import { Button } from '@/components/ui/button';
 
 type Props = {
@@ -15,9 +16,10 @@ export function GuideActions({ markdown, titulo }: Props) {
     try {
       await navigator.clipboard.writeText(markdown);
       setCopied(true);
+      toast.success('Guía copiada al portapapeles');
       setTimeout(() => setCopied(false), 2000);
     } catch {
-      // noop
+      toast.error('No se pudo copiar. Intentalo desde el navegador.');
     }
   }
 

@@ -1,6 +1,7 @@
 'use client';
 
 import { useState, useTransition } from 'react';
+import { toast } from 'sonner';
 import { Button } from '@/components/ui/button';
 
 type Props = {
@@ -34,14 +35,16 @@ export function UpgradeButton({ plan, children }: Props) {
         if (!redirect) throw new Error('No se recibió URL de checkout');
         window.location.href = redirect;
       } catch (e) {
-        setError(e instanceof Error ? e.message : 'Error inesperado');
+        const msg = e instanceof Error ? e.message : 'Error inesperado';
+        setError(msg);
+        toast.error(`Mercado Pago: ${msg}`);
       }
     });
   }
 
   return (
     <div className="flex flex-col gap-2">
-      <Button onClick={subscribe} disabled={isPending} size="lg">
+      <Button onClick={subscribe} disabled={isPending} size="lg" className="magnetic-btn">
         {isPending ? 'Redirigiendo…' : children ?? 'Suscribirme con Mercado Pago'}
       </Button>
       {error && <p className="text-xs text-red-600">{error}</p>}

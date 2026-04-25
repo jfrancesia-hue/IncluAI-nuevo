@@ -1,6 +1,7 @@
 'use client';
 
 import { useState } from 'react';
+import { toast } from 'sonner';
 import { cn } from '@/lib/utils';
 import { Button } from '@/components/ui/button';
 
@@ -30,9 +31,15 @@ export function FeedbackStars({
       });
       if (!res.ok) throw new Error('No se pudo guardar tu feedback');
       setSaved(true);
-      if (value <= 3) setShowComment(true);
+      if (value <= 3) {
+        setShowComment(true);
+      } else {
+        toast.success('¡Gracias por tu feedback!');
+      }
     } catch (e) {
-      setError(e instanceof Error ? e.message : 'Error');
+      const msg = e instanceof Error ? e.message : 'Error';
+      setError(msg);
+      toast.error(msg);
     }
   }
 
@@ -53,6 +60,9 @@ export function FeedbackStars({
         }),
       });
       setShowComment(false);
+      toast.success('Gracias por tu comentario — nos ayuda a mejorar.');
+    } catch {
+      toast.error('No se pudo enviar el comentario.');
     } finally {
       setSendingComment(false);
     }
