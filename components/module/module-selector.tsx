@@ -49,9 +49,16 @@ export function ModuleSelector({ tipoUsuario }: { tipoUsuario: TipoUsuario }) {
   ];
 
   return (
-    <section aria-labelledby="selector-title" className="flex flex-col gap-3">
-      <h2 id="selector-title" className="font-serif text-lg font-bold text-primary">
-        Módulo selector
+    <section aria-labelledby="selector-title" className="flex flex-col gap-4">
+      <h2
+        id="selector-title"
+        className="text-2xl font-bold text-[#1F2E3D]"
+        style={{
+          fontFamily: 'var(--font-display)',
+          letterSpacing: '-0.02em',
+        }}
+      >
+        Cambiá de módulo
       </h2>
       <div className="grid grid-cols-1 gap-3 sm:grid-cols-3">
         {cards.map((c) => (
@@ -59,10 +66,10 @@ export function ModuleSelector({ tipoUsuario }: { tipoUsuario: TipoUsuario }) {
             key={c.key}
             href={c.href}
             className={cn(
-              'group flex flex-col items-start gap-3 rounded-[16px] border-2 p-5 transition-all',
+              'bento-card group flex flex-col items-start gap-3 rounded-[18px] border-2 p-5 transition-all',
               c.highlight
-                ? 'border-accent bg-accent-light shadow-[0_4px_16px_rgba(22,163,74,0.15)]'
-                : 'border-border bg-card hover:border-accent hover:shadow-[0_2px_12px_rgba(0,0,0,0.06)]'
+                ? 'border-[#27AE60] bg-white shadow-[0_8px_24px_rgba(22,163,74,0.18)]'
+                : 'border-[rgba(31,46,61,0.12)] bg-white hover:border-[#27AE60]'
             )}
           >
             <div className="flex items-center gap-3">
@@ -79,15 +86,31 @@ export function ModuleSelector({ tipoUsuario }: { tipoUsuario: TipoUsuario }) {
                 {c.icon}
               </span>
             </div>
-            <p className="font-serif text-lg font-bold text-primary">{c.title}</p>
-            <p className="text-xs text-muted leading-relaxed">{c.desc}</p>
+            <p
+              className="text-lg font-bold text-[#1F2E3D]"
+              style={{
+                fontFamily: 'var(--font-display)',
+                letterSpacing: '-0.02em',
+              }}
+            >
+              {c.title}
+            </p>
+            <p
+              className="text-sm font-medium text-[#3d4a5a]"
+              style={{ lineHeight: 1.55 }}
+            >
+              {c.desc}
+            </p>
             <span
               className={cn(
-                'mt-auto pt-2 text-sm font-semibold',
-                c.highlight ? 'text-accent' : 'text-primary group-hover:text-accent'
+                'mt-auto inline-flex items-center gap-1 pt-2 text-sm font-bold transition-colors',
+                c.highlight
+                  ? 'text-[#0d7c3a]'
+                  : 'text-[#1F2E3D] group-hover:text-[#0d7c3a]'
               )}
+              style={{ fontFamily: 'var(--font-display)' }}
             >
-              Ir al módulo →
+              Ir al módulo <span aria-hidden>→</span>
             </span>
           </Link>
         ))}
