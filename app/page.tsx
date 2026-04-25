@@ -469,13 +469,13 @@ function BentoFeatures() {
             </div>
           </RevealOnScroll>
 
-          {/* Card chica AI */}
+          {/* Card chica AI — mockup de red neuronal */}
           <RevealOnScroll
             delay={100}
             as="article"
             className="bento-card spotlight-card flex flex-col justify-between rounded-[20px] border border-white/10 bg-gradient-to-br from-[#1F5F8A] to-[#2E86C1] p-6 ring-1 ring-white/5"
           >
-            <span aria-hidden className="text-3xl">🧠</span>
+            <NeuralPreview />
             <div className="mt-4">
               <h3
                 className="text-lg font-bold"
@@ -493,13 +493,13 @@ function BentoFeatures() {
             </div>
           </RevealOnScroll>
 
-          {/* Card chica Streaming */}
+          {/* Card chica Streaming — mockup terminal con typing */}
           <RevealOnScroll
             delay={200}
             as="article"
             className="bento-card spotlight-card flex flex-col justify-between rounded-[20px] border border-white/10 bg-white/5 p-6 ring-1 ring-white/5 backdrop-blur"
           >
-            <span aria-hidden className="text-3xl">⚡</span>
+            <StreamingPreview />
             <div className="mt-4">
               <h3
                 className="text-lg font-bold"
@@ -517,13 +517,13 @@ function BentoFeatures() {
             </div>
           </RevealOnScroll>
 
-          {/* Card chica PPI */}
+          {/* Card chica PPI — mockup de documento con secciones */}
           <RevealOnScroll
             delay={300}
             as="article"
             className="bento-card spotlight-card flex flex-col justify-between rounded-[20px] border border-white/10 bg-white/5 p-6 ring-1 ring-white/5 backdrop-blur"
           >
-            <span aria-hidden className="text-3xl">📋</span>
+            <PPIPreview />
             <div className="mt-4">
               <h3
                 className="text-lg font-bold"
@@ -1126,6 +1126,128 @@ function EmotionalClose() {
         </p>
       </RevealOnScroll>
     </section>
+  );
+}
+
+// ─────────────────────────────────────────────────────────
+// MINI MOCKUPS para las cards bento
+// ─────────────────────────────────────────────────────────
+
+/** Red neuronal con nodos animados — para card "IA Claude Opus 4.7" */
+function NeuralPreview() {
+  return (
+    <div
+      aria-hidden
+      className="rounded-[10px] border border-white/15 bg-black/15 p-3"
+    >
+      <svg viewBox="0 0 100 36" className="h-12 w-full">
+        {/* Edges */}
+        <line x1="8" y1="18" x2="36" y2="8" stroke="white" strokeOpacity="0.35" strokeWidth="0.5" />
+        <line x1="8" y1="18" x2="36" y2="18" stroke="white" strokeOpacity="0.35" strokeWidth="0.5" />
+        <line x1="8" y1="18" x2="36" y2="28" stroke="white" strokeOpacity="0.35" strokeWidth="0.5" />
+        <line x1="36" y1="8" x2="64" y2="14" stroke="white" strokeOpacity="0.35" strokeWidth="0.5" />
+        <line x1="36" y1="18" x2="64" y2="14" stroke="white" strokeOpacity="0.35" strokeWidth="0.5" />
+        <line x1="36" y1="18" x2="64" y2="22" stroke="white" strokeOpacity="0.35" strokeWidth="0.5" />
+        <line x1="36" y1="28" x2="64" y2="22" stroke="white" strokeOpacity="0.35" strokeWidth="0.5" />
+        <line x1="64" y1="14" x2="92" y2="18" stroke="white" strokeOpacity="0.35" strokeWidth="0.5" />
+        <line x1="64" y1="22" x2="92" y2="18" stroke="white" strokeOpacity="0.35" strokeWidth="0.5" />
+        {/* Nodes */}
+        <circle cx="8" cy="18" r="2" fill="#27AE60" />
+        <circle cx="36" cy="8" r="2" fill="white" />
+        <circle cx="36" cy="18" r="2" fill="white" />
+        <circle cx="36" cy="28" r="2" fill="white" />
+        <circle cx="64" cy="14" r="2" fill="white" />
+        <circle cx="64" cy="22" r="2" fill="white" />
+        <circle cx="92" cy="18" r="2.5" fill="#27AE60">
+          <animate
+            attributeName="r"
+            values="2.5;3.2;2.5"
+            dur="1.6s"
+            repeatCount="indefinite"
+          />
+        </circle>
+      </svg>
+      <div className="mt-2 flex items-center gap-2 text-[10px] font-mono text-white/60">
+        <span
+          aria-hidden
+          className="h-1.5 w-1.5 rounded-full bg-[#27AE60]"
+          style={{ animation: 'kpi-pulse 1.6s ease-in-out infinite' }}
+        />
+        Procesando 8K tokens
+      </div>
+    </div>
+  );
+}
+
+/** Mockup tipo terminal con texto que se "tipea" — para card Streaming */
+function StreamingPreview() {
+  return (
+    <div
+      aria-hidden
+      className="rounded-[10px] border border-white/12 bg-black/40 p-3 font-mono text-[11px] text-white/85"
+    >
+      <div className="mb-2 flex gap-1">
+        <span className="h-1.5 w-1.5 rounded-full bg-red-400/60" />
+        <span className="h-1.5 w-1.5 rounded-full bg-yellow-400/60" />
+        <span className="h-1.5 w-1.5 rounded-full bg-green-400/60" />
+      </div>
+      <p className="leading-snug">
+        <span className="text-[#86efac]">## Estrategia 1</span>
+        <br />
+        Anticipación visual con
+        <br />
+        pictogramas para Joaquín
+        <span
+          aria-hidden
+          className="ml-0.5 inline-block h-3 w-1.5 translate-y-0.5 bg-[#27AE60]"
+          style={{ animation: 'glow-pulse 1.1s ease-in-out infinite' }}
+        />
+      </p>
+    </div>
+  );
+}
+
+/** Mockup de documento PPI con líneas y checkmarks — para card PPI */
+function PPIPreview() {
+  return (
+    <div
+      aria-hidden
+      className="rounded-[10px] border border-white/15 bg-white/8 p-3"
+      style={{ background: 'rgba(255,255,255,0.06)' }}
+    >
+      <div className="mb-2 flex items-center justify-between">
+        <span
+          className="text-[10px] font-bold uppercase tracking-wider text-white/70"
+          style={{ fontFamily: 'var(--font-display)' }}
+        >
+          PPI · 2026
+        </span>
+        <span className="text-[9px] text-white/40">10/10 ✓</span>
+      </div>
+      <div className="space-y-1.5">
+        {[
+          { ok: true, w: 'w-32' },
+          { ok: true, w: 'w-28' },
+          { ok: true, w: 'w-36' },
+          { ok: false, w: 'w-24' },
+        ].map((row, i) => (
+          <div key={i} className="flex items-center gap-2">
+            <span
+              className={`flex h-3 w-3 shrink-0 items-center justify-center rounded text-[8px] font-bold ${
+                row.ok
+                  ? 'bg-[#27AE60] text-white'
+                  : 'border border-white/25 text-transparent'
+              }`}
+            >
+              ✓
+            </span>
+            <span
+              className={`h-1.5 rounded ${row.w} ${row.ok ? 'bg-white/30' : 'bg-white/15'}`}
+            />
+          </div>
+        ))}
+      </div>
+    </div>
   );
 }
 
