@@ -152,12 +152,8 @@ export function Navbar({ perfil }: { perfil: Perfil }) {
             aria-current={pathname.startsWith('/perfil') ? 'page' : undefined}
             className="flex items-center gap-2 rounded-full border px-1.5 py-1 text-sm transition"
             style={{
-              background: pathname.startsWith('/perfil')
-                ? 'rgba(255,255,255,0.35)'
-                : 'rgba(255,255,255,0.9)',
-              borderColor: pathname.startsWith('/perfil')
-                ? 'rgba(255,255,255,0.5)'
-                : 'rgba(255,255,255,0.3)',
+              background: 'var(--navbar-pill-bg)',
+              borderColor: 'var(--navbar-pill-border)',
             }}
           >
             <span
@@ -168,8 +164,11 @@ export function Navbar({ perfil }: { perfil: Perfil }) {
               {iniciales || '·'}
             </span>
             <span
-              className="hidden max-w-[100px] truncate pr-2 font-semibold text-[#1F2E3D] md:inline"
-              style={{ fontFamily: 'var(--font-display)' }}
+              className="hidden max-w-[100px] truncate pr-2 font-semibold md:inline"
+              style={{
+                fontFamily: 'var(--font-display)',
+                color: 'var(--navbar-pill-text)',
+              }}
             >
               {perfil.nombre}
             </span>
