@@ -17,16 +17,25 @@ function getServerSnapshot() {
 
 export function ThemeToggle() {
   const { theme, setTheme } = useTheme();
-  const mounted = useSyncExternalStore(subscribe, getSnapshot, getServerSnapshot);
+  const mounted = useSyncExternalStore(
+    subscribe,
+    getSnapshot,
+    getServerSnapshot
+  );
 
-  if (!mounted) return <div aria-hidden className="h-7 w-7" />;
+  if (!mounted) return <div aria-hidden className="h-8 w-8" />;
   const dark = theme === 'dark';
   return (
     <button
       type="button"
       aria-label={dark ? 'Cambiar a modo claro' : 'Cambiar a modo oscuro'}
       onClick={() => setTheme(dark ? 'light' : 'dark')}
-      className="inline-flex h-7 w-7 items-center justify-center rounded-full border border-border bg-card text-sm hover:bg-primary-bg"
+      className="inline-flex h-8 w-8 items-center justify-center rounded-full border text-sm transition hover:scale-105"
+      style={{
+        background: 'rgba(255, 255, 255, 0.9)',
+        borderColor: 'rgba(255, 255, 255, 0.4)',
+        boxShadow: '0 2px 6px rgba(0, 0, 0, 0.12)',
+      }}
     >
       {dark ? '☀️' : '🌙'}
     </button>

@@ -67,10 +67,41 @@
 
   --shadow-medium: 0 4px 20px rgba(0, 0, 0, 0.08);
   --shadow-strong: 0 12px 32px rgba(0, 0, 0, 0.08);
+
+  /* Tokens semánticos — light theme */
+  --surface: #ffffff;
+  --surface-elevated: #ffffff;
+  --surface-subtle: #FBF8F2;
+  --text-strong: #1F2E3D;
+  --text-medium: #3d4a5a;
+  --border-soft: rgba(31, 46, 61, 0.12);
+  --border-strong: rgba(31, 46, 61, 0.2);
+
+  /* Dashboard background gradient (cream cálido) */
+  --dashboard-bg-1: #fef9e0;
+  --dashboard-bg-2: #fef3c7;
+  --dashboard-bg-3: #fde68a;
+  --dashboard-bg-4: #fed7aa;
+  --dashboard-bg-5: #fef3c7;
+  --dashboard-dots: rgba(146, 64, 14, 0.1);
+  --dashboard-glow-1: rgba(251, 146, 60, 0.18);
+  --dashboard-glow-2: rgba(230, 126, 34, 0.12);
+
+  /* Navbar gradient (naranja saturado) */
+  --navbar-bg-1: #fde68a;
+  --navbar-bg-2: #f59e0b;
+  --navbar-bg-3: #E67E22;
+  --navbar-bg-4: #fb923c;
+  --navbar-border: rgba(194, 65, 12, 0.3);
+  --navbar-shadow: 0 6px 24px -8px rgba(194, 65, 12, 0.35),
+    0 2px 6px -1px rgba(194, 65, 12, 0.1);
+  --navbar-text: rgba(82, 27, 0, 0.85);
+  --navbar-text-active: #ffffff;
+  --navbar-active-bg: rgba(255, 255, 255, 0.22);
 }
 
 .dark {
-  --background: #0f172a;
+  --background: #0a1220;
   --foreground: #e2e8f0;
 
   --primary: #60a5fa;
@@ -79,9 +110,116 @@
   --accent: #4ade80;
   --accent-light: #14532d;
   --cta: #fb923c;
-  --card: #1e293b;
+  --card: #141e32;
   --text-muted: #94a3b8;
-  --border: #334155;
+  --border: rgba(255, 255, 255, 0.1);
+
+  /* Semánticos — dark theme */
+  --surface: #141e32;
+  --surface-elevated: #1a2540;
+  --surface-subtle: #0a1220;
+  --text-strong: #f1f5f9;
+  --text-medium: #cbd5e1;
+  --border-soft: rgba(255, 255, 255, 0.1);
+  --border-strong: rgba(255, 255, 255, 0.18);
+
+  /* Dashboard en dark: slate deep con tinte cálido sutil */
+  --dashboard-bg-1: #0a1220;
+  --dashboard-bg-2: #0f1a2e;
+  --dashboard-bg-3: #14213c;
+  --dashboard-bg-4: #121b30;
+  --dashboard-bg-5: #0a1220;
+  --dashboard-dots: rgba(255, 255, 255, 0.04);
+  --dashboard-glow-1: rgba(230, 126, 34, 0.1);
+  --dashboard-glow-2: rgba(46, 134, 193, 0.08);
+
+  /* Navbar en dark: naranja tierra profundo */
+  --navbar-bg-1: #7c2d12;
+  --navbar-bg-2: #9a3412;
+  --navbar-bg-3: #c2410c;
+  --navbar-bg-4: #9a3412;
+  --navbar-border: rgba(251, 146, 60, 0.4);
+  --navbar-shadow: 0 6px 24px -8px rgba(0, 0, 0, 0.5),
+    0 2px 6px -1px rgba(194, 65, 12, 0.3);
+  --navbar-text: rgba(254, 215, 170, 0.85);
+  --navbar-text-active: #ffffff;
+  --navbar-active-bg: rgba(255, 255, 255, 0.15);
+
+  /* Tokens de v2.1 adaptados */
+  --color-papel: #141e32;
+  --color-papel-alt: #1a2540;
+  --color-texto: #f1f5f9;
+  --color-texto-medio: #cbd5e1;
+  --color-borde: rgba(255, 255, 255, 0.1);
+  --color-docentes-bg: #1e3a5f;
+  --color-docentes-dark: #93c5fd;
+}
+
+/* ============================================
+   Dark mode — overrides agresivos para cards,
+   borders y textos hardcoded en tailwind arbitrary values.
+   ============================================ */
+.dark .bento-card {
+  /* Reemplaza bg-white → surface elevated */
+  background-color: var(--surface-elevated);
+}
+.dark .bento-card[class*='bg-white']:not([class*='bg-white/']),
+.dark [class*='bg-white']:not([class*='bg-white/']):not(nav):not(header) {
+  background-color: var(--surface-elevated);
+}
+.dark .bento-card:hover {
+  box-shadow:
+    0 24px 56px -12px rgba(46, 134, 193, 0.35),
+    0 8px 20px -4px rgba(39, 174, 96, 0.22),
+    0 2px 8px -1px rgba(0, 0, 0, 0.35);
+}
+.dark .bento-card::before {
+  background:
+    radial-gradient(65% 85% at 0% 0%, rgba(46, 134, 193, 0.35), transparent 65%),
+    radial-gradient(65% 85% at 100% 100%, rgba(39, 174, 96, 0.3), transparent 65%),
+    radial-gradient(45% 50% at 50% 50%, rgba(251, 146, 60, 0.15), transparent 70%);
+}
+
+/* Borders hardcoded muy claros → border suave dark */
+.dark [class*='border-[#e2e8f0]'],
+.dark [class*='border-[rgba(31,46,61,0.08)]'],
+.dark [class*='border-[rgba(31,46,61,0.1)]'],
+.dark [class*='border-[rgba(31,46,61,0.12)]'] {
+  border-color: var(--border-soft) !important;
+}
+
+/* Textos hardcoded oscuros → text-strong en dark */
+.dark [class*='text-[#1F2E3D]'] {
+  color: var(--text-strong) !important;
+}
+.dark [class*='text-[#3d4a5a]'],
+.dark [class*='text-[#4A5968]'] {
+  color: var(--text-medium) !important;
+}
+
+/* Backgrounds pastel se intensifican un poco para verse en dark */
+.dark [class*='bg-[#D7EAF6]'] {
+  background-color: rgba(46, 134, 193, 0.15) !important;
+  color: #93c5fd !important;
+}
+.dark [class*='bg-[#D6F0E0]'] {
+  background-color: rgba(39, 174, 96, 0.15) !important;
+  color: #86efac !important;
+}
+.dark [class*='bg-[#EDE3F6]'],
+.dark [class*='bg-[#ede9fe]'] {
+  background-color: rgba(165, 105, 189, 0.15) !important;
+  color: #c4b5fd !important;
+}
+.dark [class*='bg-[#fef3c7]'],
+.dark [class*='bg-[#fef9e0]'] {
+  background-color: rgba(251, 191, 36, 0.12) !important;
+  color: #fcd34d !important;
+}
+
+/* Background gradient from white variants — skip si es la navbar (header) */
+.dark [class*='from-white'] {
+  --tw-gradient-from: var(--surface-elevated) !important;
 }
 
 @theme inline {

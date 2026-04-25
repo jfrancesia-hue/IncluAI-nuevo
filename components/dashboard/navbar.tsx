@@ -61,12 +61,12 @@ export function Navbar({ perfil }: { perfil: Perfil }) {
 
   return (
     <header
-      className="sticky top-0 z-30 border-b border-[rgba(194,65,12,0.3)] backdrop-blur-2xl"
+      className="sticky top-0 z-30 border-b backdrop-blur-2xl"
       style={{
         background:
-          'linear-gradient(90deg, #fde68a 0%, #f59e0b 35%, #E67E22 65%, #fb923c 100%)',
-        boxShadow:
-          '0 6px 24px -8px rgba(194, 65, 12, 0.35), 0 2px 6px -1px rgba(194, 65, 12, 0.1)',
+          'linear-gradient(90deg, var(--navbar-bg-1) 0%, var(--navbar-bg-2) 35%, var(--navbar-bg-3) 65%, var(--navbar-bg-4) 100%)',
+        borderBottomColor: 'var(--navbar-border)',
+        boxShadow: 'var(--navbar-shadow)',
       }}
     >
       {/* Hairline brillante debajo del border */}
@@ -96,10 +96,14 @@ export function Navbar({ perfil }: { perfil: Perfil }) {
                 style={{
                   fontFamily: 'var(--font-display)',
                   letterSpacing: '-0.005em',
-                  color: active ? '#ffffff' : 'rgba(82, 27, 0, 0.85)',
-                  background: active ? 'rgba(255, 255, 255, 0.22)' : 'transparent',
+                  color: active
+                    ? 'var(--navbar-text-active)'
+                    : 'var(--navbar-text)',
+                  background: active
+                    ? 'var(--navbar-active-bg)'
+                    : 'transparent',
                   textShadow: active
-                    ? '0 1px 2px rgba(82, 27, 0, 0.3)'
+                    ? '0 1px 2px rgba(0, 0, 0, 0.3)'
                     : undefined,
                 }}
               >
@@ -146,12 +150,15 @@ export function Navbar({ perfil }: { perfil: Perfil }) {
           <Link
             href="/perfil"
             aria-current={pathname.startsWith('/perfil') ? 'page' : undefined}
-            className="flex items-center gap-2 rounded-full border border-[rgba(31,46,61,0.1)] bg-white px-1.5 py-1 text-sm transition hover:bg-[#D7EAF6]"
-            style={
-              pathname.startsWith('/perfil')
-                ? { background: '#D7EAF6', borderColor: '#2E86C1' }
-                : undefined
-            }
+            className="flex items-center gap-2 rounded-full border px-1.5 py-1 text-sm transition"
+            style={{
+              background: pathname.startsWith('/perfil')
+                ? 'rgba(255,255,255,0.35)'
+                : 'rgba(255,255,255,0.9)',
+              borderColor: pathname.startsWith('/perfil')
+                ? 'rgba(255,255,255,0.5)'
+                : 'rgba(255,255,255,0.3)',
+            }}
           >
             <span
               aria-hidden
@@ -171,8 +178,11 @@ export function Navbar({ perfil }: { perfil: Perfil }) {
           <form action={signOutAction}>
             <button
               type="submit"
-              className="text-xs font-medium text-[#4A5968] transition hover:text-[#dc2626]"
-              style={{ fontFamily: 'var(--font-display)' }}
+              className="text-xs font-bold transition"
+              style={{
+                fontFamily: 'var(--font-display)',
+                color: 'var(--navbar-text)',
+              }}
             >
               Salir
             </button>
@@ -185,7 +195,7 @@ export function Navbar({ perfil }: { perfil: Perfil }) {
         aria-label="Navegación principal móvil"
         className="flex items-center justify-around border-t border-white/20 px-2 py-1.5 md:hidden"
         style={{
-          background: 'rgba(194, 65, 12, 0.15)',
+          background: 'rgba(0, 0, 0, 0.08)',
           backdropFilter: 'blur(12px)',
         }}
       >
@@ -199,9 +209,11 @@ export function Navbar({ perfil }: { perfil: Perfil }) {
               className="rounded-[10px] px-3 py-1.5 text-xs font-bold transition"
               style={{
                 fontFamily: 'var(--font-display)',
-                color: active ? '#ffffff' : 'rgba(82, 27, 0, 0.85)',
+                color: active
+                  ? 'var(--navbar-text-active)'
+                  : 'var(--navbar-text)',
                 background: active
-                  ? 'rgba(255, 255, 255, 0.25)'
+                  ? 'var(--navbar-active-bg)'
                   : 'transparent',
               }}
             >
