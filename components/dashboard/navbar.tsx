@@ -60,14 +60,20 @@ export function Navbar({ perfil }: { perfil: Perfil }) {
           : 'Premium ✓';
 
   return (
-    <header className="sticky top-0 z-30 border-b border-[rgba(31,46,61,0.08)] bg-[#FBF8F2]/80 backdrop-blur-2xl">
-      {/* Hairline gradient sutil debajo del border para dar profundidad */}
+    <header
+      className="sticky top-0 z-30 border-b border-[rgba(230,126,34,0.18)] backdrop-blur-2xl"
+      style={{
+        background:
+          'linear-gradient(90deg, rgba(254,243,199,0.85) 0%, rgba(253,186,116,0.65) 50%, rgba(254,215,170,0.75) 100%)',
+      }}
+    >
+      {/* Hairline gradient naranja sutil debajo del border */}
       <div
         aria-hidden
         className="pointer-events-none absolute inset-x-0 -bottom-px h-px"
         style={{
           background:
-            'linear-gradient(90deg, transparent, rgba(46,134,193,0.25) 35%, rgba(39,174,96,0.25) 65%, transparent)',
+            'linear-gradient(90deg, transparent, rgba(230,126,34,0.5) 30%, rgba(245,158,11,0.5) 70%, transparent)',
         }}
       />
       <div className="mx-auto flex h-16 w-full max-w-6xl items-center justify-between px-4 sm:px-6">
@@ -88,9 +94,9 @@ export function Navbar({ perfil }: { perfil: Perfil }) {
                 style={{
                   fontFamily: 'var(--font-display)',
                   letterSpacing: '-0.005em',
-                  color: active ? '#1F2E3D' : '#4A5968',
+                  color: active ? '#9c4a0e' : '#7c3a0d',
                   background: active
-                    ? 'rgba(46, 134, 193, 0.08)'
+                    ? 'rgba(230, 126, 34, 0.18)'
                     : 'transparent',
                 }}
               >
@@ -101,8 +107,8 @@ export function Navbar({ perfil }: { perfil: Perfil }) {
                     className="absolute -bottom-[9px] left-1/2 h-[2px] w-6 -translate-x-1/2 rounded-full"
                     style={{
                       background:
-                        'linear-gradient(90deg, #27AE60, #2E86C1)',
-                      boxShadow: '0 0 8px rgba(46, 134, 193, 0.4)',
+                        'linear-gradient(90deg, #E67E22, #f59e0b)',
+                      boxShadow: '0 0 10px rgba(230, 126, 34, 0.55)',
                     }}
                   />
                 )}
@@ -174,7 +180,7 @@ export function Navbar({ perfil }: { perfil: Perfil }) {
       {/* Mobile nav: tabs abajo del header en mobile */}
       <nav
         aria-label="Navegación principal móvil"
-        className="flex items-center justify-around border-t border-[rgba(31,46,61,0.06)] bg-white/40 px-2 py-1.5 backdrop-blur md:hidden"
+        className="flex items-center justify-around border-t border-[rgba(230,126,34,0.15)] bg-white/30 px-2 py-1.5 backdrop-blur md:hidden"
       >
         {NAV_LINKS.map((link) => {
           const active = isActive(pathname, link.href);
@@ -186,8 +192,10 @@ export function Navbar({ perfil }: { perfil: Perfil }) {
               className="rounded-[10px] px-3 py-1.5 text-xs font-semibold transition"
               style={{
                 fontFamily: 'var(--font-display)',
-                color: active ? '#2E86C1' : '#4A5968',
-                background: active ? 'rgba(46, 134, 193, 0.08)' : 'transparent',
+                color: active ? '#9c4a0e' : '#7c3a0d',
+                background: active
+                  ? 'rgba(230, 126, 34, 0.18)'
+                  : 'transparent',
               }}
             >
               {link.label}
