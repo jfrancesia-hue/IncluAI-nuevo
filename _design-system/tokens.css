@@ -1,0 +1,225 @@
+/* ============================================
+   DESIGN SYSTEM TOKENS — copiar a globals.css
+   DESPUÉS de @import "tailwindcss";
+   ============================================ */
+
+:root {
+  /* ─── Brand principal ─── */
+  --primary: #2E86C1;         /* Color dominante del producto */
+  --primary-light: #5DA9D8;
+  --primary-bg: #D7EAF6;      /* Pastel del primary (badges/pills) */
+  --primary-dark: #1F5F8A;
+  --accent: #27AE60;          /* Color secundario (éxito, highlights) */
+  --accent-light: #D6F0E0;
+  --accent-dark: #0d7c3a;
+  --cta: #E67E22;             /* Naranja para CTAs + navbar */
+
+  /* ─── Superficies ─── */
+  --surface: #ffffff;         /* Card background base */
+  --surface-elevated: #ffffff;
+  --surface-subtle: #FBF8F2;  /* Background global con tinte */
+
+  /* ─── Texto ─── */
+  --text-strong: #1F2E3D;     /* Titulares, texto principal */
+  --text-medium: #3d4a5a;     /* Descripciones, body secundario */
+  --text-muted: #4A5968;      /* Labels, captions */
+
+  /* ─── Borders ─── */
+  --border: rgba(31, 46, 61, 0.12);
+  --border-soft: rgba(31, 46, 61, 0.12);
+  --border-strong: rgba(31, 46, 61, 0.2);
+
+  /* ─── Fonts ─── */
+  /* --font-inter y --font-jakarta los provee next/font */
+  --font-display: var(--font-jakarta), 'Plus Jakarta Sans', system-ui, sans-serif;
+  --font-body: var(--font-inter), 'Inter', system-ui, sans-serif;
+  --font-sans: var(--font-inter);
+  --font-serif: var(--font-jakarta);
+
+  /* ─── Radius ─── */
+  --radius-sm: 8px;
+  --radius-md: 12px;
+  --radius-lg: 16px;
+  --radius-xl: 20px;
+  --radius-2xl: 24px;
+
+  /* ─── Shadows ─── */
+  --shadow-soft: 0 2px 12px rgba(0, 0, 0, 0.04);
+  --shadow-medium: 0 4px 20px rgba(0, 0, 0, 0.08);
+  --shadow-strong: 0 12px 32px rgba(0, 0, 0, 0.08);
+
+  /* ─── Dashboard background (gradient horizontal cálido) ─── */
+  --dashboard-bg-1: #fef9e0;
+  --dashboard-bg-2: #fef3c7;
+  --dashboard-bg-3: #fde68a;
+  --dashboard-bg-4: #fed7aa;
+  --dashboard-bg-5: #fef3c7;
+  --dashboard-dots: rgba(146, 64, 14, 0.1);
+  --dashboard-glow-1: rgba(251, 146, 60, 0.18);
+  --dashboard-glow-2: rgba(230, 126, 34, 0.12);
+
+  /* ─── Navbar (gradient saturado + meta) ─── */
+  --navbar-bg-1: #fde68a;
+  --navbar-bg-2: #f59e0b;
+  --navbar-bg-3: #E67E22;
+  --navbar-bg-4: #fb923c;
+  --navbar-border: rgba(194, 65, 12, 0.3);
+  --navbar-shadow:
+    0 6px 24px -8px rgba(194, 65, 12, 0.35),
+    0 2px 6px -1px rgba(194, 65, 12, 0.1);
+  --navbar-text: rgba(82, 27, 0, 0.85);
+  --navbar-text-active: #ffffff;
+  --navbar-active-bg: rgba(255, 255, 255, 0.22);
+
+  /* Pills dentro del navbar (avatar, toggle, etc) */
+  --navbar-pill-bg: rgba(255, 255, 255, 0.92);
+  --navbar-pill-bg-hover: rgba(255, 255, 255, 1);
+  --navbar-pill-border: rgba(255, 255, 255, 0.45);
+  --navbar-pill-text: #1F2E3D;
+
+  /* Background/foreground globales (para body) */
+  --background: var(--dashboard-bg-2);
+  --foreground: var(--text-strong);
+}
+
+.dark {
+  /* ─── Brand (se mantiene — el acento se ve bien sobre negro) ─── */
+  --primary: #60a5fa;
+  --primary-light: #93c5fd;
+  --primary-bg: #1c1c1c;
+  --accent: #4ade80;
+  --accent-light: #14532d;
+  --cta: #fb923c;
+
+  /* ─── Superficies (negro neutral estilo Vercel/Linear) ─── */
+  --surface: #161616;
+  --surface-elevated: #1c1c1c;
+  --surface-subtle: #0f0f0f;
+
+  /* ─── Texto ─── */
+  --text-strong: #fafafa;
+  --text-medium: #c4c4c4;
+  --text-muted: #a3a3a3;
+
+  /* ─── Borders ─── */
+  --border: rgba(255, 255, 255, 0.08);
+  --border-soft: rgba(255, 255, 255, 0.08);
+  --border-strong: rgba(255, 255, 255, 0.15);
+
+  /* ─── Dashboard en dark: casi negro con gradient muy sutil ─── */
+  --dashboard-bg-1: #0a0a0a;
+  --dashboard-bg-2: #0e0e0e;
+  --dashboard-bg-3: #131313;
+  --dashboard-bg-4: #0e0e0e;
+  --dashboard-bg-5: #0a0a0a;
+  --dashboard-dots: rgba(255, 255, 255, 0.035);
+  --dashboard-glow-1: rgba(230, 126, 34, 0.08);
+  --dashboard-glow-2: rgba(230, 126, 34, 0.05);
+
+  /* ─── Navbar en dark: naranja tierra profundo ─── */
+  --navbar-bg-1: #7c2d12;
+  --navbar-bg-2: #9a3412;
+  --navbar-bg-3: #c2410c;
+  --navbar-bg-4: #9a3412;
+  --navbar-border: rgba(251, 146, 60, 0.35);
+  --navbar-shadow:
+    0 6px 24px -8px rgba(0, 0, 0, 0.7),
+    0 2px 6px -1px rgba(194, 65, 12, 0.3);
+  --navbar-text: rgba(254, 215, 170, 0.88);
+  --navbar-text-active: #ffffff;
+  --navbar-active-bg: rgba(255, 255, 255, 0.15);
+
+  /* Pills en navbar (dark) */
+  --navbar-pill-bg: rgba(26, 26, 26, 0.85);
+  --navbar-pill-bg-hover: rgba(40, 40, 40, 0.95);
+  --navbar-pill-border: rgba(255, 255, 255, 0.18);
+  --navbar-pill-text: #fafafa;
+
+  --background: var(--dashboard-bg-2);
+  --foreground: var(--text-strong);
+}
+
+/* ─── @theme inline para Tailwind v4 ─── */
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-primary: var(--primary);
+  --color-primary-light: var(--primary-light);
+  --color-primary-bg: var(--primary-bg);
+  --color-accent: var(--accent);
+  --color-accent-light: var(--accent-light);
+  --color-cta: var(--cta);
+  --color-card: var(--surface);
+  --color-muted: var(--text-muted);
+  --color-border: var(--border);
+}
+
+/* ─── Body con tipografía base calibrada ─── */
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-sans), system-ui, sans-serif;
+  font-size: 16px;
+  line-height: 1.6;
+  letter-spacing: -0.006em;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+}
+
+h1, h2, h3, h4 {
+  font-family: var(--font-display), system-ui, sans-serif;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+}
+
+h1 {
+  letter-spacing: -0.03em;
+}
+
+/* Focus ring accesible */
+*:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
+/* ─── Dark mode overrides agresivos ─── */
+/* Estos capturan tailwind arbitrary values hardcoded y los adaptan */
+.dark [class*='bg-white']:not([class*='bg-white/']):not(nav):not(header) {
+  background-color: var(--surface-elevated);
+}
+.dark [class*='border-[#e2e8f0]'],
+.dark [class*='border-[rgba(31,46,61,0.08)]'],
+.dark [class*='border-[rgba(31,46,61,0.1)]'],
+.dark [class*='border-[rgba(31,46,61,0.12)]'] {
+  border-color: var(--border-soft) !important;
+}
+.dark [class*='text-[#1F2E3D]'] {
+  color: var(--text-strong) !important;
+}
+.dark [class*='text-[#3d4a5a]'],
+.dark [class*='text-[#4A5968]'] {
+  color: var(--text-medium) !important;
+}
+.dark [class*='bg-[#D7EAF6]'] {
+  background-color: rgba(46, 134, 193, 0.15) !important;
+  color: #93c5fd !important;
+}
+.dark [class*='bg-[#D6F0E0]'] {
+  background-color: rgba(39, 174, 96, 0.15) !important;
+  color: #86efac !important;
+}
+.dark [class*='bg-[#EDE3F6]'],
+.dark [class*='bg-[#ede9fe]'] {
+  background-color: rgba(165, 105, 189, 0.15) !important;
+  color: #c4b5fd !important;
+}
+.dark [class*='bg-[#fef3c7]'],
+.dark [class*='bg-[#fef9e0]'] {
+  background-color: rgba(251, 191, 36, 0.12) !important;
+  color: #fcd34d !important;
+}
+.dark [class*='from-white'] {
+  --tw-gradient-from: var(--surface-elevated) !important;
+}
