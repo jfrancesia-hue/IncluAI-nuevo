@@ -128,7 +128,7 @@ export default async function PlanesPage({
               </span>
             ) : (
               <UpgradeButton plan="basico">
-                Suscribirme con Mercado Pago
+                Suscribirme
               </UpgradeButton>
             )
           }
@@ -150,7 +150,7 @@ export default async function PlanesPage({
               </span>
             ) : (
               <UpgradeButton plan="profesional">
-                Suscribirme con Mercado Pago
+                Suscribirme
               </UpgradeButton>
             )
           }
@@ -172,7 +172,7 @@ export default async function PlanesPage({
               </span>
             ) : (
               <UpgradeButton plan="premium">
-                Suscribirme con Mercado Pago
+                Suscribirme
               </UpgradeButton>
             )
           }

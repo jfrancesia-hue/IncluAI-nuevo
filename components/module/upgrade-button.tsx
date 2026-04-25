@@ -43,9 +43,14 @@ export function UpgradeButton({ plan, children }: Props) {
   }
 
   return (
-    <div className="flex flex-col gap-2">
-      <Button onClick={subscribe} disabled={isPending} size="lg" className="magnetic-btn">
-        {isPending ? 'Redirigiendo…' : children ?? 'Suscribirme con Mercado Pago'}
+    <div className="flex w-full flex-col gap-2">
+      <Button
+        onClick={subscribe}
+        disabled={isPending}
+        size="lg"
+        className="magnetic-btn w-full justify-center whitespace-nowrap text-sm sm:text-base"
+      >
+        {isPending ? 'Redirigiendo…' : children ?? 'Suscribirme'}
       </Button>
       {error && <p className="text-xs text-red-600">{error}</p>}
     </div>
