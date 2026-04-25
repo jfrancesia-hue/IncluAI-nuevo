@@ -305,6 +305,108 @@ h1 {
   }
 }
 
+/* ============================================
+   Form fields premium 2026
+   Inputs/textareas con focus ring suave + transition.
+   ============================================ */
+.field-input,
+.field-textarea,
+.field-select {
+  width: 100%;
+  padding: 12px 14px;
+  background: white;
+  border: 1px solid rgba(31, 46, 61, 0.12);
+  border-radius: 12px;
+  font-size: 15px;
+  line-height: 1.5;
+  color: var(--color-texto);
+  transition:
+    border-color 200ms ease,
+    box-shadow 200ms ease,
+    background 200ms ease;
+  font-family: inherit;
+}
+.field-input::placeholder,
+.field-textarea::placeholder {
+  color: rgba(74, 89, 104, 0.55);
+}
+.field-input:hover,
+.field-textarea:hover,
+.field-select:hover {
+  border-color: rgba(31, 46, 61, 0.22);
+}
+.field-input:focus,
+.field-textarea:focus,
+.field-select:focus {
+  outline: none;
+  border-color: var(--color-docentes-primary);
+  box-shadow: 0 0 0 4px rgba(46, 134, 193, 0.12);
+  background: white;
+}
+.field-textarea {
+  resize: vertical;
+  min-height: 96px;
+}
+
+.field-label {
+  display: block;
+  font-family: var(--font-display);
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--color-texto);
+  margin-bottom: 8px;
+  letter-spacing: -0.01em;
+}
+.field-help {
+  font-size: 12px;
+  color: var(--color-texto-medio);
+  margin-top: 6px;
+  line-height: 1.5;
+}
+
+/* ============================================
+   KPI dot — pulse para "en vivo" / "ok"
+   ============================================ */
+.kpi-dot {
+  display: inline-block;
+  width: 8px;
+  height: 8px;
+  border-radius: 999px;
+  position: relative;
+}
+.kpi-dot::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: 999px;
+  background: inherit;
+  animation: kpi-pulse 2s ease-in-out infinite;
+}
+@keyframes kpi-pulse {
+  0%   { transform: scale(1);   opacity: 0.6; }
+  70%  { transform: scale(2.2); opacity: 0;   }
+  100% { transform: scale(1);   opacity: 0;   }
+}
+
+/* ============================================
+   Skeleton loading shimmer
+   ============================================ */
+.skeleton {
+  background: linear-gradient(
+    90deg,
+    rgba(31, 46, 61, 0.06) 0%,
+    rgba(31, 46, 61, 0.12) 50%,
+    rgba(31, 46, 61, 0.06) 100%
+  );
+  background-size: 200% 100%;
+  animation: skeleton-shimmer 1.6s ease-in-out infinite;
+  border-radius: 8px;
+}
+@keyframes skeleton-shimmer {
+  0%   { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+
 @media (prefers-reduced-motion: reduce) {
   .reveal,
   .reveal.in-view {

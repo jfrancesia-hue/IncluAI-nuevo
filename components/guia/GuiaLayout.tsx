@@ -10,6 +10,7 @@ import { GrillaEvaluacion } from './GrillaEvaluacion';
 import { TipsComunicacion } from './TipsComunicacion';
 import { AlertaErrores } from './AlertaErrores';
 import { CtaFeedback } from './CtaFeedback';
+import { RevealOnScroll } from '@/components/landing/RevealOnScroll';
 import type { GuiaPedagogica } from '@/lib/schemas/guia-schema';
 import type { VideoEnriquecido } from '@/lib/servicios/videos';
 
@@ -50,31 +51,56 @@ export function GuiaLayout({ guia, metadata, userPlan = 'free' }: Props) {
           padding: '40px 24px 80px',
         }}
       >
-        <VistaRapida data={guia.vistaRapida} />
+        <RevealOnScroll>
+          <VistaRapida data={guia.vistaRapida} />
+        </RevealOnScroll>
 
-        <SeccionConceptosClave conceptos={guia.conceptosClave} />
+        <RevealOnScroll>
+          <SeccionConceptosClave conceptos={guia.conceptosClave} />
+        </RevealOnScroll>
 
-        <SeccionEstrategias estrategias={guia.estrategias} />
+        <RevealOnScroll>
+          <SeccionEstrategias estrategias={guia.estrategias} />
+        </RevealOnScroll>
 
-        {guia.planificacion && <SeccionPlanificacion data={guia.planificacion} />}
+        {guia.planificacion && (
+          <RevealOnScroll>
+            <SeccionPlanificacion data={guia.planificacion} />
+          </RevealOnScroll>
+        )}
 
-        <SeccionVideos videos={videos} />
+        <RevealOnScroll>
+          <SeccionVideos videos={videos} />
+        </RevealOnScroll>
 
-        <SeccionMateriales materiales={guia.materiales} />
+        <RevealOnScroll>
+          <SeccionMateriales materiales={guia.materiales} />
+        </RevealOnScroll>
 
-        <GrillaEvaluacion
-          criterios={guia.criteriosEvaluacion}
-          guiaId={metadata.id}
-        />
+        <RevealOnScroll>
+          <GrillaEvaluacion
+            criterios={guia.criteriosEvaluacion}
+            guiaId={metadata.id}
+          />
+        </RevealOnScroll>
 
-        <TipsComunicacion tips={guia.tipsComunicacion} modulo={metadata.modulo} />
+        <RevealOnScroll>
+          <TipsComunicacion
+            tips={guia.tipsComunicacion}
+            modulo={metadata.modulo}
+          />
+        </RevealOnScroll>
 
-        <AlertaErrores errores={guia.erroresComunes} />
+        <RevealOnScroll>
+          <AlertaErrores errores={guia.erroresComunes} />
+        </RevealOnScroll>
 
-        <CtaFeedback
-          guiaId={metadata.id}
-          initialStars={metadata.feedback_estrellas ?? 0}
-        />
+        <RevealOnScroll>
+          <CtaFeedback
+            guiaId={metadata.id}
+            initialStars={metadata.feedback_estrellas ?? 0}
+          />
+        </RevealOnScroll>
 
         {guia.fuentesNormativas && guia.fuentesNormativas.length > 0 && (
           <footer

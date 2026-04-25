@@ -1,6 +1,6 @@
-import Image from 'next/image';
 import { Suspense } from 'react';
-import { PHOTOS } from '@/lib/photos';
+import Link from 'next/link';
+import { AuthShell } from '@/components/ui/AuthShell';
 import { LoginForm } from './login-form';
 
 export const metadata = {
@@ -9,34 +9,46 @@ export const metadata = {
 
 export default function LoginPage() {
   return (
-    <div className="overflow-hidden rounded-[20px] bg-white shadow-[0_10px_40px_rgba(15,34,64,0.1)]">
-      <div className="relative h-32 w-full overflow-hidden sm:h-40">
-        <Image
-          src={PHOTOS.login}
-          alt="Docente con tablet frente a su aula"
-          width={900}
-          height={400}
-          priority
-          className="h-full w-full object-cover"
-        />
-        <div
-          aria-hidden
-          className="absolute inset-0 bg-gradient-to-t from-white/80 via-transparent to-transparent"
-        />
+    <AuthShell
+      asideTitle={
+        <>
+          ¡Qué bueno{' '}
+          <span className="gradient-text">verte de nuevo!</span>
+        </>
+      }
+      asideBullets={[
+        'Tus guías y favoritos te esperan exactamente como las dejaste',
+        'IA Claude Opus 4.7 disponible en plan Premium',
+        'WCAG 2.1 AA, Ley 27.306, datos en Argentina',
+      ]}
+    >
+      <h1
+        className="text-3xl font-bold text-[#1F2E3D] sm:text-4xl"
+        style={{
+          fontFamily: 'var(--font-display)',
+          letterSpacing: '-0.025em',
+          lineHeight: 1.1,
+        }}
+      >
+        Ingresá a tu cuenta
+      </h1>
+      <p className="mt-2 text-base text-[#4A5968]" style={{ lineHeight: 1.6 }}>
+        Seguí planificando clases inclusivas.
+      </p>
+      <div className="mt-8">
+        <Suspense>
+          <LoginForm />
+        </Suspense>
       </div>
-      <div className="px-6 pb-7 pt-5 sm:px-8">
-        <h1 className="font-serif text-2xl font-bold text-[#2E86C1] sm:text-3xl">
-          ¡Qué bueno verte de nuevo!
-        </h1>
-        <p className="mt-1 text-sm text-[#4A5968]">
-          Ingresá para seguir planificando clases inclusivas.
-        </p>
-        <div className="mt-6">
-          <Suspense>
-            <LoginForm />
-          </Suspense>
-        </div>
-      </div>
-    </div>
+      <p className="mt-8 text-sm text-[#4A5968]">
+        ¿Todavía no tenés cuenta?{' '}
+        <Link
+          href="/registro"
+          className="font-semibold text-[#2E86C1] hover:underline"
+        >
+          Creá una gratis
+        </Link>
+      </p>
+    </AuthShell>
   );
 }

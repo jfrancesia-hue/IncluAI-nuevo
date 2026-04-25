@@ -1,9 +1,13 @@
 import Link from 'next/link';
-import Image from 'next/image';
-import { RECURSOS_AR, filtrarRecursos, type Recurso, type PublicoRecurso } from '@/data/recursos-ar';
-import { Card, CardContent } from '@/components/ui/card';
+import {
+  RECURSOS_AR,
+  filtrarRecursos,
+  type Recurso,
+  type PublicoRecurso,
+} from '@/data/recursos-ar';
 import { cn } from '@/lib/utils';
-import { PHOTOS } from '@/lib/photos';
+import { PageShell } from '@/components/ui/PageShell';
+import { RevealOnScroll } from '@/components/landing/RevealOnScroll';
 
 export const metadata = { title: 'Biblioteca · IncluAI' };
 
@@ -22,97 +26,135 @@ const PUBLICOS: { id: PublicoRecurso; label: string; icon: string }[] = [
   { id: 'profesional', label: 'Profesionales', icon: '⚕️' },
 ];
 
-export default async function RecursosPage({ searchParams }: { searchParams: SP }) {
+export default async function RecursosPage({
+  searchParams,
+}: {
+  searchParams: SP;
+}) {
   const sp = await searchParams;
 
   const publico = PUBLICOS.some((p) => p.id === sp.publico)
     ? (sp.publico as PublicoRecurso)
     : undefined;
-  const tipo = TIPOS.some((t) => t.id === sp.tipo) ? (sp.tipo as Recurso['tipo']) : undefined;
+  const tipo = TIPOS.some((t) => t.id === sp.tipo)
+    ? (sp.tipo as Recurso['tipo'])
+    : undefined;
 
   const lista = filtrarRecursos({ publico, tipo });
 
   return (
-    <div className="flex flex-col gap-6">
-      <header className="relative overflow-hidden rounded-[20px] bg-white shadow-[0_2px_12px_rgba(15,34,64,0.05)]">
-        <div className="relative h-32 w-full overflow-hidden sm:h-40">
-          <Image
-            src={PHOTOS.recursosHeader}
-            alt="Docente y niños aprendiendo juntos"
-            width={1200}
-            height={400}
-            className="h-full w-full object-cover"
-          />
-          <div aria-hidden className="absolute inset-0 bg-gradient-to-t from-white/80 via-white/30 to-transparent" />
-        </div>
-        <div className="px-6 pb-5 pt-3 text-center">
-          <h1 className="font-serif text-3xl font-bold text-primary sm:text-4xl">
-            Biblioteca de recursos
-          </h1>
-          <p className="mx-auto mt-2 max-w-2xl text-sm text-muted">
-            Recursos oficiales y comunitarios de Argentina — portales, normativa,
-            trámites y herramientas curadas por tipo de discapacidad y público.
-          </p>
-        </div>
-      </header>
-
-      <section className="flex flex-col gap-2">
-        <p className="text-xs uppercase tracking-wide text-muted">Público</p>
-        <div className="flex flex-wrap gap-2">
-          <Chip href="/recursos" active={!publico}>Todos</Chip>
-          {PUBLICOS.map((p) => (
-            <Chip
-              key={p.id}
-              href={`/recursos?publico=${p.id}${tipo ? `&tipo=${tipo}` : ''}`}
-              active={publico === p.id}
+    <PageShell
+      eyebrow="📖 Biblioteca"
+      title={
+        <>
+          Biblioteca de{' '}
+          <span className="gradient-text">recursos oficiales</span>
+        </>
+      }
+      subtitle="Recursos oficiales y comunitarios de Argentina — portales, normativa, trámites y herramientas curadas por tipo de discapacidad y público."
+      decoration="soft"
+      tone="docentes"
+      revealChildren={false}
+    >
+      <div className="flex flex-col gap-6">
+        <RevealOnScroll>
+          <section className="flex flex-col gap-2">
+            <p
+              className="text-xs uppercase text-[#4A5968]"
+              style={{
+                fontFamily: 'var(--font-display)',
+                letterSpacing: '0.08em',
+              }}
             >
-              {p.icon} {p.label}
-            </Chip>
-          ))}
-        </div>
-      </section>
+              Público
+            </p>
+            <div className="flex flex-wrap gap-2">
+              <Chip href="/recursos" active={!publico}>
+                Todos
+              </Chip>
+              {PUBLICOS.map((p) => (
+                <Chip
+                  key={p.id}
+                  href={`/recursos?publico=${p.id}${tipo ? `&tipo=${tipo}` : ''}`}
+                  active={publico === p.id}
+                >
+                  {p.icon} {p.label}
+                </Chip>
+              ))}
+            </div>
+          </section>
+        </RevealOnScroll>
 
-      <section className="flex flex-col gap-2">
-        <p className="text-xs uppercase tracking-wide text-muted">Tipo</p>
-        <div className="flex flex-wrap gap-2">
-          <Chip href={publico ? `/recursos?publico=${publico}` : '/recursos'} active={!tipo}>
-            Todos
-          </Chip>
-          {TIPOS.map((t) => (
-            <Chip
-              key={t.id}
-              href={`/recursos?tipo=${t.id}${publico ? `&publico=${publico}` : ''}`}
-              active={tipo === t.id}
+        <RevealOnScroll delay={80}>
+          <section className="flex flex-col gap-2">
+            <p
+              className="text-xs uppercase text-[#4A5968]"
+              style={{
+                fontFamily: 'var(--font-display)',
+                letterSpacing: '0.08em',
+              }}
             >
-              {t.icon} {t.label}
-            </Chip>
-          ))}
-        </div>
-      </section>
+              Tipo
+            </p>
+            <div className="flex flex-wrap gap-2">
+              <Chip
+                href={publico ? `/recursos?publico=${publico}` : '/recursos'}
+                active={!tipo}
+              >
+                Todos
+              </Chip>
+              {TIPOS.map((t) => (
+                <Chip
+                  key={t.id}
+                  href={`/recursos?tipo=${t.id}${publico ? `&publico=${publico}` : ''}`}
+                  active={tipo === t.id}
+                >
+                  {t.icon} {t.label}
+                </Chip>
+              ))}
+            </div>
+          </section>
+        </RevealOnScroll>
 
-      <p className="text-xs text-muted">
-        {lista.length} de {RECURSOS_AR.length} recursos
-      </p>
+        <p className="text-xs text-[#4A5968]">
+          {lista.length} de {RECURSOS_AR.length} recursos
+        </p>
 
-      <ul className="grid grid-cols-1 gap-3 md:grid-cols-2">
-        {lista.map((r) => (
-          <li key={r.url}>
-            <a href={r.url} target="_blank" rel="noopener noreferrer">
-              <Card className="h-full transition-colors hover:border-accent">
-                <CardContent className="flex h-full flex-col gap-2 p-5">
+        <ul className="grid grid-cols-1 gap-4 md:grid-cols-2">
+          {lista.map((r, i) => (
+            <RevealOnScroll
+              key={r.url}
+              as="li"
+              delay={Math.min(i * 40, 320)}
+            >
+              <a href={r.url} target="_blank" rel="noopener noreferrer">
+                <article className="bento-card spotlight-card flex h-full flex-col gap-2 rounded-[16px] border border-[#e2e8f0] bg-white p-5 shadow-[0_2px_12px_rgba(15,34,64,0.04)]">
                   <div className="flex items-center justify-between gap-2">
-                    <p className="font-serif text-base font-bold text-primary">{r.titulo}</p>
-                    <span className="text-xs text-muted">↗</span>
+                    <p
+                      className="text-base font-bold text-[#1F2E3D]"
+                      style={{
+                        fontFamily: 'var(--font-display)',
+                        letterSpacing: '-0.02em',
+                      }}
+                    >
+                      {r.titulo}
+                    </p>
+                    <span className="text-xs text-[#4A5968]">↗</span>
                   </div>
-                  <p className="text-sm text-foreground">{r.descripcion}</p>
-                  <p className="mt-auto text-xs text-muted">{r.fuente}</p>
-                </CardContent>
-              </Card>
-            </a>
-          </li>
-        ))}
-      </ul>
-    </div>
+                  <p
+                    className="text-sm text-[#1F2E3D]"
+                    style={{ lineHeight: 1.6 }}
+                  >
+                    {r.descripcion}
+                  </p>
+                  <p className="mt-auto text-xs text-[#4A5968]">{r.fuente}</p>
+                </article>
+              </a>
+            </RevealOnScroll>
+          ))}
+        </ul>
+      </div>
+    </PageShell>
   );
 }
 
@@ -129,11 +171,12 @@ function Chip({
     <Link
       href={href}
       className={cn(
-        'inline-flex items-center gap-1.5 rounded-full border px-3 py-1.5 text-sm transition-colors',
+        'inline-flex items-center gap-1.5 rounded-full border px-4 py-2 text-sm font-semibold transition',
         active
-          ? 'border-accent bg-accent-light text-accent'
-          : 'border-border bg-card text-primary hover:bg-primary-bg'
+          ? 'border-[#27AE60] bg-[#D6F0E0] text-[#27AE60] shadow-[0_4px_14px_rgba(39,174,96,0.18)]'
+          : 'border-[#e2e8f0] bg-white text-[#2E86C1] hover:border-[#27AE60] hover:bg-[#FBF8F2]'
       )}
+      style={{ fontFamily: 'var(--font-display)' }}
     >
       {children}
     </Link>

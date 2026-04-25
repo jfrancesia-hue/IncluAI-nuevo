@@ -4,38 +4,68 @@ import type { ReactNode } from 'react';
 export default function LegalLayout({ children }: { children: ReactNode }) {
   return (
     <div className="min-h-screen bg-[#FBF8F2] text-[#1F2E3D]">
-      <header className="border-b border-[rgba(31,46,61,0.08)] bg-white">
+      <header className="sticky top-0 z-30 border-b border-white/20 bg-white/80 backdrop-blur-xl">
         <div className="mx-auto flex max-w-4xl items-center justify-between px-6 py-4">
-          <Link href="/" className="text-lg font-semibold tracking-tight">
-            IncluAI
+          <Link
+            href="/"
+            className="flex items-center gap-1.5 text-lg font-bold text-[#1F2E3D] transition hover:opacity-80"
+            style={{
+              fontFamily: 'var(--font-display)',
+              letterSpacing: '-0.02em',
+            }}
+          >
+            <span aria-hidden>🧩</span> IncluAI
           </Link>
           <nav className="flex gap-5 text-sm text-[#4A5968]">
-            <Link href="/terminos" className="hover:text-[#1F2E3D]">
+            <Link
+              href="/terminos"
+              className="hover:text-[#2E86C1]"
+              style={{ fontFamily: 'var(--font-display)' }}
+            >
               Términos
             </Link>
-            <Link href="/privacidad" className="hover:text-[#1F2E3D]">
+            <Link
+              href="/privacidad"
+              className="hover:text-[#2E86C1]"
+              style={{ fontFamily: 'var(--font-display)' }}
+            >
               Privacidad
             </Link>
-            <Link href="/cookies" className="hover:text-[#1F2E3D]">
+            <Link
+              href="/cookies"
+              className="hover:text-[#2E86C1]"
+              style={{ fontFamily: 'var(--font-display)' }}
+            >
               Cookies
             </Link>
           </nav>
         </div>
       </header>
 
-      <main className="mx-auto max-w-4xl px-6 py-12 sm:py-16">{children}</main>
+      <main className="relative mx-auto max-w-4xl px-6 py-16 sm:py-20">
+        <div
+          aria-hidden
+          className="pointer-events-none absolute inset-x-0 top-0 -z-10 h-[300px]"
+          style={{
+            background:
+              'radial-gradient(70% 60% at 50% 0%, rgba(46,134,193,0.08), transparent 70%)',
+          }}
+        />
+        {children}
+      </main>
 
       <footer className="border-t border-[rgba(31,46,61,0.08)] py-8">
         <div className="mx-auto max-w-4xl px-6 text-sm text-[#4A5968]">
           <p>
-            IncluAI es un producto de <strong>Nativos Consultora Digital</strong> · Catamarca,
-            Argentina · © 2026
+            IncluAI es un producto de{' '}
+            <strong>Nativos Consultora Digital</strong> · Catamarca, Argentina ·
+            © 2026
           </p>
           <p className="mt-2">
             Consultas legales:{' '}
             <a
               href="mailto:legales@nativosconsultora.com"
-              className="underline hover:text-[#1F2E3D]"
+              className="font-semibold text-[#2E86C1] hover:underline"
             >
               legales@nativosconsultora.com
             </a>

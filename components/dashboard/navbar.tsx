@@ -23,10 +23,18 @@ export function Navbar({ perfil }: { perfil: Perfil }) {
           : 'Premium ✓';
 
   return (
-    <header className="sticky top-0 z-30 border-b border-border bg-card/90 backdrop-blur">
+    <header className="sticky top-0 z-30 border-b border-white/10 bg-white/70 backdrop-blur-xl">
       <div className="mx-auto flex h-14 w-full max-w-6xl items-center justify-between px-4 sm:px-6">
-        <Link href="/inicio" className="font-serif text-lg font-bold text-primary">
-          🧩 IncluAI
+        <Link
+          href="/inicio"
+          className="flex items-center gap-1.5 text-lg font-bold text-primary transition hover:opacity-80"
+          style={{
+            fontFamily: 'var(--font-display)',
+            letterSpacing: '-0.02em',
+          }}
+        >
+          <span aria-hidden>🧩</span>
+          IncluAI
         </Link>
 
         <nav aria-label="Navegación principal" className="hidden items-center gap-6 text-sm text-muted md:flex">

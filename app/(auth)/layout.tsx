@@ -1,26 +1,6 @@
-import Link from 'next/link';
-
+// El layout auth ya no impone wrapper — cada página usa AuthShell directamente
+// para tener control sobre el aside (login/registro lo muestran;
+// verificar-email no). Esto da consistencia visual sin sacrificar flexibilidad.
 export default function AuthLayout({ children }: { children: React.ReactNode }) {
-  return (
-    <div className="relative flex min-h-screen flex-1 flex-col items-center justify-center bg-[#FBF8F2] px-4 py-10">
-      <div
-        aria-hidden
-        className="pointer-events-none absolute inset-0 opacity-60"
-        style={{
-          backgroundImage:
-            'radial-gradient(circle at 15% 20%, rgba(22,163,74,0.1), transparent 45%), radial-gradient(circle at 85% 80%, rgba(30,58,95,0.08), transparent 45%)',
-        }}
-      />
-      <Link
-        href="/"
-        className="relative mb-6 inline-flex items-center gap-2 font-serif text-2xl font-bold text-[#2E86C1]"
-      >
-        <span aria-hidden>🧩</span> IncluAI
-      </Link>
-      <div className="relative w-full max-w-[480px]">{children}</div>
-      <p className="relative mt-8 text-xs text-[#4A5968]">
-        IncluAI — Hecho con ❤️ en Argentina 🇦🇷
-      </p>
-    </div>
-  );
+  return <>{children}</>;
 }
