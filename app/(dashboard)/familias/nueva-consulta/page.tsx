@@ -2,6 +2,7 @@ import Link from 'next/link';
 import { checkPlanLimits } from '@/lib/plan';
 import { Alert } from '@/components/ui/alert';
 import { FamiliaWizard } from '@/components/wizards/familia-wizard';
+import { PageShell } from '@/components/ui/PageShell';
 
 export const metadata = { title: 'Nueva guía (Familia) · IncluAI' };
 
@@ -10,31 +11,47 @@ export default async function NuevaConsultaFamiliaPage() {
 
   if (!plan.permitido) {
     return (
-      <div className="flex flex-col gap-4">
-        <h1 className="text-3xl text-primary">Nueva guía — Familia</h1>
+      <PageShell
+        eyebrow="🏠 Módulo familia"
+        title="Sin guías disponibles"
+        decoration="soft"
+        tone="familias"
+      >
         <Alert variant="error">
-          {plan.planVencido ? 'Tu plan Pro venció. ' : 'Usaste todas las guías de este mes. '}
-          <Link href="/planes" className="font-medium underline">Ver planes</Link>
+          {plan.planVencido
+            ? 'Tu plan venció. '
+            : 'Usaste todas las guías de este mes. '}
+          <Link href="/planes" className="font-semibold underline">
+            Ver planes
+          </Link>
         </Alert>
-      </div>
+      </PageShell>
     );
   }
 
   return (
-    <div className="flex flex-col gap-6">
-      <header>
-        <span className="inline-flex items-center gap-2 rounded-full bg-accent-light px-3 py-1 text-xs font-medium text-accent">
-          🏠 Módulo Familia
-        </span>
-        <h1 className="mt-2 text-3xl text-primary">¿En qué te ayudamos con tu hijo/a?</h1>
-        <p className="text-sm text-muted">
-          Guías restantes este mes:{' '}
-          <strong className="text-primary">
-            {plan.consultasRestantes} / {plan.limite}
-          </strong>
-        </p>
-      </header>
+    <PageShell
+      eyebrow="🏠 Módulo familia"
+      title={
+        <>
+          ¿En qué te ayudamos con{' '}
+          <span className="gradient-text">tu hijo/a?</span>
+        </>
+      }
+      subtitle={
+        <>
+          Te quedan{' '}
+          <strong className="text-[#27AE60]">
+            {plan.consultasRestantes} de {plan.limite}
+          </strong>{' '}
+          guías este mes.
+        </>
+      }
+      decoration="mesh"
+      tone="familias"
+      revealChildren={false}
+    >
       <FamiliaWizard />
-    </div>
+    </PageShell>
   );
 }

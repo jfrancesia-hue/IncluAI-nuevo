@@ -2,6 +2,7 @@ import { ConsultaWizard } from '@/components/wizards/docente-wizard';
 import { checkPlanLimits } from '@/lib/plan';
 import { Alert } from '@/components/ui/alert';
 import Link from 'next/link';
+import { PageShell } from '@/components/ui/PageShell';
 
 export const metadata = { title: 'Nueva consulta · IncluAI' };
 
@@ -10,34 +11,47 @@ export default async function NuevaConsultaPage() {
 
   if (!plan.permitido) {
     return (
-      <div className="flex flex-col gap-4">
-        <h1 className="text-3xl text-primary">Nueva consulta</h1>
+      <PageShell
+        eyebrow="📚 Nueva guía"
+        title="Sin guías disponibles"
+        decoration="soft"
+        tone="docentes"
+      >
         <Alert variant="error">
           {plan.planVencido
-            ? 'Tu plan Pro venció. '
+            ? 'Tu plan venció. '
             : 'Usaste todas las guías de este mes. '}
-          <Link href="/planes" className="font-medium underline">
+          <Link href="/planes" className="font-semibold underline">
             Ver planes
           </Link>
         </Alert>
-      </div>
+      </PageShell>
     );
   }
 
   return (
-    <div className="flex flex-col gap-6">
-      <header className="flex items-center justify-between">
-        <div>
-          <h1 className="text-3xl text-primary">Nueva consulta</h1>
-          <p className="text-sm text-muted">
-            Guías restantes este mes:{' '}
-            <strong className="text-primary">
-              {plan.consultasRestantes} / {plan.limite}
-            </strong>
-          </p>
-        </div>
-      </header>
+    <PageShell
+      eyebrow="📚 Nueva guía — Docente"
+      title={
+        <>
+          Generá tu próxima{' '}
+          <span className="gradient-text">guía inclusiva</span>
+        </>
+      }
+      subtitle={
+        <>
+          Te quedan{' '}
+          <strong className="text-[#27AE60]">
+            {plan.consultasRestantes} de {plan.limite}
+          </strong>{' '}
+          guías este mes. Completá los 3 pasos.
+        </>
+      }
+      decoration="mesh"
+      tone="docentes"
+      revealChildren={false}
+    >
       <ConsultaWizard />
-    </div>
+    </PageShell>
   );
 }

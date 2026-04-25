@@ -312,3 +312,135 @@
     padding: 24px 20px;
   }
 }
+
+/* ============================================
+   Premium overrides 2026 — sin tocar la estructura,
+   subimos el nivel visual de las páginas gov/admin.
+   ============================================ */
+
+.gov-theme {
+  font-family: var(--font-inter), 'Inter', system-ui, sans-serif;
+  font-feature-settings: 'ss01', 'cv11';
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+}
+
+.gov-page-title {
+  font-family: var(--font-jakarta), 'Plus Jakarta Sans', system-ui, sans-serif;
+  font-size: 32px;
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  line-height: 1.1;
+  margin-bottom: 8px;
+}
+
+.gov-page-subtitle {
+  font-size: 15px;
+  line-height: 1.6;
+  margin-bottom: 32px;
+}
+
+.gov-kpi {
+  transition: transform 320ms cubic-bezier(0.22, 1, 0.36, 1),
+              box-shadow 320ms cubic-bezier(0.22, 1, 0.36, 1);
+  position: relative;
+  overflow: hidden;
+}
+.gov-kpi:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 12px 32px -6px rgba(16, 24, 40, 0.18),
+              0 4px 8px -2px rgba(16, 24, 40, 0.1);
+}
+.gov-kpi::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: linear-gradient(135deg, rgba(11, 61, 145, 0.04), transparent 50%);
+  pointer-events: none;
+}
+
+.gov-kpi__label {
+  font-family: var(--font-jakarta), 'Plus Jakarta Sans', system-ui, sans-serif;
+  font-size: 11px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--gov-text-muted);
+}
+
+.gov-kpi__value {
+  font-family: var(--font-jakarta), 'Plus Jakarta Sans', system-ui, sans-serif;
+  font-size: 36px;
+  font-weight: 800;
+  letter-spacing: -0.025em;
+  font-variant-numeric: tabular-nums;
+}
+
+.gov-card {
+  transition: transform 320ms cubic-bezier(0.22, 1, 0.36, 1),
+              box-shadow 320ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+.gov-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px -4px rgba(16, 24, 40, 0.18),
+              0 2px 6px -1px rgba(16, 24, 40, 0.1);
+}
+
+.gov-card__title {
+  font-family: var(--font-jakarta), 'Plus Jakarta Sans', system-ui, sans-serif;
+  font-size: 18px;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+}
+
+.gov-cobranding__app {
+  font-family: var(--font-jakarta), 'Plus Jakarta Sans', system-ui, sans-serif;
+  letter-spacing: -0.02em;
+}
+
+.gov-nav__link {
+  font-family: var(--font-jakarta), 'Plus Jakarta Sans', system-ui, sans-serif;
+  letter-spacing: -0.005em;
+}
+
+.gov-table {
+  font-feature-settings: 'tnum';
+}
+
+.gov-table th {
+  font-family: var(--font-jakarta), 'Plus Jakarta Sans', system-ui, sans-serif;
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+.gov-btn {
+  font-family: var(--font-jakarta), 'Plus Jakarta Sans', system-ui, sans-serif;
+  letter-spacing: -0.005em;
+  transition: transform 200ms ease, background-color 200ms ease,
+              box-shadow 200ms ease;
+}
+.gov-btn:hover {
+  transform: translateY(-1px);
+}
+.gov-btn--primary {
+  box-shadow: 0 4px 12px rgba(11, 61, 145, 0.25);
+}
+.gov-btn--primary:hover {
+  box-shadow: 0 8px 20px rgba(11, 61, 145, 0.4);
+}
+
+.gov-badge {
+  font-family: var(--font-jakarta), 'Plus Jakarta Sans', system-ui, sans-serif;
+  letter-spacing: 0.02em;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .gov-kpi,
+  .gov-card,
+  .gov-btn {
+    transition: none !important;
+  }
+}
