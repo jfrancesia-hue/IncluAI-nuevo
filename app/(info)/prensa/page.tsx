@@ -255,11 +255,11 @@ export default function PrensaPage() {
           </p>
           <div className="mt-6 flex flex-col gap-3 sm:flex-row">
             <a
-              href="mailto:jorge@nativosconsultora.com.ar?subject=Prensa%20-%20IncluAI"
+              href="mailto:contacto@nativosconsultora.com.ar?subject=Prensa%20-%20IncluAI"
               className="magnetic-btn inline-flex items-center gap-2 rounded-[12px] bg-white px-6 py-3 text-sm font-bold text-[#0d7c3a] shadow-[0_8px_20px_rgba(0,0,0,0.18)]"
               style={{ fontFamily: 'var(--font-display)' }}
             >
-              ✉️ jorge@nativosconsultora.com.ar
+              ✉️ contacto@nativosconsultora.com.ar
             </a>
             <a
               href="tel:+543813005807"

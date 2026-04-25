@@ -195,7 +195,7 @@ export async function enviarBienvenida({
               &nbsp;·&nbsp;
               <a href="${appUrl}/terminos" style="color: #4A5968; text-decoration: underline;">Términos</a>
               &nbsp;·&nbsp;
-              <a href="mailto:soporte@nativosconsultora.com" style="color: #4A5968; text-decoration: underline;">Soporte</a>
+              <a href="mailto:contacto@nativosconsultora.com.ar" style="color: #4A5968; text-decoration: underline;">Soporte</a>
             </td>
           </tr>
         </table>

@@ -1182,10 +1182,10 @@ function Footer() {
           <FooterColumn title="Contacto">
             <li className="text-sm text-white/75">
               <a
-                href="mailto:jorge@nativosconsultora.com.ar"
+                href="mailto:contacto@nativosconsultora.com.ar"
                 className="hover:text-[#27AE60]"
               >
-                jorge@nativosconsultora.com.ar
+                contacto@nativosconsultora.com.ar
               </a>
             </li>
             <li className="text-sm text-white/75">
