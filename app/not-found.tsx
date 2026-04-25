@@ -1,6 +1,5 @@
 import Link from 'next/link';
 import { Button } from '@/components/ui/button';
-import { Logo } from '@/components/branding/Logo';
 
 export default function NotFound() {
   return (
@@ -38,9 +37,13 @@ export default function NotFound() {
       </div>
 
       <div className="relative z-10 flex flex-col items-center gap-6">
-        <div style={{ animation: 'glow-pulse 3.6s ease-in-out infinite' }}>
-          <Logo size={88} variant="gradient" gradientId="not-found-logo" />
-        </div>
+        <span
+          aria-hidden
+          className="text-7xl"
+          style={{ animation: 'glow-pulse 3.6s ease-in-out infinite' }}
+        >
+          🧩
+        </span>
 
         <p
           className="text-6xl font-extrabold"

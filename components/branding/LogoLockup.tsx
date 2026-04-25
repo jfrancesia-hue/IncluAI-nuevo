@@ -4,31 +4,27 @@ import { Logo } from './Logo';
 import { Wordmark } from './Wordmark';
 
 interface Props {
-  /** Tamaño del logo (px). El wordmark se escala proporcional */
   size?: 'sm' | 'md' | 'lg';
-  /** Tono — afecta wordmark color */
   tone?: 'light' | 'dark';
-  /** Variante del SVG del logo */
+  /** Variante del logo — útil para 'white' sobre fondos oscuros */
   logoVariant?: 'gradient' | 'solid' | 'white' | 'currentColor';
-  /** Color sólido si logoVariant='solid' */
   logoColor?: string;
-  /** Si se pasa, envuelve el lockup en un Link a esa ruta */
   href?: string;
-  /** ID único del gradient (necesario si hay 2+ lockups gradient en la misma page) */
+  /** Mantiene la firma anterior aunque ya no se use con emoji */
   gradientId?: string;
   className?: string;
   style?: CSSProperties;
 }
 
 const SIZES = {
-  sm: { logo: 24, text: 16, gap: 6 },
-  md: { logo: 30, text: 22, gap: 8 },
-  lg: { logo: 40, text: 32, gap: 10 },
+  sm: { logo: 22, text: 16, gap: 6 },
+  md: { logo: 28, text: 22, gap: 7 },
+  lg: { logo: 38, text: 32, gap: 9 },
 };
 
 /**
- * Combinación marca + wordmark, alineados verticalmente.
- * Reemplaza al `🧩 IncluAI` que estaba en navbar/auth/footer/etc.
+ * Combinación marca + wordmark — usa el emoji puzzle 🧩 original
+ * con el wordmark "IncluAI" en font-display.
  */
 export function LogoLockup({
   size = 'md',

@@ -5,12 +5,6 @@ export const alt = 'IncluAI — Educación inclusiva con IA';
 export const size = { width: 1200, height: 630 };
 export const contentType = 'image/png';
 
-// SVG del logo inline — next/og no soporta importar componentes React
-// con SVG complejos, así que duplicamos el path acá. Mantener
-// sincronizado con components/branding/Logo.tsx
-const LOGO_PATH =
-  'M 5 0 H 12 A 4 4 0 0 0 20 0 H 27 A 5 5 0 0 1 32 5 V 12 A 4 4 0 0 1 32 20 V 27 A 5 5 0 0 1 27 32 H 5 A 5 5 0 0 1 0 27 V 5 A 5 5 0 0 1 5 0 Z';
-
 export default function OGImage() {
   return new ImageResponse(
     (
@@ -38,7 +32,8 @@ export default function OGImage() {
             width: '500px',
             height: '500px',
             borderRadius: '999px',
-            background: 'radial-gradient(circle, rgba(46,134,193,0.45), transparent 70%)',
+            background:
+              'radial-gradient(circle, rgba(46,134,193,0.45), transparent 70%)',
           }}
         />
         <div
@@ -49,7 +44,8 @@ export default function OGImage() {
             width: '600px',
             height: '600px',
             borderRadius: '999px',
-            background: 'radial-gradient(circle, rgba(39,174,96,0.4), transparent 70%)',
+            background:
+              'radial-gradient(circle, rgba(39,174,96,0.4), transparent 70%)',
           }}
         />
 
@@ -63,21 +59,7 @@ export default function OGImage() {
             zIndex: 10,
           }}
         >
-          <svg
-            width="80"
-            height="80"
-            viewBox="0 0 32 32"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <defs>
-              <linearGradient id="og-grad" x1="0" y1="0" x2="32" y2="32">
-                <stop offset="0" stopColor="#27AE60" />
-                <stop offset="1" stopColor="#5DA9D8" />
-              </linearGradient>
-            </defs>
-            <path d={LOGO_PATH} fill="url(#og-grad)" />
-            <circle cx="22" cy="22" r="2" fill="white" fillOpacity="0.9" />
-          </svg>
+          <div style={{ fontSize: '76px', lineHeight: 1 }}>🧩</div>
           <span
             style={{
               fontSize: '64px',

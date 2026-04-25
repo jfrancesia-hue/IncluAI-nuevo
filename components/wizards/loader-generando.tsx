@@ -2,7 +2,6 @@
 
 import { useEffect, useState } from 'react';
 import { Alert } from '@/components/ui/alert';
-import { Logo } from '@/components/branding/Logo';
 
 // Tiempos ajustados por observación real en dev (~130-150s).
 // En producción Vercel ~70-100s por Opus más rápido sin cold starts.
@@ -140,10 +139,12 @@ export function LoaderGenerando({
               className="absolute inset-0 animate-ping rounded-2xl bg-[#27AE60]/20"
             />
             <div
-              className="relative flex h-20 w-20 items-center justify-center rounded-2xl bg-white shadow-[0_8px_28px_rgba(15,34,64,0.18)]"
+              className="relative flex h-20 w-20 items-center justify-center rounded-2xl bg-gradient-to-br from-[#27AE60] to-[#0d9448] text-5xl text-white shadow-[0_8px_28px_rgba(22,163,74,0.32)]"
               style={{ animation: 'glow-pulse 3s ease-in-out infinite' }}
             >
-              <Logo size={48} variant="gradient" gradientId="loader-logo" />
+              <span className="animate-pulse">
+                {PASOS_LOADER[pasoActual].emoji}
+              </span>
             </div>
           </div>
 
