@@ -101,57 +101,57 @@
 }
 
 .dark {
-  --background: #0a1220;
-  --foreground: #e2e8f0;
+  --background: #0a0a0a;
+  --foreground: #ededed;
 
   --primary: #60a5fa;
   --primary-light: #93c5fd;
-  --primary-bg: #1e293b;
+  --primary-bg: #1c1c1c;
   --accent: #4ade80;
   --accent-light: #14532d;
   --cta: #fb923c;
-  --card: #141e32;
-  --text-muted: #94a3b8;
-  --border: rgba(255, 255, 255, 0.1);
+  --card: #161616;
+  --text-muted: #a3a3a3;
+  --border: rgba(255, 255, 255, 0.08);
 
-  /* Semánticos — dark theme */
-  --surface: #141e32;
-  --surface-elevated: #1a2540;
-  --surface-subtle: #0a1220;
-  --text-strong: #f1f5f9;
-  --text-medium: #cbd5e1;
-  --border-soft: rgba(255, 255, 255, 0.1);
-  --border-strong: rgba(255, 255, 255, 0.18);
+  /* Semánticos — dark theme (paleta negra neutral, estilo Vercel/Linear) */
+  --surface: #161616;
+  --surface-elevated: #1c1c1c;
+  --surface-subtle: #0f0f0f;
+  --text-strong: #fafafa;
+  --text-medium: #c4c4c4;
+  --border-soft: rgba(255, 255, 255, 0.08);
+  --border-strong: rgba(255, 255, 255, 0.15);
 
-  /* Dashboard en dark: slate deep con tinte cálido sutil */
-  --dashboard-bg-1: #0a1220;
-  --dashboard-bg-2: #0f1a2e;
-  --dashboard-bg-3: #14213c;
-  --dashboard-bg-4: #121b30;
-  --dashboard-bg-5: #0a1220;
-  --dashboard-dots: rgba(255, 255, 255, 0.04);
-  --dashboard-glow-1: rgba(230, 126, 34, 0.1);
-  --dashboard-glow-2: rgba(46, 134, 193, 0.08);
+  /* Dashboard en dark: casi negro neutral con gradient muy sutil */
+  --dashboard-bg-1: #0a0a0a;
+  --dashboard-bg-2: #0e0e0e;
+  --dashboard-bg-3: #131313;
+  --dashboard-bg-4: #0e0e0e;
+  --dashboard-bg-5: #0a0a0a;
+  --dashboard-dots: rgba(255, 255, 255, 0.035);
+  --dashboard-glow-1: rgba(230, 126, 34, 0.08);
+  --dashboard-glow-2: rgba(230, 126, 34, 0.05);
 
-  /* Navbar en dark: naranja tierra profundo */
+  /* Navbar en dark: naranja tierra profundo (se mantiene la identidad) */
   --navbar-bg-1: #7c2d12;
   --navbar-bg-2: #9a3412;
   --navbar-bg-3: #c2410c;
   --navbar-bg-4: #9a3412;
-  --navbar-border: rgba(251, 146, 60, 0.4);
-  --navbar-shadow: 0 6px 24px -8px rgba(0, 0, 0, 0.5),
+  --navbar-border: rgba(251, 146, 60, 0.35);
+  --navbar-shadow: 0 6px 24px -8px rgba(0, 0, 0, 0.7),
     0 2px 6px -1px rgba(194, 65, 12, 0.3);
-  --navbar-text: rgba(254, 215, 170, 0.85);
+  --navbar-text: rgba(254, 215, 170, 0.88);
   --navbar-text-active: #ffffff;
   --navbar-active-bg: rgba(255, 255, 255, 0.15);
 
-  /* Tokens de v2.1 adaptados */
-  --color-papel: #141e32;
-  --color-papel-alt: #1a2540;
-  --color-texto: #f1f5f9;
-  --color-texto-medio: #cbd5e1;
-  --color-borde: rgba(255, 255, 255, 0.1);
-  --color-docentes-bg: #1e3a5f;
+  /* Tokens de v2.1 adaptados a la paleta negra */
+  --color-papel: #161616;
+  --color-papel-alt: #1c1c1c;
+  --color-texto: #fafafa;
+  --color-texto-medio: #c4c4c4;
+  --color-borde: rgba(255, 255, 255, 0.08);
+  --color-docentes-bg: rgba(46, 134, 193, 0.18);
   --color-docentes-dark: #93c5fd;
 }
 
@@ -167,17 +167,20 @@
 .dark [class*='bg-white']:not([class*='bg-white/']):not(nav):not(header) {
   background-color: var(--surface-elevated);
 }
+.dark .bento-card {
+  border-color: var(--border-soft);
+}
 .dark .bento-card:hover {
   box-shadow:
-    0 24px 56px -12px rgba(46, 134, 193, 0.35),
-    0 8px 20px -4px rgba(39, 174, 96, 0.22),
-    0 2px 8px -1px rgba(0, 0, 0, 0.35);
+    0 24px 56px -12px rgba(0, 0, 0, 0.7),
+    0 8px 20px -4px rgba(230, 126, 34, 0.18),
+    0 0 0 1px rgba(255, 255, 255, 0.06);
 }
 .dark .bento-card::before {
   background:
-    radial-gradient(65% 85% at 0% 0%, rgba(46, 134, 193, 0.35), transparent 65%),
-    radial-gradient(65% 85% at 100% 100%, rgba(39, 174, 96, 0.3), transparent 65%),
-    radial-gradient(45% 50% at 50% 50%, rgba(251, 146, 60, 0.15), transparent 70%);
+    radial-gradient(65% 85% at 0% 0%, rgba(46, 134, 193, 0.2), transparent 65%),
+    radial-gradient(65% 85% at 100% 100%, rgba(39, 174, 96, 0.16), transparent 65%),
+    radial-gradient(45% 50% at 50% 50%, rgba(251, 146, 60, 0.12), transparent 70%);
 }
 
 /* Borders hardcoded muy claros → border suave dark */
