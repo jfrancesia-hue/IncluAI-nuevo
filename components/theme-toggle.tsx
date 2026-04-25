@@ -32,9 +32,10 @@ export function ThemeToggle() {
       onClick={() => setTheme(dark ? 'light' : 'dark')}
       className="inline-flex h-8 w-8 items-center justify-center rounded-full border text-sm transition hover:scale-105"
       style={{
-        background: 'rgba(255, 255, 255, 0.9)',
-        borderColor: 'rgba(255, 255, 255, 0.4)',
-        boxShadow: '0 2px 6px rgba(0, 0, 0, 0.12)',
+        background: 'var(--navbar-pill-bg)',
+        borderColor: 'var(--navbar-pill-border)',
+        color: 'var(--navbar-pill-text)',
+        boxShadow: '0 2px 6px rgba(0, 0, 0, 0.15)',
       }}
     >
       {dark ? '☀️' : '🌙'}

@@ -98,6 +98,12 @@
   --navbar-text: rgba(82, 27, 0, 0.85);
   --navbar-text-active: #ffffff;
   --navbar-active-bg: rgba(255, 255, 255, 0.22);
+
+  /* Pills dentro del navbar (nombre de usuario, toggle, etc) */
+  --navbar-pill-bg: rgba(255, 255, 255, 0.92);
+  --navbar-pill-bg-hover: rgba(255, 255, 255, 1);
+  --navbar-pill-border: rgba(255, 255, 255, 0.45);
+  --navbar-pill-text: #1F2E3D;
 }
 
 .dark {
@@ -144,6 +150,12 @@
   --navbar-text: rgba(254, 215, 170, 0.88);
   --navbar-text-active: #ffffff;
   --navbar-active-bg: rgba(255, 255, 255, 0.15);
+
+  /* Pills en navbar (dark): bg oscuro translúcido + texto claro */
+  --navbar-pill-bg: rgba(26, 26, 26, 0.85);
+  --navbar-pill-bg-hover: rgba(40, 40, 40, 0.95);
+  --navbar-pill-border: rgba(255, 255, 255, 0.18);
+  --navbar-pill-text: #fafafa;
 
   /* Tokens de v2.1 adaptados a la paleta negra */
   --color-papel: #161616;
