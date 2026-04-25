@@ -170,7 +170,7 @@ export default function SobreNosotrosPage() {
                 style={{ lineHeight: 1.6 }}
               >
                 Materiales que el docente puede imprimir hoy y usar mañana.
-                Nada de "considere el principio holístico…".
+                Nada de «considere el principio holístico…».
               </p>
             </li>
             <li className="bento-card rounded-[16px] border border-[#e2e8f0] bg-white p-5">

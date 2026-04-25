@@ -52,3 +52,9 @@ evals/results/*
 # binarios pesados (videos de referencia, material externo)
 *.mp4
 *.mov
+
+# Archivos temporales del proceso
+*.mp4
+components/PROMPT-*.md
+components/prompt-*.md
+/_prompt-dev/

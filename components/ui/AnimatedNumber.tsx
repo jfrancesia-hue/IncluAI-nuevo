@@ -15,11 +15,41 @@ interface Props {
   style?: React.CSSProperties;
 }
 
+function shouldSkipAnimation(): boolean {
+  if (typeof window === 'undefined') return false;
+  return window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+}
+
 /**
  * Cuenta de 0 al valor objetivo con easing al entrar al viewport.
- * Si prefers-reduced-motion está activo, muestra el valor final directo.
+ * Si prefers-reduced-motion está activo o el value es string, muestra
+ * el valor final directo (sin animación).
+ *
+ * Implementación: dos componentes — uno estático (early return) para
+ * casos no animables, otro animado para números. Esto evita el
+ * setState-in-effect del approach monolítico.
  */
-export function AnimatedNumber({
+export function AnimatedNumber(props: Props) {
+  const { value, suffix = '', decimals = 0, className, style } = props;
+  const isString = typeof value === 'string';
+  const [reducedMotion] = useState<boolean>(() => shouldSkipAnimation());
+
+  // Caso 1: render estático (string o reduce-motion)
+  if (isString || reducedMotion) {
+    const text = isString ? value : (value as number).toFixed(decimals);
+    return (
+      <span className={className} style={style}>
+        {text}
+        {suffix}
+      </span>
+    );
+  }
+
+  // Caso 2: animación con observer (sub-componente, hooks legales)
+  return <AnimatedCounter {...props} />;
+}
+
+function AnimatedCounter({
   value,
   duration = 1400,
   suffix = '',
@@ -27,29 +57,14 @@ export function AnimatedNumber({
   className = '',
   style,
 }: Props) {
+  // value siempre es number acá (el wrapper se encargó del case string)
+  const numericValue = value as number;
   const ref = useRef<HTMLSpanElement>(null);
-  const [display, setDisplay] = useState<string>(() =>
-    typeof value === 'string' ? value : '0'
-  );
+  const [display, setDisplay] = useState<string>('0');
 
   useEffect(() => {
     const el = ref.current;
     if (!el) return;
-
-    // Si reduce-motion, mostrar final
-    const reduceMotion = window.matchMedia(
-      '(prefers-reduced-motion: reduce)'
-    ).matches;
-    if (reduceMotion) {
-      setDisplay(String(value));
-      return;
-    }
-
-    // Si value es string (no numérico), mostrar directo
-    if (typeof value === 'string') {
-      setDisplay(value);
-      return;
-    }
 
     let raf: number;
     let startTime: number | null = null;
@@ -65,14 +80,13 @@ export function AnimatedNumber({
               if (startTime === null) startTime = timestamp;
               const elapsed = timestamp - startTime;
               const progress = Math.min(elapsed / duration, 1);
-              // ease-out cubic
               const eased = 1 - Math.pow(1 - progress, 3);
-              const current = value * eased;
+              const current = numericValue * eased;
               setDisplay(current.toFixed(decimals));
               if (progress < 1) {
                 raf = requestAnimationFrame(animate);
               } else {
-                setDisplay(value.toFixed(decimals));
+                setDisplay(numericValue.toFixed(decimals));
               }
             };
             raf = requestAnimationFrame(animate);
@@ -88,7 +102,7 @@ export function AnimatedNumber({
       if (raf) cancelAnimationFrame(raf);
       observer.disconnect();
     };
-  }, [value, duration, decimals]);
+  }, [numericValue, duration, decimals]);
 
   return (
     <span ref={ref} className={className} style={style}>

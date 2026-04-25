@@ -53,10 +53,10 @@ export default function MisionPage() {
               letterSpacing: '-0.02em',
             }}
           >
-            "La inclusión no es un favor que el sistema hace al alumno con
+            «La inclusión no es un favor que el sistema hace al alumno con
             discapacidad. Es el cumplimiento de un derecho. Y cumplir un
             derecho no debería depender de que el docente saque tiempo de su
-            tiempo familiar para hacerlo."
+            tiempo familiar para hacerlo.»
           </blockquote>
         </section>
       </RevealOnScroll>

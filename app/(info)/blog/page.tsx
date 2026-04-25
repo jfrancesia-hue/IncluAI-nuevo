@@ -63,9 +63,9 @@ export default function BlogPage() {
                 className="mt-2 text-sm text-[#3d4a5a]"
                 style={{ lineHeight: 1.6 }}
               >
-                "Cómo planificar una clase de matemática con un alumno con
-                TEA", "Estrategias para discapacidad motriz en educación
-                física", etc.
+                «Cómo planificar una clase de matemática con un alumno con
+                TEA», «Estrategias para discapacidad motriz en educación
+                física», etc.
               </p>
             </li>
             <li className="bento-card rounded-[16px] border border-[#e2e8f0] bg-white p-5">
