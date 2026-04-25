@@ -144,11 +144,11 @@ export default async function InicioPage() {
             Hola, <span className="gradient-text">{perfil.nombre}</span>
           </h1>
           <p
-            className="mt-3 max-w-xl text-base text-[#4A5968]"
+            className="mt-3 max-w-xl text-base font-medium text-[#3d4a5a]"
             style={{ lineHeight: 1.65 }}
           >
             ¿Qué clase inclusiva vas a planificar hoy? Tenés{' '}
-            <strong className="text-[#27AE60]">{restantes}</strong>{' '}
+            <strong className="font-extrabold text-[#0d7c3a]">{restantes}</strong>{' '}
             {restantes === 1 ? 'guía disponible' : 'guías disponibles'} este
             mes.
           </p>
