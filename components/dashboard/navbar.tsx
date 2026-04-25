@@ -61,19 +61,21 @@ export function Navbar({ perfil }: { perfil: Perfil }) {
 
   return (
     <header
-      className="sticky top-0 z-30 border-b border-[rgba(230,126,34,0.18)] backdrop-blur-2xl"
+      className="sticky top-0 z-30 border-b border-[rgba(194,65,12,0.3)] backdrop-blur-2xl"
       style={{
         background:
-          'linear-gradient(90deg, rgba(254,243,199,0.85) 0%, rgba(253,186,116,0.65) 50%, rgba(254,215,170,0.75) 100%)',
+          'linear-gradient(90deg, #fde68a 0%, #f59e0b 35%, #E67E22 65%, #fb923c 100%)',
+        boxShadow:
+          '0 6px 24px -8px rgba(194, 65, 12, 0.35), 0 2px 6px -1px rgba(194, 65, 12, 0.1)',
       }}
     >
-      {/* Hairline gradient naranja sutil debajo del border */}
+      {/* Hairline brillante debajo del border */}
       <div
         aria-hidden
         className="pointer-events-none absolute inset-x-0 -bottom-px h-px"
         style={{
           background:
-            'linear-gradient(90deg, transparent, rgba(230,126,34,0.5) 30%, rgba(245,158,11,0.5) 70%, transparent)',
+            'linear-gradient(90deg, transparent, rgba(255,255,255,0.5) 30%, rgba(255,255,255,0.6) 70%, transparent)',
         }}
       />
       <div className="mx-auto flex h-16 w-full max-w-6xl items-center justify-between px-4 sm:px-6">
@@ -90,25 +92,26 @@ export function Navbar({ perfil }: { perfil: Perfil }) {
                 key={link.href}
                 href={link.href}
                 aria-current={active ? 'page' : undefined}
-                className="relative rounded-[10px] px-3 py-2 text-sm font-semibold transition"
+                className="relative rounded-[10px] px-3 py-2 text-sm font-bold transition"
                 style={{
                   fontFamily: 'var(--font-display)',
                   letterSpacing: '-0.005em',
-                  color: active ? '#9c4a0e' : '#7c3a0d',
-                  background: active
-                    ? 'rgba(230, 126, 34, 0.18)'
-                    : 'transparent',
+                  color: active ? '#ffffff' : 'rgba(82, 27, 0, 0.85)',
+                  background: active ? 'rgba(255, 255, 255, 0.22)' : 'transparent',
+                  textShadow: active
+                    ? '0 1px 2px rgba(82, 27, 0, 0.3)'
+                    : undefined,
                 }}
               >
                 {link.label}
                 {active && (
                   <span
                     aria-hidden
-                    className="absolute -bottom-[9px] left-1/2 h-[2px] w-6 -translate-x-1/2 rounded-full"
+                    className="absolute -bottom-[9px] left-1/2 h-[3px] w-8 -translate-x-1/2 rounded-full"
                     style={{
-                      background:
-                        'linear-gradient(90deg, #E67E22, #f59e0b)',
-                      boxShadow: '0 0 10px rgba(230, 126, 34, 0.55)',
+                      background: 'white',
+                      boxShadow:
+                        '0 0 12px rgba(255,255,255,0.8), 0 0 4px rgba(194,65,12,0.3)',
                     }}
                   />
                 )}
@@ -180,7 +183,11 @@ export function Navbar({ perfil }: { perfil: Perfil }) {
       {/* Mobile nav: tabs abajo del header en mobile */}
       <nav
         aria-label="Navegación principal móvil"
-        className="flex items-center justify-around border-t border-[rgba(230,126,34,0.15)] bg-white/30 px-2 py-1.5 backdrop-blur md:hidden"
+        className="flex items-center justify-around border-t border-white/20 px-2 py-1.5 md:hidden"
+        style={{
+          background: 'rgba(194, 65, 12, 0.15)',
+          backdropFilter: 'blur(12px)',
+        }}
       >
         {NAV_LINKS.map((link) => {
           const active = isActive(pathname, link.href);
@@ -189,12 +196,12 @@ export function Navbar({ perfil }: { perfil: Perfil }) {
               key={link.href}
               href={link.href}
               aria-current={active ? 'page' : undefined}
-              className="rounded-[10px] px-3 py-1.5 text-xs font-semibold transition"
+              className="rounded-[10px] px-3 py-1.5 text-xs font-bold transition"
               style={{
                 fontFamily: 'var(--font-display)',
-                color: active ? '#9c4a0e' : '#7c3a0d',
+                color: active ? '#ffffff' : 'rgba(82, 27, 0, 0.85)',
                 background: active
-                  ? 'rgba(230, 126, 34, 0.18)'
+                  ? 'rgba(255, 255, 255, 0.25)'
                   : 'transparent',
               }}
             >
