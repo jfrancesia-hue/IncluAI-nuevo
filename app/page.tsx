@@ -1148,27 +1148,19 @@ function Footer() {
               Guías pedagógicas concretas, estrategias basadas en evidencia y
               evaluaciones justas — pensadas para cada alumno de Argentina.
             </p>
-            <div className="mt-5 flex gap-3">
-              <SocialLink
-                href="https://instagram.com/inclua.ar"
-                label="Instagram"
-                icon="📷"
-              />
-              <SocialLink
-                href="https://twitter.com/inclua_ar"
-                label="Twitter / X"
-                icon="✖"
-              />
-              <SocialLink
-                href="https://linkedin.com/company/inclua"
-                label="LinkedIn"
-                icon="in"
-              />
-              <SocialLink
-                href="https://youtube.com/@inclua"
-                label="YouTube"
-                icon="▶"
-              />
+            <div className="mt-6 flex flex-col gap-3">
+              <p
+                className="text-xs font-semibold uppercase tracking-[0.08em] text-white/60"
+                style={{ fontFamily: 'var(--font-display)' }}
+              >
+                Próximamente en redes
+              </p>
+              <div className="flex gap-3" aria-hidden>
+                <SocialPlaceholder label="Instagram" icon="📷" />
+                <SocialPlaceholder label="LinkedIn" icon="in" />
+                <SocialPlaceholder label="YouTube" icon="▶" />
+                <SocialPlaceholder label="Twitter / X" icon="✖" />
+              </div>
             </div>
           </div>
 
@@ -1177,35 +1169,28 @@ function Footer() {
             <FooterLink href="/login">Iniciar sesión</FooterLink>
             <FooterLink href="#pricing">Planes y precios</FooterLink>
             <FooterLink href="/recursos">Recursos</FooterLink>
+            <FooterLink href="/status">Estado del servicio</FooterLink>
           </FooterColumn>
 
           <FooterColumn title="Nosotros">
             <FooterLink href="/sobre-nosotros">Sobre IncluAI</FooterLink>
             <FooterLink href="/mision">Nuestra misión</FooterLink>
-            <FooterLink href="/blog">Blog educativo</FooterLink>
+            <FooterLink href="/blog">Blog</FooterLink>
             <FooterLink href="/prensa">Prensa</FooterLink>
           </FooterColumn>
 
           <FooterColumn title="Contacto">
             <li className="text-sm text-white/75">
               <a
-                href="mailto:hola@incluai.com.ar"
+                href="mailto:jorge@nativosconsultora.com.ar"
                 className="hover:text-[#27AE60]"
               >
-                hola@incluai.com.ar
+                jorge@nativosconsultora.com.ar
               </a>
             </li>
             <li className="text-sm text-white/75">
-              <a
-                href="mailto:soporte@incluai.com.ar"
-                className="hover:text-[#27AE60]"
-              >
-                soporte@incluai.com.ar
-              </a>
-            </li>
-            <li className="text-sm text-white/75">
-              <a href="tel:+543834000000" className="hover:text-[#27AE60]">
-                +54 383 400 0000
+              <a href="tel:+543813005807" className="hover:text-[#27AE60]">
+                +54 381 300 5807
               </a>
             </li>
             <li className="text-sm text-white/75">
@@ -1285,24 +1270,20 @@ function FooterLink({
   );
 }
 
-function SocialLink({
-  href,
-  label,
-  icon,
-}: {
-  href: string;
-  label: string;
-  icon: string;
-}) {
+/**
+ * Placeholder para iconos de redes sociales mientras no existan las cuentas.
+ * Visualmente igual a SocialLink pero atenuado y con tooltip.
+ * Se reemplaza por SocialLink cuando se creen las cuentas reales.
+ */
+function SocialPlaceholder({ label, icon }: { label: string; icon: string }) {
   return (
-    <a
-      href={href}
-      target="_blank"
-      rel="noopener noreferrer"
-      aria-label={label}
-      className="flex h-10 w-10 items-center justify-center rounded-full bg-white/10 text-sm text-white transition hover:bg-[#27AE60]"
+    <span
+      role="img"
+      aria-label={`${label} — próximamente`}
+      title={`${label} — próximamente`}
+      className="flex h-10 w-10 items-center justify-center rounded-full border border-dashed border-white/20 bg-white/5 text-sm text-white/45"
     >
       <span aria-hidden>{icon}</span>
-    </a>
+    </span>
   );
 }
