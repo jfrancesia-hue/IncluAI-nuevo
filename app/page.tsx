@@ -420,12 +420,12 @@ function BentoFeatures() {
           </h2>
         </RevealOnScroll>
 
-        <div className="mt-14 grid grid-cols-1 gap-4 md:grid-cols-3 md:grid-rows-2">
-          {/* Card grande verde */}
+        <div className="mt-14 grid grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-4">
+          {/* Card grande verde — 2 cols */}
           <RevealOnScroll
             delay={0}
             as="article"
-            className="bento-card spotlight-card md:col-span-2 md:row-span-1 flex flex-col justify-between rounded-[20px] border border-white/10 bg-gradient-to-br from-[#0d7c3a] to-[#1e8449] p-7 ring-1 ring-white/5"
+            className="bento-card spotlight-card sm:col-span-2 md:col-span-2 flex flex-col justify-between rounded-[20px] border border-white/10 bg-gradient-to-br from-[#0d7c3a] to-[#1e8449] p-7 ring-1 ring-white/5"
           >
             <div>
               <p
@@ -541,11 +541,11 @@ function BentoFeatures() {
             </div>
           </RevealOnScroll>
 
-          {/* Card grande lavanda */}
+          {/* Card grande lavanda — 3 cols */}
           <RevealOnScroll
             delay={400}
             as="article"
-            className="bento-card spotlight-card md:col-span-2 flex flex-col justify-between rounded-[20px] border border-white/10 bg-gradient-to-br from-[#5b21b6] to-[#A569BD] p-7 ring-1 ring-white/5"
+            className="bento-card spotlight-card sm:col-span-2 md:col-span-3 flex flex-col justify-between rounded-[20px] border border-white/10 bg-gradient-to-br from-[#5b21b6] to-[#A569BD] p-7 ring-1 ring-white/5"
           >
             <div>
               <p
