@@ -79,6 +79,9 @@ export default function InfoLayout({ children }: { children: ReactNode }) {
               <Link href="/privacidad" className="hover:text-[#2E86C1]">
                 Privacidad
               </Link>
+              <Link href="/cookies" className="hover:text-[#2E86C1]">
+                Cookies
+              </Link>
             </nav>
           </div>
           <p className="mt-6 text-xs text-[#4A5968]">

@@ -11,6 +11,20 @@ interface Props {
 
 export function Footer({ variant = 'full' }: Props) {
   if (variant === 'compact') {
+    const links: Array<{ label: string; href: string; mailto?: boolean }> = [
+      { label: 'Nosotros', href: '/sobre-nosotros' },
+      { label: 'Recursos', href: '/recursos' },
+      { label: 'Estado', href: '/status' },
+      { label: 'Términos', href: '/terminos' },
+      { label: 'Privacidad', href: '/privacidad' },
+      { label: 'Cookies', href: '/cookies' },
+      {
+        label: 'Contacto',
+        href: 'mailto:contacto@nativosconsultora.com.ar',
+        mailto: true,
+      },
+    ];
+
     return (
       <footer className="relative mt-16 border-t border-[rgba(31,46,61,0.08)] bg-white/40 backdrop-blur">
         <div className="mx-auto flex max-w-6xl flex-col items-start justify-between gap-4 px-4 py-6 text-xs sm:flex-row sm:items-center sm:px-6">
@@ -19,35 +33,37 @@ export function Footer({ variant = 'full' }: Props) {
             style={{ fontFamily: 'var(--font-display)' }}
           >
             <LogoLockup size="sm" tone="light" gradientId="footer-compact-logo" />
-            <span className="hidden text-[#4A5968] sm:inline">·</span>
+            <span aria-hidden className="hidden text-[#4A5968] sm:inline">
+              ·
+            </span>
             <span className="text-[#4A5968]">© 2026 Nativos Consultora</span>
           </div>
 
           <nav
-            className="flex flex-wrap gap-x-5 gap-y-2 text-[#4A5968]"
+            className="flex flex-wrap items-center gap-y-2 text-[#4A5968]"
             style={{ fontFamily: 'var(--font-display)' }}
           >
-            <Link href="/sobre-nosotros" className="hover:text-[#2E86C1]">
-              Nosotros
-            </Link>
-            <Link href="/recursos" className="hover:text-[#2E86C1]">
-              Recursos
-            </Link>
-            <Link href="/status" className="hover:text-[#2E86C1]">
-              Estado
-            </Link>
-            <Link href="/terminos" className="hover:text-[#2E86C1]">
-              Términos
-            </Link>
-            <Link href="/privacidad" className="hover:text-[#2E86C1]">
-              Privacidad
-            </Link>
-            <a
-              href="mailto:contacto@nativosconsultora.com.ar"
-              className="hover:text-[#27AE60]"
-            >
-              Contacto
-            </a>
+            {links.map((l, i) => (
+              <span key={l.href} className="flex items-center">
+                {i > 0 && (
+                  <span
+                    aria-hidden
+                    className="mx-2.5 text-[#4A5968]/50 sm:mx-3"
+                  >
+                    ·
+                  </span>
+                )}
+                {l.mailto ? (
+                  <a href={l.href} className="hover:text-[#27AE60]">
+                    {l.label}
+                  </a>
+                ) : (
+                  <Link href={l.href} className="hover:text-[#2E86C1]">
+                    {l.label}
+                  </Link>
+                )}
+              </span>
+            ))}
           </nav>
         </div>
       </footer>
