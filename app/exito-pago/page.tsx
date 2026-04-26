@@ -1,6 +1,8 @@
 import Link from 'next/link';
 import { createClient } from '@/lib/supabase/server';
 import { RevealOnScroll } from '@/components/landing/RevealOnScroll';
+import { TrackSubscribe } from '@/components/analytics/TrackSubscribe';
+import { LIMITES_PLAN, type PlanPago } from '@/lib/types';
 
 export const metadata = { title: '¡Pago exitoso! · IncluAI' };
 
@@ -41,8 +43,26 @@ export default async function ExitoPagoPage({
           ? 'Premium'
           : 'pago';
 
+  // Disparo Subscribe solo si tenemos un plan pago real reflejado en perfiles.
+  const planPago: PlanPago | null =
+    perfil?.plan === 'basico' ||
+    perfil?.plan === 'profesional' ||
+    perfil?.plan === 'premium'
+      ? perfil.plan
+      : null;
+  const subscribeValue = planPago ? LIMITES_PLAN[planPago].precio_ars : 0;
+  const aprobado = sp.status !== 'pending';
+
   return (
     <div className="relative min-h-screen overflow-hidden bg-[#0a1a30]">
+      {planPago && aprobado && (
+        <TrackSubscribe
+          value={subscribeValue}
+          currency="ARS"
+          plan={planPago}
+          paymentId={sp.payment_id}
+        />
+      )}
       {/* Mesh gradient celebration */}
       <div
         aria-hidden

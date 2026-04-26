@@ -7,6 +7,7 @@ import { DISCAPACIDADES } from '@/data/discapacidades';
 import { ESPECIALIDADES } from '@/data/especialidades';
 import { OBJETIVOS_PROFESIONAL, CONTEXTOS_ATENCION } from '@/data/objetivos-profesional';
 import { RANGOS_EDAD } from '@/data/rangos-edad';
+import { trackPixelCustom } from '@/lib/pixel';
 import type {
   FormularioProfesional,
   EspecialidadProfesional,
@@ -121,6 +122,7 @@ export function ProfesionalWizard({
       if (!res.ok || !data.success || !data.id) {
         throw new Error(data.error ?? 'No se pudo generar la guía');
       }
+      trackPixelCustom('ActividadCreada', { tipo: 'guia', modulo: 'profesional' });
       router.push(`/resultado?id=${data.id}`);
     } catch (e) {
       setError(e instanceof Error ? e.message : 'Error inesperado');

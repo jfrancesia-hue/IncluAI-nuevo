@@ -2,6 +2,7 @@
 
 import { useState } from 'react'
 import { useRouter } from 'next/navigation'
+import { trackPixelCustom } from '@/lib/pixel'
 
 type DiscapacidadOpt = { id: string; label: string }
 type JurisdiccionOpt = { id: string; nombre: string }
@@ -106,6 +107,7 @@ export function PPIWizard({
       if (!res.ok) {
         throw new Error(data.error || 'Error creando PPI')
       }
+      trackPixelCustom('ActividadCreada', { tipo: 'ppi' })
       router.push(`/ppi/${data.id}`)
     } catch (err) {
       setError(err instanceof Error ? err.message : 'Error desconocido')

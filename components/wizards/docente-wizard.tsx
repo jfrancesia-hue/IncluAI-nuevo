@@ -17,6 +17,7 @@ import { LoaderGenerando } from './loader-generando';
 import { PLANTILLAS_DOCENTE } from '@/data/plantillas-docente';
 import { cn } from '@/lib/utils';
 import { PHOTOS } from '@/lib/photos';
+import { trackPixelCustom } from '@/lib/pixel';
 
 const BANNERS: Record<1 | 2 | 3, { photo: string; title: string; subtitle: string; tip?: string }> = {
   1: {
@@ -125,6 +126,7 @@ export function ConsultaWizard() {
       if (!res.ok || !data.success || !data.id) {
         throw new Error(data.error ?? 'No se pudo generar la guía');
       }
+      trackPixelCustom('ActividadCreada', { tipo: 'guia', modulo: 'docente' });
       router.push(`/resultado?id=${data.id}`);
     } catch (e) {
       setError(e instanceof Error ? e.message : 'Error inesperado');

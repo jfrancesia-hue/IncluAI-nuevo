@@ -5,6 +5,7 @@ import { SpeedInsights } from "@vercel/speed-insights/next";
 import { ThemeProvider } from "@/components/theme-provider";
 import { AxeA11y } from "@/components/axe-a11y";
 import { Toaster } from "@/components/ui/Toaster";
+import { MetaPixel } from "@/components/analytics/MetaPixel";
 import "./globals.css";
 
 // Tipografía 2026: Inter (cuerpo, alta legibilidad on-screen) + Plus Jakarta Sans
@@ -77,6 +78,7 @@ export default function RootLayout({
         </ThemeProvider>
         <Analytics />
         <SpeedInsights />
+        <MetaPixel />
       </body>
     </html>
   );

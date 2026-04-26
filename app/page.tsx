@@ -10,6 +10,8 @@ import { MarqueeProvincias } from '@/components/landing/MarqueeProvincias';
 import { RevealOnScroll } from '@/components/landing/RevealOnScroll';
 import { LogoLockup } from '@/components/branding/LogoLockup';
 import { Footer } from '@/components/landing/Footer';
+import { HomeTracking } from '@/components/analytics/HomeTracking';
+import { LeadLink } from '@/components/analytics/LeadLink';
 
 export const metadata = {
   title: 'IncluAI — Cada alumno merece una clase pensada para él',
@@ -24,6 +26,7 @@ export default async function LandingPage() {
 
   return (
     <div className="min-h-screen bg-[#FBF8F2] text-[#1F2E3D]">
+      <HomeTracking />
       <main>
         <Hero />
         <SocialProof />
@@ -159,14 +162,15 @@ function Hero() {
           </p>
 
           <div className="mt-2 flex flex-col gap-3 sm:flex-row sm:items-center">
-            <Link
-              href="/registro"
+            <LeadLink
+              href="/registro?utm_source=site&utm_content=hero"
+              leadSource="hero_cta"
               className="magnetic-btn inline-flex items-center justify-center gap-2 rounded-[14px] bg-[#27AE60] px-7 py-4 text-base font-bold text-white shadow-[0_8px_32px_rgba(39,174,96,0.45)]"
               style={{ fontFamily: 'var(--font-display)', letterSpacing: '-0.01em' }}
             >
               Crear mi primera guía — gratis
               <span aria-hidden>→</span>
-            </Link>
+            </LeadLink>
             <Link
               href="#features"
               className="inline-flex items-center justify-center text-sm font-semibold text-white/70 transition hover:text-white"
@@ -892,7 +896,12 @@ function Pricing() {
               'Todas las discapacidades',
               'IA avanzada (estándar)',
             ]}
-            cta={{ label: 'Empezar gratis', href: '/registro', variant: 'outline' }}
+            cta={{
+              label: 'Empezar gratis',
+              href: '/registro?utm_source=site&utm_content=pricing_free',
+              variant: 'outline',
+              leadSource: 'pricing_free',
+            }}
             delay={0}
           />
           <PricingCard
@@ -966,7 +975,12 @@ function PricingCard({
   period: string;
   description: string;
   features: string[];
-  cta: { label: string; href: string; variant: 'outline' | 'filled' };
+  cta: {
+    label: string;
+    href: string;
+    variant: 'outline' | 'filled';
+    leadSource?: string;
+  };
   highlighted?: boolean;
   badge?: string;
   badgeTone?: 'orange' | 'gold';
@@ -1031,19 +1045,36 @@ function PricingCard({
           </Check>
         ))}
       </ul>
-      <Link
-        href={cta.href}
-        className={
-          cta.variant === 'filled'
-            ? 'magnetic-btn mt-6 inline-flex items-center justify-center gap-2 rounded-[12px] bg-[#27AE60] py-3 text-sm font-bold text-white shadow-[0_8px_24px_rgba(39,174,96,0.45)]'
-            : isHighlighted
-              ? 'mt-6 inline-flex items-center justify-center rounded-[12px] border-2 border-white bg-transparent py-3 text-sm font-bold text-white transition hover:bg-white/10'
-              : 'mt-6 inline-flex items-center justify-center rounded-[12px] border-2 border-[#2E86C1] bg-white py-3 text-sm font-bold text-[#2E86C1] transition hover:bg-[#2E86C1] hover:text-white'
-        }
-        style={{ fontFamily: 'var(--font-display)' }}
-      >
-        {cta.label}
-      </Link>
+      {cta.leadSource ? (
+        <LeadLink
+          href={cta.href}
+          leadSource={cta.leadSource}
+          className={
+            cta.variant === 'filled'
+              ? 'magnetic-btn mt-6 inline-flex items-center justify-center gap-2 rounded-[12px] bg-[#27AE60] py-3 text-sm font-bold text-white shadow-[0_8px_24px_rgba(39,174,96,0.45)]'
+              : isHighlighted
+                ? 'mt-6 inline-flex items-center justify-center rounded-[12px] border-2 border-white bg-transparent py-3 text-sm font-bold text-white transition hover:bg-white/10'
+                : 'mt-6 inline-flex items-center justify-center rounded-[12px] border-2 border-[#2E86C1] bg-white py-3 text-sm font-bold text-[#2E86C1] transition hover:bg-[#2E86C1] hover:text-white'
+          }
+          style={{ fontFamily: 'var(--font-display)' }}
+        >
+          {cta.label}
+        </LeadLink>
+      ) : (
+        <Link
+          href={cta.href}
+          className={
+            cta.variant === 'filled'
+              ? 'magnetic-btn mt-6 inline-flex items-center justify-center gap-2 rounded-[12px] bg-[#27AE60] py-3 text-sm font-bold text-white shadow-[0_8px_24px_rgba(39,174,96,0.45)]'
+              : isHighlighted
+                ? 'mt-6 inline-flex items-center justify-center rounded-[12px] border-2 border-white bg-transparent py-3 text-sm font-bold text-white transition hover:bg-white/10'
+                : 'mt-6 inline-flex items-center justify-center rounded-[12px] border-2 border-[#2E86C1] bg-white py-3 text-sm font-bold text-[#2E86C1] transition hover:bg-[#2E86C1] hover:text-white'
+          }
+          style={{ fontFamily: 'var(--font-display)' }}
+        >
+          {cta.label}
+        </Link>
+      )}
     </RevealOnScroll>
   );
 }
@@ -1114,13 +1145,14 @@ function EmotionalClose() {
           aula. Sumate a la comunidad que está haciendo inclusión real en
           Argentina.
         </p>
-        <Link
-          href="/registro"
+        <LeadLink
+          href="/registro?utm_source=site&utm_content=close"
+          leadSource="emotional_close"
           className="magnetic-btn inline-flex items-center justify-center gap-2 rounded-[14px] bg-[#27AE60] px-8 py-4 text-base font-bold text-white shadow-[0_12px_40px_rgba(39,174,96,0.55)]"
           style={{ fontFamily: 'var(--font-display)' }}
         >
           Empezar gratis ahora <span aria-hidden>→</span>
-        </Link>
+        </LeadLink>
         <p className="text-xs text-white/60">
           Sin tarjeta · 1 guía gratuita al mes · Cancelás cuando quieras
         </p>

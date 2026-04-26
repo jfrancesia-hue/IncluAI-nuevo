@@ -12,6 +12,7 @@ import { ESPECIALIDADES } from '@/data/especialidades';
 import { registrarUsuario } from './actions';
 import { createClient } from '@/lib/supabase/client';
 import { cn } from '@/lib/utils';
+import { trackPixel } from '@/lib/pixel';
 
 type Tipo = 'docente' | 'familia' | 'profesional';
 
@@ -51,6 +52,10 @@ export function RegistroForm() {
             if (result.fieldErrors) setFieldErrors(result.fieldErrors);
             return;
           }
+          trackPixel('CompleteRegistration', {
+            tipo_usuario: tipo,
+            method: 'email',
+          });
           if (result.requiresEmailConfirm) {
             router.push('/verificar-email');
           } else {

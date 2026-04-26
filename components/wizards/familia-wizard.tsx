@@ -6,6 +6,7 @@ import Image from 'next/image';
 import { DISCAPACIDADES } from '@/data/discapacidades';
 import { AREAS_FAMILIA } from '@/data/areas-familia';
 import { RANGOS_EDAD } from '@/data/rangos-edad';
+import { trackPixelCustom } from '@/lib/pixel';
 import type {
   FormularioFamilia,
   SituacionFamiliar,
@@ -104,6 +105,7 @@ export function FamiliaWizard() {
       if (!res.ok || !data.success || !data.id) {
         throw new Error(data.error ?? 'No se pudo generar la guía');
       }
+      trackPixelCustom('ActividadCreada', { tipo: 'guia', modulo: 'familia' });
       router.push(`/resultado?id=${data.id}`);
     } catch (e) {
       setError(e instanceof Error ? e.message : 'Error inesperado');
